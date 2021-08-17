@@ -1035,12 +1035,12 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = 'AAA';
     var myVar2 = 'SELECT * FROM employee WHERE name = ';
     
     // 出力
     myVar2 += myVar1;
-    console.log(myVar2);  // SELECT * FROM employee WHERE name = 荒木誠
+    console.log(myVar2);  // SELECT * FROM employee WHERE name = AAA
     
   </script>
   
@@ -1090,12 +1090,12 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = 'AAA';
     var myVar2 = 'SELECT * FROM employee WHERE name = ' + myVar1;
     
     // 出力
-    console.log(myVar1);  // 荒木誠
-    console.log(myVar2);  // SELECT * FROM employee WHERE name = 荒木誠
+    console.log(myVar1);  // AAA
+    console.log(myVar2);  // SELECT * FROM employee WHERE name = AAA
     
   </script>
   
@@ -1783,11 +1783,11 @@
     var myVar2 = ['A', 'B', 'C', 'D'];
     
     // メソッド「push」
-    myVar1.push(555);
+    myVar1.push(777);
     myVar2.push('E');
     
     // 出力
-    console.log(myVar1);  // [111, 222, 333, 444, 555]
+    console.log(myVar1);  // [111, 222, 333, 444, 777]
     console.log(myVar2);  // ['A', 'B', 'C', 'D', 'E']
     
   </script>
@@ -2223,7 +2223,7 @@
     // 関数定義
     const myFunc = () => {
       var myVar = 'AAA';  // ローカル変数
-      return 'Hello ' + myVar;
+      return `Hello ${myVar}`;
     };
     
     // 出力
@@ -2282,7 +2282,7 @@
     // 関数定義
     const myFunc = () => {
       var myVar = 'BBB';  // ローカル変数
-      return 'Hello ' + myVar;
+      return `Hello ${myVar}`;
     };
     
     // 出力
@@ -2395,13 +2395,13 @@
     // 変数定義と初期化
     var myVar = 0;
     
-    // 関数定義
-    const myFunc = (p1) => {
-      myVar = myVar + p1;
-    }
+    // 処理結果を「return」で返さない
+    const myFunc = (p1) => myVar += p1;
     
-    // 出力
+    // 出力(1)
     console.log(myFunc(10));  // undefined
+    
+    // 出力(2)
     console.log(myVar);       // 10
     
   </script>
@@ -2525,8 +2525,8 @@
     const myFunc2 = () => false;
     
     // 出力
-    console.log(myFunc1());  // true
-    console.log(myFunc2());  // false
+    console.log(typeof myFunc1());  // boolean
+    console.log(typeof myFunc2());  // boolean
     
   </script>
   
@@ -3246,10 +3246,10 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => {
-      if (p1 === 'A') { 
+    const myFunc = (P1) => {
+      if (P1 === 'A') { 
         return 'It is A';
-      } else if (p1 === 'B'){ 
+      } else if (P1 === 'B'){ 
         return 'It is B';
       } else {
         return 'It is Unknown'
@@ -3339,8 +3339,8 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => {
-      switch (p1) {
+    const myFunc = (P1) => {
+      switch (P1) {
         case 'A':
           return 'It is A';
         case 'B':
@@ -3411,8 +3411,8 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => {
-      switch (p1) {
+    const myFunc = (P1) => {
+      switch (P1) {
         case 'A':
         case 'B':
         case 'C':
@@ -3558,8 +3558,8 @@
     }
     
     // 出力
-    console.log(myFunc(100 === 100));  // true
-    console.log(myFunc(100 === 111));  // undefined
+    console.log(typeof myFunc(100 === 100));  // boolean
+    console.log(typeof myFunc(100 === 111));  // undefined
     
   </script>
   
@@ -3618,22 +3618,31 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    var myTriangle = {
-      bottom: 300,
-      height: 400,
-      hypotenuse: 500
+    // オブジェクト
+    var OBJ = {
+      key1: 300,
+      key2: 400,
+      key3: 500
     }
     
-    // 変数定義と初期化
-    var myVar1 = '底辺 : ' + myTriangle.bottom ;
-    var myVar2 = '高さ : ' + myTriangle.height ;
-    var myVar3 = '斜辺 : ' + myTriangle.hypotenuse ;
+    var V1 = 'key1';
+    var V2 = 'key2';
+    var V3 = 'key3';
     
-    // 出力
-    console.log(myVar1);  // 底辺 : 300
-    console.log(myVar2);  // 高さ : 400
-    console.log(myVar3);  // 斜辺 : 500
+    // 出力(1)
+    console.log(OBJ.key1);  // 300
+    console.log(OBJ.key2);  // 400
+    console.log(OBJ.key3);  // 500
+    
+    // 出力(2)
+    console.log(OBJ['key1']);  // 300
+    console.log(OBJ['key2']);  // 400
+    console.log(OBJ['key3']);  // 500
+    
+    // 出力(3)
+    console.log(OBJ[V1]);  // 300
+    console.log(OBJ[V2]);  // 400
+    console.log(OBJ[V3]);  // 500
     
   </script>
   
@@ -3669,61 +3678,7 @@
   プロパティにアクセス(2) => オブジェクト[プロパティ名]
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // オブジェクト => 直角三角形
-    var myTriangle = {
-      bottom: 300,
-      height: 400,
-      hypotenuse: 500
-    }
-    
-    // 変数定義と初期化
-    var myVar1 = '底辺 : ' + myTriangle['bottom'] ;
-    var myVar2 = '高さ : ' + myTriangle['height'] ;
-    var myVar3 = '斜辺 : ' + myTriangle['hypotenuse'] ;
-    
-    // 出力
-    console.log(myVar1);  // 底辺 : 300
-    console.log(myVar2);  // 高さ : 400
-    console.log(myVar3);  // 斜辺 : 500
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「081」を参照
   
 ================================================================================
 [084]
@@ -3733,65 +3688,7 @@
   プロパティにアクセス(3) => オブジェクト[変数]
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // オブジェクト => 目的地
-    var myDestination = {
-      'A': '東京',
-      'B': '神奈川',
-      'C': '千葉',
-      'D': '埼玉',
-      'E': '茨城',
-      'F': '栃木',
-      'G': '群馬'
-    }
-    
-    // 変数定義と初期化
-    var myVar1 = 'A' ;
-    var myVar2 = 'B' ;
-    var myVar3 = 'C' ;
-    
-    // 出力
-    console.log(myDestination[myVar1]);  // 東京
-    console.log(myDestination[myVar2]);  // 神奈川
-    console.log(myDestination[myVar3]);  // 千葉
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「081」を参照
   
 ================================================================================
 [085]
@@ -3824,31 +3721,40 @@
   // JS
   <script>
     
-    // オブジェクト => 目的地
-    var myDestination = {
-      'A': '東京',
-      'B': '神奈川',
-      'C': '千葉',
-      'D': '埼玉',
-      'E': '茨城',
-      'F': '栃木',
-      'G': '群馬'
+    // オブジェクト
+    var OBJ = {
+      key1: 300,
+      key2: 400,
+      key3: 500
     }
     
-    // 変数定義と初期化
-    var myVar1 = 'A' ;
-    var myVar2 = 'B' ;
-    var myVar3 = 'C' ;
-    
     // プロパティを更新
-    myDestination[myVar1] = '北海道' ;
-    myDestination[myVar2] = '青森' ;
-    myDestination[myVar3] = '岩手' ;
+    OBJ.key1 = 1300;
+    OBJ.key2 = 1400;
+    OBJ.key3 = 1500;
     
-    // 出力
-    console.log(myDestination[myVar1]);  // 北海道
-    console.log(myDestination[myVar2]);  // 青森
-    console.log(myDestination[myVar3]);  // 岩手
+    // 出力(1)
+    console.log(OBJ.key1);  // 1300
+    console.log(OBJ.key2);  // 1400
+    console.log(OBJ.key3);  // 1500
+    
+    // プロパティを追加
+    OBJ.key4 = 1600;
+    OBJ.key5 = 1700;
+    OBJ.key6 = 1800;
+    
+    // 出力(2)
+    console.log(OBJ.key4);  // 1600
+    console.log(OBJ.key5);  // 1700
+    console.log(OBJ.key6);  // 1800
+    
+    // プロパティを削除
+    delete OBJ.key4;
+    delete OBJ.key5;
+    delete OBJ.key6;
+    
+    // プロパティの一覧
+    console.log(Object.keys(OBJ));  // [key1, key2, key3]
     
   </script>
   
@@ -3874,75 +3780,7 @@
   プロパティを追加
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // オブジェクト => 目的地
-    var myDestination = {
-      'A': '東京',
-      'B': '神奈川',
-      'C': '千葉',
-      'D': '埼玉',
-      'E': '茨城',
-      'F': '栃木',
-      'G': '群馬'
-    }
-    
-    // プロパティを追加
-    myDestination.H = '静岡' ;
-    myDestination.I = '長野' ;
-    myDestination.J = '山梨' ;
-    
-    // プロパティの一覧
-    var myArray = Object.keys(myDestination);
-    
-    // プロパティの値を出力
-    for (var i = 0; i < myArray.length; i++) {
-      var myTmp = '';
-      
-      // 文字列構築
-      myTmp += myArray[i];
-      myTmp += ' : ';
-      myTmp += myDestination[myArray[i]];
-      
-      console.log(myTmp);
-    }
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「085」を参照
   
 ================================================================================
 [087]
@@ -3952,75 +3790,7 @@
   プロパティを削除
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // オブジェクト => 目的地
-    var myDestination = {
-      'A': '東京',
-      'B': '神奈川',
-      'C': '千葉',
-      'D': '埼玉',
-      'E': '茨城',
-      'F': '栃木',
-      'G': '群馬'
-    }
-    
-    // プロパティを削除
-    delete myDestination.A ;
-    delete myDestination.B ;
-    delete myDestination.C ;
-    
-    // プロパティの一覧
-    var myArray = Object.keys(myDestination);
-    
-    // プロパティの値を出力
-    for (var i = 0; i < myArray.length; i++) {
-      var myTmp = '';
-      
-      // 文字列構築
-      myTmp += myArray[i];
-      myTmp += ' : ';
-      myTmp += myDestination[myArray[i]];
-      
-      console.log(myTmp);
-    }
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「085」を参照
   
 ================================================================================
 [088]
@@ -4054,35 +3824,35 @@
   <script>
     
     // 関数定義
-    const myFunc1 = (p1) => {
-      switch(p1) {
-        case 'A': return '東京' ;
-        case 'B': return '神奈川' ;
-        case 'C': return '千葉' ;
-        case 'D': return '埼玉' ;
-        case 'E': return '茨城' ;
-        case 'F': return '栃木' ;
-        case 'G': return '群馬' ;
+    const myFunc1 = (P1) => {
+      switch(P1) {
+        case 'A': return 100;
+        case 'B': return 200;
+        case 'C': return 300;
+        case 'D': return 400;
+        case 'E': return 500;
+        case 'F': return 600;
+        case 'G': return 700;
       }
     }
     
     // 関数定義
-    const myFunc2 = (p1) => {
-      var myDestination = {
-        'A': '東京',
-        'B': '神奈川',
-        'C': '千葉',
-        'D': '埼玉',
-        'E': '茨城',
-        'F': '栃木',
-        'G': '群馬'
+    const myFunc2 = (P1) => {
+      var OBJ = {
+        'A': 100,
+        'B': 200,
+        'C': 300,
+        'D': 400,
+        'E': 500,
+        'F': 600,
+        'G': 700
       }
-      return myDestination[p1];
+      return OBJ[P1];
     }
     
     // 出力
-    console.log(myFunc1('A'));  // 東京
-    console.log(myFunc2('A'));  // 東京
+    console.log(myFunc1('A'));  // 100
+    console.log(myFunc2('A'));  // 100
     
   </script>
   
@@ -4131,22 +3901,18 @@
   // JS
   <script>
     
-    // オブジェクト定義
+    // オブジェクト
     var OBJ = {
-      'A': '東京',
-      'B': '神奈川',
-      'C': '千葉',
-      'D': '埼玉',
-      'E': '茨城',
-      'F': '栃木',
-      'G': '群馬'
+      'A': 100,
+      'B': 200,
+      'C': 300
     }
     
     // 関数定義
     const myFunc = (OBJ, P1) => OBJ.hasOwnProperty(P1) ? OBJ[P1] : 'Not Found' ;
     
     // 出力
-    console.log(myFunc(OBJ, 'A'));  // 東京
+    console.log(myFunc(OBJ, 'A'));  // 100
     console.log(myFunc(OBJ, 'Z'));  // Not Found
     
   </script>
@@ -4196,35 +3962,17 @@
   // JS
   <script>
     
-    // 関数定義 => 地域と県名のペアが正しいか確認
-    const myFunc = (p1, p2) => {
-      var myArea = [
-        {
-          'AREA': '関東',
-          'NAME': ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
-        },
-        {
-          'AREA': '東北',
-          'NAME': ['青森', '岩手', '秋田', '宮城', '山形', '福島']
-        }
-      ];
-      
-      for (let i = 0; i < myArea.length; i++) {
-        if (myArea[i]['AREA'] === p1) {
-          for (let j = 0; j < myArea[i]['NAME'].length; j++) {
-            if (myArea[i]['NAME'][j] === p2) {
-              return true;
-            }
-          }
-        }
-      }
-      return false;
-    }
+    // オブジェクト配列
+    var ARR = [
+      { key1: 100, key2: 200, key3: 300 },
+      { key1: 101, key2: 201, key3: 301 },
+      { key1: 102, key2: 202, key3: 302 }
+    ];
     
     // 出力
-    console.log(myFunc('関東', '東京'));  // true
-    console.log(myFunc('関東', '岩手'));  // false
-    console.log(myFunc('関東', '群馬'));  // true
+    console.log(ARR[0].key1);  // 100
+    console.log(ARR[1].key1);  // 101
+    console.log(ARR[2].key1);  // 102
     
   </script>
   
@@ -4247,7 +3995,7 @@
   Accessing Nested Objects
   
 [内容]
-  ネストオブジェクト => オブジェクト内のオブジェクト
+  オブジェクト内のオブジェクト
   
 [確認]
   # cd /var/www/html
@@ -4273,51 +4021,17 @@
   // JS
   <script>
     
-    // 関数定義 => 地域と県名と県庁のペアが正しいか確認
-    const myFunc = (p1, p2, p3) => {
-      var myArea = [
-        {
-          'AREA': '関東',
-          'NAME': [
-            {'NAME': '東京', 'CITY': '新宿区'},
-            {'NAME': '千葉', 'CITY': '千葉市'},
-            {'NAME': '埼玉', 'CITY': 'さいたま市'},
-            {'NAME': '茨城', 'CITY': '水戸市'},
-            {'NAME': '栃木', 'CITY': '宇都宮市'},
-            {'NAME': '群馬', 'CITY': '前橋市'}
-          ]
-        },
-        {
-          'AREA': '東北',
-          'NAME': [
-            {'NAME': '青森', 'CITY': '青森市'},
-            {'NAME': '岩手', 'CITY': '盛岡市'},
-            {'NAME': '秋田', 'CITY': '秋田市'},
-            {'NAME': '宮城', 'CITY': '仙台市'},
-            {'NAME': '山形', 'CITY': '山形市'},
-            {'NAME': '福島', 'CITY': '福島市'}
-          ]
-        }
-      ];
-      
-      for (let i = 0; i < myArea.length; i++) {
-        if (myArea[i]['AREA'] === p1) {
-          for (let j = 0; j < myArea[i]['NAME'].length; j++) {
-            if (myArea[i]['NAME'][j]['NAME'] === p2) {
-              if (myArea[i]['NAME'][j]['CITY'] === p3) {
-                return true;
-              }
-            }
-          }
-        }
-      }
-      return false;
-    }
+    // オブジェクト配列
+    var ARR = [
+      { key1: 100, OBJ: { key2: 200, key3: 300 } },
+      { key1: 101, OBJ: { key2: 201, key3: 301 } },
+      { key1: 102, OBJ: { key2: 202, key3: 302 } }
+    ];
     
     // 出力
-    console.log(myFunc('関東', '東京', '新宿区'));  // true
-    console.log(myFunc('関東', '東京', '前橋市'));  // false
-    console.log(myFunc('関東', '群馬', '前橋市'));  // true
+    console.log(ARR[0].OBJ.key2);  // 200
+    console.log(ARR[1].OBJ.key2);  // 201
+    console.log(ARR[2].OBJ.key2);  // 202
     
   </script>
   
@@ -4387,16 +4101,14 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [];
-    var idx = 1;
+    var ARR = [];
+    var cnt = 1;
     
     // ループ処理
-    while (idx <= 10) {
-      arr.push(idx++);
-    }
+    while (cnt <= 10) ARR.push(cnt++);
     
     // 出力
-    console.log(arr);
+    console.log(ARR);
     
   </script>
   
@@ -4446,15 +4158,13 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [];
+    var ARR = [];
     
     // ループ処理
-    for (let i = 1; i <= 10; i++) {
-      arr.push(i);
-    }
+    for (let i = 1; i <= 10; i++) ARR.push(i);
     
     // 出力
-    console.log(arr);
+    console.log(ARR);
     
   </script>
   
@@ -4504,15 +4214,13 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [];
+    var ARR = [];
     
     // ループ処理
-    for (let i = 1; i <= 10; i += 2) {
-      arr.push(i);
-    }
+    for (let i = 1; i <= 10; i += 2) ARR.push(i);
     
     // 出力
-    console.log(arr);
+    console.log(ARR);
     
   </script>
   
@@ -4562,15 +4270,13 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [];
+    var ARR = [];
     
     // ループ処理
-    for (let i = 10; i > 0; i--) {
-      arr.push(i);
-    }
+    for (let i = 10; i > 0; i--) ARR.push(i);
     
     // 出力
-    console.log(arr);
+    console.log(ARR);
     
   </script>
   
@@ -4620,16 +4326,14 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-    var sum = 0;
+    var ARR = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var SUM = 0;
     
     // ループ処理
-    for (let i = 0; i < arr.length; i++) {
-      sum += arr[i];
-    }
+    for (let i = 0; i < ARR.length; i++) SUM += ARR[i];
     
     // 出力
-    console.log(sum);
+    console.log(SUM);
     
   </script>
   
@@ -4679,18 +4383,18 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ];
-    var sum = 0;
+    var ARR = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ];
+    var SUM = 0;
     
     // ループ処理
-    for (let i = 0; i < arr.length; i++) {
-      for (let j = 0; j < arr[i].length; j++) {
-        sum += arr[i][j];
+    for (let i = 0; i < ARR.length; i++) {
+      for (let j = 0; j < ARR[i].length; j++) {
+        SUM += ARR[i][j];
       }
     }
     
     // 出力
-    console.log(sum);
+    console.log(SUM);
     
   </script>
   
@@ -4740,16 +4444,16 @@
   <script>
     
     // 変数定義と初期化
-    var arr = [];
-    var idx = 1;
+    var ARR = [];
+    var IDX = 1;
     
     // ループ処理
     do {
-      arr.push(idx++);
-    } while(idx <= 10);
+      ARR.push(idx++);
+    } while(IDX <= 10);
     
     // 出力
-    console.log(arr);
+    console.log(ARR);
     
   </script>
   
@@ -4802,20 +4506,20 @@
   <script>
     
     // 関数定義(ループ)
-    const myFunc1 = (p1) => {
-      var res = 1;
+    const myFunc1 = (P1) => {
+      var RET = 1;
       
-      for (i = p1; i >= 1; i--) res *= i;
+      for (i = P1; i >= 1; i--) RET *= i;
       
-      return res;
+      return RET;
     }
     
     // 関数定義(再起処理)
-    const myFunc2 = (p1) => {
-      if (p1 === 0) {
+    const myFunc2 = (P1) => {
+      if (P1 === 0) {
         return 1;
       } else {
-        return p1 * myFunc2(p1 - 1);
+        return P1 * myFunc2(P1 - 1);
       }
     }
     
@@ -4871,14 +4575,14 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1, p2) => {
+    const myFunc = (P1, P2) => {
       var Profile = [
         {'姓': '上杉', '名': '謙信', '所在': '新潟'},
         {'姓': '武田', '名': '信玄', '所在': '山梨'}
       ];
       
       for (i = 0; i < Profile.length; i++) {
-        if (Profile[i]['姓'] === p1 && Profile[i]['名'] === p2) {
+        if (Profile[i]['姓'] === P1 && Profile[i]['名'] === P2) {
           return Profile[i]['所在'];
         }
       }
@@ -5219,23 +4923,17 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => {
-      var myDestination = {
-        'A': '東京',
-        'B': '神奈川',
-        'C': '千葉',
-        'D': '埼玉',
-        'E': '茨城',
-        'F': '栃木',
-        'G': '群馬'
+    const myFunc = (P1) => {
+      var OBJ = {
+        'A': 100,
+        'B': 200,
+        'C': 300
       }
-      return myDestination.hasOwnProperty(p1)
-        ? myDestination[p1]
-        : 'Not Found' ;
+      return OBJ.hasOwnProperty(P1) ? OBJ[P1] : 'Not Found' ;
     }
     
     // 出力
-    console.log(myFunc('A'));  // 東京
+    console.log(myFunc('A'));  // 100
     console.log(myFunc('Z'));  // Not Found
     
   </script>
@@ -5286,27 +4984,23 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1, p2) => {
-      var myDestination = {
-        'A': '東京',
-        'B': '神奈川',
-        'C': '千葉',
-        'D': '埼玉',
-        'E': '茨城',
-        'F': '栃木',
-        'G': '群馬'
+    const myFunc = (P1, P2) => {
+      var OBJ = {
+        'A': 100,
+        'B': 200,
+        'C': 300
       }
-      return myDestination.hasOwnProperty(p1)
-        ? myDestination[p1] === p2 
-          ? myDestination[p1]
+      return OBJ.hasOwnProperty(P1)
+        ? OBJ[P1] === P2 
+          ? 'True'
           : 'Not Found1'
         : 'Not Found2';
     }
     
     // 出力
-    console.log(myFunc('A', '東京'));  // 東京
-    console.log(myFunc('Z', '東京'));  // Not Found2
-    console.log(myFunc('A', '栃木'));  // Not Found1
+    console.log(myFunc('A', 100));  // True
+    console.log(myFunc('Z', 100));  // Not Found2
+    console.log(myFunc('A', 300));  // Not Found1
     
   </script>
   

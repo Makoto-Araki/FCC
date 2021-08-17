@@ -78,11 +78,11 @@
   <script>
     
     // キーワード「var」=> 再定義で上書き可能
-    var myVar1 = '東京';
-    var myVar1 = '埼玉';
+    var myVar1 = '東京';  // エラー無し
+    var myVar1 = '埼玉';  // エラー無し
     
     // キーワード「let」=> 構文エラー
-    let myVar2 = '長野';
+    let myVar2 = '長野';  // エラー無し
     let myVar2 = '山梨';  // SyntaxError: redeclaration of let myVar2
     
   </script>
@@ -285,7 +285,9 @@
   Prevent Object Mutation
   
 [内容]
-  オブジェクト保護「Object.freeze」-> 個別要素ならびに全要素の変更可能 -> 配列の保護には使えない
+  オブジェクト保護「Object.freeze」
+    プロパティの更新 -> 不可
+    プロパティの削除 -> 不可
   
 [確認]
   # cd /var/www/html
@@ -312,30 +314,20 @@
   <script>
     
     // オブジェクト
-    let myOBJ = {
-      'AA': '東京',
-      'BB': '千葉',
-      'CC': '埼玉'
+    let OBJ = {
+      key1: 100,
+      key2: 200,
+      key3: 300
     };
     
-    // オブジェクトの保護 => 結果は成功
-    Object.freeze(myOBJ);
+    // オブジェクトの保護
+    Object.freeze(OBJ);
     
     // オブジェクトの保護で失敗
-    myOBJ['AA'] = '北海道';
-    myOBJ['DD'] = '栃木';
+    OBJ.key1 = 101;
     
     // オブジェクトの保護で失敗
-    delete myOBJ['BB'];
-    delete myOBJ['CC'];
-    
-    // プロパティの一覧
-    let myTmp = Object.keys(myOBJ);
-    
-    // プロパティの出力
-    for (let i = 0; i < myTmp.length; i++) {
-      console.log(`${myTmp[i]} : ${myOBJ[myTmp[i]]}`);
-    }
+    delete OBJ.key1;
     
   </script>
   
@@ -384,17 +376,23 @@
   // JS
   <script>
     
-    // 関数定義
-    const myFunc1 = () => {
+    // 通常の関数
+    function myFunc1() {
+      return 'Hello World';
+    }
+    
+    // アロー関数
+    const myFunc2 = () => {
       return 'Hello World';
     }
     
     // 更に省略可
-    const myFunc2 = () => 'Hello World';
+    const myFunc3 = () => 'Hello World';
     
     // 出力
     console.log(myFunc1());  // Hello World
     console.log(myFunc2());  // Hello World
+    console.log(myFunc3());  // Hello World
     
   </script>
   
@@ -444,18 +442,18 @@
   <script>
     
     // 関数定義
-    const myFunc1 = (p1) => {
-      return 'Hello ' + p1;
+    const myFunc1 = (P1) => {
+      return 'Hello ' + P1;
     }
     
     // 引数一個なら括弧を省略可
-    const myFunc2 = p1 => {
-      return 'Hello ' + p1;
+    const myFunc2 = P1 => {
+      return 'Hello ' + P1;
     }
     
     // 出力
-    console.log(myFunc1('上杉謙信'));  // Hello 上杉謙信
-    console.log(myFunc2('武田信玄'));  // Hello 武田信玄
+    console.log(myFunc1('AAA'));  // Hello AAA
+    console.log(myFunc2('AAA'));  // Hello AAA
     
   </script>
   
@@ -505,7 +503,7 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1 = 'AAA') => 'Hello ' + p1;
+    const myFunc = (P1 = 'AAA') => 'Hello ' + P1;
     
     // 出力
     console.log(myFunc());       // Hello AAA
@@ -559,17 +557,16 @@
   <script>
     
     // 関数定義
-    const myFunc = (...args) => {
-      let res = [];
-      
-      for (let i = 0; i < args.length; i++) res.push(args[i]);
-      
-      return res;
+    const myFunc = (...ARR) => {
+      let RET = [];
+      for (let i = 0; i < ARR.length; i++) RET.push(ARR[i]);
+      return RET;
     }
     
     // 出力
-    console.log(myFunc(1, 2));     // [1, 2]
-    console.log(myFunc(1, 2, 3));  // [1, 2, 3]
+    console.log(myFunc(1, 2));        // [1, 2]
+    console.log(myFunc(1, 2, 3));     // [1, 2, 3]
+    console.log(myFunc(1, 2, 3, 4));  // [1, 2, 3, 4]
     
   </script>
   
@@ -674,27 +671,20 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    let Triangle = {
-      key1: 3,
-      key2: 4,
-      key3: 5,
-      key4: [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
-      key5: function() { return this.底辺 * this.高さ / 2 ; }
+    // オブジェクト
+    let OBJ = {
+      key1: 300,
+      key2: 400,
+      key3: 500
     }
     
-    // オブジェクト内のプロパティ値を複数の変数に保存
-    let { key1: myTmp1, key2: myTmp2, key3: myTmp3 } = Triangle ;
-    
-    // 変数定義と初期化
-    let myVar1 = '底辺 : ' + myTmp1 ;
-    let myVar2 = '高さ : ' + myTmp2 ;
-    let myVar3 = '斜辺 : ' + myTmp3 ;
+    // オブジェクトからの分割代入
+    let { key1: V1, key2: V2, key3: V3 } = OBJ ;
     
     // 出力
-    console.log(myVar1) ;  // 底辺 : 3
-    console.log(myVar2) ;  // 高さ : 4
-    console.log(myVar3) ;  // 斜辺 : 5
+    console.log(V1);  // 300
+    console.log(V2);  // 400
+    console.log(V3);  // 500
     
   </script>
   
@@ -755,28 +745,21 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    let Triangle = {
-      '底辺': 3,
-      '高さ': 4,
-      '斜辺': 5,
-      '座標': [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
-      '面積': function() { return this.底辺 * this.高さ / 2 ; }
+    // オブジェクト
+    let OBJ = {
+      key1: 300,
+      key2: 400,
+      key3: 500,
+      ARR: [ { key4: 60, key5: 61 }, { key4: 70, key5: 71 }, { key4: 80, key5: 81 } ],
     }
     
-    // 内部のオブジェクト群を変数に保存
-    let { '座標': Points } = Triangle ;
+    // OBJ.ARR -> ANOTHER
+    let { ARR: ANOTHER } = OBJ;
     
-    // 各座標を出力
-    for (let i = 0; i < Points.length; i++) {
-      let tmp = '';
-      
-      // テンプレート文字列を使用
-      tmp += `X値: ${Points[i].X}`;
-      tmp += ` `;
-      tmp += `Y値: ${Points[i].Y}`;
-      
-      console.log(tmp);
+    // 出力
+    for (let i = 0; i < ANOTHER.length; i++) {
+      console.log(`key4: ${ANOTHER[i].key4}`);
+      console.log(`key5: ${ANOTHER[i].key5}`);
     }
     
   </script>
@@ -892,12 +875,12 @@
     let rest;
     
     // 先頭から一番目と二番目の要素を変数に代入、残りの要素は「...変数」の変数に代入
-    [var1, var2, ...rest] = [1, 2, 3, 4]
+    [var1, var2, ...rest] = [1, 2, 3, 4, 5]
     
     // 出力
     console.log(var1);  // 1
     console.log(var2);  // 2
-    console.log(rest);  // [3, 4]
+    console.log(rest);  // [3, 4, 5]
     
   </script>
   
@@ -920,8 +903,7 @@
   Use Destructuring Assignment to Pass an Object as a Function's Parameters
   
 [内容]
-  分割代入
-    関数の引数にオブジェクト指定
+  関数の引数にオブジェクト指定
   
 [確認]
   # cd /var/www/html
@@ -947,26 +929,18 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    let Triangle1 = {
-      bottom: 3,
-      height: 4,
-      hypotenuse: 5,
-    }
-    
-    // オブジェクト => 直角三角形
-    let Triangle2 = {
-      bottom: 30,
-      height: 40,
-      hypotenuse: 50,
+    // オブジェクト
+    let OBJ1 = {
+      key1: 3,
+      key2: 4,
+      key3: 5,
     }
     
     // 関数定義
-    const Area = (OBJ) => OBJ.bottom * OBJ.height / 2 ;
+    const Func = (OBJ) => OBJ.key1 * OBJ.key2 / 2;
     
-    // オブジェクトの面積を計算
-    console.log(Area(Triangle1));  // 6
-    console.log(Area(Triangle2));  // 600
+    // 出力
+    console.log(Func(OBJ1));  // 6
     
   </script>
   
@@ -1015,29 +989,18 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    let Triangle = {
-      '底辺': 3,
-      '高さ': 4,
-      '斜辺': 5,
-      '座標': [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
-      '面積': function() { return this.底辺 * this.高さ / 2 ; }
+    // オブジェクト
+    let OBJ = {
+      key1: 300,
+      key2: 400,
+      key3: 500
     }
     
-    // 内部のオブジェクト群を変数に保存
-    let { '座標': Points } = Triangle ;
+    // 各プロパティ名を取得
+    let ARR = Object.keys(OBJ);
     
-    // 各座標を出力
-    for (let i = 0; i < Points.length; i++) {
-      let tmp = '';
-      
-      // テンプレート文字列を使用
-      tmp += `X値: ${Points[i].X}`;
-      tmp += ` `;
-      tmp += `Y値: ${Points[i].Y}`;
-      
-      console.log(tmp);
-    }
+    // 各プロパティ値を出力
+    for (let i = 0; i < ARR.length; i++) console.log(`${ARR[i]}: ${OBJ[ARR[i]]}`);
     
   </script>
   
@@ -1087,26 +1050,21 @@
   <script>
     
     // オブジェクトのプロパティ
-    let bottom = 3;
-    let height = 4;
-    let hypotenuse = 5;
+    let key1 = 300;
+    let key2 = 400;
+    let key3 = 500;
     
-    // オブジェクトのプロパティをショートハンドで記述 => 直角三角形
-    let Triangle = {
-      bottom,
-      height,
-      hypotenuse
+    // オブジェクトのプロパティをショートハンドで記述
+    let OBJ = {
+      key1,
+      key2,
+      key3
     }
     
-    // 変数定義と初期化
-    let myVar1 = '底辺 : ' + Triangle.bottom ;
-    let myVar2 = '高さ : ' + Triangle.height ;
-    let myVar3 = '斜辺 : ' + Triangle.hypotenuse ;
-    
     // 出力
-    console.log(myVar1) ;  // 底辺 : 3
-    console.log(myVar2) ;  // 高さ : 4
-    console.log(myVar3) ;  // 斜辺 : 5
+    console.log(OBJ.key1) ;  // 300
+    console.log(OBJ.key2) ;  // 400
+    console.log(OBJ.key3) ;  // 500
     
   </script>
   
@@ -1156,24 +1114,24 @@
   <script>
     
     // ES5 オブジェクト内の関数の記述
-    let Triangle1 = {
-      bottom: 3,
-      height: 4,
-      hypotenuse: 5,
-      area: function() { return this.bottom * this.height / 2 ; }
+    let OBJ1 = {
+      key1: 3,
+      key2: 4,
+      key3: 5,
+      func: function() { return this.key1 * this.key2 / 2 ; }
     }
     
     // ES6 オブジェクト内の関数の記述
-    let Triangle2 = {
-      bottom: 3,
-      height: 4,
-      hypotenuse: 5,
-      area() { return this.bottom * this.height / 2 ; }
+    let OBJ2 = {
+      key1: 3,
+      key2: 4,
+      key3: 5,
+      func() { return this.key1 * this.key2 / 2 ; }
     }
     
     // 出力
-    console.log(Triangle1.area()) ;  // 6
-    console.log(Triangle2.area()) ;  // 6
+    console.log(OBJ1.func()) ;  // 6
+    console.log(OBJ2.func()) ;  // 6
     
   </script>
   

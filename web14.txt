@@ -1,0 +1,1059 @@
+================================================================================
+[00] Introduction to Basic Algorithm Scripting
+[01] Convert Celsius to Fahrenheit
+[02] Reverse a String
+[03] Factorialize a Number
+[04] Find the Longest Word in a String
+[05] Return Largest Numbers in Arrays
+[06] Confirm the Ending
+[07] Repeat a String Repeat a String
+[08] Truncate a String
+[09] Finders Keepers
+[10] Boo who
+[11] Title Case a Sentence
+[12] Slice and Splice
+[13] Falsy Bouncer
+[14] Where do I Belong
+[15] Mutations
+[16] Chunky Monkey
+================================================================================
+[01]
+  Convert Celsius to Fahrenheit
+
+[内容]
+  温度変換プログラム
+    華氏 = 摂氏 * 9 / 5 + 32
+    摂氏 = (華氏 - 32) * 5 / 9
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (val, flg) => flg ? val * 9 / 5 + 32 : (val - 32) * 5 / 9 ;
+    
+    // 摂氏から華氏を算出
+    console.log(myFunc(40, true));  // 104
+    console.log(myFunc(10, true));  // 50
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Reverse a String
+  
+[内容]
+  引数の文字列を文字を逆にして返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      let arr = [];
+      for (let i = 0; i < str.length; i++) arr.unshift(str[i]);
+      return arr.join('');
+    } ;
+    
+    // 摂氏から華氏を算出
+    console.log(myFunc('Hello'));  // olleH
+    console.log(myFunc('Araki'));  // ikarA
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Factorialize a Number
+  
+[内容]
+  階乗の計算
+    5! = 5 * 4 * 3 * 2 * 1 = 120
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (num) => {
+      let ret = 1;
+      if (num > 1) ret = num * myFunc(num - 1);
+      return ret;
+    } ;
+    
+    // 階乗の計算
+    console.log(myFunc(4));  // 24
+    console.log(myFunc(5));  // 120
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Find the Longest Word in a String
+  
+[内容]
+  入力文章で最長の単語を探索、その長さも返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      let reg = /\w+/g;
+      let arr = str.match(reg);
+      let cnt = 0;
+      let wrd = '';
+      
+      for (let i = 0; i < arr.length; i++) {
+        if (cnt < arr[i].length) {
+          cnt = arr[i].length;
+          wrd = arr[i];
+        }
+      }
+      
+      return `単語 : ${wrd} , 長さ : ${cnt}`;
+    } ;
+    
+    // 文字列
+    let str1 = 'This is a pen';
+    let str2 = 'The quick brown fox jumped over the lazy dog';
+    
+    // 入力文章で最長の単語を探索
+    console.log(myFunc(str1));  // 単語 : This , 長さ : 4
+    console.log(myFunc(str2));  // 単語 : jumped , 長さ : 6
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Return Largest Numbers in Arrays
+  
+[内容]
+  各サブ配列内で最大値の要素を抽出後に空の配列に格納
+  
+  [ [11, 12, 13, 14], [21, 22, 23, 24] ] => [14, 24]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr) => {
+      let res = [];
+      
+      for (let i = 0; i < arr.length; i++) {
+        let tmp = -9999;
+        for (let j = 0; j < arr[i].length; j++)
+          if (arr[i][j] > tmp) tmp = arr[i][j];
+        res.push(tmp);
+      }
+      
+      return res;
+    } ;
+    
+    // 多次元配列
+    let arr1 = [[11, 12, 13, 14], [21, 22, 23, 24]];
+    let arr2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+    
+    // 入力文章で最長の単語を探索
+    console.log(myFunc(arr1));  // [14, 24]
+    console.log(myFunc(arr2));  // [3, 6, 9]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Confirm the Ending
+  
+[内容]
+  文字列の末尾が指定した文字列か確認
+    メソッド「endsWith」の処理と同等のものを作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => {
+      const Reg = new RegExp(reg + '$');
+      return Reg.test(str) ? 'OK' : 'Not Found' ;
+    } ;
+    
+    // 文字列の末尾が指定した文字列か確認
+    console.log(myFunc('Alex', 'x'));   // OK
+    console.log(myFunc('Alex', 'ex'));  // OK
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Repeat a String Repeat a String
+  
+[内容]
+  文字列を回数分リピートする、回数が負数の場合は空文字列を返す
+    メソッド「repeat」の処理と同等のものを作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, num) => {
+      let arr = [];
+      
+      if (num < 0) {
+        return '';
+      } else {
+        for (let i = 0; i < num; i++) arr.push(str);
+      }
+      
+      return arr.join('');
+    } ;
+    
+    // 文字列を回数分リピートする
+    console.log(myFunc('A', 3));    // AAA
+    console.log(myFunc('ABC', 3));  // ABCABCABC
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Truncate a String
+  
+[内容]
+  文字列が指定数より長い場合は省略表示
+    関数('ABCDEFG', 3) => ABC...
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, num) => {
+      let arr = [];
+      
+      if (str.length <= num) {
+        return str;
+      } else {
+        for (let i = 0; i < num; i++) arr.push(str[i]);
+        arr.push('...');
+      }
+      
+      return arr.join('');
+    } ;
+    
+    // 文字列が指定数より長い場合は省略表示
+    console.log(myFunc('ABC', 3));      // ABC
+    console.log(myFunc('ABCDEFG', 3));  // ABC...
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Finders Keepers
+  
+[内容]
+  配列の全要素を指定関数でチェック、合致した最初の要素を返す
+    関数([11, 12, 13], (num) => num % 2 === 0) => 12
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr, func) => {
+      for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) return arr[i];
+      }
+    } ;
+    
+    // 配列の全要素を指定関数でチェック
+    console.log(myFunc([11, 12, 13], (num) => num % 2 === 0));  // 12
+    console.log(myFunc([11, 12, 13], (num) => num % 2 === 1));  // 11
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Boo who
+  
+[内容]
+  関数の引数が論理型かチェック
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => typeof p1 === 'boolean' ;
+    
+    // 関数の引数が論理型かチェック
+    console.log(myFunc(true));     // true
+    console.log(myFunc(1 === 1));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Title Case a Sentence
+  
+[内容]
+  英文の各単語の頭文字を大文字に、残りの文字を小文字に変換
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      let reg = /[\w'.]+/g;
+      let arr = str.match(reg);
+      let ret = [];
+      
+      // 各単語の頭文字を大文字に、残りの文字を小文字に変換
+      for (let i = 0; i < arr.length; i++) {
+        for (let j = 0; j < arr[i].length; j++) {
+          if (j === 0) {
+            ret.push(arr[i][j].toUpperCase()) ;
+          } else {
+            ret.push(arr[i][j].toLowerCase()) ;
+          }
+        }
+        
+        // 各単語の区切文字に空白を挿入
+        if (i !== arr.length - 1) ret.push(' ');
+      }
+      
+      // 配列内の全要素を統合して戻り値にする
+      return ret.join('');
+    } ;
+    
+    // 英文の各単語の頭文字を大文字に、残りの文字を小文字に変換
+    console.log(myFunc("this is a pen."));         // This Is A Pen.
+    console.log(myFunc("i'm a little tea pod."));  // I'm A Little Tea Pod.
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Slice and Splice
+  
+[内容]
+  関数(配列1, 配列2, 挿入場所)
+    => 配列1の内容を配列2の挿入場所にコピー
+    => 引数の配列1と配列2は加工禁止
+  
+  関数([1, 2, 3, 4], [11, 12, 13, 14], 2) => [11, 12, 1, 2, 3, 4, 13, 14]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (Arr1, Arr2, Idx) => {
+      
+      // 引数の配列をコピー
+      let arr1 = Arr1.slice(0, Arr1.length);
+      let arr2 = Arr2.slice(0, Arr2.length);
+      
+      // 配列の開始場所から指定数の要素を抽出
+      let arr3 = arr2.splice(0, Idx);
+      let arr4 = arr2.splice(0, arr2.length);
+      
+      let ret = [];
+      
+      // 戻り値の配列を構築
+      for (let i = 0; i < arr3.length; i++) ret.push(arr3[i]);
+      for (let i = 0; i < arr1.length; i++) ret.push(arr1[i]);
+      for (let i = 0; i < arr4.length; i++) ret.push(arr4[i]);
+      
+      return ret;
+    } ;
+    
+    // 配列1の内容を配列2の挿入場所にコピー
+    console.log(myFunc([11, 12], [21, 22], 0));  // [11, 12, 21, 22]
+    console.log(myFunc([11, 12], [21, 22], 1));  // [21, 11, 12, 22]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Falsy Bouncer
+  
+[内容]
+  関数(配列) => 配列内の「false」、「null」、「0」、「''」、「undefined」、「NaN」を削除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr) => {
+      let tmp = [];
+      for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === false) continue;
+        if (arr[i] === null) continue;
+        if (arr[i] === '') continue;
+        if (arr[i] === 0) continue;
+        if (typeof arr[i] === 'undefined') continue;
+        if (Number.isNaN(arr[i])) continue;
+        tmp.push(arr[i]);
+      }
+      return tmp;
+    } ;
+    
+    // 配列1の内容を配列2の挿入場所にコピー
+    console.log(myFunc([0, 1, '', false, 2]));             // [1, 2]
+    console.log(myFunc([0, 1, NaN, undefined, null, 2]));  // [1, 2]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Where do I Belong
+  
+[内容]
+  関数(配列, 数値) => 配列ソート後に数値の挿入場所を返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr, num) => {
+      
+      // 引数の配列をコピー後にソート処理
+      let tmp = arr.slice(0, arr.length);
+      tmp.sort((a, b) => a - b);
+      
+      console.log(`配列 : ${tmp}`);
+      
+      // 数値の挿入場所を返す
+      for (let i = 0; i < tmp.length; i++) if (num <= tmp[i]) return i;
+      return tmp.length;
+      
+    } ;
+    
+    // 配列1の内容を配列2の挿入場所にコピー
+    console.log(myFunc([22, 11, 44, 33], 40));  // 配列 : 11, 22, 33, 44 (挿入場所) : 3
+    console.log(myFunc([22, 11, 44, 33], 30));  // 配列 : 11, 22, 33, 44 (挿入場所) : 2
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Mutations
+  
+[内容]
+  関数(文字列1, 文字列2) => 大文字小文字を問わず、文字列2の全文字が文字列1に存在すれば「真」を返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (Str1, Str2) => {
+      
+      // 引数の配列をコピー
+      let str1 = Str1.slice(0, Str1.length);
+      let str2 = Str2.slice(0, Str2.length);
+      
+      // 各文字列を小文字に統一
+      str1 = str1.toLowerCase();
+      str2 = str2.toLowerCase();
+      
+      // 文字列2の全文字が文字列1に全て存在するか確認
+      for (let i = 0; i < str2.length; i++)
+        if (str1.indexOf(str2[i]) === -1) return false;
+      
+      return true;
+    } ;
+    
+    // 文字列2の全文字が文字列1に存在すれば「真」を返す
+    console.log(myFunc('Alien', 'Line'));  // true
+    console.log(myFunc('Hello', 'oEll'));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Chunky Monkey
+  
+[内容]
+  関数(配列, サイズ) => 配列を指定サイズで分割
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (Arr, num) => {
+      
+      // 引数配列のコピーと戻り値の配列準備
+      let arr = Arr.slice(0, Arr.length);
+      let ret = [];
+      
+      // 戻り値の配列を構築
+      for (let i = arr.length; i > num; i -= num) {
+        let tmp = arr.splice(0, num);
+        ret.push(tmp);
+      }
+      
+      // 残された要素も戻り値の配列に格納
+      if (arr.length > 0) ret.push(arr);
+      return ret;
+      
+    } ;
+    
+    // 配列を指定サイズで分割
+    console.log(myFunc([0, 1, 2, 3, 4, 5, 6], 2));  // [[0, 1], [2, 3], [4, 5], [6]]
+    console.log(myFunc([0, 1, 2, 3, 4, 5, 6], 3));  // [[0, 1, 2], [3, 4, 5], [6]]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

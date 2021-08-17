@@ -1,0 +1,1785 @@
+================================================================================
+[00] Introduction to Basic CSS
+[01] Change the Color of Text
+[02] Use CSS Selectors to Style Elements
+[03] Use a CSS Class to Style an Element
+[04] Style Multiple Elements with a CSS Class
+[05] Change the Font Size of an Element
+[06] Set the Font Family of an Element
+[07] Import a Google Font
+[08] Specify How Fonts Should Degrade
+[09] Size Your Images
+[10] Add Borders Around Your Elements
+[11] Add Rounded Corners with border-radius
+[12] Make Circular Images with a border-radius
+[13] Give a Background Color to a div Element
+[14] Set the id of an Element
+[15] Use an id Attribute to Style an Element
+[16] Adjust the Padding of an Element
+[17] Adjust the Margin of an Element
+[18] Add a Negative Margin to an Element
+[19] Add Different Padding to Each Side of an Element
+[20] Add Different Margins to Each Side of an Element
+[21] Use Clockwise Notation to Specify the Padding of an Element
+[22] Use Clockwise Notation to Specify the Margin of an Element
+[23] Use Attribute Selectors to Style Elements
+[24] Understand Absolute versus Relative Units
+[25] Style the HTML Body Element
+[26] Inherit Styles from the Body Element
+[27] Prioritize One Style Over Another
+[28] Override Styles in Subsequent CSS
+[29] Override Class Declarations by Styling ID Attributes
+[30] Override Class Declarations with Inline Styles
+[31] Override All Other Styles by using Important
+[32] Use Hex Code for Specific Colors
+[33] Use Hex Code to Mix Colors
+[34] Use Abbreviated Hex Code
+[35] Use RGB values to Color Elements
+[36] Use RGB to Mix Colors
+[37] Use CSS Variables to change several elements at once
+[38] Create a custom CSS Variable
+[39] Use a custom CSS Variable
+[40] Attach a Fallback value to a CSS Variable
+[41] Imrove Compatibility with Browser Fallbacks
+[42] Inherit CSS Variables
+[43] Change a variable for a specific area
+[44] Use a media query to change a variable
+================================================================================
+[01]
+  Change the Color of Text
+  
+[内容]
+  属性「style」で文字色を変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 属性「style」を使用
+  <p style='color: blue;'>武田信玄</p>
+  <p style='color: blue;'>上杉謙信</p>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Use CSS Selectors to Style Elements
+
+[内容]
+  要素「style」で文字色を変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p id='P1'>武田信玄</p>
+  <p id='P2'>上杉謙信</p>
+  
+  // CSS
+  <style>
+    #P1 { color: crimson; }
+    #P2 { color: cornflowerblue; }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Use a CSS Class to Style an Element
+
+[内容]
+  属性「class」で文字色を変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p class='AAA'>武田信玄</p>
+  <p class='AAA'>上杉謙信</p>
+  
+  // CSS
+  <style>
+    .AAA {
+      color: Crimson;
+      font-size: 20px;
+      font-family: sans-serif;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Style Multiple Elements with a CSS Class
+
+[内容]
+  属性「class」で複数の要素を変更
+  
+[確認]
+  // 上記「03」を参照
+  
+================================================================================
+[05]
+  Change the Font Size of an Element
+
+[内容]
+  プロパティ「font-size」で文字サイズを変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p class='S1'>武田信玄</p>
+  <p class='S1'>上杉謙信</p>
+  
+  // CSS
+  <style>
+    .S1 { font-size: 2em; }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Set the Font Family of an Element
+  
+[内容]
+  プロパティ「font-family」でフォント変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p class='S1'>武田信玄</p>
+  <p class='S1'>上杉謙信</p>
+  
+  // CSS
+  <style>
+    .S1 { font-family: sans-serif; }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Import a Google Font
+  
+[内容]
+  ネットからフォントを取得してフォント変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p class='S1'>武田信玄</p>
+  <p class='S1'>上杉謙信</p>
+  
+  // CSS
+  <style>
+    
+    // ダウンロード
+    @import url(https://fonts.googleapis.com/earlyaccess/sawarabimincho.css);
+    
+    // フォント適用順
+    .S1 { font-family: 'Sawarabi Mincho', sans-serif; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Specify How Fonts Should Degrade
+  
+[内容]
+  フォントの適用順を指定
+  
+[確認]
+  // 上記「07」を参照
+  
+================================================================================
+[09]
+  Size Your Images
+  
+[内容]
+  プロパティ「width」で画像サイズ変更 -> 画像の縦横比は自動調整
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Android_icon-icons.com_66772.png'>
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Twitter_icon-icons.com_66803.png'>
+  
+  // CSS
+  <style>
+    img {
+      display: block;
+    }
+    .S1 {
+      width: 100px;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Add Borders Around Your Elements
+  
+[内容]
+  画像の枠線(border)
+    border-color: 枠線の色
+    border-width: 枠線の幅
+    border-style: 枠線の線種
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Android_icon-icons.com_66772.png'>
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Twitter_icon-icons.com_66803.png'>
+  
+  // CSS
+  <style>
+    img {
+      display: block;
+      width: 100px;
+    }
+    .S1 {
+      border-color: red;
+      border-width: 2px;
+      border-style: solid;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Add Rounded Corners with border-radius
+  
+[内容]
+  プロパティ「border-radius」で画像に丸みを付与
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Android_icon-icons.com_66772.png'>
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Twitter_icon-icons.com_66803.png'>
+  
+  // CSS
+  <style>
+    img {
+      display: block;
+      width: 100px;
+    }
+    .S1 {
+      border-color: red;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 10px;  // 画像に丸みを付与
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Make Circular Images with a border-radius
+  
+[内容]
+  プロパティ「border-radius」に「50%」を指定して画像を円形に加工
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Android_icon-icons.com_66772.png'>
+  <img class='S1' src='https://cdn.icon-icons.com/icons2/836/PNG/512/Twitter_icon-icons.com_66803.png'>
+  
+  // CSS
+  <style>
+    img {
+      display: block;
+      width: 100px;
+    }
+    .S1 {
+      border-color: red;
+      border-width: 2px;
+      border-style: solid;
+      border-radius: 50%;  // 画像を円形に加工
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Give a Background Color to a div Element
+  
+[内容]
+  プロパティ「background-color」で背景色を変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='S1'></div>
+  
+  // CSS
+  <style>
+    #S1 {
+      width: 100px;
+      height: 100px;
+      background-color: CornFlowerBlue;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Set the id of an Element
+  
+[内容]
+  属性「id」を指定
+  
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[15]
+  Use an id Attribute to Style an Element
+  
+[内容]
+  属性「id」で要素を操作
+  
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[16]
+  Adjust the Padding of an Element
+  
+[内容]
+  プロパティ「padding」で内部余白を調節
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='Container'>
+    <p id='Item1'>padding</p>
+    <p id='Item2'>padding</p>
+    <p id='Item3'>padding</p>
+  </div>
+  
+  // CSS
+  <style>
+    #Container {
+      border: 2px solid Black;
+      width: 200px;
+      height: 200px;
+      background-color: CornFlowerBlue;
+    }
+    #Item1 {
+      border: 2px solid White;
+      font-size: 20px;
+      text-align: center;
+      color: White;
+      background-color: Crimson;
+      padding: 5px;
+      margin: 5px;
+    }
+    #Item2 {
+      border: 2px solid White;
+      font-size: 20px;
+      text-align: center;
+      color: White;
+      background-color: Crimson;
+      padding: 10px;
+      margin: 10px;
+    }
+    #Item3 {
+      border: 2px solid White;
+      font-size: 20px;
+      text-align: center;
+      color: White;
+      background-color: Crimson;
+      padding: 15px;
+      margin: 15px;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Adjust the Margin of an Element
+
+[内容]
+  プロパティ「margin」で外部余白を調節
+  
+[確認]
+  // 上記「16」を参照
+  
+================================================================================
+[18]
+  Add a Negative Margin to an Element
+
+[内容]
+  外部余白に負数を指定 -> 動きが予測困難
+  
+[確認]
+  // 省略
+  
+================================================================================
+[19]
+  Add Different Padding to Each Side of an Element
+  
+[内容]
+  内部余白でコンテンツの位置を調整
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='Box' id='Container'>
+    <p class='Box' id='Item1'>padding</p>
+    <p class='Box' id='Item2'>padding</p>
+  </div>
+  
+  // CSS
+  <style>
+    .Box {
+      color: White;
+      border: 2px solid Black;
+      text-align: center;
+    }
+    #Container {
+      color: White;
+      background-color: Yellow;
+      padding: 10px;
+    }
+    #Item1 {
+      color: White;
+      background-color: Crimson;
+      padding: 20px 0px 20px 20px;  // 上 右 下 左
+      margin: 20px;
+    }
+    #Item2 {
+      color: White;
+      background-color: CornFlowerBlue;
+      padding: 20px 20px 20px 20px;  // 上 右 下 左
+      margin: 20px;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Add Different Margins to Each Side of an Element
+  
+[内容]
+  外部余白で要素の位置を調整
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='Box' id='Container'>
+    <p class='Box' id='Item1'>padding</p>
+    <p class='Box' id='Item2'>padding</p>
+  </div>
+  
+  // CSS
+  <style>
+    .Box {
+      color: White;
+      border: 2px solid Black;
+      text-align: center;
+    }
+    #Container {
+      color: White;
+      background-color: Yellow;
+      padding: 10px;
+    }
+    #Item1 {
+      color: White;
+      background-color: Crimson;
+      padding: 20px;
+      margin: 20px 0px 20px 20px;  // 上 右 下 左
+    }
+    #Item2 {
+      color: White;
+      background-color: CornFlowerBlue;
+      padding: 20px;
+      margin: 20px 20px 20px 20px;  // 上 右 下 左
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Use Clockwise Notation to Specify the Padding of an Element
+  
+[内容]
+  内部余白を時計回りで一括指定
+  
+[確認]
+  // 上記「19」を参照
+  
+================================================================================
+[22]
+  Use Clockwise Notation to Specify the Margin of an Element
+  
+[内容]
+  外部余白を時計回りで一括指定
+  
+[確認]
+  // 上記「20」を参照
+  
+================================================================================
+[23]
+  Use Attribute Selectors to Style Elements
+  
+[内容]
+  属性セレクタ
+    [type='text'] {...}
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <input type="text" placeholder="名前">
+  <input type="text" placeholder="住所">
+  
+  // CSS
+  <style>
+    input[type='text'] {
+      border: 2px solid Black;
+      padding: 5px;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[24]
+  Understand Absolute versus Relative Units
+  
+[内容]
+  長さ単位
+    in  : インチ
+    mm  : ミリ
+    em  : 文字サイズに依存
+    rem : 文字サイズに依存
+  
+[確認]
+  // 省略
+  
+================================================================================
+[25]
+  Style the HTML Body Element
+
+[内容]
+  CSS継承(1)
+    要素「body」の背景色を設定
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: Black;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[26]
+  Inherit Styles from the Body Element
+
+[内容]
+  CSS継承(2)
+    子孫の要素にプロパティ設定が伝搬
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      color: GreenYellow;
+      background-color: Black;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[27]
+  Prioritize One Style Over Another
+
+[内容]
+  CSS継承(3)
+    優先順位 -> クラスセレクタ > 要素セレクタ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 class='S1'>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      color: GreenYellow;
+      background-color: Black;
+    }
+    .S1 {
+      color: Pink;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[28]
+  Override Styles in Subsequent CSS
+  
+[内容]
+  CSS継承(4)
+    優先順位 -> 後のクラスセレクタ > 前のクラスセレクタ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 class='S1 S2'>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      color: GreenYellow;
+      background-color: Black;
+    }
+    .S1 {
+      color: Pink;
+    }
+    .S2 {
+      color: CornFlowerBlue;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[29]
+  Override Class Declarations by Styling ID Attributes
+
+[内容]
+  CSS継承(5)
+    優先度 -> IDセレクタ > クラスセレクタ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 id='I1' class='S1 S2'>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      color: GreenYellow;
+      background-color: Black;
+    }
+    #I1 {
+      color: Orange;
+    }
+    .S1 {
+      color: Pink;
+    }
+    .S2 {
+      color: CornFlowerBlue;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[30]
+  Override Class Declarations with Inline Styles
+  
+[内容]
+  CSS継承(6)
+    優先度 -> 属性「style」 > IDセレクタ＆クラスセレクタ
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 style='color: white;' id='I1' class='S1 S2'>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: Black;
+      color: GreenYellow;
+    }
+    #I1 {
+      color: Orange;
+    }
+    .S1 {
+      color: Pink;
+    }
+    .S2 {
+      color: CornFlowerBlue;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[31]
+  Override All Other Styles by using Important
+  
+[内容]
+  CSS継承(7)
+    優先度 -> 強制適用「!important」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 style='color: white;' id='I1' class='S1 S2'>Hello World</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+      color: GreenYellow;
+      background-color: Black;
+    }
+    #I1 {
+      color: Orange;
+    }
+    .S1 {
+      color: Pink !important;
+    }
+    .S2 {
+      color: CornFlowerBlue;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[32]
+  Use Hex Code for Specific Colors
+  
+[内容]
+  カラー名(black)を16進数で表現
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 id='I1'>I am Black.</h1>
+  <h1 id='I2'>I am Red.</h1>
+  <h1 id='I3'>I am Blue.</h1>
+  <h1 id='I4'>I am Green.</h1>
+  <h1 id='I5'>I am Yellow.</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    
+    :root {
+      --C1: Black;
+      --C2: Red;
+      --C3: Blue;
+      --C4: Green;
+      --C5: Yellow;
+      
+      --C1: #000000;
+      --C2: #FF0000;
+      --C3: #0000FF;
+      --C4: #008000;
+      --C5: #FFFF00;
+      
+      --C1: #000;
+      --C2: #F00;
+      --C3: #00F;
+      --C4: #080;
+      --C5: #FF0;
+      
+      --C1: rgb(0, 0, 0);
+      --C2: rgb(255, 0, 0);
+      --C3: rgb(0, 0, 255);
+      --C4: rgb(0, 128, 0);
+      --C5: rgb(255, 255, 0);
+    }
+    
+    #I1 {
+      color: var(--C1, Gray);
+    }
+    #I2 {
+      color: var(--C2, Gray);
+    }
+    #I3 {
+      color: var(--C3, Gray);
+    }
+    #I4 {
+      color: var(--C4, Gray);
+    }
+    #I5 {
+      color: var(--C5, Gray);
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[33]
+  Use Hex Code to Mix Colors
+  
+[内容]
+  カラー名を16進数で表現
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[34]
+  Use Abbreviated Hex Code
+  
+[内容]
+  カラー名を16進数で表現(省略形)
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[35]
+  Use RGB values to Color Elements
+  
+[内容]
+  カラー名(black)をRGB関数で表現
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[36]
+  Use RGB to Mix Colors
+  
+[内容]
+  カラー名をRGB関数で表現
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[37]
+  Use CSS Variables to change several elements at once
+  
+[内容]
+  CSS変数
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[38]
+  Create a custom CSS Variable
+  
+[内容]
+  CSS変数名の頭は「--」
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[39]
+  Use a custom CSS Variable
+  
+[内容]
+  CSS変数の呼出時はvar関数を使用
+  
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[40]
+  Attach a Fallback value to a CSS Variable
+  
+[内容]
+  CSS変数の呼出失敗時の値を、var関数側で定義
+
+[確認]
+  // 上記「32」を参照
+  
+================================================================================
+[41]
+  Imrove Compatibility with Browser Fallbacks
+  
+[内容]
+  CSS変数にブラウザが未対応の場合、CSS変数に先行して設定しておく
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 id='I1'>I am Black.</h1>
+  <h1 id='I2'>I am Red.</h1>
+  <h1 id='I3'>I am Blue.</h1>
+  <h1 id='I4'>I am Green.</h1>
+  <h1 id='I5'>I am Yellow.</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    
+    :root {
+      --C1: Black;
+      --C2: Red;
+      --C3: Blue;
+      --C4: Green;
+      --C5: Yellow;
+      
+      --C1: #000000;
+      --C2: #FF0000;
+      --C3: #0000FF;
+      --C4: #008000;
+      --C5: #FFFF00;
+      
+      --C1: #000;
+      --C2: #F00;
+      --C3: #00F;
+      --C4: #080;
+      --C5: #FF0;
+      
+      --C1: rgb(0, 0, 0);
+      --C2: rgb(255, 0, 0);
+      --C3: rgb(0, 0, 255);
+      --C4: rgb(0, 128, 0);
+      --C5: rgb(255, 255, 0);
+    }
+    
+    #I1 {
+      color: Gray;
+      color: var(--C1);
+    }
+    #I2 {
+      color: Gray;
+      color: var(--C2);
+    }
+    #I3 {
+      color: Gray;
+      color: var(--C3);
+    }
+    #I4 {
+      color: Gray;
+      color: var(--C4);
+    }
+    #I5 {
+      color: Gray;
+      color: var(--C5);
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[42]
+  Inherit CSS Variables
+  
+[内容]
+  疑似クラス「:root」
+    ここで定義したCSS変数は全セレクタから使用可能
+  
+[確認]
+  // 省略
+  
+================================================================================
+[43]
+  Change a variable for a specific area
+  
+[内容]
+  疑似クラス「:root」
+    ここで定義したCSS変数を別セレクタで上書き
+  
+[確認]
+  // 上記「41」を参照
+  
+================================================================================
+[44]
+  Use a media query to change a variable
+  
+[内容]
+  メディアクエリでCSS変数の切替
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 id='I1'>I am Black.</h1>
+  <h1 id='I2'>I am Red.</h1>
+  <h1 id='I3'>I am Blue.</h1>
+  <h1 id='I4'>I am Green.</h1>
+  <h1 id='I5'>I am Yellow.</h1>
+  
+  // CSS
+  <style>
+    body {
+      font-family: sans-serif;
+    }
+    
+    :root {
+      --C1: Black;
+      --C2: Red;
+      --C3: Blue;
+      --C4: Green;
+      --C5: Yellow;
+    }
+    
+    @media screen and (max-width: 600px) {
+      #I1 {
+        color: Gray;
+      }
+      #I2 {
+        color: Gray;
+      }
+      #I3 {
+        color: Gray;
+      }
+      #I4 {
+        color: Gray;
+      }
+      #I5 {
+        color: Gray;
+      }
+    }
+    
+    @media screen and (min-width: 600px) {
+      #I1 {
+        color: var(--C1, Gray);
+      }
+      #I2 {
+        color: var(--C2, Gray);
+      }
+      #I3 {
+        color: var(--C3, Gray);
+      }
+      #I4 {
+        color: var(--C4, Gray);
+      }
+      #I5 {
+        color: var(--C5, Gray);
+      }
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

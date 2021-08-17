@@ -1,0 +1,596 @@
+================================================================================
+[00] Introduction to the Managing Packages with npm Challenges
+[X1] コマンド「Git」とサービス「GitHub」の基本操作
+[X2] 実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+[01] How to Use package.json, the Core of Any Node.js Project or npm Package
+[02] Add a Description to Your package.json
+[03] Add Keywords to Your package.json
+[04] Add a License to Your package.json
+[05] Add a Version to Your package.json
+[06] Expand Your Project with External Packages from npm
+[07] Manage npm Dependencies By Understanding Semantic Versioning
+[08] Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
+[09] Use the Caret-Character to Use the Latest Minor Version of a Dependency
+[10] Remove a Package from Your Dependencies
+================================================================================
+[X1]
+  コマンド「Git」とサービス「GitHub」の基本操作
+  
+[内容]
+  以降の学習では、コマンド「Git」とサービス「GitHub」の操作が要求される
+  
+  サービス「GitHub」
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : XXX(リポジトリ)
+    URI  : https://github.com/Makoto-Araki/XXX.git
+  
+  サービス「Replit」
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : XXX
+    URI  : https://XXX.makotoaraki.repl.co
+  
+[確認]
+  $ cd $HOME
+  $ git clone クローン元(課題で指示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 作成ディレクトリ内を初期化
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git remote add XXX https://github.com/Makoto-Araki/XXX.git
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> サービス「GitHub」のリポジトリ「XXX」をローカル名「XXX」を紐付け
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ ls -lA
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> リポジトリ「XXX」内のファイルの展開を確認
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git branch 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 現状ではブランチ「gomix」のみが表示、このブランチで作業する
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ vi AAA
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ここではファイル「AAA」を編集
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git add AAA
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 編集ファイル「AAA」をコミット対象にする
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「AAA」がステータス「modified」で表示
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git commit -m 'Commit-01'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> コミット対象のファイル群をメッセージ「Commit-01」でコミット
+  --------------------------------------------------
+  
+  $ cd $HOME/作成ディレクトリ
+  $ git push XXX gomix
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> リポジトリ(XXX)へ指定ブランチ(gomix)をアップ(push)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X2]
+  実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+  
+[内容]
+  実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+  
+[確認]
+  $ cd $HOME
+  $ sudo yum -y install nodejs npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 実行環境「Node」とパッケージ管理「npm」を導入
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v6.17.1 -> 実行環境「Node」のバージョンが古い
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ npm --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  3.10.10 -> パッケージ管理「npm」のバージョンが古い
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sudo yum -y remove nodejs npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> リポジトリ内のものはバージョンが古いので削除
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sudo yum -y install https://rpm.nodesource.com/pub_11.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 専用リポジトリをインストール
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ ls -ltrA /etc/yum.repos.d
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root  183  4月  2  2011 adobe-linux-x86_64.repo
+  -rw-r--r--. 1 root root  477  7月 31  2014 nux-dextop.repo
+  -rw-r--r--. 1 root root  474 10月 26  2018 nodesource-el7.repo  // 追加
+  -rw-r--r--. 1 root root  591  5月  2  2019 ius.repo
+  -rw-r--r--. 1 root root  669  5月  2  2019 ius-testing.repo
+  -rw-r--r--. 1 root root  669  5月  2  2019 ius-archive.repo
+  -rw-r--r--. 1 root root  173 10月  5  2019 google-chrome.repo
+  -rw-r--r--. 1 root root 1919  9月 24  2020 docker-ce.repo
+  -rw-r--r--. 1 root root 1050 11月  1  2020 epel.repo
+  -rw-r--r--. 1 root root 1149 11月  1  2020 epel-testing.repo
+  -rw-r--r--. 1 root root  616 11月 24  2020 CentOS-x86_64-kernel.repo
+  -rw-r--r--. 1 root root  314 11月 24  2020 CentOS-fasttrack.repo
+  -rw-r--r--. 1 root root 8515 11月 24  2020 CentOS-Vault.repo
+  -rw-r--r--. 1 root root 1331 11月 24  2020 CentOS-Sources.repo
+  -rw-r--r--. 1 root root  630 11月 24  2020 CentOS-Media.repo
+  -rw-r--r--. 1 root root  649 11月 24  2020 CentOS-Debuginfo.repo
+  -rw-r--r--. 1 root root 1309 11月 24  2020 CentOS-CR.repo
+  -rw-r--r--. 1 root root 1664 11月 24  2020 CentOS-Base.repo
+  -rw-r--r--. 1 root root  200  7月  6 12:34 mongodb-org-4.0.repo
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sudo yum -y install nodejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 実行環境「Node」を導入
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sudo npm update -g npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> パッケージ管理「npm」を更新
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v11.15.0 -> 実行環境「Node」が「v6.17.1」から「v11.15.0」にアップ
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ npm --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  6.14.13 -> パッケージ管理「npm」が「3.10.10」から「6.14.13」にアップ
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ command -v nvm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  nvm -> 実行環境「Node」のバージョン管理「nvm」もインストール済み
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ nvm install stable --latest-npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Creating default alias: default -> stable (-> v16.5.0)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.5.0 -> 実行環境「Node」が「v11.15.0」から「v16.5.0」にアップ
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ npm --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  7.19.1 -> パッケージ管理「npm」が「6.14.13」から「7.19.1」にアップ
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ nvm --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  0.33.11 -> 実行環境「Node」のバージョン管理「nvm」のバージョン確認
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[01]
+  How to Use package.json, the Core of Any Node.js Project or npm Package
+  
+[内容]
+  設定ファイル「pakage.json」の編集
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-01
+    URL  : https://FCC1-01.makotoaraki.repl.co
+  
+[確認]
+  $ cd $HOME
+  $ mkdir app12
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  This utility will walk you through creating a package.json file.
+  It only covers the most common items, and tries to guess sensible defaults.
+  
+  See `npm help init` for definitive documentation on these fields
+  and exactly what they do.
+  
+  Use `npm install <pkg>` afterwards to install a package and
+  save it as a dependency in the package.json file.
+  
+  Press ^C at any time to quit.  // 中断は「Ctrl + C」で行う
+  package name: (app12)          // そのまま「Enter」
+  version: (1.0.0) 0.0.1         // 入力欄に「0.0.1」と入力
+  description: npm-test          // 入力欄に「npm-test」と入力
+  entry point: (index.js)        // そのまま「Enter」
+  test command:                  // そのまま「Enter」
+  git repository:                // そのまま「Enter」
+  keywords: app12                // 入力欄に「app12」と入力
+  author: Makoto-Araki           // 入力欄に「Makoto-Araki」と入力
+  license: (ISC)                 // そのまま「Enter」
+  About to write to /home/makoto/app12/package.json:
+  
+  {
+    "name": "app12",
+    "version": "0.0.1",
+    "description": "npm-test",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "app12"
+    ],
+    "author": "Makoto-Araki",
+    "license": "ISC"
+  }
+  
+  Is this OK? (yes)              // そのまま「Enter」
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm install express --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> オプション「--save」でファイル「package.json」に記録
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm install -g express-generator
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> オプション「-g」でシステム全体にインストール
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm ls
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app12@0.0.1 /home/makoto/app12  // カレントディレクトリのパッケージ情報を表示
+  └── express@4.17.1              // パッケージはツリー構成で表示される
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm ls -g
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /home/makoto/.nvm/versions/node/v16.5.0/lib  // システム全体のパッケージ情報を表示
+  ├── express-generator@4.16.1                 // システム全体にインストールしたパッケージが表示
+  └── npm@7.19.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ cat package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app12",
+    "version": "0.0.1",
+    "description": "npm-test",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+      "app12"
+    ],
+    "author": "Makoto-Araki",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[02]
+  Add a Description to Your package.json
+  
+[内容]
+  キー「description」でパッケージ説明
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-02
+    URL  : https://FCC1-02.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[03]
+  Add Keywords to Your package.json
+  
+[内容]
+  キー「keywords」で関連用語を登録
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-03
+    URL  : https://FCC1-03.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[04]
+  Add a License to Your package.json
+  
+[内容]
+  キー「license」でユーザーにライセンス通知
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-04
+    URL  : https://FCC1-04.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[05]
+  Add a Version to Your package.json
+  
+[内容]
+  キー「version」でバージョンを表示する
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-05
+    URL  : https://FCC1-05.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[06]
+  Expand Your Project with External Packages from npm
+  
+[内容]
+  キー「dependencies」でパッケージ間の依存関係を指示
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-06
+    URL  : https://FCC1-06.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[07]
+  Manage npm Dependencies By Understanding Semantic Versioning
+  
+[内容]
+  バージョン表記を「2.10.2」に修正 -> 2(MAJOR).10(MINOR).2(PATCH)
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-07
+    URL  : https://FCC1-07.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[08]
+  Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
+  
+[内容]
+  バージョン表記を「~2.10.2」に修正 -> パッチレベル「2.10.x」で自動更新
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-08
+    URL  : https://FCC1-08.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[09]
+  Use the Caret-Character to Use the Latest Minor Version of a Dependency
+  
+[内容]
+  バージョン表記を「^2.10.2」に修正 -> マイナーレベル「2.x.x」で自動更新
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-09
+    URL  : https://FCC1-09.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[10]
+  Remove a Package from Your Dependencies
+  
+[内容]
+  依存関係リストからパッケージ削除 -> パッケージをリストから単に削除すれば良い
+  
+  GitHub
+    User : Makoto-Araki
+    Pass : (秘密)
+    Name : FCC1
+    URL  : https://github.com/Makoto-Araki/FCC1.git
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC1-10
+    URL  : https://FCC1-10.makotoaraki.repl.co
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================

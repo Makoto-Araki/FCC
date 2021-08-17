@@ -1,0 +1,1318 @@
+================================================================================
+[00] Introduction to the CSS Flexbox Challenges
+[01] Use display: flex to Position Two Boxes
+[02] Add Flex Superpowers to the Tweet Embed
+[03] Use the flex-direction Property to Make a Row
+[04] Apply the flex-direction Property to Create Rows in the Tweet Embed
+[05] Use the flex-direction Property to Make a Column
+[06] Apply the flex-direction Property to Create a Column in the Tweet Embed
+[07] Align Elements Using the justify-content Property
+[08] Use the justify-content Property in the Tweet Embed
+[09] Align Elements Using the align-items Property
+[10] Use the align-items Property in the Tweet Embed
+[11] Use the flex-wrap Property to Wrap a Row or Column
+[12] Use the flex-shrink Property to Shrink Items
+[13] Use the flex-grow Property to Expand Items
+[14] Use the flex-basis Property to Set the Initial Size of an Item
+[15] Use the flex Shorthand Property
+[16] Use the order Property to Rearrange Items
+[17] Use the align-self Property
+================================================================================
+[01]
+  Use display: flex to Position Two Boxes
+  
+[内容]
+  プロパティ「display」
+    要素の表示形式を設定
+  
+  親要素 {
+    display:
+      block         // 要素をブロック表示
+      inline        // 要素をインライン表示
+      inline-block  // 省略
+      flex          // 内部要素を縦横自在に配置
+      grid          // CSSグリッド
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: block;  // 要素をブロック表示
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 100%;
+        background-color: orangered;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: flex;  // 内部要素を縦横自在に配置
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 50%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 50%;
+        background-color: orangered;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Add Flex Superpowers to the Tweet Embed
+  
+[内容]
+  前内容の復習
+
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[03]
+  Use the flex-direction Property to Make a Row
+  
+[内容]
+  プロパティ「flex-direction」
+    プロパティ「display: flex」の設定時に内部要素の並び順を制御
+  
+  親要素 {
+    display: flex
+    flex-direction:
+      row             // 内部要素を横に左から右へと並べる(デフォルト)
+      row-reverse     // 内部要素を横に右から左へと並べる
+      column          // 内部要素を縦に上から下へと並べる
+      column-reverse  // 内部要素を縦に下から上へと並べる
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: block;
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 100%;
+        background-color: orangered;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: row-reverse;  // 内部要素を横に右から左へと並べる
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 50%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 50%;
+        background-color: orangered;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Apply the flex-direction Property to Create Rows in the Tweet Embed
+
+[内容]
+  前内容の復習
+  
+[確認]
+  // 上記「03」を参照
+  
+================================================================================
+[05]
+  Use the flex-direction Property to Make a Column
+  
+[内容]
+  プロパティ「flex-direction: column」の動作確認
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: block;
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 100%;
+        background-color: orangered;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        display: flex;
+        flex-direction: column;  // 内部要素を縦に上から下へと並べる
+      }
+      
+      #Child1 {
+        height: 40%;
+        width: 50%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 40%;
+        width: 50%;
+        background-color: orangered;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Apply the flex-direction Property to Create a Column in the Tweet Embed
+  
+[内容]
+  前内容の復習
+  
+[確認]
+  // 上記「05」を参照
+  
+================================================================================
+[07]
+  Align Elements Using the justify-content Property
+  
+[内容]
+  プロパティ「justify-content」
+    プロパティ「display: flex」の設定時に内部要素の配置を設定
+  
+  親要素 {
+    display: flex
+    justify-content:
+      flex-start      // 内部要素を左端に揃えて配置(デフォルト)
+      flex-end        // 内部要素を右端に揃えて配置
+      center          // 内部要素を中央に揃えて配置
+      space-between   // 余白付きで等間隔に配置するが、始点と終点は内部要素
+      space-around    // 余白付きで等間隔に配置するが、始点と終点は余白
+      space-evenly    // 不明
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: block;
+      }
+      
+      #Child1 {
+        height: 30%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 30%;
+        width: 100%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 30%;
+        width: 100%;
+        background-color: greenyellow;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: flex;
+        justify-content: space-between;  // 余白付きで等間隔に配置するが、始点と終点は内部要素
+      }
+      
+      #Child1 {
+        height: 30%;
+        width: 30%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 30%;
+        width: 30%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 30%;
+        width: 30%;
+        background-color: greenyellow;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Use the justify-content Property in the Tweet Embed
+  
+[内容]
+  前内容の復習
+  
+[確認]
+  // 上記「07」を参照
+  
+================================================================================
+[09]
+  Align Elements Using the align-items Property
+  
+[内容]
+  プロパティ「align-items」
+    プロパティ「display: flex」の設定時に内部要素の垂直配置を設定
+  
+  親要素 {
+    display: flex
+    align-items:
+      flex-start  // 内部要素が表示領域の上部に横一列で配置
+      flex-end    // 内部要素が表示領域の下部に横一列で配置
+      center      // 内部要素が表示領域の中央に横一列で配置
+      baseline    // 不明
+      stretch     // 不明
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: block;
+      }
+      
+      #Child1 {
+        height: 20%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 20%;
+        width: 100%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 20%;
+        width: 100%;
+        background-color: greenyellow;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: flex;
+        align-items: flex-end;  // 内部要素が表示領域の下部に横一列で配置
+      }
+      
+      #Child1 {
+        height: 20%;
+        width: 50%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 20%;
+        width: 50%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 20%;
+        width: 50%;
+        background-color: greenyellow;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Use the align-items Property in the Tweet Embed
+  
+[内容]
+  前内容の復習
+  
+[確認]
+  // 上記「09」を参照
+  
+================================================================================
+[11]
+  Use the flex-wrap Property to Wrap a Row or Column
+  
+[内容]
+  プロパティ「flex-wrap」
+    プロパティ「display: flex」の設定時に内部要素の折り返し方法を設定
+  
+  親要素 {
+    display: flex
+    flex-wrap:
+      nowrap        // 折り返さない(デフォルト)
+      wrap          // 左から右に折り返す
+      wrap-reverse  // 右から左に折り返す
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+    <div id="Child4"></div>
+    <div id="Child5"></div>
+    <div id="Child6"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: block;
+      }
+      
+      #Child1 {
+        height: 15%;
+        width: 100%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 15%;
+        width: 100%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 15%;
+        width: 100%;
+        background-color: violet;
+      }
+      
+      #Child4 {
+        height: 15%;
+        width: 100%;
+        background-color: yellow;
+      }
+      
+      #Child5 {
+        height: 15%;
+        width: 100%;
+        background-color: greenyellow;
+      }
+      
+      #Child6 {
+        height: 15%;
+        width: 100%;
+        background-color: black;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        height: 100vh;
+        width: 100vw;
+        background-color: gray;
+        display: flex;
+        flex-wrap: nowrap;  // 折り返さない(デフォルト)
+      }
+      
+      #Child1 {
+        height: 20%;
+        width: 30%;
+        background-color: dodgerblue;
+      }
+      
+      #Child2 {
+        height: 20%;
+        width: 30%;
+        background-color: orangered;
+      }
+      
+      #Child3 {
+        height: 20%;
+        width: 30%;
+        background-color: violet;
+      }
+      
+      #Child4 {
+        height: 20%;
+        width: 30%;
+        background-color: yellow;
+      }
+      
+      #Child5 {
+        height: 20%;
+        width: 30%;
+        background-color: greenyellow;
+      }
+      
+      #Child6 {
+        height: 20%;
+        width: 30%;
+        background-color: black;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Use the flex-shrink Property to Shrink Items
+  
+[内容]
+  プロパティ「flex-shrink」
+    プロパティ「display: flex」の設定時に、内部要素の幅の縮み率を設定
+  
+  親要素 {
+    width: 300px;
+    display: flex
+  }
+  
+  子要素1 {
+    width: 300px;
+    flex-shrink: 2;
+  }
+  
+  子要素2 {
+    width: 300px;
+    flex-shrink: 1;
+  }
+  
+  子要素3 {
+    width: 300px;
+    flex-shrink: 2;
+  }
+  
+  親要素の幅が「300px」で子要素の合計が「900px」なので子要素を縮める必要がある。
+  この設定では子要素1と子要素3は子要素2の2倍、縮められて表示される。
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100px;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      width: 100vw;
+      height: 100px;
+      background-color: dodgerblue;
+      flex-shrink: 2;
+    }
+    
+    #Child2 {
+      width: 100vw;
+      height: 100px;
+      background-color: orangered;
+      flex-shrink: 1;
+    }
+    
+    #Child3 {
+      width: 100vw;
+      height: 100px;
+      background-color: greenyellow;
+      flex-shrink: 2;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Use the flex-grow Property to Expand Items
+  
+[内容]
+  プロパティ「flex-grow」
+    プロパティ「display: flex」の設定時に、内部要素の幅の伸び率を設定
+  
+  親要素 {
+    width: 100vw
+    display: flex
+  }
+  
+  子要素1 { flex-grow: 2; }
+  子要素2 { flex-grow: 1; }
+  子要素3 { flex-grow: 2; }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100px;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      height: 100px;
+      background-color: dodgerblue;
+      flex-grow: 2;
+    }
+    
+    #Child2 {
+      height: 100px;
+      background-color: orangered;
+      flex-grow: 1;
+    }
+    
+    #Child3 {
+      height: 100px;
+      background-color: greenyellow;
+      flex-grow: 2;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Use the flex-basis Property to Set the Initial Size of an Item
+  
+[内容]
+  プロパティ「flex-basis」
+    プロパティ「display: flex」の設定時に、内部要素の初期値を設定
+  
+  親要素  { display: flex }
+  子要素1 { flex-basis: 10(em, px, %) }
+  子要素2 { flex-basis: 10(em, px, %) }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100px;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      height: 100px;
+      background-color: dodgerblue;
+      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
+      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
+      flex-basis: 100px;  // 初期値100px
+    }
+    
+    #Child2 {
+      height: 100px;
+      background-color: orangered;
+      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
+      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
+      flex-basis: 100px;  // 初期値100px
+    }
+    
+    #Child3 {
+      height: 100px;
+      background-color: greenyellow;
+      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
+      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
+      flex-basis: 100px;  // 初期値100px
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Use the flex Shorthand Property
+  
+[内容]
+  プロパティ「flex」
+    プロパティ「flex-grow」と「flex-shrink」と「flex-basis」のショートハンド
+  
+  flex: [grow] [shrink] [basis]
+  flex: initial  // flex: 0 1 auto = デフォルト値
+  flex: auto     // flex: 1 1 auto
+  flex: none     // flex: 0 0 auto
+  
+  親要素  { display: flex }
+  子要素1 { flex: 0 0 100px }
+  子要素2 { flex: 0 0 100px }
+  子要素3 { flex: 0 0 100px }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100px;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      height: 100px;
+      background-color: dodgerblue;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+    }
+    
+    #Child2 {
+      height: 100px;
+      background-color: orangered;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+    }
+    
+    #Child3 {
+      height: 100px;
+      background-color: greenyellow;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Use the order Property to Rearrange Items
+  
+[内容]
+  プロパティ「order」
+    プロパティ「display: flex」の設定時に、内部要素の表示順を設定
+  
+  親要素  { display: flex }
+  子要素1 { order: 2 }
+  子要素2 { order: 1 }
+  子要素3 { order: 3 }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">2</div>
+    <div id="Child2">3</div>
+    <div id="Child3">1</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100px;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      height: 100px;
+      background-color: dodgerblue;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      order: 2;
+    }
+    
+    #Child2 {
+      height: 100px;
+      background-color: orangered;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      order: 3;
+    }
+    
+    #Child3 {
+      height: 100px;
+      background-color: greenyellow;
+      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      order: 1;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Use the align-self Property
+  
+[内容]
+  プロパティ「align-self」
+    プロパティ「display: flex」の設定時に、内部要素の垂直配置を設定
+  
+  align-self:
+    flex-start  // 内部要素が表示領域の上部に横一列で配置
+    flex-end    // 内部要素が表示領域の下部に横一列で配置
+    center      // 内部要素が表示領域の中央に横一列で配置
+    baseline    // 不明
+    stretch     // 不明
+  
+  親要素  { display: flex }
+  子要素1 { align-self: flex-start }
+  子要素2 { align-self: flex-start }
+  子要素3 { align-self: center }
+  子要素4 { align-self: center }
+  子要素5 { align-self: flex-end }
+  子要素6 { align-self: flex-end }
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1"></div>
+    <div id="Child2"></div>
+    <div id="Child3"></div>
+    <div id="Child4"></div>
+    <div id="Child5"></div>
+    <div id="Child6"></div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      background-color: gray;
+      display: flex;
+    }
+    
+    #Child1 {
+      width: 100px;
+      height: 100px;
+      background-color: dodgerblue;
+      align-self: flex-start;
+    }
+    
+    #Child2 {
+      width: 100px;
+      height: 100px;
+      background-color: orangered;
+      align-self: flex-start;
+    }
+    
+    #Child3 {
+      width: 100px;
+      height: 100px;
+      background-color: violet;
+      align-self: center;
+    }
+    
+    #Child4 {
+      width: 100px;
+      height: 100px;
+      background-color: yellow;
+      align-self: center;
+    }
+    
+    #Child5 {
+      width: 100px;
+      height: 100px;
+      background-color: greenyellow;
+      align-self: flex-end;
+    }
+    
+    #Child6 {
+      width: 100px;
+      height: 100px;
+      background-color: black;
+      align-self: flex-end;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

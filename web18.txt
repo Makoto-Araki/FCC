@@ -1,0 +1,540 @@
+================================================================================
+[00] Introduction to the JavaScript Algorithms and Data Structures Projects
+[01] Palindrome Checker
+[02] Roman Numeral Converter
+[03] Caesars Cipher
+[04] Telephone Number Validator
+[05] Cash Register
+================================================================================
+[01]
+  Palindrome Checker
+  
+[内容]
+  引数の文字列が回文(上から読んでも下から読んでも同じ)かチェック
+    1. 文字列を入力
+    2. 記号や空白を除去
+    3. 大文字または小文字に統一
+    4. 二個の配列に格納
+    5. 二個の配列の各要素が同一か判定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 変数定義と初期化
+      let tmp0 = str.slice(0, str.length);
+      let arr1 = [];
+      let arr2 = [];
+      let rtrn = true;
+      
+      // 記号や空白を除去
+      let reg1 = /["#$%&',.()|_?<>{}*+-\s:\/]/g;
+      let tmp1 = tmp0.replace(reg1, '');
+      
+      // 英字を小文字に統一
+      let reg2 = /[A-Z]/g
+      let tmp2 = tmp1.replace(reg2, (val) => val.toLowerCase());
+      
+      // 二個の配列に格納
+      for (let i = 0; i < tmp2.length; i++) arr1.push(tmp2[i]);
+      for (let i = 0; i < tmp2.length; i++) arr2.unshift(tmp2[i]);
+      
+      // 二個の配列の各要素が同一か判定
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i] !== arr2[i]) {
+          rtrn = false;
+          break;
+        }
+      }
+      
+      // 戻り値
+      return rtrn;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('AAA'));  // true
+    console.log(myFunc('AAB'));  // false
+    console.log(myFunc('BAA'));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Roman Numeral Converter
+  
+[内容]
+  入力数字をローマ数字に変換
+    1. 各数字の千・百・十・一の位のそれぞれの数字を保持
+    2. それぞれ位の数字に対応するローマ数字を出力
+  
+  千の位の数      百の位の数      十の位の数      一の位の数
+  0 → (NONE)    0 → (NONE)    0 → (NONE)    0 → (NONE)
+  1 → M         1 → C         1 → X         1 → I
+  2 → MM        2 → CC        2 → XX        2 → II
+  3 → MMM       3 → CCC       3 → XXX       3 → III
+                4 → CD        4 → XL        4 → IV
+                5 → D         5 → L         5 → V
+                6 → DC        6 → LX        6 → VI
+                7 → DCC       7 → LXX       7 → VII
+                8 → DCCC      8 → LXXX      8 → VIII
+                9 → CM        9 → XC        9 → IX
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (num) => {
+      
+      // 各位の数字を文字として保持
+      let tmp = String(num);
+      let arr = [];
+      for (let i = 0; i < tmp.length; i++) arr.push(tmp[i]);
+      
+      // 変数と初期化
+      let idx = 0;
+      let ret = [];
+      
+      // 多次元配列 -> 対応表
+      const Correspond = [
+        ['M', 'MM', 'MMM'],                                        // 千の位
+        ['C', 'CC', 'CCC', 'CD', 'D', 'DC', 'DCC', 'DCCC', 'CM'],  // 百の位
+        ['X', 'XX', 'XXX', 'XL', 'L', 'LX', 'LXX', 'LXXX', 'XC'],  // 十の位
+        ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX']   // 一の位
+      ];
+      
+      // どの位から処理を始めるか
+      switch(arr.length) {
+        case 4:
+          idx = 0;
+          break;
+        case 3:
+          idx = 1;
+          break;
+        case 2:
+          idx = 2;
+          break;
+        case 1:
+          idx = 3;
+          break;
+      }
+        
+      // ローマ数字に置換
+      for (let i = 0; i < arr.length; i++) {
+        ret.push(Correspond[idx++][arr[i] - 1]);
+      }
+        
+      // 戻り値
+      return ret.join('');
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(2));     // II
+    console.log(myFunc(22));    // XXII
+    console.log(myFunc(222));   // CCXXII
+    console.log(myFunc(2222));  // MMCCXXII
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Caesars Cipher
+  
+[内容]
+  シーザー暗号の複合化プログラム
+    入力文字列は全て英字(大文字)、空白ありで小文字への変換等は不要
+  
+  暗号化
+    A -> N  // アルファベットを13進める
+    B -> O  // アルファベットを13進める
+    C -> P  // アルファベットを13進める
+  
+  復号化
+    N -> A  // アルファベットを13戻す
+    O -> B  // アルファベットを13戻す
+    P -> C  // アルファベットを13戻す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 変数と初期化
+      let tmp = str.slice(0, str.length);
+      let reg = /[A-Z]/;
+      let num = 0;
+      let ret = [];
+      
+      // 文字列を一文字づつ処理
+      for (let i = 0; i < tmp.length; i++) {
+        if (!reg.test(tmp[i])) {
+        
+          // 文字が大文字以外(例えば記号)の場合は戻り値にそのまま格納する
+          ret.push(tmp[i]);
+          
+        } else {
+          
+          // 文字の場合は文字コード(数字)に変換
+          num = tmp[i].charCodeAt(0);
+          
+          // アルファベットを13戻す
+          if (num < 78) {
+            num = num + 13;
+          } else {
+            num = num - 13;
+          }
+          
+          // 文字コード(数字)に戻して戻り値に格納
+          ret.push(String.fromCharCode(num));
+          
+        }
+      }
+      
+      // 戻り値
+      return ret.join('');
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('SERR PBQR PNZC'));  // FREE CODE CAMP
+    console.log(myFunc('SERR CVMMN!'));     // FREE PIZZA!
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Telephone Number Validator
+  
+[内容]
+  アメリカの電話番号の入力チェックプログラム
+    州コード(1固定) - 地域コード(数字3桁) - 市外局番(数字3桁) - 電話番号(数字4桁)
+  
+  注意事項
+    1. 州コードは省略可
+    2. 地域コードは省略不可
+    3. 地域コードに括弧を付与することは可能
+    4. 各数字の区切文字は空白または「-」、区切文字が無くても可能
+    
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 電話番号一覧
+    let ARRY = [
+      '555-555-5555',       // true
+      '1 555-555-5555',     // true
+      '1 (555) 555-5555',   // true
+      '5555555555',         // true
+      '555-555-5555',       // true
+      '(555)555-5555',      // true
+      '1(555)555-5555',     // true
+      '1 555 555 5555',     // true
+      '1 456 789 4444',     // true
+    ]
+    
+    // 関数定義
+    const myFunc = (str) => {
+      let REG1 = /^1{0,1}[-\s]{0,1}\({0,1}\d{3}\){0,1}[-\s]{0,1}\d{3}[-\s]{0,1}\d{4}$/;
+      let REG2 = /[()]/g;
+      let REG3 = /\((?=.*\))/;
+      let RET = false;
+      
+      // 第一段階 - 書式チェック
+      if (REG1.test(str)) {
+        RET = true;
+      }
+      
+      // 第二段階 - 括弧チェック(括弧が閉じられているか確認)
+      if (REG2.test(str)) {
+        if (!REG3.test(str)) RET = false;
+      }
+      
+      return RET;
+    }
+    
+    // 電話番号チェック
+    for (let i = 0; i < ARRY.length; i++) {
+      console.log(`電話番号: ${ARRY[i]} 結果: ${myFunc(ARRY[i])}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Cash Register
+  
+[内容]
+  レジ機能のアルゴリズム実装
+    関数(購入金額, 支払金額, 釣銭内訳)
+  
+  アメリカの通貨単位
+    Penny   -> $0.01
+    Nickel  -> $0.05
+    Dime    -> $0.1
+    Quarter -> $0.25
+    Dollar  -> $1
+    Five    -> $5
+    Ten     -> $10
+    Twenty  -> $20
+    Hundred -> $100
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (price, cash, cid) => {
+      let myArr = [0.01, 0.05, 0.1, 0.25, 1, 5, 10, 20, 100];
+      let myChg = cash - price;
+      let myRet = [];
+      let mySum = 0;
+      let myCnt = 0;
+      
+      // 釣銭合計と釣銭の支払能力チェック
+      for (let i = 0; i < cid.length; i++) {
+        mySum += cid[i][1];
+      }
+      
+      // 釣銭合計と釣銭の支払能力チェック
+      if (myChg > mySum) {
+        return {status: 'INSUFFICIENT_FUNDS', change: []};
+      }
+    
+      // 計算開始
+      for (let i = myArr.length - 1; i >= 0; i--) {
+        let myTmp = [];
+        if (myChg >= cid[i][1]) {
+          myTmp.push(cid[i][0]);
+          myTmp.push(cid[i][1]);
+          myChg = (Math.round(myChg * 100) - Math.round(cid[i][1] * 100)) / 100;
+          cid[i][1] = 0;
+        } else {
+          if (myChg >= myArr[i]) {
+            myTmp.push(cid[i][0]);
+            let myVar1 = Math.round(myChg * 100);
+            let myVar2 = Math.round(myArr[i] * 100);
+            let myVar3 = Math.floor(myVar1 / myVar2);
+            myTmp.push(myArr[i] * myVar3);
+            myChg = (myVar1 - myVar2 * myVar3) / 100;
+            cid[i][1] -= myArr[i] * myVar3;
+          }
+        }
+        if (myTmp.length !== 0) myRet.push(myTmp);
+      }
+    
+      // 計算終了…現在の釣銭状況ではお釣りを賄いきれない
+      if (myChg !== 0) {
+        return {status: 'INSUFFICIENT_FUNDS', change: []};
+      }
+      
+      // レジ閉鎖を判断
+      for (let i = 0; i < cid.length; i++) {
+        if (cid[i][1] === 0) myCnt++;
+      }
+      
+      if (myCnt == cid.length) {
+        myRet.reverse();
+        return {status: 'CLOSED', change: myRet};
+      }
+    
+      // 戻り値
+      return {status: 'OPEN', change: myRet};
+    }
+    
+    // 関数実行
+    myFunc(
+      19.5,
+      20,
+      [
+        ["PENNY", 1.01],      // 101
+        ["NICKEL", 2.05],     // 41
+        ["DIME", 3.1],        // 31
+        ["QUARTER", 4.25],    // 17
+        ["ONE", 90],          // 90
+        ["FIVE", 55],         // 11
+        ["TEN", 20],          // 2
+        ["TWENTY", 60],       // 3
+        ["ONE HUNDRED", 100]  // 1
+      ]
+    );
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

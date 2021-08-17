@@ -1,0 +1,1384 @@
+================================================================================
+[00] Introduction to jQuery
+[01] Learn How Script Tags and Document Ready Work
+[02] Target HTML Elements with Selectors Using jQuery
+[03] Target Elements by Class Using jQuery
+[04] Target Elements by id Using jQuery
+[05] Delete Your jQuery Functions
+[06] Target the Same Element with Multiple jQuery Selectors
+[07] Remove Classes from an Element with jQuery
+[08] Change the CSS of an Element Using jQuery
+[09] Disable an Element Using jQuery
+[10] Change Text Inside an Element Using jQuery
+[11] Remove an Element Using jQuery
+[12] Use appendTo to Move Elements with jQuery
+[13] Clone an Element Using jQuery
+[14] Target the Parent of an Element Using jQuery
+[15] Target the Children of an Element Using jQuery
+[16] Target a Specific Child of an Element Using jQuery
+[17] Target Even Elements Using jQuery
+[18] Use jQuery to Modify the Entire Page
+================================================================================
+[01]
+  Learn How Script Tags and Document Ready Work
+  
+[内容]
+  JQueryコードの記述場所
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <button class='btn-default' id='INC'>増加</button>
+  <button class='btn-default' id='DEC'>減少</button>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 変数定義と初期化
+    let cnt = 0;
+    
+    // 初期表示
+    $(document).ready(() => {
+      console.log(`cnt : ${cnt}`);
+    });
+    
+    // 増加ボタンのクリック時
+    $('#INC').on('click', () => {
+      console.log(`cnt : ${++cnt}`);
+    });
+    
+    // 減少ボタンのクリック時
+    $('#DEC').on('click', () => {
+      console.log(`cnt : ${--cnt}`);
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Target HTML Elements with Selectors Using jQuery
+  
+[内容]
+  セレクト要素にクラス属性を付与
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 class='text-center'>サンプル文字列</h1>
+  <button class='btn-default' id='GRA'>付与</button>
+  <button class='btn-default' id='DEP'>剥奪</button>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample { color: red; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 付与ボタンのクリック時
+    $('#GRA').on('click', () => {
+      $('h1').addClass('sample');
+    });
+    
+    // 剥奪ボタンのクリック時
+    $('#DEP').on('click', () => {
+      $('h1').removeClass('sample');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Target Elements by Class Using jQuery
+  
+[内容]
+  要素をクラス単位でセレクト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h2 class='text-center myTitle'>サンプル文字列1</h2>
+  <h2 class='text-center myTitle'>サンプル文字列2</h2>
+  <button class='btn-default' id='GRA'>付与</button>
+  <button class='btn-default' id='DEP'>剥奪</button>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample { color: red; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 付与ボタンのクリック時
+    $('#GRA').on('click', () => {
+      $('.myTitle').addClass('sample');
+    });
+    
+    // 剥奪ボタンのクリック時
+    $('#DEP').on('click', () => {
+      $('.myTitle').removeClass('sample');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Target Elements by id Using jQuery
+  
+[内容]
+  要素をID指定でセレクト
+  
+[確認]
+  // 上記「02」を参照
+  
+================================================================================
+[05]
+  Delete Your jQuery Functions
+  
+[内容]
+  JQueryコードのアニメーション部分を削除
+  
+[確認]
+  // 省略
+  
+================================================================================
+[06]
+  Target the Same Element with Multiple jQuery Selectors
+  
+[内容]
+  複数のクラス属性を適用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h2 class='text-center myTitle'>サンプル文字列1</h2>
+  <h2 class='text-center myTitle'>サンプル文字列2</h2>
+  <button class='btn-default' id='GRA'>付与</button>
+  <button class='btn-default' id='DEP'>剥奪</button>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample1 { color: white; }
+    .sample2 { background-color: black; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 付与ボタンのクリック時
+    $('#GRA').on('click', () => {
+      $('.myTitle').addClass('sample1');
+      $('.myTitle').addClass('sample2');
+    });
+    
+    // 剥奪ボタンのクリック時
+    $('#DEP').on('click', () => {
+      $('.myTitle').removeClass('sample1');
+      $('.myTitle').removeClass('sample2');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Remove Classes from an Element with jQuery
+  
+[内容]
+  セレクト要素からクラス属性を無効化
+  
+[確認]
+  // 上記「06」を参照
+  
+================================================================================
+[08]
+  Change the CSS of an Element Using jQuery
+  
+[内容]
+  セレクト要素のCSS変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h2 class='text-center myTitle'>サンプル文字列1</h2>
+  <h2 class='text-center myTitle'>サンプル文字列2</h2>
+  <button class='btn-default' id='GRA'>付与</button>
+  <button class='btn-default' id='DEP'>剥奪</button>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample1 { color: white; }
+    .sample2 { background-color: black; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 付与ボタンのクリック時
+    $('#GRA').on('click', () => {
+      $('.myTitle').css('color', 'white');
+      $('.myTitle').css('background-color', 'black');
+    });
+    
+    // 剥奪ボタンのクリック時
+    $('#DEP').on('click', () => {
+      $('.myTitle').css('color', 'black');
+      $('.myTitle').css('background-color', 'white');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Disable an Element Using jQuery
+  
+[内容]
+  セレクト要素の無効化
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h2 class='text-center myTitle'>サンプル文字列1</h2>
+  <h2 class='text-center myTitle'>サンプル文字列2</h2>
+  <button class='btn-default' id='GRA'>付与</button>
+  <button class='btn-default' id='DEP'>剥奪</button>
+  <button class='btn-default' id='DIS'>無効</button>
+  <button class='btn-default' id='ACT'>有効</button>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample1 { color: white; }
+    .sample2 { background-color: black; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 付与ボタンのクリック時
+    $('#GRA').on('click', () => {
+      $('.myTitle').css('color', 'white');
+      $('.myTitle').css('background-color', 'black');
+    });
+    
+    // 剥奪ボタンのクリック時
+    $('#DEP').on('click', () => {
+      $('.myTitle').css('color', 'black');
+      $('.myTitle').css('background-color', 'white');
+    });
+    
+    // 無効ボタンのクリック時
+    $('#DIS').on('click', () => {
+      $('#GRA').prop('disabled', true);
+      $('#DEP').prop('disabled', true);
+    });
+    
+    // 有効ボタンのクリック時
+    $('#ACT').on('click', () => {
+      // 付与ボタンを有効化
+      $('#GRA').prop('disabled', false);
+      $('#DEP').prop('disabled', false);
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Change Text Inside an Element Using jQuery
+  
+[内容]
+  セレクト要素のテキスト変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <input id='EDT' type='text'>
+  <button class='btn-default' id='GRA'>反映</button>
+  <hr>
+  <p class='text-left' id='RS1'>初期表示1</p>
+  <p class='text-left' id='RS2'>初期表示2</p>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .sample { font-size: 26px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 初期表示
+    $(document).ready(() => {
+      $('#RS1').addClass('sample');
+      $('#RS2').addClass('sample');
+    });
+    
+    // 反映ボタンのクリック時
+    $('#GRA').on('click', () => {
+      
+      // 変数と初期化
+      const tmp = $('#EDT').prop('value');
+      
+      // 入力文字列を反映
+      if (tmp !== '') {
+        $('#RS1').text(tmp);
+        $('#RS2').html(`<p class='text-left' id='RS2'>${tmp}</p>`);
+      }
+      
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Remove an Element Using jQuery
+  
+[内容]
+  セレクト要素の削除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='ADD'>追加</button>
+    <button class='btn-default' id='REM'>削除</button>
+  </div>
+  <hr>
+  <div id='DSP'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 追加ボタンのクリック時
+    $('#ADD').on('click', () => {
+      $('#DSP').append('<p class="SAM">Hello!</p>');
+    });
+    
+    // 削除ボタンのクリック時
+    $('#REM').on('click', () => {
+      $('.SAM:last').remove();
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Use appendTo to Move Elements with jQuery
+  
+[内容]
+  セレクト要素の移動
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='MV1'>移動1</button>
+    <button class='btn-default' id='MV2'>移動2</button>
+  </div>
+  <hr>
+  <div id='DS1'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  <hr>
+  <div id='DS2'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 移動1ボタンのクリック時
+    $('#MV1').on('click', () => {
+      $('#DS1 > .SAM:last').appendTo('#DS2');
+    });
+    
+    // 移動2ボタンのクリック時
+    $('#MV2').on('click', () => {
+      $('#DS2 > .SAM:last').appendTo('#DS1');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Clone an Element Using jQuery
+  
+[内容]
+  セレクト要素の複製と移動
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='CP1'>複製1</button>
+    <button class='btn-default' id='CP2'>複製2</button>
+  </div>
+  <hr>
+  <div id='DS1'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  <hr>
+  <div id='DS2'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 複製1ボタンのクリック時
+    $('#CP1').on('click', () => {
+      $('#DS1 > .SAM:last').clone().appendTo('#DS2');
+    });
+    
+    // 複製2ボタンのクリック時
+    $('#CP2').on('click', () => {
+      $('#DS2 > .SAM:last').clone().appendTo('#DS1');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Target the Parent of an Element Using jQuery
+  
+[内容]
+  セレクト要素の親要素を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='PR1'>親要素1</button>
+    <button class='btn-default' id='PR2'>親要素2</button>
+  </div>
+  <hr>
+  <div id='DSP'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 親要素1ボタンのクリック時
+    $('#PR1').on('click', () => {
+      $('.SAM').parent().css('background-color', 'black');
+      $('.SAM').parent().css('color', 'white');
+    });
+    
+    // 親要素2ボタンのクリック時
+    $('#PR2').on('click', () => {
+      $('.SAM').parent().css('background-color', 'white');
+      $('.SAM').parent().css('color', 'black');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Target the Children of an Element Using jQuery
+  
+[内容]
+  セレクト要素の子要素を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='CH1'>子要素1</button>
+    <button class='btn-default' id='CH2'>子要素2</button>
+  </div>
+  <hr>
+  <div id='DSP'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 子要素1ボタンのクリック時
+    $('#CH1').on('click', () => {
+      $('#DSP').children().css('background-color', 'black');
+      $('#DSP').children().css('color', 'white');
+    });
+    
+    // 子要素2ボタンのクリック時
+    $('#CH2').on('click', () => {
+      $('#DSP').children().css('background-color', 'white');
+      $('#DSP').children().css('color', 'black');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Target a Specific Child of an Element Using jQuery
+  
+[内容]
+  セレクト要素群から指定の要素を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='EL1'>要素1</button>
+    <button class='btn-default' id='EL2'>要素2</button>
+    <button class='btn-default' id='EL3'>要素3</button>
+    <button class='btn-default' id='EL4'>要素4</button>
+    <button class='btn-default' id='CLR'>回復</button>
+  </div>
+  <hr>
+  <div id='DSP'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 要素1ボタンのクリック時
+    $('#EL1').on('click', () => {
+      $('.SAM:nth-child(1)').css('background-color', 'black');
+      $('.SAM:nth-child(1)').css('color', 'white');
+    });
+    
+    // 要素2ボタンのクリック時
+    $('#EL2').on('click', () => {
+      $('.SAM:nth-child(2)').css('background-color', 'black');
+      $('.SAM:nth-child(2)').css('color', 'white');
+    });
+    
+    // 要素3ボタンのクリック時
+    $('#EL3').on('click', () => {
+      $('.SAM:nth-child(3)').css('background-color', 'black');
+      $('.SAM:nth-child(3)').css('color', 'white');
+    });
+    
+    // 要素4ボタンのクリック時
+    $('#EL4').on('click', () => {
+      $('.SAM:nth-child(4)').css('background-color', 'black');
+      $('.SAM:nth-child(4)').css('color', 'white');
+    });
+    
+    // 回復ボタンのクリック時
+    $('#CLR').on('click', () => {
+      $('#DSP').children().css('background-color', 'white');
+      $('#DSP').children().css('color', 'black');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Target Even Elements Using jQuery
+  
+[内容]
+  セレクト要素群の偶数番目(または奇数番目)の要素を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='d-flex justify-content-center'>
+    <button class='btn-default' id='ODD'>奇数</button>
+    <button class='btn-default' id='EVE'>偶数</button>
+    <button class='btn-default' id='CLR'>回復</button>
+  </div>
+  <hr>
+  <div id='DSP'>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello!</p>
+  </div>
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM { font-size: 15px; }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 奇数ボタンのクリック時 -> 要素は「0」オリジンであることに注意
+    $('#ODD').on('click', () => {
+      $('.SAM:odd').css('background-color', 'black');
+      $('.SAM:odd').css('color', 'white');
+    });
+    
+    // 偶数ボタンのクリック時 -> 要素は「0」オリジンであることに注意
+    $('#EVE').on('click', () => {
+      $('.SAM:even').css('background-color', 'black');
+      $('.SAM:even').css('color', 'white');
+    });
+    
+    // 回復ボタンのクリック時
+    $('#CLR').on('click', () => {
+      $('#DSP').children().css('background-color', 'white');
+      $('#DSP').children().css('color', 'black');
+    });
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Use jQuery to Modify the Entire Page
+  
+[内容]
+  要素「body」をセレクト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  // なし
+  
+  // CSS
+  <style>
+    
+    /* クラス属性 */
+    .SAM {
+      color: white;
+      font-size: 30px;
+      background-color: black;
+    }
+    
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script>
+    
+    // 要素「body」のセレクト
+    $('body').addClass('SAM');
+    
+    // 配下に要素を追加
+    $('body').append('<p>Hello World</p>');
+    $('body').append('<p>Hello World</p>');
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

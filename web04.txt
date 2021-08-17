@@ -1,0 +1,937 @@
+================================================================================
+[00] Introduction to the Applied Accessibility Challenges
+[01] Add a Text Alternative to Images for Visually Impaired Accessibility
+[02] Know When Alt Text Should be Left Blank
+[03] Use Headings to Show Hierarchical Relationships of Content
+[04] Jump Straight to the Content Using the main Element
+[05] Wrap Content in the article Element
+[06] Make Screen Reader Navigation Easier with the header Landmark
+[07] Make Screen Reader Navigation Easier with the nav Landmark
+[08] Make Screen Reader Navigation Easier with the footer Landmark
+[09] Improve Accessibility of Audio Content with the audio Element
+[10] Improve Chart Accessibility with the figure Element
+[11] Improve Form Field Accessibility with the label Element
+[12] Wrap Radio Buttons in a fieldset Element for Better Accessibility
+[13] Add an Accessible Date Picker
+[14] Standardize Times with the HTML5 datetime Attribute
+[15] Make Elements Only Visible to a Screen Reader by Using Custom CSS
+[16] Improve Readability with High Contrast Text
+[17] Avoid Colorblindness Issues by Using Sufficient Contrast
+[18] Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information
+[19] Give Links Meaning by Using Descriptive Link Text
+[20] Make Links Navigable with HTML Access Keys
+[21] Use tabindex to Add Keyboard Focus to an Element
+[22] Use tabindex to Specify the Order of Keyboard Focus for Several Elements
+================================================================================
+[01]
+  Add a Text Alternative to Images for Visually Impaired Accessibility
+  
+[内容]
+  視覚障害者のために、要素「img」の属性「alt」に説明を付与
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 視覚障害者のために説明を付与
+  <img src="images/android-icon.png" alt="android">
+  <img src="images/firefox-icon.png" alt="firefox">
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Know When Alt Text Should be Left Blank
+  
+[内容]
+  要素「img」の説明で属性「alt」の代わりに、要素「caption」を使用する
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素「caption」で説明
+  <caption>android</caption>
+  <img src='images/android-icon.png' alt=''>
+  
+  // 要素「caption」で説明
+  <caption>firefox</caption>
+  <img src='images/firefox-icon.png' alt=''>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Use Headings to Show Hierarchical Relationships of Content
+  
+[内容]
+  コンテンツの階層関係を見出し(h1-h6)で表現
+  
+[確認]
+  // 省略
+  
+================================================================================
+[04]
+  Jump Straight to the Content Using the main Element
+  
+[内容]
+  要素「main」 -> 中核コンテンツ
+  
+[確認]
+  // 省略
+  
+================================================================================
+[05]
+  Wrap Content in the article Element
+  
+[内容]
+  要素「article」 -> 独立コンテンツ
+  
+  判断基準
+  ・その要素のみで意味が成立するか？
+  ・他の何かに依存しているものが無いか？
+  
+  要素「section」 -> 互いに関連する要素群のグループ化
+  
+  要素「div」 -> 互いに関連しない要素群のグループ化
+  
+[確認]
+  // 省略
+  
+================================================================================
+[06]
+  Make Screen Reader Navigation Easier with the header Landmark
+  
+[内容]
+  要素「header」
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素「header」
+  <header>
+    <nav>
+      <ul>
+        <li><a href="#">ホーム</a></li>
+        <li><a href="#">ブログ</a></li>
+        <li><a href="#">リンク</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  // 要素「main」
+  <main></main>
+  
+  // 要素「footer」
+  <footer>
+    <ul>
+      <li><a href="#">ホーム</a></li>
+      <li><a href="#">ブログ</a></li>
+      <li><a href="#">リンク</a></li>
+    </ul>
+  </footer>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Make Screen Reader Navigation Easier with the nav Landmark
+  
+[内容]
+  要素「header」中に要素「nav」 -> スクリーンリーダーのリンク認識が容易
+  
+[確認]
+  // 上記「06」を参照
+  
+================================================================================
+[08]
+  Make Screen Reader Navigation Easier with the footer Landmark
+  
+[内容]
+  要素「footer」 -> スクリーンリーダーのリンク認識が容易
+  
+[確認]
+  // 上記「06」を参照
+  
+================================================================================
+[09]
+  Improve Accessibility of Audio Content with the audio Element
+  
+[内容]
+  要素「audio」
+    属性「controls」 // 制御機構を表示
+  
+  要素「source」
+    属性「src」      // 音声データのURI
+    属性「type」     // 音声データのMIME
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 音声データのタイトル
+  <h2>U.N.オーエンは彼女なのか</h2>
+  
+  // 音声データ
+  <audio controls>
+    <source src='audio/nc20384.mp3' type='audio/mpeg' />
+  </audio>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Improve Chart Accessibility with the figure Element
+  
+[内容]
+  要素「figure」     -> 視覚的効果を持つ要素に使用
+  要素「figcaption」 -> 視覚的効果を持つ要素を説明するために使用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素「figure」
+  <figure>
+    
+    // 要素「figcaption」で説明
+    <figcaption>android</figcaption>
+    <img src='images/android-icon.png' alt=''>
+    
+    // 要素「figcaption」で説明
+    <figcaption>firefox</figcaption>
+    <img src='images/firefox-icon.png' alt=''>
+    
+  </figure>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Improve Form Field Accessibility with the label Element
+
+[内容]
+  要素「label」と「input」とリンク
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <form action="#">
+    
+    // グループ名は「性別1」
+    <input id="男性" type="radio" name="性別1"><label for="男性">男性</label>
+    <input id="女性" type="radio" name="性別1"><label for="女性">女性</label>
+    
+    // グループ名は「性別2」
+    <label for="男性">男性</label><input id="男性" type="radio" name="性別2">
+    <label for="女性">女性</label><input id="女性" type="radio" name="性別2">
+    
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Wrap Radio Buttons in a fieldset Element for Better Accessibility
+
+[内容]
+  要素「fieldset」 -> ラジオボタングループを囲む
+  要素「legend」   -> ラジオボタングループの説明
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <form action="#">
+    
+    // グループ名は「性別1」
+    <fieldset>
+      <legend>性別1</legend>
+      <input id="男性" type="radio" name="性別1"><label for="男性">男性</label>
+      <input id="女性" type="radio" name="性別1"><label for="女性">女性</label>
+    </fieldset>
+    
+    // グループ名は「性別2」
+    <fieldset>
+      <legend>性別2</legend>
+      <label for="男性">男性</label><input id="男性" type="radio" name="性別2">
+      <label for="女性">女性</label><input id="女性" type="radio" name="性別2">
+    </fieldset>
+    
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Add an Accessible Date Picker
+
+[内容]
+  要素「input」内で「type=date」を指定して、日付入力欄が簡単に作成可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <form action="#">
+    <label for='生年月日'>生年月日</label><input id='生年月日' type='date' name='生年月日'>
+    <button type="submit">送信</button>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Standardize Times with the HTML5 datetime Attribute
+  
+[内容]
+  要素「time」-> 属性「datetime」で日時を内部データとして保持
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素「time」
+  <p>11月<time datetime='2021-11-15'>15日</time>午前</p>
+  <p>11月<time datetime='2021-11-16'>16日</time>午前</p>
+  <p>11月<time datetime='2021-11-17'>17日</time>午前</p>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Make Elements Only Visible to a Screen Reader by Using Custom CSS
+  
+[内容]
+  隠し要素
+    視覚的に隠したいが‥スクリーンリーダーには伝えたいケースで使用 -> CSS設定で画面外に隠す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p>項目1</p>
+  <p class='hidden'>項目2</p>
+  <p>項目3</p>
+  
+  // CSS
+  <style>
+    
+    // 通常のCSS設定
+    p { color: green; }
+    
+    // 隠し要素のCSS設定
+    .hidden {
+      position: absolute;
+      top: auto;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Improve Readability with High Contrast Text
+  
+[内容]
+  コントラスト -> HSL書式の輝度が関係してくる
+    色相(H)
+    彩度(S)
+    輝度(L)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='E1'></div>
+  <div id='E2'></div>
+  <div id='E3'></div>
+  
+  // CSS
+  <style>
+    
+    div {
+      width: 100px;
+      height: 100px;
+      display: inline-block;
+      border: 2px solid green;
+    }
+    
+    #E1 { background-color: hsl(0, 100%, 10%); }
+    #E2 { background-color: hsl(0, 100%, 50%); }
+    #E3 { background-color: hsl(0, 100%, 100%); }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Avoid Colorblindness Issues by Using Sufficient Contrast
+  
+[内容]
+  輝度を上げてコントラストを上昇させる
+  
+[確認]
+  // 上記「16」を参照
+  
+================================================================================
+[18]
+  Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information
+  
+[内容]
+  コントラストの知識で文字の識別を簡単にする
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='E1'>文字列</div>
+  <div id='E2'>文字列</div>
+  
+  // CSS
+  <style>
+    
+    div {
+      width: 200px;
+      height: 50px;
+      border: 2px solid green;
+      font-size: 25px;
+      font-weight: bold;
+    }
+    
+    #E1 {
+      color: hsl(0, 100%, 50%);
+      background-color: hsl(0, 100%, 10%);
+    }
+    
+    #E2 {
+      color: hsl(0, 100%, 100%);
+      background-color: hsl(0, 100%, 10%);
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Give Links Meaning by Using Descriptive Link Text
+  
+[内容]
+  スクリーンリーダーにはスキップ機能で以下の項目のみ読み上げ
+    メインコンテンツ
+    見出し部分
+    ページ内のリンク -> リンクテキストに意味ある単語を割り当てる
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 悪い例 -> リンク読み上げ時に何のダウンロードか不明
+  <p>修正プログラムの<a href="#">ダウンロード</a></p>
+  
+  // 良い例 -> リンク読み上げ時に修正プログラムのリンクと判明
+  <p><a href="#">修正プログラム</a>のダウンロード</p>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Make Links Navigable with HTML Access Keys
+  
+[内容]
+  フォーム部品にショートカットキー実装
+    ブラウザ「Firefox」では「Alt」＋「Shift」＋「キー」で実行
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <form action="#">
+    
+    // テキストボックス
+    <label for='名前'>名前(N)</label><input id='名前' type='text' name='名前' accesskey='N'>
+    <label for='住所'>住所(A)</label><input id='住所' type='text' name='住所' accesskey='A'>
+    
+    // 送信ボタン
+    <button type="submit" accesskey='S'>送信(S)</button>
+    
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Use tabindex to Add Keyboard Focus to an Element
+  
+[内容]
+  属性「tabindex」
+    tabindex='0'   // フォーカス可能
+    tabindex='1'   // フォーカス順番を決定(1以上)
+    tabindex='-1'  // フォーカス不可(負数)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <form action="#">
+    
+    // テキストボックス
+    <label for='名前'>名前(N)</label><input id='名前' type='text' name='名前' tabindex='1'>
+    <label for='住所'>住所(A)</label><input id='住所' type='text' name='住所' tabindex='2'>
+    
+    // 送信ボタン
+    <button type="submit" tabindex='3'>送信(S)</button>
+    
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Use tabindex to Specify the Order of Keyboard Focus for Several Elements
+  
+[内容]
+  属性「tabindex」にフォーカス順番を指定
+  
+[確認]
+  // 上記「21」を参照
+  
+================================================================================

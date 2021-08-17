@@ -1,0 +1,1700 @@
+================================================================================
+[00] Introduction to the Bootstrap Challenges
+[01] Use Responsive Design with Bootstrap Fluid Containers
+[02] Make Images Mobile Responsive
+[03] Center Text with Bootstrap
+[04] Create a Bootstrap Button
+[05] Create a Block Element Bootstrap Button
+[06] Taste the Bootstrap Button Color Rainbow
+[07] Call out Optional Actions with btn-info
+[08] Warn Your Users of a Dangerous Action with btn-danger
+[09] Use the Bootstrap Grid to Put Elements Side By Side
+[10] Ditch Custom CSS for Bootstrap
+[11] Use a span to Target Inline Elements
+[12] Create a Custom Heading
+[13] Add Font Awesome Icons to our Buttons
+[14] Add Font Awesome Icons to all of our Buttons
+[15] Responsively Style Radio Buttons
+[16] Responsively Style Checkboxes
+[17] Style Text Inputs as Form Controls
+[18] Line up Form Elements Responsively with Bootstrap
+[19] Create a Bootstrap Headline
+[20] House our page within a Bootstrap container-fluid div
+[21] Create a Bootstrap Row
+[22] Split Your Bootstrap Row
+[23] Create Bootstrap Wells
+[24] Add Elements within Your Bootstrap Wells
+[25] Apply the Default Bootstrap Button Style
+[26] Create a Class to Target with jQuery Selectors
+[27] Add id Attributes to Bootstrap Elements
+[28] Label Bootstrap Wells
+[29] Give Each Element a Unique id
+[30] Label Bootstrap Buttons
+[31] Use Comments to Clarify Code
+================================================================================
+[01]
+  Use Responsive Design with Bootstrap Fluid Containers
+  
+[内容]
+  要素のコンテナ化
+    container-fluid
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-md-4'><img class='img-fluid' src='images/android-icon.png'></div>
+      <div class='col-md-4'><img class='img-fluid' src='images/chrome-icon.png'></div>
+      <div class='col-md-4'><img class='img-fluid' src='images/firefox-icon.png'></div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Make Images Mobile Responsive
+  
+[内容]
+  画像のレスポンシブ対応
+    img-fluid
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[03]
+  Center Text with Bootstrap
+  
+[内容]
+  テキスト要素を中央寄せ
+    text-center
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h2 class='text-center'>Hello World1</h2>
+  <h2 class='text-center'>Hello World2</h2>
+  <h2 class='text-center'>Hello World3</h2>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Create a Bootstrap Button
+  
+[内容]
+  ボタン作成
+    1. btn-default
+    2. btn-primary
+    3. btn-secondary
+    4. btn-info
+    5. btn-warning
+    6. btn-danger
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <button class='btn-default'>ボタン1</button>
+  <button class='btn-primary'>ボタン2</button>
+  <button class='btn-secondary'>ボタン3</button>
+  <button class='btn-info'>ボタン4</button>
+  <button class='btn-warning'>ボタン5</button>
+  <button class='btn-danger'>ボタン6</button>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Create a Block Element Bootstrap Button
+  
+[内容]
+  ボタンを横幅一杯に伸長
+    btn-block
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <button class='btn-default btn-block'>ボタン1</button>
+  <button class='btn-primary btn-block'>ボタン2</button>
+  <button class='btn-secondary btn-block'>ボタン3</button>
+  <button class='btn-info btn-block'>ボタン4</button>
+  <button class='btn-warning btn-block'>ボタン5</button>
+  <button class='btn-danger btn-block'>ボタン6</button>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Taste the Bootstrap Button Color Rainbow
+  
+[内容]
+ボタン追加
+  btn-primary
+  
+[確認]
+  // 上記「04」と「05」を参照
+  
+================================================================================
+[07]
+  Call out Optional Actions with btn-info
+  
+[内容]
+  ボタン追加
+    btn-info
+  
+[確認]
+  // 上記「04」と「05」を参照
+  
+================================================================================
+[08]
+  Warn Your Users of a Dangerous Action with btn-danger
+  
+[内容]
+ボタン追加
+  btn-danger
+  
+[確認]
+  // 上記「04」と「05」を参照
+  
+================================================================================
+[09]
+  Use the Bootstrap Grid to Put Elements Side By Side
+  
+[内容]
+  各種ボタンを「グリッドシステム」で横に並べる
+  
+  パソコン画面のような中型(medium)スクリーンの横幅を12分割
+  <div class="row">
+    <div class="col-md-4"></div>  // 12分割した横幅を4割当
+    <div class="col-md-4"></div>  // 12分割した横幅を4割当
+    <div class="col-md-4"></div>  // 12分割した横幅を4割当
+  </div>
+  
+  スマートフォンのような小型(extra-small)スクリーンの横幅を12分割
+  <div class="row">
+    <div class="col-xs-4"></div>  // 12分割した横幅を4割当
+    <div class="col-xs-4"></div>  // 12分割した横幅を4割当
+    <div class="col-xs-4"></div>  // 12分割した横幅を4割当
+  </div>
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='row'>
+    <button class='btn-default col-md-2'>ボタン1</button>
+    <button class='btn-primary col-md-2'>ボタン2</button>
+    <button class='btn-secondary col-md-2'>ボタン3</button>
+    <button class='btn-info col-md-2'>ボタン4</button>
+    <button class='btn-warning col-md-2'>ボタン5</button>
+    <button class='btn-danger col-md-2'>ボタン6</button>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Ditch Custom CSS for Bootstrap
+  
+[内容]
+  以前の講義で作成したCSSを削除(コメントアウト)後に、各要素のクラスをBootstrapのものに変更
+  
+[確認]
+  // 省略
+  
+================================================================================
+[11]
+  Use a span to Target Inline Elements
+  
+[内容]
+  テキストの色付け
+    1. text-primary
+    2. text-secondary
+    3. text-success
+    4. text-info
+    5. text-warning
+    6. text-danger
+    7. text-light
+    8. text-dark
+    9. text-white
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p class='text-primary'>Hello World1</p>
+  <p class='text-secondary'>Hello World2</p>
+  <p class='text-success'>Hello World3</p>
+  <p class='text-info'>Hello World4</p>
+  <p class='text-warning'>Hello World5</p>
+  <p class='text-danger'>Hello World6</p>
+  <p class='text-light'>Hello World7</p>
+  <p class='text-dark'>Hello World8</p>
+  <p class='text-white'>Hello World9</p>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Create a Custom Heading
+  
+[内容]
+  タイトルと画像を「グリッドシステム」で横に並べる
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='container-fluid'>
+    <div class='row'>
+      <div class='col-md-4'><img class='img-fluid' src='images/android-icon.png'></div>
+      <div class='col-md-4'><h1 class='text-center'>タイトル</h1></div>
+      <div class='col-md-4'><img class='img-fluid' src='images/firefox-icon.png'></div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Add Font Awesome Icons to our Buttons
+  
+[内容]
+  ボタンのテキストに親指アイコンを付与
+    1. fas
+    2. fa-thumbs-up
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // Font Awesome -> アイコン
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <form action='#'>
+  
+    <!-- テキストボックス  -->
+    <input class='form-control' type='text' placeholder='氏名'>
+    <input class='form-control' type='text' placeholder='住所'>
+    <input class='form-control' type='text' placeholder='電話'>
+    
+    <!-- ラジオボタン  -->
+    <div class='form-check'>
+      <div class='row'>
+        <div class="col-md-4">
+          <input class='form-check-input' type='radio' name='年号' id='昭和'>
+          <label class='form-check-label' for='昭和'>昭和</label>
+        </div>
+        <div class="col-md-4">
+          <input class='form-check-input' type='radio' name='年号' id='平成'>
+          <label class='form-check-label' for='平成'>平成</label>
+        </div>
+        <div class="col-md-4">
+          <input class='form-check-input' type='radio' name='年号' id='令和'>
+          <label class='form-check-label' for='令和'>令和</label>
+        </div>
+      </div>
+    </div>
+    
+    <!-- チェックボックス  -->
+    <div class='form-check'>
+      <div class='row'>
+        <div class="col-md-4">
+          <input class='form-check-input' type='checkbox' name='年号' id='昭和'>
+          <label class='form-check-label' for='昭和'>昭和</label>
+        </div>
+        <div class="col-md-4">
+          <input class='form-check-input' type='checkbox' name='年号' id='平成'>
+          <label class='form-check-label' for='平成'>平成</label>
+        </div>
+        <div class="col-md-4">
+          <input class='form-check-input' type='checkbox' name='年号' id='令和'>
+          <label class='form-check-label' for='令和'>令和</label>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ボタン  -->
+    <button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up">ボタン1</i></button>
+    <button type="button" class="btn btn-primary"><i class="fas fa-info-circle">ボタン2</i></button>
+    <button type="button" class="btn btn-primary"><i class="fas fa-trash">ボタン3</i></button>
+    <button type="button" class="btn btn-primary"><i class="fa fa-paper-plane">ボタン4</i></button>
+    
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Add Font Awesome Icons to all of our Buttons
+  
+[内容]
+  ボタンのテキストに丸アイコンとゴミ箱アイコンを付与
+    1. fas
+    2. fa-info-circle -> 丸アイコン
+    3. fa-trash       -> ゴミ箱アイコン
+  
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[15]
+  Responsively Style Radio Buttons
+  
+[内容]
+  ラジオボタンをグループ化
+    1. form-check       -> ラジオボタンとチェックボックスのコンテナ
+    2. form-check-input -> ラジオボタンとチェックボックス
+    3. form-check-label -> ラジオボタンとチェックボックスのラベル
+  
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[16]
+  Responsively Style Checkboxes
+  
+[内容]
+  チェックボックスをグループ化
+    1. form-check       -> ラジオボタンとチェックボックスのコンテナ
+    2. form-check-input -> ラジオボタンとチェックボックス
+    3. form-check-label -> ラジオボタンとチェックボックスのラベル
+  
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[17]
+  Style Text Inputs as Form Controls
+  
+[内容]
+  各フォーム部品の装飾(1)
+    1. form-control     -> テキストボックス
+    2. form-check       -> ラジオボタンとチェックボックスのコンテナ
+    3. form-check-input -> ラジオボタンとチェックボックス
+    4. form-check-label -> ラジオボタンとチェックボックスのラベル
+    5. fa               -> Bootstrap のクラスではない
+    6. fa-paper-plane   -> Bootstrap のクラスではない
+    
+[確認]
+  // 上記「13」を参照
+  
+================================================================================
+[18]
+  Line up Form Elements Responsively with Bootstrap
+  
+[内容]
+  各フォーム部品の装飾(2)
+    テキストボックスとボタンをグリッドシステム配下で「7:5」の比率で配置
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <form action='#'>
+    <div class="row">
+      
+      // テキストボックス
+      <div class="col-md-7">
+      <input class="form-control" type="text" placeholder="氏名">
+      </div>
+      
+      // ボタン
+      <div class="col-md-5">
+      <button class="btn btn-primary" type="text"><i class="fa fa-paper-plane">送信</i></button>
+      </div>
+      
+    </div>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Create a Bootstrap Headline
+  
+[内容]
+  タイトル
+    1. text-primary
+    2. text-center
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <h1 class="text-primary text-center">Bootstrap4</h1>
+  <h2 class="text-primary text-center">Bootstrap4</h2>
+  <h3 class="text-primary text-center">Bootstrap4</h3>
+  <h4 class="text-primary text-center">Bootstrap4</h4>
+  <h5 class="text-primary text-center">Bootstrap4</h5>
+  <h6 class="text-primary text-center">Bootstrap4</h6>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  House our page within a Bootstrap container-fluid div
+  
+[内容]
+  レスポンシブ対応コンテンツ
+    タイトルをコンテナ内に格納
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='container-fluid'>
+    <h3 class='text-primary'>TITLE1</h3>
+    <h3 class='text-primary'>TITLE2</h3>
+    <h3 class='text-primary'>TITLE3</h3>
+  </div>
+  
+  // CSS
+  <style>
+    div { background-color: LightSkyBlue; }
+    h3  { background-color: PaleGreen; }
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Create a Bootstrap Row
+  
+[内容]
+  タイトルの下に行を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='container-fluid'>
+    <h3 class='text-primary'>TITLE1</h3>
+    <div class='row'>AAA</div>
+    <h3 class='text-primary'>TITLE2</h3>
+    <div class='row'>BBB</div>
+    <h3 class='text-primary'>TITLE3</h3>
+    <div class='row'>CCC</div>
+  </div>
+  
+  // CSS
+  <style>
+    div { background-color: LightSkyBlue; }
+    h3  { background-color: PaleGreen; }
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Split Your Bootstrap Row
+  
+[内容]
+  追加した行を「6:6」の比率に分割
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='container-fluid'>
+    <h3 class='text-primary'>TITLE1</h3>
+    <div class='row'>
+      <div class="col-md-6">AAA</div>
+      <div class="col-md-6">111</div>
+    </div>
+    
+    <h3 class='text-primary'>TITLE2</h3>
+    <div class='row'>
+      <div class="col-md-6">BBB</div>
+      <div class="col-md-6">222</div>
+    </div>
+    
+    <h3 class='text-primary'>TITLE3</h3>
+    <div class='row'>
+      <div class="col-md-6">CCC</div>
+      <div class="col-md-6">333</div>
+    </div>
+  </div>
+  
+  // CSS
+  <style>
+    div { background-color: LightSkyBlue; }
+    h3  { background-color: PaleGreen; }
+  </style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[23]
+  Create Bootstrap Wells
+  
+[内容]
+  分割部分をグレー枠で囲む
+    1. well -> Bootstrap4 で廃止
+    2. card -> 代わりに使用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6"><div class="card">AAA</div></div>
+      <div class="col-md-6"><div class="card">BBB</div></div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[24]
+  Add Elements within Your Bootstrap Wells
+  
+[内容]
+  グレーの囲み枠内にボタン三個を作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <button>AA</button>
+          <button>BB</button>
+          <button>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <button>DD</button>
+          <button>EE</button>
+          <button>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[25]
+  Apply the Default Bootstrap Button Style
+  
+[内容]
+  ボタンにクラス適用
+    1. btn
+    2. btn-default
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <button class='btn btn-default'>AA</button>
+          <button class='btn btn-default'>BB</button>
+          <button class='btn btn-default'>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <button class='btn btn-default'>DD</button>
+          <button class='btn btn-default'>EE</button>
+          <button class='btn btn-default'>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[26]
+  Create a Class to Target with jQuery Selectors
+  
+[内容]
+  追加したボタンに独自CSSを割り当てるためクラス「target」を適用
+    1. target
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <button class='btn btn-default target'>AA</button>
+          <button class='btn btn-default target'>BB</button>
+          <button class='btn btn-default target'>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <button class='btn btn-default target'>DD</button>
+          <button class='btn btn-default target'>EE</button>
+          <button class='btn btn-default target'>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[27]
+  Add id Attributes to Bootstrap Elements
+  
+[内容]
+  グレーの囲み枠にID属性を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap 4.3 - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card" id='left'>
+          <button class='btn btn-default target'>AA</button>
+          <button class='btn btn-default target'>BB</button>
+          <button class='btn btn-default target'>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card" id='right'>
+          <button class='btn btn-default target'>DD</button>
+          <button class='btn btn-default target'>EE</button>
+          <button class='btn btn-default target'>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[28]
+  Label Bootstrap Wells
+  
+[内容]
+  グレーの囲み枠にタイトル追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap 4.3 - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class='text-center'>LEFT</h4>
+        <div class="card" id='left'>
+          <button class='btn btn-default target'>AA</button>
+          <button class='btn btn-default target'>BB</button>
+          <button class='btn btn-default target'>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class='text-center'>RIGHT</h4>
+        <div class="card" id='right'>
+          <button class='btn btn-default target'>DD</button>
+          <button class='btn btn-default target'>EE</button>
+          <button class='btn btn-default target'>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[29]
+  Give Each Element a Unique id
+  
+[内容]
+  各ボタンにID属性を追加 -> JQueryで使用？
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap 4.3 - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class='text-center'>LEFT</h4>
+        <div class="card" id='left'>
+          <button class='btn btn-default target' id='b1'>AA</button>
+          <button class='btn btn-default target' id='b2'>BB</button>
+          <button class='btn btn-default target' id='b3'>CC</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class='text-center'>RIGHT</h4>
+        <div class="card" id='right'>
+          <button class='btn btn-default target' id='b4'>DD</button>
+          <button class='btn btn-default target' id='b5'>EE</button>
+          <button class='btn btn-default target' id='b6'>FF</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[30]
+  Label Bootstrap Buttons
+  
+[内容]
+  各ボタンのテキスト変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class="container-fluid">
+    <h3 class="text-primary text-center">Bootstrap4</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class='text-center'>LEFT</h4>
+        <div class="card" id='left'>
+          <button class='btn btn-default target' id='b1'>ボタン1</button>
+          <button class='btn btn-default target' id='b2'>ボタン2</button>
+          <button class='btn btn-default target' id='b3'>ボタン3</button>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <h4 class='text-center'>RIGHT</h4>
+        <div class="card" id='right'>
+          <button class='btn btn-default target' id='b4'>ボタン4</button>
+          <button class='btn btn-default target' id='b5'>ボタン5</button>
+          <button class='btn btn-default target' id='b6'>ボタン6</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[31]
+  Use Comments to Clarify Code
+  
+[内容]
+  コメントでコード変更範囲を明示
+  
+[確認]
+  // 省略
+  
+================================================================================

@@ -1,0 +1,1252 @@
+================================================================================
+[00] Introduction to the Basic Data Structure Challenges
+[01] Use an Array to Store a Collection of Data
+[02] Access an Array's Contents Using Bracket Notation
+[03] Add Items to an Array with push() and unshift()
+[04] Remove Items from an Array with pop() and shift()
+[05] Remove Items Using splice()
+[06] Add Items Using splice()
+[07] Copy Array Items Using slice()
+[08] Copy an Array with the Spread Operator
+[09] Combine Arrays with the Spread Operator
+[10] Check For The Presence of an Element With indexOf()
+[11] Iterate Through All an Array's Items Using For Loops
+[12] Create complex multi-dimensional arrays
+[13] Add Key-Value Pairs to JavaScript Objects
+[14] Modify an Object Nested Within an Object
+[15] Access Property Names with Bracket Notation
+[16] Use the delete Keyword to Remove Object Properties
+[17] Check if an Object has a Property
+[18] Iterate Through the Keys of an Object with a for...in Statement
+[19] Generate an Array of All Object Keys with Object.keys()
+[20] Modify an Array Stored in an Object
+================================================================================
+[01]
+  Use an Array to Store a Collection of Data
+  
+[内容]
+  配列
+    データ構造の一つで様々なデータ型を格納可能 => 配列内に配列を作成可能(多次元配列)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 多次元配列
+    let arr1 = [ [11, 12, 13], [14, 15, 16], [17, 18, 19] ];
+    let arr2 = [ [21, 22, 23], [24, 25, 26], [27, 28, 29] ];
+    
+    // 多次元配列の要素にアクセス
+    console.log(arr1[1][2]);  // 16
+    console.log(arr2[1][2]);  // 26
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Access an Array's Contents Using Bracket Notation
+  
+[内容]
+  配列要素にアクセス
+    インデックスは「0」から始まる
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 多次元配列
+    let arr1 = [ [11, 12, 13], [14, 15, 16], [17, 18, 19] ];
+    let arr2 = [ [21, 22, 23], [24, 25, 26], [27, 28, 29] ];
+    
+    // 多次元配列の要素にアクセス
+    console.log(arr1[0][0]);  // 11
+    console.log(arr2[0][0]);  // 21
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Add Items to an Array with push() and unshift()
+  
+[内容]
+  配列名.push(引数)
+    配列の末尾に引数を追加
+  
+  配列名.unshift(引数)
+    配列の冒頭に引数を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // push
+    arr1.push(14) ;
+    arr2.push(24) ;
+    
+    // unshift
+    arr1.unshift(10) ;
+    arr2.unshift(20) ;
+    
+    // 出力
+    console.log(arr1);  // [10, 11, 12, 13, 14]
+    console.log(arr2);  // [20, 21, 22, 23, 24]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Remove Items from an Array with pop() and shift()
+  
+[内容]
+  配列名.pop()
+    配列の末尾から要素を抽出 => 別の変数に格納可能
+  
+  配列名.shift()
+    配列の冒頭から要素を抽出 => 別の変数に格納可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // pop
+    let val1 = arr1.pop() ;
+    let val2 = arr2.pop() ;
+    
+    // 出力
+    console.log(val1);  // 13
+    console.log(val2);  // 23
+    console.log(arr1);  // [11, 12]
+    console.log(arr2);  // [21, 22]
+    
+    // shift
+    val1 = arr1.shift() ;
+    val2 = arr2.shift() ;
+    
+    // 出力
+    console.log(val1);  // 11
+    console.log(val2);  // 21
+    console.log(arr1);  // [12]
+    console.log(arr2);  // [22]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Remove Items Using splice()
+  
+[内容]
+  配列名.splice(開始, 要素数)
+    配列の開始から指定数の要素を抽出 => 別の変数に格納可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // splice
+    let val1 = arr1.splice(arr1.length - 1, 1) ;
+    let val2 = arr2.splice(arr2.length - 1, 1) ;
+    
+    // 出力
+    console.log(val1);  // [13]
+    console.log(val2);  // [23]
+    console.log(arr1);  // [11, 12]
+    console.log(arr2);  // [21, 22]
+    
+    // splice
+    val1 = arr1.splice(0, 1) ;
+    val2 = arr2.splice(0, 1) ;
+    
+    // 出力
+    console.log(val1);  // [11]
+    console.log(val2);  // [21]
+    console.log(arr1);  // [12]
+    console.log(arr2);  // [22]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Add Items Using splice()
+  
+[内容]
+  配列名.splice(開始, 要素数, X1, X2 ‥)
+    配列の開始から指定数の要素を抽出して「X1, X2 ‥」の要素を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // splice
+    let val1 = arr1.splice(1, 2, 91, 92) ;
+    let val2 = arr2.splice(1, 2, 91, 92) ;
+    
+    // 出力
+    console.log(val1);  // [12, 13]
+    console.log(val2);  // [22, 23]
+    console.log(arr1);  // [11, 91, 92]
+    console.log(arr2);  // [21, 91, 92]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Copy Array Items Using slice()
+  
+[内容]
+  配列名.slice(開始, 終了)
+    配列の開始から終了(ただし終了は含まない)までコピー => 別の変数に格納可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // slice
+    let val1 = arr1.slice(1, arr1.length) ;
+    let val2 = arr2.slice(1, arr2.length) ;
+    
+    // 出力
+    console.log(val1);  // [12, 13]
+    console.log(val2);  // [22, 23]
+    console.log(arr1);  // [11, 12, 13]
+    console.log(arr2);  // [21, 22, 23]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Copy an Array with the Spread Operator
+  
+[内容]
+  スプレッド演算子「...」で配列のコピー
+    arr = [11, 22, 33] = [...arr]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // スプレッド演算子「...」で配列のコピー
+    let val1 = [...arr1] ;
+    let val2 = [...arr2] ;
+    
+    // 出力
+    console.log(val1);  // [11, 12, 13]
+    console.log(val2);  // [21, 22, 23]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Combine Arrays with the Spread Operator
+  
+[内容]
+  スプレッド演算子「...」で配列同士の結合が可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // スプレッド演算子「...」で配列の結合
+    let val1 = [81, ...arr1, 82, 83] ;
+    let val2 = [91, ...arr2, 92, 93] ;
+    
+    // 出力
+    console.log(val1);  // [81, 11, 12, 13, 82, 83]
+    console.log(val2);  // [91, 21, 22, 23, 92, 93]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Check For The Presence of an Element With indexOf()
+  
+[内容]
+  配列名.indexOf(要素)
+    配列内に指定要素が存在すればインデックス、存在しないなら「-1」を返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 配列
+    let arr1 = [11, 12, 13] ;
+    let arr2 = [21, 22, 23] ;
+    
+    // 変数定義と初期化
+    let val1 = 12 ;
+    let val2 = 92 ;
+    
+    // 出力
+    console.log(arr1.indexOf(val1));  // 1
+    console.log(arr2.indexOf(val2));  // -1
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Iterate Through All an Array's Items Using For Loops
+  
+[内容]
+  構文「for」で多次元配列をスキャン
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 多次元配列
+    const arr = [
+      [11, 12, 13],
+      [21, 22],
+      [31, 32, 33, 34],
+      [41, 42]
+    ] ;
+    
+    // 多次元配列をスキャン
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].length; j++) {
+        console.log(`セル[${i},${j}] : ${arr[i][j]}`);
+      }
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Create complex multi-dimensional arrays
+  
+[内容]
+  多次元配列の階層を深くして動作確認を行う
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 多次元配列
+    const arr =  [ [ [11, 12], [13, 14] ], [ [15, 16], [17, 18] ] ] ;
+    
+    // 多次元配列をスキャン
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].length; j++) {
+        for (let k = 0; k < arr[i][j].length; k++) {
+          console.log(`セル[${i},${j},${k}] : ${arr[i][j][k]}`);
+        }
+      }
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Add Key-Value Pairs to JavaScript Objects
+  
+[内容]
+  オブジェクトにプロパティと値を追加
+    プロパティ名に空白が含まれるなら「オブジェクト['プロパティ名']」の形式のみ可能
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 目的地ランク
+    let Rank = {
+      A: '東京',
+      B: '神奈川',
+      C: '千葉',
+      D: '埼玉',
+      E: '茨城',
+      F: '栃木',
+      G: '群馬'
+    }
+    
+    // プロパティを追加
+    Rank.H = '静岡' ;
+    Rank.I = '長野' ;
+    Rank.J = '山梨' ;
+    
+    // プロパティの一覧
+    let arr = Object.keys(Rank);
+    
+    // プロパティの値を出力
+    for (let i = 0; i < arr.length; i++) {
+      let tmp = '';
+      
+      // 文字列構築
+      tmp += arr[i];
+      tmp += ' : ';
+      tmp += Rank[arr[i]];
+      
+      console.log(tmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Modify an Object Nested Within an Object
+  
+[内容]
+  オブジェクト内の配列またはネストしたオブジェクトにアクセス(1)
+    表記「オブジェクト.プロパティ名」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // 県名を出力
+    for (let i = 0; i < Area.県名.length; i++) {
+      let tmp = '';
+      
+      // 文字列構築
+      tmp += '県名 : ';
+      tmp += Area.県名[i];
+      
+      console.log(tmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Access Property Names with Bracket Notation
+  
+[内容]
+  オブジェクト内の配列またはネストしたオブジェクトにアクセス(2)
+    表記「オブジェクト['プロパティ名']」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // 県名を出力
+    for (let i = 0; i < Area['県名'].length; i++) {
+      let tmp = '';
+      
+      // 文字列構築
+      tmp += '県名 : ';
+      tmp += Area['県名'][i];
+      
+      console.log(tmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Use the delete Keyword to Remove Object Properties
+  
+[内容]
+  オブジェクトのプロパティを削除
+    表記「delete オブジェクト.プロパティ名」
+    表記「delete オブジェクト['プロパティ名']」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // プロパティを削除
+    delete Area.地域;
+    
+    // プロパティの一覧
+    console.log(Object.keys(Area));  // [県名]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+Check if an Object has a Property
+
+[内容]
+  オブジェクトにプロパティ有無を確認
+    表記「オブジェクト.hasOwnProperty(プロパティ名)」 => true or false
+    表記「プロパティ名 in オブジェクト」 => true or false
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // 関数定義
+    const myFunc1 = (OBJ, p1) => OBJ.hasOwnProperty(p1) ? 'OK' : 'Not Found' ;
+    const myFunc2 = (OBJ, p1) => p1 in OBJ ? 'OK' : 'Not Found' ;
+    
+    // プロパティ有無を確認
+    console.log(myFunc1(Area, '地域'));  // OK
+    console.log(myFunc2(Area, '地域'));  // OK
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Iterate Through the Keys of an Object with a for...in Statement
+  
+[内容]
+  オブジェクト内のプロパティをスキャン
+    for (let 変数 in オブジェクト)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area1 = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // オブジェクト => エリア情報
+    let Area2 = {
+      地域: '東北',
+      県名: ['青森', '岩手', '秋田', '宮城', '山形', '福島']
+    }
+    
+    // 関数定義
+    const myFunc = (OBJ) => {
+      for (let i in OBJ) console.log(`${i} : ${OBJ[i]}`);
+    } ;
+    
+    // オブジェクト内のプロパティをスキャン
+    myFunc(Area1);  // 地域 : 関東, 県名 : 東京, ...
+    myFunc(Area2);  // 地域 : 東北, 県名 : 青森, ...
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Generate an Array of All Object Keys with Object.keys()
+  
+[内容]
+  オブジェクトのプロパティ一覧
+    メソッド「Object.keys(オブジェクト)」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => エリア情報
+    let Area1 = {
+      地域: '関東',
+      県名: ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+    }
+    
+    // オブジェクト => エリア情報
+    let Area2 = {
+      地域: '東北',
+      県名: ['青森', '岩手', '秋田', '宮城', '山形', '福島']
+    }
+    
+    // 関数定義
+    const myFunc = (OBJ) => Object.keys(OBJ) ;
+    
+    // オブジェクトのプロパティ一覧
+    console.log(myFunc(Area1));  // [地域, 県名]
+    console.log(myFunc(Area2));  // [地域, 県名]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Modify an Array Stored in an Object
+  
+[内容]
+  演習問題 => オブジェクト内の配列に要素追加
+  
+[確認]
+  // 省略
+  
+================================================================================

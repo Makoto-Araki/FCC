@@ -1,0 +1,1701 @@
+================================================================================
+[00] Introduction to the Intermediate Algorithm Scripting Challenges
+[01] Sum All Numbers in a Range
+[02] Diff Two Arrays
+[03] Seek and Destroy
+[04] Wherefore art thou
+[05] Spinal Tap Case
+[06] Pig Latin
+[07] Search and Replace
+[08] DNA Pairing
+[09] Missing letters
+[10] Sorted Union
+[11] Convert HTML Entities
+[12] Sum All Odd Fibonacci Numbers
+[13] Sum All Primes
+[14] Smallest Common Multiple
+[15] Drop it
+[16] Steamroller
+[17] Binary Agents
+[18] Everything Be True
+[19] Arguments Optional
+[20] Make a Person
+[21] Map the Debris
+================================================================================
+[01]
+  Sum All Numbers in a Range
+
+[内容]
+  要素数が二個(数字)の配列を引数に与えて、各数字間の合計を算出
+    [4, 1] => 1 + 2 + 3 + 4 => 10
+    [1, 4] => 1 + 2 + 3 + 4 => 10
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr) => {
+      
+      // 変数定義と初期化
+      let ret = [];
+      
+      // 配列のソート
+      let tmp = arr.sort((a, b) => a - b);
+      
+      // 各数字の合計
+      for (let i = tmp[0]; i <= tmp[1]; i++) ret.push(i);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 対象の配列
+    const arr1 = [4, 1];
+    const arr2 = [1, 4];
+    
+    // 配列のコピー
+    const tmp1 = arr1.slice(0, arr1.length);
+    const tmp2 = arr2.slice(0, arr2.length);
+    
+    // 合計を出す各数字を生成
+    const tmp3 = myFunc(tmp1);
+    const tmp4 = myFunc(tmp2);
+    
+    // 合計を算出
+    console.log(`合計 : ${tmp3.reduce((acm, val) => acm + val)}`);  // 10
+    console.log(`合計 : ${tmp3.reduce((acm, val) => acm + val)}`);  // 10
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Diff Two Arrays
+  
+[内容]
+  二個の配列間で片方の配列にのみ存在する要素を抽出、新しい配列に格納して返す
+    [1, 3, 5], [1, 4, 6] => [3, 4, 5, 6]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr1, arr2) => {
+      
+      // 変数定義と初期化
+      let ret = [];
+      
+      // 片方の配列にのみ存在する要素を抽出
+      for (let i = 0; i < arr1.length; i++) {
+        if (!arr2.some(val => val === arr1[i])) ret.push(arr1[i]);
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 変数定義と初期化
+    const arr1 = [1, 3, 5];
+    const arr2 = [1, 4, 6];
+    
+    // 配列のコピー
+    const tmp1 = arr1.slice(0, arr1.length);
+    const tmp2 = arr2.slice(0, arr2.length);
+    
+    // 片方の配列にのみ存在する要素を抽出
+    const tmp3 = myFunc(tmp1, tmp2);
+    const tmp4 = myFunc(tmp2, tmp1);
+    
+    // 配列の統合とソート
+    const ret1 = tmp3.concat(tmp4);
+    const ret2 = ret1.sort((a, b) => a - b);
+    
+    // 確認
+    console.log(`確認 : ${ret2}`);  // [3, 4, 5, 6]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Seek and Destroy
+  
+[内容]
+  関数作成
+    関数(配列, 要素1, 要素2 ...)で配列から各要素を消去した新しい配列を返す
+  
+  myFunc([1, 2, 3, 4], 1, 3);  // [2, 4]
+  myFunc([1, 2, 3, 4], 2, 4);  // [1, 3]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr, ...rest) => {
+      
+      // 変数定義と初期化
+      let ret = arr.slice(0, arr.length);
+      
+      // 配列から各要素を消去
+      for (let i = 0; i < rest.length; i++) {
+        ret.splice(ret.indexOf(rest[i]), 1);
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    let ret1 = myFunc([1, 2, 3, 4], 1, 3);  // [2, 4]
+    let ret2 = myFunc([1, 2, 3, 4], 2, 4);  // [1, 3]
+    
+    // 確認
+    console.log(`処理済 : ${ret1}`);  // [2, 4]
+    console.log(`処理済 : ${ret2}`);  // [1, 3]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Wherefore art thou
+  
+[内容]
+  オブジェクト配列から検索オブジェクトのプロパティと値が全て存在するオブジェクトを返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト配列 => 四角形
+    const Squares = [
+      { 底辺: 11, 高さ: 11 },
+      { 底辺: 12, 高さ: 12 },
+      { 底辺: 13, 高さ: 13 },
+      { 底辺: 12, 高さ: 12, 面積: 144 },
+      { 底辺: 14 },
+      { 底辺: 15, 高さ: 15 }
+    ];
+    
+    // 検索オブジェクト => 四角形
+    const Search1 = { 底辺: 12, 高さ: 12 };
+    const Search2 = { 底辺: 14 };
+    
+    // 関数定義
+    const myFunc = (ARR, OBJ) => {
+      
+      // 変数定義と初期化
+      let arr = ARR.slice(0, ARR.length);
+      let obj = Object.keys(OBJ);
+      let ret = [];
+      let cnt = 0;
+      
+      // 検索オブジェクトのプロパティと値が全て存在すれば戻り値に追加
+      for (let i = 0; i < arr.length; i++) {
+        cnt = 0;
+        
+        for (let j = 0; j < obj.length; j++) {
+          if (arr[i].hasOwnProperty(obj[j])) {
+            if (arr[i][obj[j]] === OBJ[obj[j]]) cnt++;
+          }
+        }
+        
+        if (cnt === obj.length) ret.push(arr[i]);
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(Squares, Search1));
+    console.log(myFunc(Squares, Search2));
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Spinal Tap Case
+  
+[内容]
+  文字列変換 => 各単語は「空白」と「_(アンダーバー)」と「大文字」で区切られている
+    文字列を単語毎に区切り、単語間は「-」でつなぎ、単語は全て小文字で表記
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 正規表現と変換先
+      const reg1 = /([A-Z])/g;
+      const exp1 = ' $1';
+      const reg2 = /[\s_-]+/g;
+      const exp2 = '-';
+      
+      // 文字列のコピー
+      const tmp1 = str.slice(0, str.length);
+      
+      // 大文字の前に空白を置く => 冒頭が大文字の場合の空白付与を防ぐため「trim」
+      const tmp2 = tmp1.replace(reg1, exp1).trim();
+      
+      // 空白と「_」を「-」に変換
+      const tmp3 = tmp2.replace(reg2, exp2);
+      
+      // 大文字を小文字に変換
+      const tmp4 = tmp3.toLowerCase();
+      
+      // 戻り値
+      return tmp4;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('HelloWorld'));             // hello-world
+    console.log(myFunc('This Is Spinal Tap'));     // this-is-spinal-tap
+    console.log(myFunc('thisIsSpinalTap'));        // this-is-spinal-tap
+    console.log(myFunc('TheAndyGriffith_Show'));   // the-andy-griffith-show
+    console.log(myFunc('Teletubbies say Eh-oh'));  // teletubbies-say-eh-oh
+    console.log(myFunc('AllThe-small Things'));    // all-the-small-things
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Pig Latin
+  
+[内容]
+  文字列変換
+    1. 冒頭が「母音(a,i,u,e,o)」以外の文字を抽出、文字列の末尾に移動、末尾に「ay」を付与
+    2. 冒頭が「母音(a,i,u,e,o)」の場合は末尾に「way」を付与
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 正規表現
+      let reg = /^[^aiueoAIUEO]+(?=[aiueoAIUEO]*)/;
+      let ret = '';
+      
+      // 文字列のコピー
+      let cpy = str.slice(0, str.length);
+      
+      // 冒頭が「母音(a,i,u,e,o)」以外の判定
+      if (reg.test(cpy)) {
+        
+        // 正規表現に従い分割
+        let tmp1 = cpy.match(reg);
+        
+        // 正規表現の該当個所を削除
+        let tmp2 = cpy.replace(reg, '');
+        
+        // 冒頭が「母音(a,i,u,e,o)」以外の文字を抽出、文字列の末尾に移動、末尾に「ay」を付与
+        ret = tmp2 + tmp1[0] + 'ay';
+        
+      } else {
+        
+        // 末尾に「way」を付与
+        ret = cpy + 'way';
+        
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('california'));  // aliforniacay
+    console.log(myFunc('paragraphs'));  // aragraphspay
+    console.log(myFunc('glove'));       // oveglay
+    console.log(myFunc('eight'));       // eightway
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Search and Replace
+  
+[内容]
+  文字列変換の関数構築
+    1. 第一引数に文字列、第二引数に変換前、第三引数に変換後の単語を指定
+    2. 第二引数の単語の頭文字が大文字の場合、第三引数の単語の頭文字も大文字に変換
+    3. 第二引数の単語の頭文字が小文字の場合、第三引数の単語の頭文字も小文字に変換
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arg1, arg2, arg3) => {
+      
+      // 正規表現
+      let reg1 = /^[A-Z].*/;
+      let reg2 = /^\w(?=\w+)/;
+      let reg3 = '';
+      
+      // 変数定義と初期化
+      let cpy = '';
+      let tmp = '';
+      let ret = '';
+      
+      // 文字列のコピー
+      cpy = arg1.slice(0, arg1.length);
+      
+      // 第二引数の頭文字が大文字か判定 -> 第三引数の頭文字を変換
+      if (reg1.test(arg2)) {
+        tmp = arg3.replace(reg2, (val) => val.toUpperCase());
+      } else {
+        tmp = arg3.replace(reg2, (val) => val.toLowerCase());
+      }
+      
+      // 正規表現を構築
+      reg3 = new RegExp(arg2);
+      
+      // 文字列を変換
+      ret = cpy.replace(reg3, tmp);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('His name is Tom', 'Tom', 'John'));  // His name is John
+    console.log(myFunc('His name is Tom', 'Tom', 'john'));  // His name is John
+    console.log(myFunc('His name is tom', 'tom', 'John'));  // His name is john
+    console.log(myFunc('His name is tom', 'tom', 'john'));  // His name is john
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  DNA Pairing
+  
+[内容]
+  塩基配列の関数構築
+    入力「GCG」-> [[G, C], [C, G], [G, C]]
+    入力「ATT」-> [[A, T], [T, A], [T, A]]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 内部関数
+      const myTmp = (str) => {
+        
+        // 変数定義と初期化
+        let ret = [];
+        
+        // 入力塩基を追加
+        ret.push(str);
+        
+        // 対応塩基を追加
+        switch(str) {
+          case 'G':
+            ret.push('C');
+            break;
+          case 'C':
+            ret.push('G');
+            break;
+          case 'A':
+            ret.push('T');
+            break;
+          case 'T':
+            ret.push('A');
+            break;
+        }
+        
+        // 戻り値
+        return ret;
+        
+      }
+      
+      // 変数定義と初期化
+      let ret = [];
+      
+      // 塩基と対応塩基を取得
+      for (let i = 0; i < str.length; i++) {
+        ret.push(myTmp(str[i]));
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('GCG'));  // [[G, C], [C, G], [G, C]]
+    console.log(myFunc('ATT'));  // [[A, T], [T, A], [T, A]]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Missing letters
+  
+[内容]
+  小文字のアルファベット一覧(ソート済み)から欠落文字(1文字)を返す
+    入力「abce」-> d
+    入力「stvw」-> u
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 変数定義と初期化
+      let alp = 'abcdefghijklmnopqrstuvwxyz';
+      let idx = alp.indexOf(str[0]);
+      let ret = '';
+      
+      // 入力文字が不正(アルファベット小文字でない)
+      if (idx === -1) {
+        
+        // 戻り値にメッセージ
+        ret = '入力文字が不正です';
+        
+      } else {
+        
+        // 欠落している文字を返す
+        for (let i = idx, j = 0; i < alp.length; i++, j++) {
+          if (alp[i] === str[j]) {
+            continue;
+          } else {
+            ret = alp[i]; break;
+          }
+        }
+        
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('ABCE'));  // 入力文字が不正です
+    console.log(myFunc('abce'));  // d
+    console.log(myFunc('stvw'));  // u
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Sorted Union
+  
+[内容]
+  関数構築
+    1. 引数に複数の配列を指定、各配列の要素を出力用の配列に格納
+    2. 出力用配列に既にある要素は、重複を避けるため処理しない
+    3. 出力用配列はソートして出力
+  
+  関数([1, 3, 2], [5, 2, 1, 4], [2, 1]) -> [1, 2, 3, 4, 5]
+  関数([1, 2, 3], [5, 2, 1, 6])         -> [1, 2, 3, 5, 6]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (...args) => {
+      
+      // 変数定義と初期化
+      let ret = [];
+      
+      // 引数の全配列に対して処理
+      for (let i = 0; i < args.length; i++) {
+        for (let j = 0; j < args[i].length; j++) {
+          if (ret.indexOf(args[i][j]) === -1) {
+            ret.push(args[i][j]);
+          }
+        }
+      }
+      
+      // 戻り値のソート
+      ret.sort((a, b) => a - b);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc([1, 3, 2], [5, 2, 1, 4], [2, 1]));  // [1, 2, 3, 4, 5]
+    console.log(myFunc([1, 2, 3], [5, 2, 1, 6]));          // [1, 2, 3, 5, 6]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Convert HTML Entities
+  
+[内容]
+  文字列中の記号変換
+    1.「&」->「&amp」
+    2.「<」->「&lt」
+    3.「>」->「&gt」
+    4.「"」->「&quot」
+    5.「'」->「&apos」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 変数定義と初期化
+      let tmp = str.slice(0, str.length);
+      let reg = /([&<>\"'])/g;
+      let ret = '';
+      
+      // オブジェクト定義
+      const Entry = {
+        '&': '&amp' ,
+        '<': '&lt'  ,
+        '>': '&gt'  ,
+        '"': '&quot',
+        "'": '&apos'
+      };
+      
+      // 置換処理
+      ret = tmp.replace(reg, (val) => Entry[val]);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('A & B'));              // A &amp B
+    console.log(myFunc('A < B'));              // A &lt B
+    console.log(myFunc('A > B'));              // A &gt B
+    console.log(myFunc("I'm Nancy"));          // I&aposm Nancy
+    console.log(myFunc('It is "12:00" now'));  // It is &quot12:00&quot now
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Sum All Odd Fibonacci Numbers
+  
+[内容]
+  関数作成
+    1. フィボナッチ数を要素(ただし要素の最大値が指定した数以下)とした配列を作成
+    2. 配列内のフィボナッチ数のうち偶数を削除
+    3. 各要素の和を求める
+  
+  関数(4)の処理
+    1. フィボナッチ配列 -> [0, 1, 1, 2, 3]
+    2. 配列から偶数削除 -> [1, 1, 3]
+    3. 配列の各要素の和 -> 1 + 1 + 3 = 5
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (num) => {
+      
+      // 変数定義と初期化
+      let tmp = [0, 1];
+      let ret = 0;
+      
+      // フィボナッチ配列
+      for (let i = 0, j = i + 1;; i++, j++) {
+        if (tmp[i] + tmp[j] <= num) {
+          tmp.push(tmp[i] + tmp[j]);
+        } else {
+          break;
+        }
+      }
+      
+      // 配列から偶数削除
+      tmp = tmp.filter(val => val % 2 === 1);
+      
+      // 配列の各要素の和
+      ret = tmp.reduce((acm, val) => acm + val);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(4));     // 5
+    console.log(myFunc(1000));  // 1785
+    console.log(myFunc(75024)); // 60696
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Sum All Primes
+  
+[内容]
+  関数作成
+    1. 素数配列(ただし要素の最大値が指定した数以下)を作成
+    2. 各要素の和を求める
+  
+  関数(6)の処理
+    1. 素数配列 -> [2, 3, 5]
+    2. 要素の和 -> 2 + 3 + 5 = 10
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (num) => {
+      
+      // 内部関数
+      const myTmp = (num) => {
+        for (let i = 2; i < num; i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      
+      // 変数定義と初期化
+      let tmp = [];
+      let ret = 0;
+      
+      // 素数配列を作成
+      for (let i = 2; i <= num; i++) {
+        if (myTmp(i)) {
+          tmp.push(i);
+        }
+      }
+      
+      // 素数配列の各要素の和
+      ret = tmp.reduce((acm, val) => acm + val);
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(6));  // [2, 3, 5] -> 10
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Smallest Common Multiple
+  
+[内容]
+  引数の範囲内の全ての数に対する最小公倍数を求める
+  
+  関数([1, 9]) -> 1, 2、3、4、5、6、7、8、9 の最小公倍数
+    [1, 2, 3, 4, 5, 6, 7, 8, 9] -> 素数「2」で全要素を割る
+    [1, 1, 3, 2, 5, 3, 7, 4, 9] -> 素数「2」で全要素を割る
+    [1, 1, 3, 1, 5, 3, 7, 2, 9] -> 素数「2」で全要素を割る
+    [1, 1, 3, 1, 5, 3, 7, 1, 9] -> 素数「3」で全要素を割る
+    [1, 1, 1, 1, 5, 1, 7, 1, 3] -> 素数「3」で全要素を割る
+    [1, 1, 1, 1, 5, 1, 7, 1, 1] -> 素数「5」で全要素を割る
+    [1, 1, 1, 1, 1, 1, 7, 1, 1] -> 素数「7」で全要素を割る
+    [1, 1, 1, 1, 1, 1, 1, 1, 1] -> 終了
+    
+  上記の結果から「2 * 2 * 2 * 3 * 3 * 5 * 7 = 2520」で最小公倍数は「2520」に決定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr) => {
+      
+      // 内部関数 -> 引数が素数ならば真を返す
+      const myTmp1 = (num) => {
+        for (let i = 2; i < num; i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      }
+      
+      // 内部関数 -> 配列の全要素が「1」ならば真を返す
+      const myTmp2 = (arr) => {
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] !== 1) return false;
+        }
+        return true;
+      }
+      
+      // 内部関数 -> 作業配列(tmp)の要素を割ることが出来る最小の素数を素数配列(prm)から探す
+      const myTmp3 = (tmp, prm) => {
+        for (let i = 0; i < prm.length; i++) {
+          for (let j = 0; j < tmp.length; j++) {
+            if (tmp[j] % prm[i] === 0) return prm[i];
+          }
+        }
+      }
+      
+      // 変数定義と初期化
+      let prm = [];
+      let tmp = [];
+      let ret = [];
+      let wrk = 0;
+      
+      // 素数配列を作成
+      for (let i = 2; i <= arr[1]; i++) {
+        if (myTmp1(i)) prm.push(i);
+      }
+      
+      // 作業配列を作成
+      for (let i = arr[0]; i <= arr[1]; i++) {
+        tmp.push(i);
+      }
+      
+      // 作業配列の全要素が「1」になるまでループ処理
+      while (!myTmp2(tmp)) {
+        wrk = myTmp3(tmp, prm);
+        
+        for (let i = 0; i < tmp.length; i++) {
+          if (tmp[i] % wrk === 0) tmp[i] = tmp[i] / wrk;
+        }
+        
+        ret.push(wrk);
+      }
+      
+      // 戻り値
+      return ret.reduce((acm, val) => acm * val);
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc([1, 2]));   // 上記参照 -> 2
+    console.log(myFunc([1, 3]));   // 上記参照 -> 6
+    console.log(myFunc([1, 4]));   // 上記参照 -> 12
+    console.log(myFunc([1, 5]));   // 上記参照 -> 60
+    console.log(myFunc([1, 6]));   // 上記参照 -> 60
+    console.log(myFunc([1, 7]));   // 上記参照 -> 420
+    console.log(myFunc([1, 8]));   // 上記参照 -> 840
+    console.log(myFunc([1, 9]));   // 上記参照 -> 2520
+    console.log(myFunc([1, 10]));  // 上記参照 -> 2520
+    console.log(myFunc([1, 11]));  // 上記参照 -> 27720
+    console.log(myFunc([1, 12]));  // 上記参照 -> 27720
+    console.log(myFunc([1, 13]));  // 上記参照 -> 360360
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Drop it
+  
+[内容]
+  配列オブジェクトのメソッド「filter」を自作
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr, func) => {
+      
+      // 変数定義と初期化
+      let ret = [];
+      
+      // 配列の各要素をチェック
+      for (let i = 0; i < arr.length; i++) {
+        if (func(arr[i])) ret.push(arr[i]);
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc([1, 2, 3, 4, 5], (n) => n > 3));    // [4, 5]
+    console.log(myFunc([1, 2, 3, 4, 5], (n) => n < 3));    // [1, 2]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Steamroller
+  
+[内容]
+  ネスト化された配列を一次元配列に整理する
+    [1, [2], [3, [[4]]]] -> [1, 2, 3, 4]
+    [1, [2], [3, [4]]]   -> [1, 2, 3, 4]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (arr) => {
+      
+      // 変数定義と初期化
+      let tmp = arr.slice(0, arr.length);
+      let ret = [];
+      
+      // 配列の全要素に対してループ処理
+      for (let i = 0; i < tmp.length; i++) {
+        
+        // 要素が配列か判定
+        if (!Array.isArray(tmp[i])) {
+          
+          // 配列ではない要素は戻り値に追加
+          ret.push(tmp[i]);
+          
+        } else {
+          
+          // 配列である要素を再帰関数で処理
+          let wrk = myFunc(tmp[i]);
+          
+          // 再帰関数から帰還時は一次元配列のため全要素を戻り値に追加
+          for (let i = 0; i < wrk.length; i++) ret.push(wrk[i]);
+          
+        }
+        
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc([1, [2], [3, [[4]]]]));  // [1, 2, 3, 4]
+    console.log(myFunc([1, [2], [3, [4]]]));    // [1, 2, 3, 4]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Binary Agents
+  
+[内容]
+  二進数コードの文字列をアスキーコードの文字列に変換
+    '01000001 01000010 01000011' -> ABC
+    '01100001 01100010 01100011' -> abc
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str) => {
+      
+      // 変数定義と初期化
+      let tmp1 = str.slice(0, str.length);
+      let tmp2 = tmp1.split(' ');
+      let ret = [];
+      
+      // 各文字(二進数)を十進数さらに英字に変換して戻り値に格納
+      for (let i = 0; i < tmp2.length; i++) {
+      
+        // 文字を二進数と指定 => 十進数に型変換
+        let tmp3 = parseInt(tmp2[i], 2);
+        
+        // 数字(十進数)を文字に変換
+        ret.push(String.fromCharCode(tmp3));
+        
+      }
+      
+      // 戻り値
+      return ret.join('');
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc('01000001 01000010 01000011'));  // ABC
+    console.log(myFunc('01100001 01100010 01100011'));  // abc
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Everything Be True
+  
+[内容]
+  関数(オブジェクト配列, プロパティ)
+    オブジェクト配列内の各オブジェクトの指定プロパティが「真」か確認
+  
+  真偽判定
+    プロパティ値「真」-> Null, 0, '', NaN ではない
+    プロパティ値「偽」-> Null, 0, '', NaN である
+  
+    // オブジェクト配列 -> 四角形
+    const Squares = [
+      { 底辺: 11, 高さ: 11, 着色: '赤' },
+      { 底辺: 12, 高さ: 12, 着色: '青' },
+      { 底辺: 13, 高さ: 13, 着色: ''   },
+      { 底辺: 14, 高さ: 14, 着色: '緑' },
+      { 底辺: 15, 高さ: 15, 着色: '橙' }
+    ];
+    
+    // 関数実行
+    myFunc(Squares, '着色') -> プロパティ「着色」に「偽」が存在するため論理値「false」が返る
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト配列 -> 四角形
+    const Squares = [
+      { 底辺: 11, 高さ: 11, 着色: '赤' },
+      { 底辺: 12, 高さ: 12, 着色: '青' },
+      { 底辺: 13, 高さ: 13, 着色: ''   },
+      { 底辺: 14, 高さ: 14, 着色: '緑' },
+      { 底辺: 15, 高さ: 15, 着色: '橙' }
+    ];
+    
+    // 関数定義
+    const myFunc = (arr, prp) => {
+      
+      // 変数定義と初期化
+      let tmp = arr.slice(0, arr.length);
+      let ret = true;
+      
+      // 各オブジェクトの各プロパティを走査
+      for (let i = 0; i < tmp.length; i++) {
+        for (let j in tmp[i]) {
+          if (j === prp) {
+            switch (tmp[i][j]) {
+              case 0:
+              case false:
+              case '':
+              case null:
+              case undefined:
+                return false;
+              default:
+                if (Number.isNaN(tmp[i][j])) return false;
+            }
+          }
+        }
+      }
+      
+      // 戻り値
+      return ret;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(Squares, '底辺'));  // true
+    console.log(myFunc(Squares, '着色'));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Arguments Optional
+  
+[内容]
+  引数の数で処理を変える
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (...args) => {
+      
+      // 引数の数で処理を変える
+      switch(args.length) {
+        case 1:
+          console.log(`引数 : ${args.length}`);
+          break;
+        case 2:
+          console.log(`引数 : ${args.length}`);
+          break;
+        default:
+          console.log(`引数 : ${args.length}`);
+          break;
+      }
+      
+      // 戻り値
+      return `引数 : ${args.length}`;
+      
+    }
+    
+    // 関数実行
+    console.log(myFunc(11));      // 引数 : 1
+    console.log(myFunc(11, 22));  // 引数 : 2
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Make a Person
+  
+[内容]
+  クラス定義
+  
+[確認]
+  // 省略 -> あまり勉強になるソースではなかった
+  
+================================================================================
+[21]
+  Map the Debris
+  
+[内容]
+  関数に衛星の高度を引数として与えて公転周期を求める
+  
+[確認]
+  // 省略 -> あまり勉強になるソースではなかった
+  
+================================================================================

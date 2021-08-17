@@ -1,0 +1,709 @@
+================================================================================
+[00] Introduction to the Responsive Web Design Projects
+[01] Build a Tribute Page
+[02] Build a Survey Form
+[03] Build a Product Landing Page
+[04] Build a Technical Documentation Page
+[05] Build a Personal Portfolio Webpage
+[06] Template #1
+[07] Template #2
+[08] Template #3
+================================================================================
+[01]
+  Build a Tribute Page
+
+[内容]
+  賛辞ページの作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (CodePen) -> https://codepen.io/Makoto-Araki/pen/zYoWKww
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Build a Survey Form
+  
+[内容]
+  調査フォームの作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (CodePen) -> https://codepen.io/Makoto-Araki/pen/MWbVpbK
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Build a Product Landing Page
+  
+[内容]
+  ランディングページの作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (CodePen) -> https://codepen.io/Makoto-Araki/pen/vYyRwzE
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Build a Technical Documentation Page
+  
+[内容]
+  技術文書の作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (CodePen) -> https://codepen.io/Makoto-Araki/pen/ZEBRXvK
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Build a Personal Portfolio Webpage
+  
+[内容]
+  ポートフォリオの作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (CodePen) -> https://codepen.io/Makoto-Araki/pen/RwoXBbE
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Template #1
+  
+[内容]
+  テンプレート1 -> プロパティ「display: flex」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // ヘッダー
+  <header>
+    
+    <!--ロゴ画像 -->
+    <div id='header-img'><img src='images/android-icon.png' alt=''></div>
+    
+    <!--メニュー -->
+    <nav id='header-nav'>
+      <ul>
+        <li><a href='#'>MENU1</a></li>
+        <li><a href='#'>MENU2</a></li>
+        <li><a href='#'>MENU3</a></li>
+        <li><a href='#'>MENU4</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+  
+  // メインコンテンツ
+  <main>MAIN</main>
+  
+  // フッター
+  <footer>FOOTER</footer>
+  
+  // CSS
+  <style>
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+    }
+    
+    // メディアクエリ(横幅が500px未満)
+    @media (max-width: 500px) {
+      header { width: 100%; }
+      #header-img { display: none; }
+      #header-nav { width: 100%; }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      #header-nav ul li {
+        width: 100%;
+        height: 25%;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 50%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+    // メディアクエリ(横幅が500px以上)
+    @media (min-width: 500px) {
+      header {
+        width: 100%;
+        height: 20%;
+        display: flex;
+      }
+      
+      #header-img {
+        width: 15%;
+        height: 100%;
+        border: 1px solid red;
+        background-color: LightSkyBlue;
+      }
+      
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      
+      #header-nav {
+        width: 85%;
+        height: 100%;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+      }
+      
+      #header-nav ul li {
+        width: 25%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 60%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Template #2
+  
+[内容]
+  テンプレート2 -> プロパティ「display: grid(1)」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // ヘッダー
+  <header>
+    
+    <!--ロゴ画像 -->
+    <div id='header-img'><img src='images/android-icon.png' alt=''></div>
+    
+    <!--メニュー -->
+    <nav id='header-nav'>
+      <ul>
+        <li><a href='#'>MENU1</a></li>
+        <li><a href='#'>MENU2</a></li>
+        <li><a href='#'>MENU3</a></li>
+        <li><a href='#'>MENU4</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+  
+  // メインコンテンツ
+  <main>MAIN</main>
+  
+  // フッター
+  <footer>FOOTER</footer>
+  
+  // CSS
+  <style>
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+    }
+    
+    // メディアクエリ(横幅が500px未満)
+    @media (max-width: 500px) {
+      header { width: 100%; }
+      #header-img { display: none; }
+      #header-nav { width: 100%; }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      #header-nav ul li {
+        width: 100%;
+        height: 25%;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 50%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+    // メディアクエリ(横幅が500px以上)
+    @media (min-width: 500px) {
+      header {
+        width: 100%;
+        height: 20%;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 100%;
+        grid-template-areas: 'LOGO MENU';
+      }
+      
+      #header-img {
+        border: 1px solid red;
+        background-color: LightSkyBlue;
+        grid-area: LOGO;
+      }
+      
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      
+      #header-nav {
+        border: 1px solid red;
+        grid-area: MENU;
+      }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+      }
+      
+      #header-nav ul li {
+        width: 25%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 60%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Template #3
+  
+[内容]
+  テンプレート3 -> プロパティ「display: grid(2)」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // ヘッダー
+  <header>
+    
+    <!--ロゴ画像 -->
+    <div id='header-img'><img src='images/android-icon.png' alt=''></div>
+    
+    <!--メニュー -->
+    <nav id='header-nav'>
+      <ul>
+        <li><a href='#'>MENU1</a></li>
+        <li><a href='#'>MENU2</a></li>
+        <li><a href='#'>MENU3</a></li>
+        <li><a href='#'>MENU4</a></li>
+      </ul>
+    </nav>
+    
+  </header>
+  
+  // メインコンテンツ
+  <main>MAIN</main>
+  
+  // フッター
+  <footer>FOOTER</footer>
+  
+  // CSS
+  <style>
+    
+    body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      font-size: 20px;
+    }
+    
+    // メディアクエリ(横幅が500px未満)
+    @media (max-width: 500px) {
+      header { width: 100%; }
+      #header-img { display: none; }
+      #header-nav { width: 100%; }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      
+      #header-nav ul li {
+        width: 100%;
+        height: 25%;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 50%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+    // メディアクエリ(横幅が500px以上)
+    @media (min-width: 500px) {
+      header {
+        width: 100%;
+        height: 20%;
+        display: grid;
+        grid-template-columns: 15% 85%;
+        grid-template-rows: 100%;
+        /*grid-template-areas: 'LOGO MENU';*/
+      }
+      
+      #header-img {
+        border: 1px solid red;
+        background-color: LightSkyBlue;
+        /*grid-area: LOGO;*/
+        grid-area: 1/1/2/2;
+      }
+      
+      img {
+        width: 100%;
+        height: 100%;
+      }
+      
+      #header-nav {
+        border: 1px solid red;
+        /*grid-area: MENU;*/
+        grid-area: 1/2/2/3;
+      }
+      
+      #header-nav ul {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+      }
+      
+      #header-nav ul li {
+        width: 25%;
+        height: 100%;
+        display: block;
+        text-align: center;
+        border: 1px solid red;
+      }
+      
+      #header-nav ul li a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        font-weight: bold;
+        text-decoration: none;
+        background-color: LightSalmon;
+      }
+      
+      main {
+        width: 100%;
+        height: 60%;
+        border: 1px solid red;
+        background-color: greenyellow;
+      }
+      
+      footer {
+        width: 100%;
+        height: 20%;
+        border: 1px solid red;
+        background-color: LightPink;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

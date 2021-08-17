@@ -1,0 +1,314 @@
+================================================================================
+[00] Introduction to the Responsive Web Design Challenges
+[01] Create a Media Query
+[02] Make an Image Responsive
+[03] Use a Retina Image for Higher Resolution Displays
+[04] Make Typography Responsive
+================================================================================
+[01]
+  Create a Media Query
+  
+[内容]
+  メディアクエリー
+  
+  // ブラウザの表示領域の横幅が500px未満
+  @media (max-width: 500px) {
+    CSSルール記述
+  }
+  
+  // ブラウザの表示領域の横幅が500px以上
+  @media (min-width: 500px) {
+    CSSルール記述
+  }
+  
+  // ブラウザの表示領域の縦幅が500px未満
+  @media (max-height: 500px) {
+    CSSルール記述
+  }
+  
+  // ブラウザの表示領域の縦幅が500px以上
+  @media (min-width: 500px) {
+    CSSルール記述
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div></div>
+  
+  // CSS
+  <style>
+    
+    // ブラウザの表示領域の横幅が500px未満
+    @media (max-width: 500px) {
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: crimson;
+      }
+    }
+    
+    // ブラウザの表示領域の横幅が500px以上
+    @media (min-width: 500px) {
+      div {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Make an Image Responsive
+
+[内容]
+  画像のレスポンシブ対応
+  
+  img {
+    max-width: 100%;  // 親要素の100%より大きな幅とならない
+    height: auto;     // 縦横(アスペクト)比は自動調整
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div>
+    <img src='images/android-icon.png' alt='Android'>
+    <img src='images/firefox-icon.png' alt='Firefox'>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // 画像(256x256)のレスポンシブ対応
+    img {
+      height: auto;
+      max-width: 100%;
+      border: 2px solid crimson;
+    }
+    
+    // ブラウザの表示領域の横幅が500px未満
+    @media (max-width: 500px) {
+      div {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    
+    // ブラウザの表示領域の横幅が500px以上
+    @media (min-width: 500px) {
+      div {
+        width: 200px;
+        height: 200px;
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Use a Retina Image for Higher Resolution Displays
+  
+[内容]
+  通常ディスプレイ
+    1dot = 1px  // 従来はこれが普通
+  
+  Retinaディスプレイ
+    1dot = 4px  // 通常ディスプレイより遥かに高解像度
+  
+  問題点
+    画像表示で通常ディスプレイでは問題なしでも、Retinaディスプレイでは画像がぼやける
+  
+  ファイル一覧
+    firefox-1x.png (256x256) -> 通常ディスプレイ用
+    firefox-2x.png (512x512) -> Retinaディスプレイ用
+  
+  解決策1
+    通常ディスプレイ用のサイズで表示
+    <img src="firefox-2x.png" width="256" height="256">
+  
+  解決策2
+    属性「srcset」
+    <img src="images/firefox-1x.png" srcset="images/firefox-1x.png 1x, images/firefox-2x.png 2x">
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 上記の解決策2を実験
+  <img src="images/firefox-1x.png" srcset="images/firefox-1x.png 1x, images/firefox-2x.png 2x">
+  
+  // CSS
+  <style>
+    
+    img { border: 2px solid crimson; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Make Typography Responsive
+
+[内容]
+  サイズ指定
+  
+  絶対値
+    XXem    // 文字の大きさ(font-size)を基準にXX文字分
+    XXpx    // XXピクセル
+    
+  相対値
+    XX%     // 親要素のXX%
+    XXvw    // ブラウザの表示領域の横XX%
+    XXvh    // ブラウザの表示領域の縦XX%
+    XXvmin  // ブラウザの表示領域の縦または横がXX%未満
+    XXvmax  // ブラウザの表示領域の縦または横がXX%以上
+    
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div></div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 500px) {
+      div {
+        background-color: crimson;
+        border: 2px solid black;
+        width: 20vw;  // ブラウザの表示領域の横20%
+        height: 20vh; // ブラウザの表示領域の縦20%
+      }
+    }
+    
+    @media (min-width: 500px) {
+      div {
+        background-color: blue;
+        border: 2px solid black;
+        width: 50vw;  // ブラウザの表示領域の横50%
+        height: 50vh; // ブラウザの表示領域の縦50%
+      }
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

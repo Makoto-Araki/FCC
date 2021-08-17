@@ -1,0 +1,2269 @@
+================================================================================
+[00] Introduction to the Regular Expression Challenges
+[01] Using the Test Method
+[02] Match Literal Strings
+[03] Match a Literal String with Different Possibilities
+[04] Ignore Case While Matching
+[05] Extract Matches
+[06] Find More Than the First Match
+[07] Match Anything with Wildcard Period
+[08] Match Single Character with Multiple Possibilities
+[09] Match Letters of the Alphabet
+[10] Match Numbers and Letters of the Alphabet
+[11] Match Single Characters Not Specified
+[12] Match Characters that Occur One or More Times
+[13] Match Characters that Occur Zero or More Times
+[14] Find Characters with Lazy Matching
+[15] Find One or More Criminals in a Hunt
+[16] Match Beginning String Patterns
+[17] Match Ending String Patterns
+[18] Match All Letters and Numbers
+[19] Match Everything But Letters and Numbers
+[20] Match All Numbers
+[21] Match All Non-Numbers
+[22] Restrict Possible Usernames
+[23] Match Whitespace
+[24] Match Non-Whitespace Characters
+[25] Specify Upper and Lower Number of Matches
+[26] Specify Only the Lower Number of Matches
+[27] Specify Exact Number of Matches
+[28] Check for All or None
+[29] Positive and Negative Lookahead
+[30] Check For Mixed Grouping of Characters
+[31] Reuse Patterns Using Capture Groups
+[32] Use Capture Groups to Search and Replace
+[33] Remove Whitespace from Start and End
+================================================================================
+[01]
+  Using the Test Method
+
+[内容]
+  正規表現のテスト
+    メソッド「test」を使用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // OK
+      'My Dog chased the cat.',  // NG
+      'My DOG chased the cat.'   // NG
+    ];
+    
+    // 正規表現
+    const reg = /dog/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Match Literal Strings
+  
+[内容]
+  大文字と小文字を区別
+    デフォルトでは大文字と小文字を区別している
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // NG
+      'My Dog chased the cat.',  // OK
+      'My DOG chased the cat.'   // NG
+    ];
+    
+    // 正規表現
+    const reg = /Dog/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Match a Literal String with Different Possibilities
+
+[内容]
+  演算子「|」で複数パターン指定
+    頻繁に使用されるので習熟しておくこと
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // OK
+      'My Dog chased the cat.',  // OK
+      'My DOG chased the cat.'   // OK
+    ];
+    
+    // 正規表現
+    const reg = /dog|cat/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Ignore Case While Matching
+  
+[内容]
+  フラグ「i」の使用
+    大文字と小文字の違いを無視
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // OK
+      'My Dog chased the cat.',  // OK
+      'My DOG chased the cat.'   // OK
+    ];
+    
+    // 正規表現
+    const reg = /DOG|CAT/i;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Extract Matches
+  
+[内容]
+  一致パターンの抽出
+    メソッド「match」を使用 => デフォルトでは一致する最初のパターンのみ抽出
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // dog
+      'My Dog chased the cat.',  // Dog
+      'My DOG chased the cat.'   // DOG
+    ];
+    
+    // 正規表現
+    const reg = /dog|cat/i;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Find More Than the First Match
+  
+[内容]
+  フラグ「g」の使用
+    一致する全パターンを配列で返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // dog, cat
+      'My Dog chased the cat.',  // Dog, cat
+      'My DOG chased the cat.'   // DOG, cat
+    ];
+    
+    // 正規表現
+    const reg = /dog|cat/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Match Anything with Wildcard Period
+  
+[内容]
+  ワイルドカード文字「.」で任意の一文字を表す
+    正規表現「/d.g|c.t/」=> dog, cat, ..
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog chased the cat.',  // dog, cat
+      'My Dog chased the cat.',  // Dog, cat
+      'My DOG chased the cat.'   // DOG, cat
+    ];
+    
+    // 正規表現
+    const reg = /d.g|c.t/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Match Single Character with Multiple Possibilities
+  
+[内容]
+  文字候補「[]」で文字候補を羅列する
+    正規表現「/do[gt]/」=> dog, dot
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog stared at the wall dot.',  // dog, dot
+      'My Dog stared at the wall dot.',  // Dog, dot
+      'My DOG stared at the wall dot.'   // DOG, dot
+    ];
+    
+    // 正規表現
+    const reg = /do[gt]/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Match Letters of the Alphabet
+  
+[内容]
+  範囲指定「-」で文字候補の範囲設定を行う
+    正規表現「/do[a-m]/」=> doa, dob, doc, dod, doe, dog, ‥ dom
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'My dog stared at the wall dot.',  // dog
+      'My Dog stared at the wall dot.',  // Dog
+      'My DOG stared at the wall dot.'   // DOG
+    ];
+    
+    // 正規表現
+    const reg = /do[a-m]/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Match Numbers and Letters of the Alphabet
+  
+[内容]
+  範囲指定「-」は数字も指定可能
+    正規表現「/[0-9]+/」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '001 002 AAA 003',  // 001, 002, 003
+      '004 005 BBB 006',  // 004, 005, 006
+      '007 008 CCC 009'   // 007, 008, 009
+    ];
+    
+    // 正規表現
+    const reg = /[0-9]+/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Match Single Characters Not Specified
+  
+[内容]
+  範囲指定の否定「^」
+    正規表現「/[^0-9\s]+/」=> 数字「0-9」と空白を除く文字を抽出
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '001 002 AAA 003',  // AAA
+      '004 005 BBB 006',  // BBB
+      '007 008 CCC 009'   // CCC
+    ];
+    
+    // 正規表現
+    const reg = /[^0-9\s]+/ig;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Match Characters that Occur One or More Times
+  
+[内容]
+  文字の出現パターン(一回以上)
+    正規表現「/ba+h/」=> bah, baah, baaah ‥
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',     // NG
+      'bah',    // OK
+      'baah',   // OK
+      'baaah',  // OK
+      'bdh'     // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba+h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Match Characters that Occur Zero or More Times
+  
+[内容]
+  文字の出現パターン(ゼロ回以上)
+    正規表現「/ba*h/」=> bh, bah, baah, baaah ‥
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',     // OK
+      'bah',    // OK
+      'baah',   // OK
+      'baaah',  // OK
+      'bdh'     // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba*h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Find Characters with Lazy Matching
+  
+[内容]
+  文字の出現パターン(ゼロ回か一回)
+    正規表現「/ba?h/」=> bh, bah
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',     // OK
+      'bah',    // OK
+      'baah',   // NG
+      'baaah',  // NG
+      'bdh'     // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba?h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Find One or More Criminals in a Hunt
+  
+[内容]
+  練習問題
+    文字列中の「C」の文字を全て取得 => C, CC, CCC ‥
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      'ABCDEFGHICCJKLMCCCNOPQRCCCCSTUVCCCCCWXYZ',  // C, CC, CCC, CCCC, CCCCC
+      'ZZZZYYYY991C22CC333CCC4444CCCC55555CCCCC',  // C, CC, CCC, CCCC, CCCCC
+      'C#CC#CCC#CCCC#CCCCC#####################'   // C, CC, CCC, CCCC, CCCCC
+    ];
+    
+    // 正規表現
+    const reg = /C+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Match Beginning String Patterns
+  
+[内容]
+  文字列の先頭
+    正規表現「/^the/」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'the Matrix',  // OK
+      'The Matrix',  // NG
+      'then',        // OK
+      'Then'         // NG
+    ];
+    
+    // 正規表現
+    const reg = /^the/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Match Ending String Patterns
+  
+[内容]
+  文字列の末尾
+    正規表現「/Matrix$/」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'The Matrix',         // OK
+      'Matrix reloaded',    // NG
+      'Matrix revolutions'  // NG
+    ];
+    
+    // 正規表現
+    const reg = /Matrix$/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Match All Letters and Numbers
+  
+[内容]
+  全ての英数字とアンダースコア
+    正規表現「/\w+/」=> 正規表現「/[A-Za-z0-9_]+/」に相当
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '###AAA###',  // AAA
+      '###000###',  // 000
+      '###___###'   // ___
+    ];
+    
+    // 正規表現
+    const reg = /\w+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Match Everything But Letters and Numbers
+  
+[内容]
+  全ての英数字とアンダースコア以外
+    正規表現「/\W+/」=> 正規表現「/[^A-Za-z0-9_]+/」に相当
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '###AAA###',  // ###, ###
+      '###000###',  // ###, ###
+      '###___###'   // ###, ###
+    ];
+    
+    // 正規表現
+    const reg = /\W+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Match All Numbers
+  
+[内容]
+  全数字
+    正規表現「/\d/」=> 正規表現「/[0-9]/」に相当
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '001 AAA 002 BBB 003',  // 001, 002, 003
+      '004 CCC 005 DDD 006',  // 004, 005, 006
+      '007 EEE 008 FFF 009'   // 007, 008, 009
+    ];
+    
+    // 正規表現
+    const reg = /\d+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Match All Non-Numbers
+  
+[内容]
+  数字以外
+    正規表現「/\D/」=> 正規表現「/[^0-9]/」に相当
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '001 AAA 002 BBB 003',  // AAA , BBB 
+      '004 CCC 005 DDD 006',  // CCC , DDD 
+      '007 EEE 008 FFF 009'   // EEE , FFF 
+    ];
+    
+    // 正規表現
+    const reg = /\D+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Restrict Possible Usernames
+  
+[内容]
+  練習問題 => 正規表現でユーザー名チェック
+  
+  仕様
+    1. 英数字のみ使用可
+    2. 数字で始まるのは不可で、ユーザー名の終わりのみ可
+    3. 英字は大文字と小文字の両方可
+    4. 最低でも二文字必要、二文字の場合は英字のみ
+    
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'JACK',         // OK
+      'Jo',           // OK
+      'Oceans11',     // OK
+      'RegexGuru',    // OK
+      'Z97',          // OK
+      'AB1',          // OK
+      'J',            // NG
+      '007',          // NG
+      '9',            // NG
+      'A1',           // NG
+      'BadUs3rnam3',  // NG
+      'c57bT3'        // NG
+    ];
+    
+    // 正規表現
+    let reg = /^[a-z][a-z]+[0-9]*$|^[a-z][0-9][0-9]+$/i;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[23]
+  Match Whitespace
+  
+[内容]
+  空白文字
+    正規表現「/\s/」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '111 222 333',  // 222 
+      'AAA BBB CCC',  // BBB 
+      '444 555 666'   // 555 
+    ];
+    
+    // 正規表現
+    const reg = /\s\w+\s/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[24]
+  Match Non-Whitespace Characters
+  
+[内容]
+  空白文字以外
+    正規表現「/\S/」
+    
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => str.match(reg);
+    
+    // チェックする文字列一覧
+    const arr = [
+      '111 222 333',  // 111, 222, 333 
+      'AAA BBB CCC',  // AAA, BBB, CCC 
+      '444 555 666'   // 444, 555, 666 
+    ];
+    
+    // 正規表現
+    const reg = /\S+/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[25]
+  Specify Upper and Lower Number of Matches
+  
+[内容]
+  直前の文字が現れる回数
+    正規表現「/ba{2,3}h/」=> baah, baaah
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',       // NG
+      'bah',      // NG
+      'baah',     // OK
+      'baaah',    // OK
+      'baaaah'    // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba{2,3}h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[26]
+  Specify Only the Lower Number of Matches
+  
+[内容]
+  直前の文字が現れる回数
+    正規表現「/ba{2,}h/」=> baah, baaah, ...
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',       // NG
+      'bah',      // NG
+      'baah',     // OK
+      'baaah',    // OK
+      'baaaah'    // OK
+    ];
+    
+    // 正規表現
+    const reg = /ba{2,}h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[27]
+  Specify Exact Number of Matches
+  
+[内容]
+  直前の文字が現れる回数
+    正規表現「/ba{2}h/」=> baah
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',       // NG
+      'bah',      // NG
+      'baah',     // OK
+      'baaah',    // NG
+      'baaaah'    // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba{2}h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[28]
+  Check for All or None
+  
+[内容]
+  直前の文字が現れる回数
+    正規表現「/ba?h/」=> bh, bah
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',       // OK
+      'bah',      // OK
+      'baah',     // NG
+      'baaah',    // NG
+      'baaaah'    // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba?h/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[29]
+  Positive and Negative Lookahead
+  
+[内容]
+  肯定先読み
+    Aの後にhが来るパターン
+    正規表現「/A(?=h)/」=> Aが抽出
+  
+  否定先読み
+    Aの後にhが来ないパターン
+    正規表現「/A(?!h)/」=> Aが抽出
+  
+  応用(パスワード規則)
+    1. 五文字以上
+    2. 連続した数字が二個存在
+  
+  正規表現「/(?=\w{5,})(?=\w*\d{2})/」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bh',       // NG
+      'bah',      // OK
+      'baah',     // NG
+      'baaah',    // NG
+      'baaaah'    // NG
+    ];
+    
+    // 正規表現
+    const reg = /ba(?=h)/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[30]
+  Check For Mixed Grouping of Characters
+  
+[内容]
+  正規表現の文字列をグループ化
+    正規表現「/(ee|oo)/」=> bee, boo, bool, feel, fool, ...
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.test(str) ? 'OK' : 'NG' ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      'bee',      // OK
+      'boo',      // OK
+      'bool',     // OK
+      'feel',     // OK
+      'fool',     // OK
+      'foolish',  // OK
+      'felt'      // NG
+    ];
+    
+    // 正規表現
+    const reg = /(ee|oo)/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[31]
+  Reuse Patterns Using Capture Groups
+  
+[内容]
+  キャプチャグループ
+    正規表現「/(\d{4})-(\d{2})-(\d{2})/」
+      グループ0 : (\d{4})-(\d{2})-(\d{2})
+      グループ1 : (\d{4})
+      グループ2 : (\d{2})
+      グループ3 : (\d{2})
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg) => reg.exec(str) ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      '2021-01-25',  // 年: 2020 月: 01 日: 25
+      '2021-01-26',  // 年: 2020 月: 01 日: 26
+      '2021-01-27',  // 年: 2020 月: 01 日: 27
+      '2021-01-28'   // 年: 2020 月: 01 日: 28
+    ];
+    
+    // 正規表現
+    const reg = /(\d{4})-(\d{2})-(\d{2})/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      let result = myFunc(arr[i], reg);
+      let year   = result[1];
+      let month  = result[2];
+      let day    = result[3];
+      console.log(`年: ${year} 月: ${month} 日: ${day}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[32]
+  Use Capture Groups to Search and Replace
+  
+[内容]
+  置換処理
+    メソッド「replace(正規表現, 置換後の文字列)」
+      
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg1, reg2) => str.replace(reg1, reg2) ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      '2021-01-25',  // 01/25
+      '2021-01-26',  // 01/26
+      '2021-01-27',  // 01/27
+      '2021-01-28'   // 01/28
+    ];
+    
+    // 正規表現
+    const reg = /(\d{4})-(\d{2})-(\d{2})/;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${myFunc(arr[i], reg, '$2/$3')}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[33]
+  Remove Whitespace from Start and End
+  
+[内容]
+  行頭と末尾の空白文字を正規表現を駆使して削除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (str, reg1, reg2) => str.replace(reg1, reg2) ;
+    
+    // チェックする文字列一覧
+    const arr = [
+      '  エクスデス  ',  // 'エクスデス'
+      '  エスターク  ',  // 'エスターク'
+      '  エンキドウ  '   // 'エンキドウ'
+    ];
+    
+    // 正規表現
+    const reg = /^\s+|\s+$/g;
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${myFunc(arr[i], reg, '')}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

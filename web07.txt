@@ -1,0 +1,1920 @@
+================================================================================
+[00] Introduction to the CSS Grid Challenges
+[01] Create Your First CSS Grid
+[02] Add Columns with grid-template-columns
+[03] Add Rows with grid-template-rows
+[04] Use CSS Grid units to Change the Size of Columns and Rows
+[05] Create a Column Gap Using grid-column-gap
+[06] Create a Row Gap using grid-row-gap
+[07] Add Gaps Faster with grid-gap
+[08] Use grid-column to Control Spacing
+[09] Use grid-row to Control Spacing
+[10] Align an Item Horizontally using justify-self
+[11] Align an Item Vertically using align-self
+[12] Align All Items Horizontally using justify-items
+[13] Align All Items Vertically using align-items
+[14] Divide the Grid Into an Area Template
+[15] Place Items in Grid Areas Using the grid-area Property
+[16] Use grid-area Without Creating an Areas Template
+[17] Reduce Repetition Using the repeat Function
+[18] Limit Item Size Using the minmax Function
+[19] Create Flexible Layouts Using auto-fill
+[20] Create Flexible Layouts Using auto-fit
+[21] Use Media Queries to Create Responsive Layouts
+[22] Create Grids within Grids
+================================================================================
+[01]
+  Create Your First CSS Grid
+  
+[内容]
+  プロパティ「display」
+    要素の表示形式を設定
+  
+  親要素 {
+    display:
+      block         // 要素をブロックレベル表示
+      inline        // 要素をインライン表示
+      inline-block  // 省略
+      flex          // 内部要素を縦横自在に配置 => web06.txt
+      grid          // グリッド => 今回
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Add Columns with grid-template-columns
+  
+[内容]
+  プロパティ「grid-template-columns」
+    プロパティ「display: grid」の設定時に、グリッドの列構成を設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 100px 100px 100px;  // 1行につき3列 -> 4列目以降は次行
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Add Rows with grid-template-rows
+  
+[内容]
+  プロパティ「grid-template-rows」
+    プロパティ「display: grid」の設定時に、グリッドのレコード構成を設定
+  
+  親要素 {
+    display: grid
+    grid-template-rows: 50px 50px  // 1行目と2行目は共に50pxの高さ
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 100px 100px 100px;
+      grid-template-rows: 50px 50px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Use CSS Grid units to Change the Size of Columns and Rows
+  
+[内容]
+  グリッドのサイズ指定
+  
+  絶対値
+    XXem  // 文字の大きさ(font-size)を基準にXX文字分
+    XXpx  // XXピクセル
+  
+  相対値
+    XXfr  // 親要素の全fr分のXX
+    XX%   // 親要素のXX%
+    auto  // コンテンツの大きさに応じて自動調整
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 15% 1fr 2fr 1fr;  // 1列「親要素の15%」、残りを「1：2：1」で分割
+      grid-template-rows: 2em 20%;             // 1行「文字サイズ2文字分」、2行「親要素の20%」
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Create a Column Gap Using grid-column-gap
+  
+[内容]
+  プロパティ「grid-column-gap」
+    プロパティ「display: grid」の設定時に、グリッドのカラム間の空白を設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 10px;
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 10px;  // グリッドのカラム間の空白
+      grid-template-rows: 100px 100px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Create a Row Gap using grid-row-gap
+  
+[内容]
+  プロパティ「grid-row-gap」
+    プロパティ「display: grid」の設定時に、グリッドのレコード間の空白を設定
+  
+  親要素 {
+    display: grid
+    grid-template-rows: 100px 100px;
+    grid-row-gap: 10px;
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-column-gap: 10px;
+      grid-template-rows: 100px 100px;
+      grid-row-gap: 10px;  // グリッドのレコード間の空白
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Add Gaps Faster with grid-gap
+  
+[内容]
+  プロパティ「grid-gap」
+    プロパティ「grid-column-gap」と「grid-row-gap」のショートハンド
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap:
+      10px       // 行 & 列
+      10px 10px  // 行   列
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px;
+      grid-gap: 10px;  // 行 & 列
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Use grid-column to Control Spacing
+  
+[内容]
+  プロパティ「grid-column」
+    プロパティ「display: grid」の設定時に、グリッド内の子要素の領域を設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 100px 100px;
+    grid-gap: 10px 10px;
+  }
+  
+  子要素 {
+    grid-column: 1 / 3;  // グリッドの1番線から3番線の領域
+    background-color: PaleGreen;
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px;
+      grid-gap: 10px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+    // グリッドの1番線から3番線の領域
+    #Child5 { grid-column: 1 / 3; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Use grid-row to Control Spacing
+  
+[内容]
+  プロパティ「grid-row」
+    プロパティ「display: grid」の設定時に、グリッド内の子要素の領域を設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap: 10px 10px
+  }
+  
+  子要素 {
+    grid-column: 1 / 3  // グリッドの1番線から3番線の領域
+    grid-row: 1 / 3     // グリッドの1番線から3番線の領域
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px 100px;
+      grid-gap: 10px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+    #Child4 {
+      grid-column: 1 / 3;  // グリッドの1番線から3番線の領域
+      grid-row: 1 / 3;     // グリッドの1番線から3番線の領域 -> 既存の子要素は周辺に押し出される
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Align an Item Horizontally using justify-self
+  
+[内容]
+  プロパティ「justify-self」
+    プロパティ「display: grid」の設定時に、グリッド内の子要素の列のアライメントを設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap: 10px 10px
+  }
+  
+  子要素 {
+    grid-column: 1 / 3
+    grid-row: 1 / 3
+    justify-self:
+      stretch  // グリッド内のセル領域一杯に広がる
+      start    // 左寄せ
+      center   // 中央寄せ
+      end      // 右寄せ
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px 100px;
+      grid-gap: 10px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+    // 列のアライメント(中央寄せ)
+    #Child2 { justify-self: center; }
+    
+    #Child4 {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      justify-self: center;  // 列のアライメント(中央寄せ)
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Align an Item Vertically using align-self
+  
+[内容]
+  プロパティ「align-self」
+    プロパティ「display: grid」の設定時に、グリッド内の子要素の行のアライメントを設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap: 10px 10px
+  }
+  
+  子要素 {
+    grid-column: 1 / 3
+    grid-row: 1 / 3
+    justify-self: center
+    align-self:
+      stretch  // グリッド内のセル領域一杯に広がる
+      start    // 上寄せ
+      center   // 中央寄せ
+      end      // 下寄せ
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px 100px;
+      grid-gap: 10px;
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+    // 列のアライメント(中央寄せ)
+    #Child2 { justify-self: center; }
+    
+    #Child4 {
+      grid-column: 1 / 3;
+      grid-row: 1 / 3;
+      justify-self: center;
+      align-self: center;    // 行のアライメント(中央寄せ)
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Align All Items Horizontally using justify-items
+  
+[内容]
+  プロパティ「justify-items」
+    プロパティ「display: grid」の設定時に、グリッド内の全要素の列のアライメントを設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap: 10px 10px
+    justify-items:
+      stretch  // グリッド内のセル領域一杯に広がる
+      start    // 左寄せ
+      center   // 中央寄せ
+      end      // 右寄せ
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px 100px;
+      grid-gap: 10px;
+      justify-items: center;  // 列のアライメント(中央寄せ)
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Align All Items Vertically using align-items
+
+[内容]
+  プロパティ「align-items」
+    プロパティ「display: grid」の設定時に、グリッド内の全要素の行のアライメントを設定
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 100px 100px
+    grid-gap: 10px 10px
+    justify-items: center;  // 列のアライメント(中央寄せ)
+    align-items:
+      stretch  // グリッド内のセル領域一杯に広がる
+      start    // 左寄せ
+      center   // 中央寄せ
+      end      // 右寄せ
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+    <div id="Child5">5</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 100px 100px 100px;
+      grid-gap: 10px;
+      justify-items: center;  // 列のアライメント(中央寄せ)
+      align-items: center;    // 行のアライメント(中央寄せ)
+    }
+    
+    #Child1 { background-color: LightSkyBlue; }
+    #Child2 { background-color: LightSalmon; }
+    #Child3 { background-color: PaleTurquoise; }
+    #Child4 { background-color: LightPink; }
+    #Child5 { background-color: PaleGreen; }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Divide the Grid Into an Area Template
+  
+[内容]
+  プロパティ「grid-template-areas」
+  プロパティ「grid-area」
+    プロパティ「display: grid」の設定時に、グリッド内の全セルに名称付け
+  
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr
+    grid-gap: 10px 10px
+    grid-template-areas:
+      "C1 C1 C1"
+      "C2 C3 C3"  // 空のセルは「.」で表現
+      "C4 C4 C4"
+  }
+  
+  子要素1 { grid-area: C1 }
+  子要素2 { grid-area: C2 }
+  子要素3 { grid-area: C3 }
+  子要素4 { grid-area: C4 }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-gap: 10px;
+      grid-template-areas:
+        'C1 C1 C1'
+        'C2 C3 C3'  // 空のセルは「.」で表現
+        'C4 C4 C4';
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: C1;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: C2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: C3;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: C4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Place Items in Grid Areas Using the grid-area Property
+  
+[内容]
+  grid-areaプロパティ(1)
+    プロパティ「display: grid」の設定時に、グリッド内の各セルに名称割当て
+  
+[確認]
+  // 上記「14」を参照
+  
+================================================================================
+[16]
+  Use grid-area Without Creating an Areas Template
+  
+[内容]
+  grid-areaプロパティ(2)
+    プロパティ「display: grid」の設定時に、グリッド内の各セルの領域取得
+  
+  // プロパティ「grid-template-areas」の設定が無い
+  親要素 {
+    display: grid
+    grid-template-columns: 1fr 1fr 1fr
+    grid-template-rows: 1fr 1fr 1fr
+    grid-gap: 10px 10px
+  }
+  
+  // 領域取得
+  子要素1 { grid-area: 1/1/2/4 }
+    
+    // 1 -> 水平ライン始
+    // 1 -> 垂直ライン始
+    // 2 -> 水平ライン終
+    // 4 -> 垂直ライン終
+  
+  子要素2 { grid-area: 2/1/3/2 }
+  子要素3 { grid-area: 2/2/3/4 }
+  子要素4 { grid-area: 3/1/4/4 }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // プロパティ「grid-template-areas」の設定が無いパターン
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      grid-gap: 10px;
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: 1/1/2/4;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: 2/1/3/2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: 2/2/3/4;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: 3/1/4/4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Reduce Repetition Using the repeat Function
+  
+[内容]
+  関数「repeat」
+    プロパティ「grid-template-columns」とプロパティ「grid-template-rows」の設定時に使用
+  
+  親要素 {
+    display: grid
+    grid-template-columns: repeat(3, 1fr)  // 1fr 1fr 1fr
+    grid-template-rows: repeat(3, 1fr)     // 1fr 1fr 1fr
+    grid-gap: 10px 10px
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // プロパティ「grid-template-areas」の設定が無いパターン
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);  // 1fr 1fr 1fr
+      grid-template-rows: repeat(3, 1fr);     // 1fr 1fr 1fr
+      grid-gap: 10px;
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: 1/1/2/4;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: 2/1/3/2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: 2/2/3/4;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: 3/1/4/4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Limit Item Size Using the minmax Function
+  
+[内容]
+  関数「minmax」
+    プロパティ「grid-template-columns」と「grid-template-rows」の設定時に使用
+  
+  親要素 {
+    display: grid
+    grid-template-columns: repeat(3, minmax(100px, 1fr)) // 最小100px, 最大1fr
+    grid-template-rows: repeat(3, minmax(100px, 1fr))    // 最小100px, 最大1fr
+    grid-gap: 10px 10px
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // プロパティ「grid-template-areas」の設定が無いパターン
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(100px, 1fr));  // 100px-1fr 100px-1fr 100px-1fr
+      grid-template-rows: repeat(3, minmax(100px, 1fr));     // 100px-1fr 100px-1fr 100px-1fr
+      grid-gap: 10px;
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: 1/1/2/4;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: 2/1/3/2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: 2/2/3/4;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: 3/1/4/4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Create Flexible Layouts Using auto-fill
+  
+[内容]
+  関数「repeat」のオプション「auto-fill」
+    親要素のサイズが余る場合に、空のセル領域が作成される
+  
+  親要素 {
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr))
+    grid-template-rows: repeat(auto-fill, minmax(100px, 1fr))
+    grid-gap: 10px 10px
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // プロパティ「grid-template-areas」の設定が無いパターン
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));  // オプション「auto-fill」
+      grid-template-rows: repeat(auto-fill, minmax(100px, 1fr));     // オプション「auto-fill」
+      grid-gap: 10px;
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: 1/1/2/4;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: 2/1/3/2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: 2/2/3/4;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: 3/1/4/4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Create Flexible Layouts Using auto-fit
+  
+[内容]
+  関数「repeat」のオプション「auto-fit」
+    親要素のサイズが余る場合に、既存のセル領域が余ったスペースを埋める
+  
+  親要素 {
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr))
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr))
+    grid-gap: 10px 10px
+  }
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">1</div>
+    <div id="Child2">2</div>
+    <div id="Child3">3</div>
+    <div id="Child4">4</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    // プロパティ「grid-template-areas」の設定が無いパターン
+    #Parent {
+      width: 100vw;
+      height: 100vh;
+      font-size: 40px;
+      background-color: gray;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));  // オプション「auto-fit」
+      grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));     // オプション「auto-fit」
+      grid-gap: 10px;
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: 1/1/2/4;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: 2/1/3/2;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: 2/2/3/4;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: 3/1/4/4;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Use Media Queries to Create Responsive Layouts
+  
+[内容]
+  メディアクエリーとCSSグリッドでレスポンシブ対応(1)
+    下記「22」の設定内容と同一
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">HEADER</div>
+    <div id="Child2">ADVERT</div>
+    <div id="Child3">CONTENT</div>
+    <div id="Child4">FOOTER</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        width: 100vw;
+        height: 100vh;
+        font-size: 40px;
+        background-color: gray;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+        grid-template-rows: repeat(4, minmax(100px, 1fr));
+        grid-gap: 10px;
+        grid-template-areas:
+          'HEADER'
+          'ADVERT'
+          'CONTENT'
+          'FOOTER';
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        width: 100vw;
+        height: 100vh;
+        font-size: 40px;
+        background-color: gray;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        grid-template-rows: repeat(3, minmax(100px, 1fr));
+        grid-gap: 10px;
+        grid-template-areas:
+          'ADVERT HEADER'
+          'ADVERT CONTENT'
+          'ADVERT FOOTER';
+      }
+    }
+    
+    #Child1 {
+      background-color: LightSkyBlue;
+      grid-area: HEADER;
+    }
+    
+    #Child2 {
+      background-color: LightSalmon;
+      grid-area: ADVERT;
+    }
+    
+    #Child3 {
+      background-color: PaleTurquoise;
+      grid-area: CONTENT;
+    }
+    
+    #Child4 {
+      background-color: LightPink;
+      grid-area: FOOTER;
+    }
+    
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Create Grids within Grids
+  
+[内容]
+  メディアクエリーとCSSグリッドでレスポンシブ対応(2)
+    上記「21」の設定内容と同一
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="Parent">
+    <div id="Child1">HEADER</div>
+    <div id="Child2">ADVERT</div>
+    <div id="Child3">CONTENT</div>
+    <div id="Child4">FOOTER</div>
+  </div>
+  
+  // CSS
+  <style>
+    
+    @media (max-width: 600px) {
+      #Parent {
+        width: 100vw;
+        height: 100vh;
+        font-size: 40px;
+        background-color: gray;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(100px, 1fr));
+        grid-template-rows: repeat(4, minmax(100px, 1fr));
+        grid-gap: 10px;
+      }
+      
+      #Child1 {
+        background-color: LightSkyBlue;
+        grid-area: 1/1/2/2;
+      }
+      
+      #Child2 {
+        background-color: LightSalmon;
+        grid-area: 2/1/3/2;
+      }
+      
+      #Child3 {
+        background-color: PaleTurquoise;
+        grid-area: 3/1/4/2;
+      }
+      
+      #Child4 {
+        background-color: LightPink;
+        grid-area: 4/1/5/2;
+      }
+    }
+    
+    @media (min-width: 600px) {
+      #Parent {
+        width: 100vw;
+        height: 100vh;
+        font-size: 40px;
+        background-color: gray;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(100px, 1fr));
+        grid-template-rows: repeat(3, minmax(100px, 1fr));
+        grid-gap: 10px;
+      }
+      
+      #Child1 {
+        background-color: LightSkyBlue;
+        grid-area: 1/2/2/3;
+      }
+      
+      #Child2 {
+        background-color: LightSalmon;
+        grid-area: 1/1/4/2;
+      }
+      
+      #Child3 {
+        background-color: PaleTurquoise;
+        grid-area: 2/2/3/3;
+      }
+      
+      #Child4 {
+        background-color: LightPink;
+        grid-area: 3/2/4/3;
+      }
+    }
+        
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

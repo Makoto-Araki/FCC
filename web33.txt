@@ -1,0 +1,2825 @@
+================================================================================
+[00] Introduction to the Quality Assurance with Chai Challenges
+[01] Learn How JavaScript Assertions Work
+[02] Test if a Variable or Function is Defined
+[03] Use Assert.isOK and Assert.isNotOK
+[04] Test for Truthiness
+[05] Use the Double Equals to Assert Equality
+[06] Use the Triple Equals to Assert Strict Equality
+[07] Assert Deep Equality with .deepEqual and .notDeepEqual
+[08] Compare the Properties of Two Elements
+[09] Test if One Value is Below or At Least as Large as Another
+[10] Test if a Value Falls within a Specific Range
+[11] Test if a Value is an Array
+[12] Test if an Array Contains an Item
+[13] Test if a Value is a String
+[14] Test if a String Contains a Substring
+[15] Use Regular Expressions to Test a String
+[16] Test if an Object has a Property
+[17] Test if a Value is of a Specific Data Structure Type
+[18] Test if an Object is an Instance of a Constructor
+[19] Run Functional Tests on API Endpoints using Chai-HTTP
+[20] Run Functional Tests on API Endpoints using Chai-HTTP II
+[21] Run Functional Tests on an API Response using Chai-HTTP III - PUT method
+[22] Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
+[23] Run Functional Tests using a Headless Browser
+[24] Run Functional Tests using a Headless Browser II
+[25] Simulate Actions Using a Headless Browser
+================================================================================
+[01]
+  Learn How JavaScript Assertions Work
+  
+[内容]
+  評価コード内で「Null」か「Null ではない」かを判定する記述を使用する
+  
+  評価コード
+    対象(P1)はNull(ではない)
+    ・メソッド「expect」 -> expect(P1).to.be.null;
+    ・メソッド「expect」 -> expect(P1).to.not.be.null;
+    ・メソッド「assert」 -> assert.isNull(P1);
+    ・メソッド「assert」 -> assert.isNotNull(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha01/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha01/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha01
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha01
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha01
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha01",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha01/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('P1 = null', function() {
+      it('結果: Null', function() {
+        let P1 = null;
+        expect(P1).to.be.null;
+      });
+    });
+    // パターン2
+    describe('P1 = 110', function() {
+      it('結果: Null ではない', function() {
+        let P1 = 110;
+        expect(P1).to.not.be.null;
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('P1 = null', function() {
+      it('結果: Null', function() {
+        let P1 = null;
+        assert.isNull(P1);
+      });
+    });
+    // パターン2
+    describe('P1 = 110', function() {
+      it('結果: Null ではない', function() {
+        let P1 = 110;
+        assert.isNotNull(P1);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha01
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    P1 = null
+      ✔ 結果: Null
+    P1 = 110
+      ✔ 結果: Null ではない
+  
+  // 単体テスト結果2
+  Test - assert
+    P1 = null
+      ✔ 結果: Null
+    P1 = 110
+      ✔ 結果: Null ではない
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[02]
+  Test if a Variable or Function is Defined
+  
+[内容]
+  評価コード内で「未定義」か「定義済」かを判定する記述を使用する
+  
+  評価コード
+    対象(P1)は未定義(でない)
+    ・メソッド「expect」 -> expect(P1).to.be.undefined;
+    ・メソッド「expect」 -> expect(P1).to.not.be.undefined;
+    ・メソッド「assert」 -> assert.isUndefined(P1);
+    ・メソッド「assert」 -> assert.isDefined(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha02/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha02/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha02
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha02
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha02
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha02",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha02/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('P1', function() {
+      it('結果: 未定義', function() {
+        let P1;
+        expect(P1).to.be.undefined;
+      });
+    });
+    // パターン2
+    describe('P1 = 110', function() {
+      it('結果: 定義済み', function() {
+        let P1 = 110;
+        expect(P1).to.not.be.undefined;
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('P1', function() {
+      it('結果: 未定義', function() {
+        let P1;
+        assert.isUndefined(P1);
+      });
+    });
+    // パターン2
+    describe('P1 = 110', function() {
+      it('結果: 定義済み', function() {
+        let P1 = 110;
+        assert.isDefined(P1);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha02
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    P1
+      ✔ 結果: 未定義
+    P1 = 110
+      ✔ 結果: 定義済み
+  
+  // 単体テスト結果2
+  Test - assert
+    P1
+      ✔ 結果: 未定義
+    P1 = 110
+      ✔ 結果: 定義済み
+  
+  4 passing (7ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[03]
+  Use Assert.isOK and Assert.isNotOK
+  
+[内容]
+  評価コード内で「真(OK)」か「偽(NG)」かを判定する記述を使用する
+  
+  評価コード
+    対象(P1)は真(偽)
+    ・メソッド「expect」 -> expect(P1).to.be.ok;
+    ・メソッド「expect」 -> expect(P1).to.not.be.ok;
+    ・メソッド「assert」 -> assert.isOk(P1);
+    ・メソッド「assert」 -> assert.isNotOk(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha03/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha03/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha03
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha03
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha03
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha03",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha03/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 真(true)', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1 === P2).to.be.ok;
+      });
+    });
+    // パターン2
+    describe('110 === 120', function() {
+      it('結果: 偽(false)', function() {
+        let P1 = 110;
+        let P2 = 120;
+        expect(P1 === P2).to.not.be.ok;
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 真(true)', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.isOk(P1 === P2);
+      });
+    });
+    // パターン2
+    describe('110 === 120', function() {
+      it('結果: 偽(false)', function() {
+        let P1 = 110;
+        let P2 = 120;
+        assert.isNotOk(P1 === P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha03
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 === 110
+      ✔ 結果: 真(true)
+    110 === 120
+      ✔ 結果: 偽(false)
+  
+  // 単体テスト結果2
+  Test - assert
+    110 === 110
+      ✔ 結果: 真(true)
+    110 === 120
+      ✔ 結果: 偽(false)
+  
+  4 passing (8ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[04]
+  Test for Truthiness
+  
+[内容]
+  評価コード内で「真(true)」か「偽(false)」かを判定する記述を使用する
+  
+  評価コード
+    対象(P1)は真(偽)
+    ・メソッド「expect」 -> expect(P1).to.be.true;
+    ・メソッド「expect」 -> expect(P1).to.be.false;
+    ・メソッド「assert」 -> assert.isTrue(P1);
+    ・メソッド「assert」 -> assert.isFalse(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha04/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha04/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha04
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha04
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha04
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha04",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha04/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 真(true)', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1 === P2).to.be.true;
+      });
+    });
+    // パターン2
+    describe('110 === 120', function() {
+      it('結果: 偽(false)', function() {
+        let P1 = 110;
+        let P2 = 120;
+        expect(P1 === P2).to.be.false;
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 真(true)', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.isTrue(P1 === P2);
+      });
+    });
+    // パターン2
+    describe('110 === 120', function() {
+      it('結果: 偽(false)', function() {
+        let P1 = 110;
+        let P2 = 120;
+        assert.isFalse(P1 === P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha04
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 === 110
+      ✔ 結果: 真(true)
+    110 === 120
+      ✔ 結果: 偽(false)
+  
+  // 単体テスト結果2
+  Test - assert
+    110 === 110
+      ✔ 結果: 真(true)
+    110 === 120
+      ✔ 結果: 偽(false)
+  
+  4 passing (8ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[05]
+  Use the Double Equals to Assert Equality
+  
+[内容]
+  評価コード内で比較演算子「==」に相当する記述を使用する
+  
+  評価コード
+    数値(P1)と数値(P2)は等価(でない)
+    ・メソッド「expect」 -> expect(P1).to.equal(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.equal(P2);
+    ・メソッド「assert」 -> assert.equal(P1, P2);
+    ・メソッド「assert」 -> assert.notEqual(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha05/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha05/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha05
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha05
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha05
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha05",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha05/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 == 110', function() {
+      it('結果: 等価', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1).to.equal(P2);
+      });
+    });
+    // パターン2
+    describe('110 != 120', function() {
+      it('結果: 非等価', function() {
+        let P1 = 110;
+        let P2 = 120;
+        expect(P1).to.not.equal(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('110 == 110', function() {
+      it('結果: 等価', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.equal(P1, P2);
+      });
+    });
+    // パターン2
+    describe('110 != 120', function() {
+      it('結果: 非等価', function() {
+        let P1 = 110;
+        let P2 = 120;
+        assert.notEqual(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha05
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 == 110
+      ✔ 結果: 等価
+    110 != 120
+      ✔ 結果: 非等価
+  
+  // 単体テスト結果2
+  Test - assert
+    110 == 110
+      ✔ 結果: 等価
+    110 != 120
+      ✔ 結果: 非等価
+  
+  4 passing (8ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[06]
+  Use the Triple Equals to Assert Strict Equality
+  
+[内容]
+  評価コード内で比較演算子「===」に相当する記述を使用する
+  
+  評価コード
+    数値(P1)と数値(P2)は等価(でない)
+    ・メソッド「expect」 -> expect(P1).to.deep.equal(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.deep.equal(P2);
+    ・メソッド「assert」 -> assert.strictEqual(P1, P2);
+    ・メソッド「assert」 -> assert.notStrictEqual(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha06/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha06/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha06
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha06
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha06
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha06",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha06/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 等価', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1).to.deep.equal(P2);
+      });
+    });
+    // パターン2
+    describe('110 !== 120', function() {
+      it('結果: 非等価', function() {
+        let P1 = 110;
+        let P2 = 120;
+        expect(P1).to.not.deep.equal(P2);
+      });
+    });
+  });
+  
+  describe('Func1 - assert', function() {
+    // パターン1
+    describe('110 === 110', function() {
+      it('結果: 等価', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.strictEqual(P1, P2);
+      });
+    });
+    // パターン2
+    describe('110 !== 120', function() {
+      it('RET', function() {
+        let P1 = 110;
+        let P2 = 120;
+        assert.notStrictEqual(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha06
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 === 110
+      ✔ 結果: 等価
+    110 !== 120
+      ✔ 結果: 非等価
+  
+  // 単体テスト結果2
+  Func1 - assert
+    110 === 110
+      ✔ 結果: 等価
+    110 !== 120
+      ✔ RET
+  
+  4 passing (8ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[07]
+  Assert Deep Equality with .deepEqual and .notDeepEqual
+  
+[内容]
+  評価コード内でオブジェクト同士を比較する記述を使用する
+  
+  評価コード
+    オブジェクト(OBJ1)とオブジェクト(OBJ2)は同一(でない)
+    ・メソッド「expect」 -> expect(OBJ1).to.deep.equal(OBJ2);
+    ・メソッド「expect」 -> expect(OBJ1).to.not.deep.equal(OBJ2);
+    ・メソッド「assert」 -> assert.deepEqual(OBJ1, OBJ2);
+    ・メソッド「assert」 -> assert.notDeepEqual(OBJ1, OBJ2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha07/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha07/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha07
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha07
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha07
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha07",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha07/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('OBJ1 === OBJ2', function() {
+      it('結果: 同一', function() {
+        let OBJ1 = { key1: 'A', key2: 'B' };
+        let OBJ2 = { key1: 'A', key2: 'B' };
+        expect(OBJ1).to.deep.equal(OBJ2);
+      });
+    });
+    // パターン2
+    describe('OBJ1 !== OBJ2', function() {
+      it('結果: 同一でない', function() {
+        let OBJ1 = { key1: 'A', key2: 'B' };
+        let OBJ2 = { key1: '1', key2: 'B' };
+        expect(OBJ1).to.not.deep.equal(OBJ2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('OBJ1 === OBJ2', function() {
+      it('結果: 同一', function() {
+        let OBJ1 = { key1: 'A', key2: 'B' };
+        let OBJ2 = { key1: 'A', key2: 'B' };
+        assert.deepEqual(OBJ1, OBJ2);
+      });
+    });
+    // パターン2
+    describe('OBJ1 !== OBJ2', function() {
+      it('結果: 同一でない', function() {
+        let OBJ1 = { key1: 'A', key2: 'B' };
+        let OBJ2 = { key1: '1', key2: 'B' };
+        assert.notDeepEqual(OBJ1, OBJ2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha07
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    OBJ1 === OBJ2
+      ✔ 結果: 同一
+    OBJ1 !== OBJ2
+      ✔ 結果: 同一でない
+  
+  // 単体テスト結果2
+  Test - assert
+    OBJ1 === OBJ2
+      ✔ 結果: 同一
+    OBJ1 !== OBJ2
+      ✔ 結果: 同一でない
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[08]
+  Compare the Properties of Two Elements
+  
+[内容]
+  評価コード内で数値同士を比較する記述を使用する(1)
+  
+  評価コード
+    数値(P1)は数値(P2)より大きい ｰ 数値(P1)は数値(P2)以下
+    ・メソッド「expect」 -> expect(P1).to.be.above(P2);
+    ・メソッド「expect」 -> expect(P1).to.be.at.most(P2);
+    ・メソッド「assert」 -> assert.isAbove(P1, P2);
+    ・メソッド「assert」 -> assert.isAtMost(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha08/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha08/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha08
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha08
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha08
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha08",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha08/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('120 > 110', function() {
+      it('結果: 120 は 110 より大きい', function() {
+        let P1 = 120;
+        let P2 = 110;
+        expect(P1).to.be.above(P2);
+      });
+    });
+    // パターン2
+    describe('110 <= 110', function() {
+      it('結果: 110 は 110 以下', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1).to.be.at.most(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('120 > 110', function() {
+      it('結果: 120 は 110 より大きい', function() {
+        let P1 = 120;
+        let P2 = 110;
+        assert.isAbove(P1, P2);
+      });
+    });
+    // パターン2
+    describe('110 <= 110', function() {
+      it('結果: 110 は 110 以下', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.isAtMost(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha08
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    120 > 110
+      ✔ 結果: 120 は 110 より大きい
+    110 <= 110
+      ✔ 結果: 110 は 110 以下
+  
+  // 単体テスト結果2
+  Test - assert
+    120 > 110
+      ✔ 結果: 120 は 110 より大きい
+    110 <= 110
+      ✔ 結果: 110 は 110 以下
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[09]
+  Test if One Value is Below or At Least as Large as Another
+  
+[内容]
+  評価コード内で数値同士を比較する記述を使用する(2)
+  
+  評価コード
+    数値(P1)は数値(P2)より小さい ｰ 数値(P1)は数値(P2)以上
+    ・メソッド「expect」 -> expect(P1).to.be.below(P2);
+    ・メソッド「expect」 -> expect(P1).to.be.at.least(P2);
+    ・メソッド「assert」 -> assert.isBelow(P1, P2);
+    ・メソッド「assert」 -> assert.isAtLeast(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha09/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha09/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha09
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha09
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha09
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha09",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha09/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('100 < 110', function() {
+      it('結果: 100 は 110 より小さい', function() {
+        let P1 = 100;
+        let P2 = 110;
+        expect(P1).to.be.below(P2);
+      });
+    });
+    // パターン2
+    describe('110 >= 110', function() {
+      it('結果: 110 は 110 以上', function() {
+        let P1 = 110;
+        let P2 = 110;
+        expect(P1).to.be.at.least(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('100 < 110', function() {
+      it('結果: 100 は 110 より小さい', function() {
+        let P1 = 100;
+        let P2 = 110;
+        assert.isBelow(P1, P2);
+      });
+    });
+    // パターン2
+    describe('110 >= 110', function() {
+      it('結果: 110 は 110 以上', function() {
+        let P1 = 110;
+        let P2 = 110;
+        assert.isAtLeast(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha09
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    100 < 110
+      ✔ 結果: 100 は 110 より小さい
+    110 >= 110
+      ✔ 結果: 110 は 110 以上
+  
+  // 単体テスト結果2
+  Test - assert
+    100 < 110
+      ✔ 結果: 100 は 110 より小さい
+    110 >= 110
+      ✔ 結果: 110 は 110 以上
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[10]
+  Test if a Value Falls within a Specific Range
+  
+[内容]
+  評価コード内で数値が設定範囲内の記述を使用する
+  
+  評価コード
+    数値(P1)が数値(P2)から範囲(P3)の範囲内にある(ない)
+    ・メソッド「expect」 -> expect(P1).to.be.closeTo(P2, P3);
+    ・メソッド「expect」 -> expect(P1).not.to.be.closeTo(P2, 10);
+    ・メソッド「assert」 -> assert.approximately(P1, P2, 10);
+    ・メソッド「assert」 -> 存在しない
+    
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha10/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha10/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha10
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha10
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha10
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha10",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha10/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 -> 110 - 120 - 130', function() {
+      it('結果: 110 は 110 - 130 の範囲', function() {
+        let P1 = 110;
+        let P2 = 120;
+        let P3 = 10;
+        expect(P1).to.be.closeTo(P2, P3);
+      });
+    });
+    // パターン2
+    describe('131 -> 110 - 120 - 130', function() {
+      it('結果: 131 は 110 - 130 の範囲外', function() {
+        let P1 = 131;
+        let P2 = 120;
+        let P3 = 10;
+        expect(P1).not.to.be.closeTo(P2, P3);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('110 -> 110 - 120 - 130', function() {
+      it('結果: 110 は 110 - 130 の範囲', function() {
+        let P1 = 110;
+        let P2 = 120;
+        let P3 = 10;
+        assert.approximately(P1, P2, P3);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha10
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 -> 110 - 120 - 130
+      ✔ 結果: 110 は 110 - 130 の範囲
+    131 -> 110 - 120 - 130
+      ✔ 結果: 131 は 110 - 130 の範囲外
+  
+  // 単体テスト結果2
+  Test - assert
+    110 -> 110 - 120 - 130
+      ✔ 結果: 110 は 110 - 130 の範囲
+  
+  3 passing (10ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[11]
+  Test if a Value is an Array
+  
+[内容]
+  評価コード内で対象が配列か否かの記述を使用する
+  
+  評価コード
+    対象(P1)が配列(でない)
+    ・メソッド「expect」 -> expect(P1).to.be.an('array');
+    ・メソッド「expect」 -> expect(P1).to.not.be.an('array');
+    ・メソッド「assert」 -> assert.isArray(P1);
+    ・メソッド「assert」 -> assert.isNotArray(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha11/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha11/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha11
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha11
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha11
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha11",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha11/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('[110, 120, 130]', function() {
+      it('結果: 配列', function() {
+        let P1 = [110, 120, 130];
+        expect(P1).to.be.an('array');
+      });
+    });
+    // パターン2
+    describe('110', function() {
+      it('結果: 配列でない', function() {
+        let P1 = 110;
+        expect(P1).to.not.be.an('array');
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('[110, 120, 130]', function() {
+      it('結果: 配列', function() {
+        let P1 = [110, 120, 130];
+        assert.isArray(P1);
+      });
+    });
+    // パターン2
+    describe('110', function() {
+      it('結果: 配列でない', function() {
+        let P1 = 110;
+        assert.isNotArray(P1);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha11
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    [110, 120, 130]
+      ✔ 結果: 配列
+    110
+      ✔ 結果: 配列でない
+  
+  // 単体テスト結果2
+  Test - assert
+    [110, 120, 130]
+      ✔ 結果: 配列
+    110
+      ✔ 結果: 配列でない
+  
+  4 passing (10ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[12]
+  Test if an Array Contains an Item
+  
+[内容]
+  評価コード内で対象が配列に含まれているか否かの記述を使用する
+  
+  評価コード
+    対象(P1)が配列(P2)に含まれている(いない)
+    ・メソッド「expect」 -> expect(P1).to.be.an('array').that.includes(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.be.an('array').that.includes(P2);
+    ・メソッド「assert」 -> assert.include(P1, P2);
+    ・メソッド「assert」 -> assert.notInclude(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha12/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha12/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha12
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha12
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha12
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha12",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha12/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('120 -> [110, 120, 130]', function() {
+      it('結果: 含む', function() {
+        let P1 = [110, 120, 130];
+        let P2 = 120;
+        expect(P1).to.be.an('array').that.includes(P2);
+      });
+    });
+    // パターン2
+    describe('100 -> [110, 120, 130]', function() {
+      it('結果: 含まない', function() {
+        let P1 = [110, 120, 130];
+        let P2 = 100;
+        expect(P1).to.be.an('array').that.not.include(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('120 -> [110, 120, 130]', function() {
+      it('結果: 含む', function() {
+        let P1 = [110, 120, 130];
+        let P2 = 120;
+        assert.include(P1, P2);
+      });
+    });
+    // パターン2
+    describe('100 -> [110, 120, 130]', function() {
+      it('結果: 含まない', function() {
+        let P1 = [110, 120, 130];
+        let P2 = 100;
+        assert.notInclude(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha12
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    120 -> [110, 120, 130]
+      ✔ 結果: 含む
+    100 -> [110, 120, 130]
+      ✔ 結果: 含まない
+  
+  // 単体テスト結果2
+  Test - assert
+    120 -> [110, 120, 130]
+      ✔ 結果: 含む
+    100 -> [110, 120, 130]
+      ✔ 結果: 含まない
+  
+  4 passing (10ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[13]
+  Test if a Value is a String
+  
+[内容]
+  評価コード内で対象が文字列か否かの記述を使用する
+  
+  評価コード
+    対象(P1)が文字列(でない)
+    ・メソッド「expect」 -> expect(P1).to.be.a('string');
+    ・メソッド「expect」 -> expect(P1).to.not.be.a('string');
+    ・メソッド「assert」 -> assert.isString(P1);
+    ・メソッド「assert」 -> assert.isNotString(P1);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha13/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha13/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha13
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha13
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha13
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha13",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha13/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('Hello', function() {
+      it('結果: 文字列', function() {
+        let P1 = 'Hello';
+        expect(P1).to.be.a('string');
+      });
+    });
+    // パターン2
+    describe('100', function() {
+      it('結果: 文字列でない', function() {
+        let P1 = 100;
+        expect(P1).not.to.be.a('string');
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('Hello', function() {
+      it('結果: 文字列', function() {
+        let P1 = 'Hello';
+        assert.isString(P1);
+      });
+    });
+    // パターン2
+    describe('100', function() {
+      it('結果: 文字列でない', function() {
+        let P1 = 100;
+        assert.isNotString(P1);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha13
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    Hello
+      ✔ 結果: 文字列
+    100
+      ✔ 結果: 文字列でない
+  
+  // 単体テスト結果2
+  Test - assert
+    Hello
+      ✔ 結果: 文字列
+    100
+      ✔ 結果: 文字列でない
+  
+  4 passing (10ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[14]
+  Test if a String Contains a Substring
+  
+[内容]
+  評価コード内で文字列(P2)が文字列(P1)に含まれているか否かの記述を使用する
+  
+  評価コード
+    文字列(P2)が文字列(P1)に含まれている(いない)
+    ・メソッド「expect」 -> expect(P1).to.be.a('string').that.includes(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.be.a('string').that.includes(P2);
+    ・メソッド「assert」 -> assert.include(P1, P2);
+    ・メソッド「assert」 -> assert.notInclude(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha14/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha14/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha14
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha14
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha14
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha14",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha14/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('CCC -> AAABBBCCCDDDEEE', function() {
+      it('結果: 含む', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = 'CCC';
+        expect(P1).to.be.a('string').that.includes(P2);
+      });
+    });
+    // パターン2
+    describe('ZZZ -> AAABBBCCCDDDEEE', function() {
+      it('結果: 含まない', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = 'ZZZ';
+        expect(P1).to.be.a('string').that.not.include(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('CCC -> AAABBBCCCDDDEEE', function() {
+      it('結果: 含む', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = 'CCC';
+        assert.include(P1, P2);
+      });
+    });
+    // パターン2
+    describe('ZZZ -> AAABBBCCCDDDEEE', function() {
+      it('結果: 含まない', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = 'ZZZ';
+        assert.notInclude(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha14
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    CCC -> AAABBBCCCDDDEEE
+      ✔ 結果: 含む
+    ZZZ -> AAABBBCCCDDDEEE
+      ✔ 結果: 含まない
+  
+  // 単体テスト結果2
+  Test - assert
+    CCC -> AAABBBCCCDDDEEE
+      ✔ 結果: 含む
+    ZZZ -> AAABBBCCCDDDEEE
+      ✔ 結果: 含まない
+  
+  4 passing (10ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[15]
+  Use Regular Expressions to Test a String
+  
+[内容]
+  評価コード内で文字列(P1)が正規表現(P2)に合致するか否かの記述を使用する
+  
+  評価コード
+    文字列(P1)が正規表現(P2)に合致する(しない)
+    ・メソッド「expect」 -> expect(P1).to.match(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.match(P2);
+    ・メソッド「assert」 -> assert.match(P1, P2);
+    ・メソッド「assert」 -> assert.notMatch(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha15/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha15/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha15
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha15
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha15
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha15",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha15/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('CCC -> AAABBBCCCDDDEEE', function() {
+      it('結果: 合致する', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = /CCC/;
+        expect(P1).to.match(P2);
+      });
+    });
+    // パターン2
+    describe('ZZZ -> AAABBBCCCDDDEEE', function() {
+      it('結果: 合致しない', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = /ZZZ/;
+        expect(P1).to.not.match(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('CCC -> AAABBBCCCDDDEEE', function() {
+      it('結果: 合致する', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = /CCC/;
+        assert.match(P1, P2);
+      });
+    });
+    // パターン2
+    describe('ZZZ -> AAABBBCCCDDDEEE', function() {
+      it('結果: 合致しない', function() {
+        let P1 = 'AAABBBCCCDDDEEE';
+        let P2 = /ZZZ/;
+        assert.notMatch(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha15
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    CCC -> AAABBBCCCDDDEEE
+      ✔ 結果: 合致する
+    ZZZ -> AAABBBCCCDDDEEE
+      ✔ 結果: 合致しない
+  
+  // 単体テスト結果2
+  Test - assert
+    CCC -> AAABBBCCCDDDEEE
+      ✔ 結果: 合致する
+    ZZZ -> AAABBBCCCDDDEEE
+      ✔ 結果: 合致しない
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[16]
+  Test if an Object has a Property
+  
+[内容]
+  評価コード内でオブジェクト(P1)に属性(P2)に存在するか否かの記述を使用する
+  
+  評価コード
+    オブジェクト(P1)に属性(P2)が存在する(しない)
+    ・メソッド「expect」 -> expect(P1).to.have.property(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.have.property(P2);
+    ・メソッド「assert」 -> assert.property(P1, P2);
+    ・メソッド「assert」 -> assert.notProperty(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha16/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha16/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha16
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha16
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha16
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha16",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha16/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('key2 -> OBJ', function() {
+      it('結果: 属性が存在する', function() {
+        let P1 = { key1: 'A', key2: 'B' };
+        let P2 = 'key2';
+        expect(P1).to.have.property(P2);
+      });
+    });
+    // パターン2
+    describe('key3 -> OBJ', function() {
+      it('結果: 属性が存在しない', function() {
+        let P1 = { key1: 'A', key2: 'B' };
+        let P2 = 'key3';
+        expect(P1).to.not.have.property(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('key2 -> OBJ', function() {
+      it('結果: 属性が存在する', function() {
+        let P1 = { key1: 'A', key2: 'B' };
+        let P2 = 'key2';
+        assert.property(P1, P2);
+      });
+    });
+    // パターン2
+    describe('key3 -> OBJ', function() {
+      it('結果: 属性が存在しない', function() {
+        let P1 = { key1: 'A', key2: 'B' };
+        let P2 = 'key3';
+        assert.notProperty(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha16
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    key2 -> OBJ
+      ✔ 結果: 属性が存在する
+    key3 -> OBJ
+      ✔ 結果: 属性が存在しない
+  
+  // 単体テスト結果2
+  Test - assert
+    key2 -> OBJ
+      ✔ 結果: 属性が存在する
+    key3 -> OBJ
+      ✔ 結果: 属性が存在しない
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[17]
+  Test if a Value is of a Specific Data Structure Type
+  
+[内容]
+  評価コード内でデータ(P1)とデータ型(P2)を比較する記述を使用する
+  
+  評価コード
+    データ(P1)とデータ型(P2)が合致する(しない)
+    ・メソッド「expect」 -> expect(P1).to.be.a(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.be.a(P2);
+    ・メソッド「assert」 -> assert.typeOf(P1, P2);
+    ・メソッド「assert」 -> assert.notTypeOf(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha17/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha17/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha17
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha17
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha17
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha17",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha17/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('110 === Number', function() {
+      it('結果: 110 === Number', function() {
+        let P1 = 110;
+        let P2 = 'number';
+        expect(P1).to.be.a(P2);
+      });
+    });
+    // パターン2
+    describe('110 !== String', function() {
+      it('結果: 110 !== String', function() {
+        let P1 = 110;
+        let P2 = 'string';
+        expect(P1).to.not.be.a(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('110 === Number', function() {
+      it('結果: 110 === Number', function() {
+        let P1 = 110;
+        let P2 = 'number';
+        assert.typeOf(P1, P2);
+      });
+    });
+    // パターン2
+    describe('110 !== String', function() {
+      it('結果: 110 !== String', function() {
+        let P1 = 110;
+        let P2 = 'string';
+        assert.notTypeOf(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha17
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    110 === Number
+      ✔ 結果: 110 === Number
+    110 !== String
+      ✔ 結果: 110 !== String
+  
+  // 単体テスト結果2
+  Test - assert
+    110 === Number
+      ✔ 結果: 110 === Number
+    110 !== String
+      ✔ 結果: 110 !== String
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[18]
+  Test if an Object is an Instance of a Constructor
+  
+[内容]
+  評価コード内で変数(P1)はオブジェクト(P2)のインスタンスか否かを判定する
+  
+  評価コード
+    変数(P1)はオブジェクト(P2)のインスタンス(ではない)
+    ・メソッド「expect」 -> expect(P1).to.be.an.instanceOf(P2);
+    ・メソッド「expect」 -> expect(P1).to.not.be.an.instanceOf(P2);
+    ・メソッド「assert」 -> assert.instanceOf(P1, P2);
+    ・メソッド「assert」 -> assert.notInstanceOf(P1, P2);
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha18/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回は関数を作成しないが一応、作成した
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha18/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha18
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha18
+  $ npm install mocha chai --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha18
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha18",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",  // 確認
+      "mocha": "^9.0.3"  // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha18/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const expect = require('chai').expect;
+  const assert = require('chai').assert;
+  
+  // 関数オブジェクト
+  function FuncA() {}
+  function FuncB() {}
+  
+  describe('Test - expect', function() {
+    // パターン1
+    describe('Func1 is instance of FuncA', function() {
+      it('結果: True', function() {
+        let P1 = new FuncA();
+        let P2 = FuncA;
+        expect(P1).to.be.an.instanceOf(P2);
+      });
+    });
+    // パターン2
+    describe('Func1 is instance of FuncA', function() {
+      it('結果: False', function() {
+        let P1 = new FuncA();
+        let P2 = FuncB;
+        expect(P1).to.not.be.an.instanceOf(P2);
+      });
+    });
+  });
+  
+  describe('Test - assert', function() {
+    // パターン1
+    describe('Func1 is instance of FuncA', function() {
+      it('結果: True', function() {
+        let P1 = new FuncA();
+        let P2 = FuncA;
+        assert.instanceOf(P1, P2);
+      });
+    });
+    // パターン2
+    describe('Func1 is instance of FuncA', function() {
+      it('結果: False', function() {
+        let P1 = new FuncA();
+        let P2 = FuncB;
+        assert.notInstanceOf(P1, P2);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha18
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    Func1 is instance of FuncA
+      ✔ 結果: True
+    Func1 is instance of FuncA
+      ✔ 結果: False
+  
+  // 単体テスト結果2
+  Test - assert
+    Func1 is instance of FuncA
+      ✔ 結果: True
+    Func1 is instance of FuncA
+      ✔ 結果: False
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[19]
+  Run Functional Tests on API Endpoints using Chai-HTTP
+  
+[内容]
+  API試験(1) - リクエスト「GET」
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p cha19/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha19/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19
+  $ npm install mocha chai chai-http express --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha19",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "chai": "^4.3.4",       // 確認
+      "chai-http": "^4.3.0",  // 確認
+      "express": "^4.17.1",   // 確認
+      "mocha": "^9.0.3"       // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  let express = require('express');
+  
+  // インスタンス生成
+  let app = express();
+  
+  // GET - /
+  app.get('/', (req, res) => res.send('Hello ' + req.query.name));
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const mocha = require('mocha');
+  const assert = chai.assert;
+  const server = require('../app/server');
+  const chaiHttp = require('chai-http');
+  
+  // モジュール使用
+  chai.use(chaiHttp);
+  
+  // API試験(1)
+  suite('GET - /?name=[name]', function() {
+    
+    // パターン1
+    test('?name=AAA', function(done) {
+      chai
+      .request(server)
+      .get('/?name=AAA')
+      .end(function(err, res) {
+        assert.equal(res.status, 200);
+        assert.equal(res.text, 'Hello AAA');
+        done();
+      })
+    });
+    
+    // パターン2
+    test('?name=BBB', function(done) {
+      chai
+      .request(server)
+      .get('/?name=BBB')
+      .end(function(err, res) {
+        assert.equal(res.status, 200);
+        assert.equal(res.text, 'Hello BBB');
+        done();
+      })
+    });
+    
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/cha19 <- 別の端末から実行
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果1
+  Test - expect
+    Func1 is instance of FuncA
+      ✔ 結果: True
+    Func1 is instance of FuncA
+      ✔ 結果: False
+  
+  // 単体テスト結果2
+  Test - assert
+    Func1 is instance of FuncA
+      ✔ 結果: True
+    Func1 is instance of FuncA
+      ✔ 結果: False
+  
+  4 passing (9ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[20]
+  Run Functional Tests on API Endpoints using Chai-HTTP II
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[21]
+  Run Functional Tests on an API Response using Chai-HTTP III - PUT method
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[22]
+  Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[23]
+  Run Functional Tests using a Headless Browser
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[24]
+  Run Functional Tests using a Headless Browser II
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[25]
+  Simulate Actions Using a Headless Browser
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================

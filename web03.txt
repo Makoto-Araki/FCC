@@ -1,0 +1,1970 @@
+================================================================================
+[00] Introduction to the Applied Visual Design Challenges
+[01] Create Visual Balance Using the text-align Property
+[02] Adjust the Width of an Element Using the width Property
+[03] Adjust the Height of an Element Using the height Property
+[04] Use the strong Tag to Make Text Bold
+[05] Use the u Tag to Underline Text
+[06] Use the em Tag to Italicize Text
+[07] Use the s Tag to Strikethrough Text
+[08] Create a Horizontal Line Using the hr Element
+[09] Adjust the background-color Property of Text
+[10] Adjust the Size of a Header Versus a Paragraph Tag
+[11] Add a box-shadow to a Card-like Element
+[12] Decrease the Opacity of an Element
+[13] Use the text-transform Property to Make Text Uppercase
+[14] Set the font-size for Multiple Heading Elements
+[15] Set the font-weight for Multiple Heading Elements
+[16] Set the font-size of Paragraph Text
+[17] Set the line-height of Paragraphs
+[18] Adjust the Hover State of an Anchor Tag
+[19] Change an Element's Relative Position
+[20] Move a Relatively Positioned Element with CSS Offsets
+[21] Lock an Element to its Parent with Absolute Positioning
+[22] Lock an Element to the Browser Window with Fixed Positioning
+[23] Push Elements Left or Right with the float Property
+[24] Change the Position of Overlapping Elements with the z-index Property
+[25] Center an Element Horizontally Using the margin Property
+[26] Learn about Complementary Colors
+[27] Learn about Tertiary Colors
+[28] Adjust the Color of Various Elements to Complementary Colors
+[29] Adjust the Hue of a Color
+[30] Adjust the Tone of a Color
+[31] Create a Gradual CSS Linear Gradient
+[32] Use a CSS Linear Gradient to Create a Striped Element
+[33] Create Texture by Adding a Subtle Pattern as a Background Image
+[34] Use the CSS Transform scale Property to Change the Size of an Element
+[35] Use the CSS Transform scale Property to Scale an Element on Hover
+[36] Use the CSS Transform Property skewX to Skew an Element Along the X-Axis
+[37] Use the CSS Transform Property skewY to Skew an Element Along the Y-Axis
+[38] Create a Graphic Using CSS
+[39] Create a More Complex Shape Using CSS and HTML
+[40] Learn How the CSS @keyframes and animation Properties Work
+[41] Use CSS Animation to Change the Hover State of a Button
+[42] Modify Fill Mode of an Animation
+[43] Create Movement Using CSS Animation
+[44] Create Visual Direction by Fading an Element from Left to Right
+[45] Animate Elements Continually Using an Infinite Animation Count
+[46] Make a CSS Heartbeat using an Infinite Animation Count
+[47] Animate Elements at Variable Rates
+[48] Animate Multiple Elements at Variable Rates
+[49] Change Animation Timing with Keywords
+[50] Learn How Bezier Curves Work
+[51] Use a Bezier Curve to Move a Graphic
+[52] Make Motion More Natural Using a Bezier Curve
+================================================================================
+[01]
+  Create Visual Balance Using the text-align Property
+  
+[内容]
+  プロパティ「text-align」でテキストのアライメント調整
+  
+  設定値
+    center   // 中央揃え
+    right    // 右揃え
+    left     // 左揃え
+    justify  // 両端揃え
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div class='CARD' id='C1'>
+    <p class='MSG'>Hello World</p>
+  </div>
+  <div class='CARD' id='C2'>
+    <p class='MSG'>Hello World</p>
+  </div>
+  
+  // CSS
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      font-family: sans-serif;
+    }
+    :root {
+      --C1: Black;
+      --C2: White;
+      --B1: Crimson;
+      --B2: CornFlowerBlue;
+    }
+    .CARD {
+      border: 2px solid black;
+      border-radius: 10px;
+      margin: 10px;
+      padding: 5px;
+      height: 200px;
+      width: 320px;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 10px 10px 20px black;
+      opacity: 1;
+    }
+    .CARD:hover {
+      transform: scale(0.9);
+    }
+    #C1 {
+      color: var(--C2, Black);
+      background-color: var(--B1, White);
+    }
+    #C2 {
+      color: var(--C2, Black);
+      background-color: var(--B2, White);
+    }
+    .MSG {
+      text-align: center;
+      text-decoration: underline;
+      font-style: italic;
+      font-weight: bold;
+      font-size: 30px;
+      text-transform: uppercase;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Adjust the Width of an Element Using the width Property
+
+[内容]
+  プロパティ「width」で要素の幅を調整
+  
+  設定例
+    25px  // 絶対値
+    20em  // 相対値(フォントサイズの20字分)
+    50%   // 親要素の50%
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[03]
+  Adjust the Height of an Element Using the height Property
+  
+[内容]
+  プロパティ「height」で要素の高さを調整
+  
+  設定例
+    25px  // 絶対値
+    20em  // 相対値(フォントサイズの20字分)
+    50%   // 親要素の50%
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[04]
+  Use the strong Tag to Make Text Bold
+  
+[内容]
+  要素「strong」で「fontweight: bold」と同じ効果
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[05]
+  Use the u Tag to Underline Text
+  
+[内容]
+  要素「u」で「text-decoration: underline」と同じ効果
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[06]
+  Use the em Tag to Italicize Text
+  
+[内容]
+  要素「em」で「font-style: italic」と同じ効果
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[07]
+  Use the s Tag to Strikethrough Text
+  
+[内容]
+  要素「s」で「text-decoration: line-through(取消線)」と同じ効果
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[08]
+  Create a Horizontal Line Using the hr Element
+
+[内容]
+  要素「hr」で要素間に水平ラインを挿入
+  
+[確認]
+  // 省略
+  
+================================================================================
+[09]
+  Adjust the background-color Property of Text
+
+[内容]
+  プロパティ「background-color」で背景色を調整
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[10]
+  Adjust the Size of a Header Versus a Paragraph Tag
+
+[内容]
+  プロパティ「font-size」でフォントサイズを調整
+  
+  設定例
+    20px  // 絶対値
+    40px  // 絶対値
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[11]
+  Add a box-shadow to a Card-like Element
+  
+[内容]
+  プロパティ「box-shadow」で要素に影を付与
+  
+  box-shadow: 10px 10px 20px black
+    10px   // 影を右に10pxずらして表示
+    10px   // 影を下に10pxずらして表示
+    20px   // 影を20pxの範囲でぼかす
+    10px   // 影を四方10pxに膨張
+    black  // 影の色
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[12]
+  Decrease the Opacity of an Element
+
+[内容]
+  プロパティ「opacity」で要素の透明度を調整
+  
+  opacity: 1    // 不透明
+  opacity: 0.5  // 半透明 -> 透明度は「0.4」や「0.6」などで調節可能
+  opacity: 0    // 透明
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[13]
+  Use the text-transform Property to Make Text Uppercase
+  
+[内容]
+  プロパティ「text-transform」でテキストの大文字・小文字を調節
+  
+  設定値
+    none        // Apple
+    uppercase   // APPLE
+    lowercase   // apple
+    capitalize  // Apple
+    initial     // Apple
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[14]
+  Set the font-size for Multiple Heading Elements
+  
+[内容]
+  要素「h1-h6」のフォントサイズを指定
+  
+[確認]
+  // 省略
+  
+================================================================================
+[15]
+  Set the font-weight for Multiple Heading Elements
+  
+[内容]
+  プロパティ「font-weight」でテキストの太さを調節
+  
+  設定値
+    bold     // 太字
+    normal   // 普通
+    bolder   // より太い
+    lighter  // より細い
+    100	     // 絶対値
+    200	     // 絶対値
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[16]
+  Set the font-size of Paragraph Text
+  
+[内容]
+  要素「p」のフォントサイズを調整
+  
+[確認]
+  // 省略
+  
+================================================================================
+[17]
+  Set the line-height of Paragraphs
+  
+[内容]
+  プロパティ「line-height」で行全体の高さを調節
+  
+  設定例
+    2       // フォントサイズの二倍
+    25px    // 絶対値
+    150%    // フォントサイズの150%
+    normal  // ブラウザ設定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <p id='I1'>Hello</p>
+  <p id='I2'>Hello</p>
+  
+  // CSS
+  <style>
+    #I1 {
+      border: 2px solid black;
+      line-height: 1;
+    }
+    #I2 {
+      border: 2px solid black;
+      line-height: 2;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Adjust the Hover State of an Anchor Tag
+  
+[内容]
+  疑似要素「:hover」で要素の上にカーソルがある時のみ発生する要素を指定
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[19]
+  Change an Element's Relative Position
+  
+[内容]
+  プロパティ「position」
+    position: relative  // 本来の場所から相対的に変更
+    top: 10px           // 本来の場所から下に10px移動
+    left: 10px          // 本来の場所から右に10px移動
+    
+    position: relative  // 本来の場所から相対的に変更
+    bottom: 10px        // 本来の場所から上に10px移動
+    right: 10px         // 本来の場所から左に10px移動
+    
+    position: relative  // 本来の場所から相対的に変更
+    top: 10em           // 本来の場所から下に10文字分移動
+    left: 10em          // 本来の場所から右に10文字分移動
+    
+    position: relative  // 本来の場所から相対的に変更
+    top: 10%            // 本来の場所から下に親要素の10%分移動
+    left: 10%           // 本来の場所から右に親要素の10%分移動
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div id='I1'></div>
+    <div id='I2'></div>
+    <div id='I3'></div>
+    <div id='I4'></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 300px;
+      height: 200vh;
+      border: 2px solid Black;
+      background-color: White;
+    }
+    #I1 {
+      width: 30px;
+      height: 30px;
+      background-color: Black;
+      position: static;    // 本来の場所に配置
+      top: 0px;            // 無効になる 
+      left: 30px;          // 無効になる
+    }
+    #I2 {
+      width: 30px;
+      height: 30px;
+      background-color: Crimson;
+      position: relative;  // 本来の場所から相対的に変更
+      top: 0px;            // 本来の場所から下に「0px」
+      left: 30px;          // 本来の場所から右に「30px」
+    }
+    #I3 {
+      width: 30px;
+      height: 30px;
+      background-color: CornFlowerBlue;
+      position: absolute;  // ブラウザ画面の左上を起点に配置
+      top: 0px;            // ブラウザ画面の左上から下に「0px」
+      left: 100px;         // ブラウザ画面の左上から右に「100px」
+    }
+    #I4 {
+      width: 30px;
+      height: 30px;
+      background-color: YellowGreen;
+      position: fixed;     // 画面スクロールでも配置が有効、あとは「absolute」と同じ
+      top: 0px;            // 左上から下に「0px」
+      left: 200px;         // 左上から右に「200px」
+    }  
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Move a Relatively Positioned Element with CSS Offsets
+  
+[内容]
+  疑似要素「:hover」を使用してイベント発生時に要素を移動させる
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div id='I1'></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 300px;
+      height: 300px;
+      border: 2px solid Black;
+      background-color: White;
+    }
+    #I1 {
+      width: 100px;
+      height: 100px;
+      background-color: Black;
+      position: relative;
+      top: 0px; 
+      left: 0px;
+    }
+    #I1:hover {
+      top: 100px;
+      left: 100px;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Lock an Element to its Parent with Absolute Positioning
+  
+[内容]
+  プロパティ「position」
+    position: absolute  // ブラウザの左上
+    top: 10px           // 左上から下に10px移動
+    left: 10px          // 左上から右に10px移動
+    
+    position: absolute  // ブラウザの左上
+    bottom: 10px        // 左上から上に10px移動
+    right: 10px         // 左上から左に10px移動
+    
+    position: absolute  // ブラウザの左上
+    top: 10em           // 左上から下に10文字分移動
+    left: 10em          // 左上から右に10文字分移動
+    
+    position: absolute  // ブラウザの左上
+    top: 10%            // 左上から下に親要素の10%移動
+    left: 10%           // 左上から右に親要素の10%移動
+  
+[確認]
+  // 上記「19」を参照
+  
+================================================================================
+[22]
+  Lock an Element to the Browser Window with Fixed Positioning
+  
+[内容]
+  positionプロパティ
+    position: fixed  // ブラウザの左上 -> スクロール時に合わせて移動
+    top: 10px        // 左上から下に10px移動
+    left: 10px       // 左上から右に10px移動
+    
+    position: fixed  // ブラウザの左上 -> スクロール時に合わせて移動
+    bottom: 10px     // 左上から上に10px移動
+    right: 10px      // 左上から左に10px移動
+    
+    position: fixed  // ブラウザの左上 -> スクロール時に合わせて移動
+    top: 10em        // 左上から下に10文字分移動
+    left: 10em       // 左上から右に10文字分移動
+    
+    position: fixed  // ブラウザの左上 -> スクロール時に合わせて移動
+    top: 10%         // 左上から下に親要素の10%移動
+    left: 10%        // 左上から右に親要素の10%移動
+  
+[確認]
+  // 上記「19」を参照
+  
+================================================================================
+[23]
+  Push Elements Left or Right with the float Property
+  
+[内容]
+  プロパティ「float」
+    float: left   // 左側に移動して、後要素を自分の右側に回り込ませる
+    float: right  // 右側に移動して、後要素を自分の左側に回り込ませる
+  
+  プロパティ「clear」
+    clear: both   // 左右の回り込み解除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div class='Box' id="I1"></div>
+    <div class='Box' id="I2"></div>
+    <div class='Box' id="I3"></div>
+    <div class='Box' id="I4"></div>
+    <div class='Box' id="I5"></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 200px;
+      height: 200px;
+      border: 2px solid Black;
+    }
+    .Box {
+      width: 30px;
+      height: 30px;
+    }
+    #I1 {
+      background-color: Crimson;
+      float: left;   // 左側に移動して、後要素を自分の右側に回り込ませる
+    }
+    #I2 {
+      background-color: Crimson;
+      float: right;  // 右側に移動して、後要素を自分の左側に回り込ませる
+    }
+    #I3 {
+      background-color: CornFlowerBlue;
+      float: left;   // 左側に移動して、後要素を自分の右側に回り込ませる
+    }
+    #I4 {
+      background-color: CornFlowerBlue;
+      float: right;  // 右側に移動して、後要素を自分の左側に回り込ませる
+    }
+    #I5 {
+      background-color: Black;
+      clear: both;  // 左右の回り込み解除
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[24]
+  Change the Position of Overlapping Elements with the z-index Property
+  
+[内容]
+  プロパティ「z-index」
+    要素1 { z-index: 1 }
+    要素2 { z-index: 3 }  // 要素1-3-2の順に積み重なる
+    要素3 { z-index: 2 }  // 値に負数を指定した場合は最下層
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div class='Box' id="I1"></div>
+    <div class='Box' id="I2"></div>
+    <div class='Box' id="I3"></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 200px;
+      height: 200px;
+      border: 2px solid Black;
+    }
+    .Box {
+      width: 40px;
+      height: 40px;
+    }
+    #I1 {
+      background-color: Crimson;
+      position: relative;
+      bottom: 0px;
+      left: 0px;
+      z-index: 1;
+    }
+    #I2 {
+      background-color: CornFlowerBlue;
+      position: relative;
+      bottom: 20px;
+      left: 20px;
+      z-index: 2;
+    }
+    #I3 {
+      background-color: Black;
+      position: relative;
+      bottom: 40px;
+      left: 40px;
+      z-index: 3;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[25]
+  Center an Element Horizontally Using the margin Property
+  
+[内容]
+  プロパティ「margin: 上下 左右(auto)」で要素を左右中央に配置する
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'></div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 100px;
+      height: 100px;
+      margin: 20px auto;
+      background-color: black;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[26]
+  Learn about Complementary Colors
+  
+[内容]
+  補色 -> 色相環で正反対に位置する関係色の組合せで、強いコントラスト効果を生み出す
+  #FF0000 - #00FFFF  // Red - Cyan
+  
+[確認]
+  // 省略
+  
+================================================================================
+[27]
+  Learn about Tertiary Colors
+  
+[内容]
+  原色 -> 他の色を混ぜ合わせても作成できない基本色、モデルにより異なる
+  二次色 -> 原色＋原色
+  三次色 -> 二次色＋原色
+  
+  RGBモデル
+    R(赤)
+    G(緑)
+    B(青)
+  
+  CMYモデル
+    C(シアン)
+    M(マゼンダ)
+    Y(イエロー)
+  
+  RYBモデル
+    R(赤)
+    Y(黄)
+    B(青)
+  
+[確認]
+  // 省略
+  
+================================================================================
+[28]
+  Adjust the Color of Various Elements to Complementary Colors
+  
+[内容]
+  各要素を補色で装飾
+    支配色：#00FF00 = Green
+    強調色：#FF00FF = Magenda
+  
+[確認]
+  // 省略
+  
+================================================================================
+[29]
+  Adjust the Hue of a Color
+  
+[内容]
+  HSL書式
+    色相を「0」から「300」に変化
+  
+  色相(H)
+  彩度(S)
+  輝度(L)
+  
+  hsl(0,   100%, 50%)  // Red
+  hsl(60,  100%, 50%)  // Yellow
+  hsl(120, 100%, 50%)  // Green
+  hsl(180, 100%, 50%)  // Cyan
+  hsl(240, 100%, 50%)  // Blue
+  hsl(300, 100%, 50%)  // Magenda
+  
+[確認]
+  // 省略
+  
+================================================================================
+[30]
+  Adjust the Tone of a Color
+  
+[内容]
+  HSL書式
+    彩度を「0%」から「100%」に変化
+  
+  hsl(0,   0%, 50%)  // 不明
+  hsl(0,  20%, 50%)  // 不明
+  hsl(0,  40%, 50%)  // 不明
+  hsl(0,  60%, 50%)  // 不明
+  hsl(0,  80%, 50%)  // 不明
+  hsl(0, 100%, 50%)  // 不明
+  
+[確認]
+  // 省略
+  
+================================================================================
+[31]
+  Create a Gradual CSS Linear Gradient
+  
+[内容]
+  関数「linear-gradient」でプロパティ「background」の直線上のグラデーション表現を行う
+  
+  関数書式
+    background: linear-gradient(方向, 開始色, 終了色)
+  
+  方向1
+    to top     // 下から上へ
+    to right   // 左から右へ
+    to bottom  // 上から下へ
+    to left    // 右から左へ
+  
+  方向2
+    0deg       // 下から上へ -> 0時
+    90deg      // 左から右へ -> 3時
+    180deg     // 上から下へ -> 6時
+    270deg     // 右から左へ -> 9時
+  
+  実例
+    background: linear-gradient(90deg, crimson, yellow)     // 左から右へ
+    background: linear-gradient(to right, crimson, yellow)  // 左から右へ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div class='BOX' id="I1"></div>
+    <div class='BOX' id="I2"></div>
+    <div class='BOX' id="I3"></div>
+    <div class='BOX' id="I4"></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 400px;
+      height: 400px;
+      border: 2px solid Black;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 10px;
+      padding: 10px;
+    }
+    .BOX {
+      border: 2px solid Black;
+    }
+    #I1 { background: linear-gradient(0deg,   Black, White); }
+    #I2 { background: linear-gradient(90deg,  Black, White); }
+    #I3 { background: linear-gradient(180deg, Black, White); }
+    #I4 { background: linear-gradient(270deg, Black, White); }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[32]
+  Use a CSS Linear Gradient to Create a Striped Element
+  
+[内容]
+  関数「repeating-linear-gradient」でプロパティ「background」のストライプ状のグラデーション表現
+  
+  関数実行
+    background: repeating-linear-gradient(方向, 色1(始), 色1(終), 色2(始), 色2(終) …)
+  
+  方向1
+    to top     // 下から上へ
+    to right   // 左から右へ
+    to bottom  // 上から下へ
+    to left    // 右から左へ
+    
+  方向2
+    0deg       // 下から上へ -> 0時
+    90deg      // 左から右へ -> 3時
+    180deg     // 上から下へ -> 6時
+    270deg     // 右から左へ -> 9時
+    
+  実例
+    background: repeating-linear-gradient(
+      to right,
+      blue 0px,
+      blue 10px, 
+      cyan 20px,
+      cyan 30px
+    )
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <div class='BOX' id="I1"></div>
+    <div class='BOX' id="I2"></div>
+    <div class='BOX' id="I3"></div>
+    <div class='BOX' id="I4"></div>
+  </div>
+  
+  // CSS
+  <style>
+    #C1 {
+      width: 400px;
+      height: 400px;
+      border: 2px solid Black;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      grid-gap: 10px;
+      padding: 10px;
+    }
+    .BOX {
+      border: 2px solid Black;
+    }
+    #I1 {
+      background: 
+        repeating-linear-gradient(
+          0deg,       // 下から上へ 
+          Green 0%,   // 緑(始)
+          Green 10%,  // 緑(終)
+          White 50%,  // 白(始)
+          White 60%,  // 白(終)
+          Black 90%,  // 黒(始)
+          Black 100%  // 黒(終)
+        );
+    }
+    #I2 {
+      background: 
+        repeating-linear-gradient(
+          90deg,      // 左から右へ 
+          Green 0%,   // 緑(始)
+          Green 10%,  // 緑(終)
+          White 50%,  // 白(始)
+          White 60%,  // 白(終)
+          Black 90%,  // 黒(始)
+          Black 100%  // 黒(終)
+        );
+    }
+    #I3 {
+      background: 
+        repeating-linear-gradient(
+          180deg,     // 上から下へ 
+          Green 0%,   // 緑(始)
+          Green 10%,  // 緑(終)
+          White 50%,  // 白(始)
+          White 60%,  // 白(終)
+          Black 90%,  // 黒(始)
+          Black 100%  // 黒(終)
+        );
+    }
+    #I4 {
+      background: 
+        repeating-linear-gradient(
+          270deg,     // 左から右へ 
+          Green 0%,   // 緑(始)
+          Green 10%,  // 緑(終)
+          White 50%,  // 白(始)
+          White 60%,  // 白(終)
+          Black 90%,  // 黒(始)
+          Black 100%  // 黒(終)
+        );
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[33]
+  Create Texture by Adding a Subtle Pattern as a Background Image
+  
+[内容]
+  関数「url」で指定URLのページをロードする
+  
+  関数実行
+    background: url(https://xx1.png)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <p id='I1'>Hello I am Makoto Araki.</p>
+    <p id='I2'>web developer</p>
+  </div>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    body {
+      width; 100vw;
+      height: 100vh;
+      z-index: -1;
+      background:
+        linear-gradient(90deg, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.3)), 
+        url(https://cdn.freecodecamp.org/testable-projects-fcc/images/survey-form-background.jpeg);
+      background-size: cover;
+      background-cover: center;
+      background-repeat: no-repeat;
+    }
+    #C1 {
+      width: 100%;
+      min-width: 500px;
+      height: 100px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 10%;
+    }
+    #I1 {
+      color: White;
+      font-size: 40px;
+      text-align: center;
+    }
+    #I2 {
+      color: White;
+      font-size: 20px;
+      text-align: center;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[34]
+  Use the CSS Transform scale Property to Change the Size of an Element
+  
+[内容]
+  関数「scale」でプロパティ「transform」の対象セレクタのサイズ変更
+  
+  関数実行
+    transform: scale(0.9)  // 0.9倍
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[35]
+  Use the CSS Transform scale Property to Scale an Element on Hover
+  
+[内容]
+  要素にカーソル移動時(:hover)に要素のサイズ変更
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[36]
+  Use the CSS Transform Property skewX to Skew an Element Along the X-Axis
+  
+[内容]
+  関数「skewX」でプロパティ「transform」の対象セレクタを平面上で歪める
+  
+  関数実行
+    transform: skewX(30deg)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="C1"></div>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    #C1 {
+      width: 200px;
+      height: 200px;
+      background-color: Crimson;
+      margin-top: 15%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes Groom {
+      0% {
+        transform: skewX(0deg);
+      }
+      25% {
+        transform: skewX(10deg);
+      }
+      50% {
+        transform: skewX(20deg);
+      }
+      75% {
+        transform: skewX(30deg);
+      }
+      100% {
+        transform: skewX(40deg);
+      }
+    }
+    #C1:hover {
+      animation-name: Groom;
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[37]
+  Use the CSS Transform Property skewY to Skew an Element Along the Y-Axis
+  
+[内容]
+  関数「skewY」でプロパティ「transform」の対象セレクタを平面上で歪める
+  
+  関数実行
+    transform: skewY(30deg)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id="C1"></div>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    #C1 {
+      width: 200px;
+      height: 200px;
+      background-color: Crimson;
+      margin-top: 15%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @keyframes Groom {
+      0% {
+        transform: skewY(0deg);
+      }
+      25% {
+        transform: skewY(10deg);
+      }
+      50% {
+        transform: skewY(20deg);
+      }
+      75% {
+        transform: skewY(30deg);
+      }
+      100% {
+        transform: skewY(40deg);
+      }
+    }
+    #C1:hover {
+      animation-name: Groom;
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[38]
+  Create a Graphic Using CSS
+  
+[内容]
+  各プロパティを駆使して三日月をデザイン
+  
+[確認]
+  // 省略
+  
+================================================================================
+[39]
+  Create a More Complex Shape Using CSS and HTML
+  
+[内容]
+  要素::before
+    要素の前にコンテンツ追加
+  
+  要素::after
+    要素の後にコンテンツ追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <p id='I1'>Hello I am Makoto Araki.</p>
+    <p id='I2'>web developer</p>
+  </div>
+  <div id='C2'>
+    <p id='I3'></p>
+  </div>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    #C1 {
+      width: 100%;
+      min-width: 500px;
+      height: 100px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 50px;
+    }
+    #I1 {
+      color: Black;
+      font-size: 40px;
+      text-align: center;
+    }
+    #I2 {
+      color: Black;
+      font-size: 20px;
+      text-align: center;
+    }
+    #I2:before {
+      color: Crimson;
+      content: '▲';
+      margin-right: 5px;
+    }
+    #I2:after {
+      color: Crimson;
+      content: '▲';
+      margin-left: 5px;
+    }
+    #C2 {
+      width: 500px;
+      height: 300px;
+      border: 2px solid Black;
+      margin: 60px auto;
+    }
+    #I3 {
+      width: 50px;
+      height: 50px;
+      background-color: Crimson;
+    }
+    @keyframes Groom {
+      0% {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        opacity: 1;
+      }
+      10% {
+        position: relative;
+        top: 100px;
+        left: 0px;
+        opacity: 0.5;
+      }
+      20% {
+        position: relative;
+        top: 100px;
+        left: 100px;
+        opacity: 1;
+      }
+      30% {
+        position: relative;
+        top: 200px;
+        left: 100px;
+        opacity: 0.5;
+      }
+      40% {
+        position: relative;
+        top: 200px;
+        left: 200px;
+        opacity: 1;
+      }
+      50% {
+        position: relative;
+        top: 100px;
+        left: 200px;
+        opacity: 0.5;
+      }
+      60% {
+        position: relative;
+        top: 100px;
+        left: 100px;
+        opacity: 1;
+      }
+      70% {
+        position: relative;
+        top: 0px;
+        left: 100px;
+        opacity: 0.5;
+      }
+      80% {
+        position: relative;
+        top: 100px;
+        left: 100px;
+        opacity: 1;
+      }
+      90% {
+        position: relative;
+        top: 100px;
+        left: 0px;
+        opacity: 0.5;
+      }
+      100% {
+        position: relative;
+        top: 0px;
+        left: 0px;
+        opacity: 1;
+      }
+    }
+    #I3:hover {
+      animation-name: Groom;
+      animation-duration: 5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 10;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[40]
+  Learn How the CSS @keyframes and animation Properties Work
+  
+[内容]
+  アニメーション導入
+  
+  セレクタ:hover {
+    animation-name: アニメーション名
+    animation-duration: 再生時間
+  }
+  
+  @keyframes アニメーション名 {
+    0% {
+      CSSプロパティ: 値
+    }
+    100% {
+      CSSプロパティ: 値
+    }
+  }
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[41]
+  Use CSS Animation to Change the Hover State of a Button
+  
+[内容]
+  疑似セレクタ「要素:hover」で対象セレクタにカーソル移動した時にアニメーション起動
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[42]
+  Modify Fill Mode of an Animation
+  
+[内容]
+  プロパティ「animation-fill-mode」で再生開始時の遅延および再生終了時の表示を設定
+  
+  設定値
+    forwards   // 再生後は@keyframesの100%の状態
+    backwards  // 再生開始の遅延状態の間は@keyframesの0%の状態
+    both       // forwards + backwards
+    none       // @keyframesと無関係に表示？
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[43]
+  Create Movement Using CSS Animation
+  
+[内容]
+  アニメーションに動きを付与する
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[44]
+  Create Visual Direction by Fading an Element from Left to Right
+  
+[内容]
+  アニメーション中に透明度を付与する
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[45]
+  Animate Elements Continually Using an Infinite Animation Count
+  
+[内容]
+  プロパティ「animation-iteration-count」でアニメーション動作回数を設定 -> infinity(無限)
+  
+[確認]
+  // 上記「39」を参照
+  
+================================================================================
+[46]
+  Make a CSS Heartbeat using an Infinite Animation Count
+  
+[内容]
+  本来は心臓の鼓動を表現するが、オレンジ色のボールの膨張・収縮で省略
+  
+[確認]
+  // 省略
+  
+================================================================================
+[47]
+  Animate Elements at Variable Rates
+  
+[内容]
+  朝焼けの星々の瞬きを表現する(1)
+  
+[確認]
+  // 省略
+  
+================================================================================
+[48]
+  Animate Multiple Elements at Variable Rates
+  
+[内容]
+  朝焼けの星々の瞬きを表現する(2)
+  
+[確認]
+  // 省略
+  
+================================================================================
+[49]
+  Change Animation Timing with Keywords
+  
+[内容]
+  プロパティ「animation-timing-function」でアニメーションの加減速を制御
+  
+  animation-timing-function:
+    ease         // 加速して減速
+    ease-in      // 徐々に加速
+    ease-out     // 徐々に減速
+    ease-in-out  // 加速して減速
+    linear       // 等速
+  
+  設定値が五種類しかなく不便なため、直接にべジェ曲線を指定できる関数が登場
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <div id='C1'>
+    <p id='I1'>Hello I am Makoto Araki.</p>
+    <p id='I2'>web developer</p>
+  </div>
+  <div id='C2'>
+    <p id='I3'>3</p>
+    <p id='I4'>4</p>
+    <p id='I5'>5</p>
+    <p id='I6'>6</p>
+    <p id='I7'>7</p>
+  </div>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 0px;
+    }
+    #C1 {
+      width: 100%;
+      min-width: 500px;
+      height: 100px;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      top: 50px;
+    }
+    #I1 {
+      color: Black;
+      font-size: 40px;
+      text-align: center;
+    }
+    #I2 {
+      color: Black;
+      font-size: 20px;
+      text-align: center;
+    }
+    #I2:before {
+      color: Crimson;
+      content: '▲';
+      margin-right: 5px;
+    }
+    #I2:after {
+      color: Crimson;
+      content: '▲';
+      margin-left: 5px;
+    }
+    #C2 {
+      width: 500px;
+      height: 300px;
+      border: 2px solid Black;
+      margin: 60px auto;
+      display: flex;
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    #I3, #I4, #I5, #I6, #I7 {
+      width: 50px;
+      height: 50px;
+      color: White;
+      background-color: Crimson;
+      font-size: 20px;
+      text-align: center;
+      position: relative;
+    }
+    @keyframes Fall {
+      0% {
+        top: 0px;
+      }
+      100% {
+        top: 250px;
+      }
+    }
+    #I3:hover {
+      animation-name: Fall;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-timing-function: ease;
+    }
+    #I4:hover {
+      animation-name: Fall;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in;
+    }
+    #I5:hover {
+      animation-name: Fall;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-out;
+    }
+    #I6:hover {
+      animation-name: Fall;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-timing-function: ease-in-out;
+    }
+    #I7:hover {
+      animation-name: Fall;
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      animation-timing-function: linear;
+    }
+  </style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi sample.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  @charset utf-8;
+  
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[50]
+  Learn How Bezier Curves Work
+  
+[内容]
+  関数「cubic-bezier」
+    詳細にべジェ曲線を数値指定してアニメーションの加減速を制御
+  
+  関数実行
+    cubic-bezier(x1, y1, x2, y2)
+  
+  前記録の設定値を関数で再現
+    // ease
+    cubic-bezier(0.25, 0.10, 0.25, 1.00)
+    
+    // ease-in
+    cubic-bezier(0.42, 0.00, 1.00, 1.00)
+    
+    // ease-out
+    cubic-bezier(0.00, 0.00, 0.58, 1.00)
+    
+    // ease-in-out
+    cubic-bezier(0.42, 0.00, 0.58, 1.00)
+    
+    // linear
+    cubic-bezier(0.00, 0.00, 1.00, 1.00)
+  
+[確認]
+  // 上記「49」を参照
+  
+================================================================================
+[51]
+  Use a Bezier Curve to Move a Graphic
+  
+[内容]
+  関数「cubic-bizier」で「ease」を実現する
+  
+[確認]
+  // 上記「49」を参照
+  
+================================================================================
+[52]
+  Make Motion More Natural Using a Bezier Curve
+  
+[内容]
+  関数「cubic-bizier」に様々な値を設定
+  
+[確認]
+  // 省略
+  
+================================================================================

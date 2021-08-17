@@ -1,0 +1,5347 @@
+================================================================================
+[000] Introduction to JavaScript
+[001] Comment Your JavaScript Code
+[002] Declare JavaScript Variables
+[003] Storing Values with the Assignment Operator
+[004] Assigning the Value of One Variable to Another
+[005] Initializing Variables with the Assignment Operator
+[006] Understanding Uninitialized Variables
+[007] Understanding Case Sensitivity in Variables
+[008] Add Two Numbers with JavaScript
+[009] Subtract One Number from Another with JavaScript
+[010] Multiply Two Numbers with JavaScript
+[011] Divide One Number by Another with JavaScript
+[012] Increment a Number with JavaScript
+[013] Decrement a Number with JavaScript
+[014] Create Decimal Numbers with JavaScript
+[015] Multiply Two Decimals with JavaScript
+[016] Divide One Decimal by Another with JavaScript
+[017] Finding a Remainder in JavaScript
+[018] Compound Assignment With Augmented Addition
+[019] Compound Assignment With Augmented Subtraction
+[020] Compound Assignment With Augmented Multiplication
+[021] Compound Assignment With Augmented Division
+[022] Declare String Variables
+[023] Escaping Literal Quotes in Strings
+[024] Quoting Strings with Single Quotes
+[025] Escape Sequences in Strings
+[026] Concatenating Strings with Plus Operator
+[027] Concatenating Strings with the Plus Equals Operator
+[028] Constructing Strings with Variables
+[029] Appending Variables to Strings
+[030] Find the Length of a String
+[031] Use Bracket Notation to Find the First Character in a String
+[032] Understand String Immutability
+[033] Use Bracket Notation to Find the Nth Character in a String
+[034] Use Bracket Notation to Find the Last Character in a String
+[035] Use Bracket Notation to Find the Nth-to-Last Character in a String
+[036] Word Blanks
+[037] Store Multiple Values in one Variable using JavaScript Arrays
+[038] Nest one Array within Another Array
+[039] Access Array Data with Indexes
+[040] Modify Array Data With Indexes
+[041] Access Multi-Dimensional Arrays With Indexes
+[042] Manipulate Arrays With push()
+[043] Manipulate Arrays With pop()
+[044] Manipulate Arrays With shift()
+[045] Manipulate Arrays With unshift()
+[046] Shopping List
+[047] Write Reusable JavaScript with Functions
+[048] Passing Values to Functions with Arguments
+[049] Global Scope and Functions
+[050] Local Scope and Functions
+[051] Global vs. Local Scope in Functions
+[052] Return a Value from a Function with Return
+[053] Understanding Undefined Value returned from a Function
+[054] Assignment with a Returned Value
+[055] Stand in Line
+[056] Understanding Boolean Values
+[057] Use Conditional Logic with If Statements
+[058] Comparison with the Equality Operator
+[059] Comparison with the Strict Equality Operator
+[060] Practice comparing different values
+[061] Comparison with the Inequality Operator
+[062] Comparison with the Strict Inequality Operator
+[063] Comparison with the Greater Than Operator
+[064] Comparison with the Greater Than Or Equal To Operator
+[065] Comparison with the Less Than Operator
+[066] Comparison with the Less Than Or Equal To Operator
+[067] Comparisons with the Logical And Operator
+[068] Comparisons with the Logical Or Operator
+[069] Introducing Else Statements
+[070] Introducing Else If Statements
+[071] Logical Order in If Else Statements
+[072] Chaining If Else Statements
+[073] Golf Code
+[074] Selecting from Many Options with Switch Statements
+[075] Adding a Default Option in Switch Statements
+[076] Multiple Identical Options in Switch Statements
+[077] Replacing If Else Chains with Switch
+[078] Returning Boolean Values from Functions
+[079] Return Early Pattern for Functions
+[080] Counting Cards
+[081] Build JavaScript Objects
+[082] Accessing Object Properties with Dot Notation
+[083] Accessing Object Properties with Bracket Notation
+[084] Accessing Object Properties with Variables
+[085] Updating Object Properties
+[086] Add New Properties to a JavaScript Object
+[087] Delete Properties from a JavaScript Object
+[088] Using Objects for Lookups
+[089] Testing Objects for Properties
+[090] Manipulating Complex Objects
+[091] Accessing Nested Objects
+[092] Accessing Nested Arrays
+[093] Record Collection
+[094] Iterate with JavaScript While Loops
+[095] Iterate with JavaScript For Loops
+[096] Iterate Odd Numbers With a For Loop
+[097] Count Backwards With a For Loop
+[098] Iterate Through an Array with a For Loop
+[099] Nesting For Loops
+[100] Iterate with JavaScript Do...While Loops
+[101] Replace Loops using Recursion
+[102] Profile Lookup
+[103] Generate Random Fractions with JavaScript
+[104] Generate Random Whole Numbers with JavaScript
+[105] Generate Random Whole Numbers within a Range
+[106] Use the parseInt Function
+[107] Use the parseInt Function with a Radix
+[108] Use the Conditional (Ternary) Operator
+[109] Use Multiple Conditional (Ternary) Operators
+[110] Use Recursion to Create a Countdown
+[111] Use Recursion to Create a Range of Numbers
+================================================================================
+[001]
+  Comment Your JavaScript Code
+  
+[内容]
+  コメント「// ---」と「/* --- */」
+  
+[確認]
+  省略
+  
+================================================================================
+[002]
+  Declare JavaScript Variables
+  
+[内容]
+  変数定義(データ型)
+    undefined  // 未定義
+    null       // NULL
+    boolean    // 真(true)または偽(false)
+    string     // 文字列
+    symbol     // 不明
+    bigint     // 不明
+    number     // 数値(実数や整数)
+    object     // オブジェクト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = true;
+    var myVar2 = 'AA';
+    var myVar3 = 1000;
+    var myVar4;
+    
+    // データ型
+    console.log(typeof myVar1);  // boolean
+    console.log(typeof myVar2);  // string
+    console.log(typeof myVar3);  // number
+    console.log(typeof myVar4);  // undefined -> 初期化忘れ
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[003]
+  Storing Values with the Assignment Operator
+  
+[内容]
+  代入演算子
+
+[確認]
+  // 上記「002」を参照
+  
+================================================================================
+[004]
+  Assigning the Value of One Variable to Another
+  
+[内容]
+  他変数に代入
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'AA';
+    var myVar2 = myVar1;
+    var myVar3 = myVar2;
+    
+    // 変数の内容を出力
+    console.log(myVar1);  // AA
+    console.log(myVar2);  // AA
+    console.log(myVar3);  // AA
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[005]
+  Initializing Variables with the Assignment Operator
+  
+[内容]
+  変数定義と初期化
+  
+[確認]
+  // 上記「002」を参照
+  
+================================================================================
+[006]
+  Understanding Uninitialized Variables
+  
+[内容]
+  初期化なし -> データ型「undefined」で初期化
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1;
+    var myVar2 = 'AA';
+    
+    // データ型
+    console.log(typeof myVar1);  // undefined
+    console.log(typeof myVar2);  // string
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[007]
+  Understanding Case Sensitivity in Variables
+  
+[内容]
+  変数名と関数名は大文字と小文字が区別
+  
+[確認]
+  // 省略
+  
+================================================================================
+[008]
+  Add Two Numbers with JavaScript
+  
+[内容]
+  加算処理
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 加算処理
+    var Var01 = 12 + 6;
+    var Var02 = 11 + 1;
+    
+    // 出力
+    console.log(Var01);  // 18
+    console.log(Var02);  // 12
+    
+    // 減算処理
+    var Var03 = 12 - 6;
+    var Var04 = 11 - 1;
+    
+    // 出力
+    console.log(Var03);  // 6
+    console.log(Var04);  // 10
+    
+    // 乗算処理
+    var Var05 = 12 * 6;
+    var Var06 = 11 * 1;
+    
+    // 出力
+    console.log(Var05);  // 72
+    console.log(Var06);  // 11
+    
+    // 除算処理
+    var Var07 = 12 / 6;
+    var Var08 = 11 / 1;
+    
+    // 出力
+    console.log(Var07);  // 2
+    console.log(Var08);  // 11
+    
+    // 剰余算処理
+    var Var09 = 12 % 2;
+    var Var10 = 11 % 2;
+    
+    // 出力
+    console.log(Var09);  // 0
+    console.log(Var10);  // 1
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[009]
+  Subtract One Number from Another with JavaScript
+  
+[内容]
+  減算処理
+  
+[確認]
+  上記「008」を参照
+  
+================================================================================
+[010]
+  Multiply Two Numbers with JavaScript
+  
+[内容]
+  乗算処理
+  
+[確認]
+  上記「008」を参照
+  
+================================================================================
+[011]
+  Divide One Number by Another with JavaScript
+  
+[内容]
+  除算処理
+  
+[確認]
+  上記「008」を参照
+  
+================================================================================
+[012]
+  Increment a Number with JavaScript
+  
+[内容]
+  インクリメント演算子
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 12;
+    var myVar2 = 12;
+    
+    // 出力
+    console.log(myVar1++);  // 12 -> 出力後にインクリメント
+    console.log(++myVar2);  // 13 -> インクリメント後に出力
+    
+    // 変数定義と初期化
+    var myVar3 = 12;
+    var myVar4 = 12;
+    
+    // 出力
+    console.log(myVar3--);  // 12 -> 出力後にデクリメント
+    console.log(--myVar4);  // 11 -> デクリメント後に出力
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[013]
+  Decrement a Number with JavaScript
+  
+[内容]
+  デクリメント演算子
+  
+[確認]
+  上記「012」を参照
+  
+================================================================================
+[014]
+  Create Decimal Numbers with JavaScript
+  
+[内容]
+  小数の定義と初期化
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 小数の定義と初期化
+    var myVar1 = 3.14;
+    var myVar2 = 5.29;
+    
+    // 出力
+    console.log(myVar1);  // 3.14
+    console.log(myVar2);  // 5.29
+    
+    // 小数同士の乗算
+    var myVar1 = 3.1 * 2.2;
+    var myVar2 = 5.2 * 2.2;
+    
+    // 出力
+    console.log(myVar1);  // 6.820000…1
+    console.log(myVar2);  // 11.44000…1
+    
+    // 小数同士の除算
+    var myVar1 = 4.4 / 2.2;
+    var myVar2 = 5.2 / 0.2;
+    
+    // 出力
+    console.log(myVar1);  // 2
+    console.log(myVar2);  // 26
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[015]
+  Multiply Two Decimals with JavaScript
+  
+[内容]
+  小数同士の乗算
+  
+[確認]
+  上記「014」を参照
+  
+================================================================================
+[016]
+  Divide One Decimal by Another with JavaScript
+  
+[内容]
+  小数同士の除算
+  
+[確認]
+  上記「014」を参照
+  
+================================================================================
+[017]
+  Finding a Remainder in JavaScript
+  
+[内容]
+  剰余算処理
+  
+[確認]
+  上記「008」を参照
+  
+================================================================================
+[018]
+  Compound Assignment With Augmented Addition
+  
+[内容]
+  代入演算子(加算)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var Var01 = 24;
+    var Var02 = 24;
+    var Var03 = 24;
+    var Var04 = 24;
+    
+    // 代入演算子(加算)
+    Var01 += 2;
+    console.log(Var01);  // 24 -> 26
+    
+    // 代入演算子(減算)
+    Var02 -= 2;
+    console.log(Var02);  // 24 -> 22
+    
+    // 代入演算子(乗算)
+    Var03 *= 2;
+    console.log(Var03);  // 24 -> 48
+    
+    // 代入演算子(除算)
+    Var04 /= 2;
+    console.log(Var04);  // 24 -> 12
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[019]
+  Compound Assignment With Augmented Subtraction
+  
+[内容]
+  代入演算子(減算)
+  
+[確認]
+  上記「018」を参照
+  
+================================================================================
+[020]
+  Compound Assignment With Augmented Multiplication
+  
+[内容]
+  代入演算子(乗算)
+  
+[確認]
+  上記「018」を参照
+  
+================================================================================
+[021]
+  Compound Assignment With Augmented Division
+  
+[内容]
+  代入演算子(除算)
+  
+[確認]
+  上記「018」を参照
+  
+================================================================================
+[022]
+  Declare String Variables
+  
+[内容]
+  文字列型の変数定義
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'Hello World';
+    var myVar2 = "Hello World";
+    
+    // 出力
+    console.log(myVar1);  // Hello World
+    console.log(myVar2);  // Hello World
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[023]
+  Escaping Literal Quotes in Strings
+  
+[内容]
+  文字列リテラル内の引用符をエスケープ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'He said \"Hello World\"';
+    var myVar2 = "He said \"Hello World\"";
+    
+    // 出力
+    console.log(myVar1);  // He said "Hello World"
+    console.log(myVar2);  // He said "Hello World"
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[024]
+  Quoting Strings with Single Quotes
+  
+[内容]
+  引用符のネスト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'He said "Hello World"';
+    var myVar2 = 'He said "Hello World"';
+    
+    // 出力
+    console.log(myVar1);  // He said "Hello World"
+    console.log(myVar2);  // He said "Hello World"
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[025]
+  Escape Sequences in Strings
+  
+[内容]
+  エスケープを使用した特殊文字
+    特殊文字「\'」 => 出力内容「'」
+    特殊文字「\"」 => 出力内容「"」
+    特殊文字「\\」 => 出力内容「\」
+    特殊文字「\n」 => 出力内容「改行」
+    特殊文字「\r」 => 出力内容「不明」
+    特殊文字「\t」 => 出力内容「タブ」
+    特殊文字「\b」 => 出力内容「不明」
+    特殊文字「\f」 => 出力内容「不明」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'AA\tBB\tCC';
+    var myVar2 = 'AA\nBB\nCC';
+    
+    // 出力
+    console.log(myVar1);  // AA(タブ)BB(タブ)CC
+    console.log(myVar2);  // AA(改行)BB(改行)CC
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[026]
+  Concatenating Strings with Plus Operator
+  
+[内容]
+  演算子「+」で文字列の結合
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 'Hello' + ' ' + 'World';
+    var myVar2 = '<h1>' + myVar1 + '</h1>';
+    
+    // 出力
+    console.log(myVar1);  // Hello World
+    console.log(myVar2);  // <h1>Hello World</h1>
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[027]
+  Concatenating Strings with the Plus Equals Operator
+  
+[内容]
+  代入演算子「+=」で文字列の結合
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'SELECT * FROM employee WHERE name = ';
+    
+    // 出力
+    myVar2 += myVar1;
+    console.log(myVar2);  // SELECT * FROM employee WHERE name = 荒木誠
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[028]
+  Constructing Strings with Variables
+
+[内容]
+  文字列に変数の値を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'SELECT * FROM employee WHERE name = ' + myVar1;
+    
+    // 出力
+    console.log(myVar1);  // 荒木誠
+    console.log(myVar2);  // SELECT * FROM employee WHERE name = 荒木誠
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[029]
+  Appending Variables to Strings
+  
+[内容]
+  代入演算子「+=」で文字列に変数の値を追加
+  
+[確認]
+  // 上記「27」を参照
+  
+================================================================================
+[030]
+  Find the Length of a String
+  
+[内容]
+  文字列の長さを取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 出力
+    console.log(myVar1.length);  // 3
+    console.log(myVar2.length);  // 5
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[031]
+  Use Bracket Notation to Find the First Character in a String
+  
+[内容]
+  文字列の最初の文字を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 出力
+    console.log(myVar1[0]);  // 荒
+    console.log(myVar2[0]);  // H
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[032]
+  Understand String Immutability
+  
+[内容]
+  文字列(配列)の不変性(一部変更は不可)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 文字列(配列)の最初の文字を変更
+    myVar1[0] = '新';
+    myVar2[0] = 'B';
+    
+    // 出力
+    console.log(myVar1);  // 荒木誠 -> 文字列の一部変更は不可 -> 不変性
+    console.log(myVar2);  // Hello -> 文字列の一部変更は不可 -> 不変性
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[033]
+  Use Bracket Notation to Find the Nth Character in a String
+  
+[内容]
+  文字列の●文字目を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 出力
+    console.log(myVar1[1]);  // 木
+    console.log(myVar2[1]);  // e
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[034]
+  Use Bracket Notation to Find the Last Character in a String
+  
+[内容]
+  文字列の最後の文字を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 出力
+    console.log(myVar1[myVar1.length - 1]);  // 誠
+    console.log(myVar2[myVar2.length - 1]);  // o
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[035]
+  Use Bracket Notation to Find the Nth-to-Last Character in a String
+  
+[内容]
+  文字列の最後から●文字目を取得
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '荒木誠';
+    var myVar2 = 'Hello';
+    
+    // 出力
+    console.log(myVar1[myVar1.length - 2]);  // 木
+    console.log(myVar2[myVar2.length - 2]);  // l
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[036]
+  Word Blanks
+  
+[内容]
+  与えられた単語群を並び変えて、意味の通る英文を作成するゲーム
+  
+[確認]
+  // 省略
+  
+================================================================================
+[037]
+  Store Multiple Values in one Variable using JavaScript Arrays
+  
+[内容]
+  配列変数
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333];
+    var myVar2 = ['A', 'B', 'C'];
+    
+    // 出力
+    console.log(myVar1);  // [111, 222, 333]
+    console.log(myVar2);  // ['A', 'B', 'C']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[038]
+  Nest one Array within Another Array
+  
+[内容]
+  多次元配列
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [[111, 222], [333, 444]];
+    var myVar2 = [['A', 'B'], ['C', 'D']];
+    
+    // 出力
+    console.log(myVar1);  // 省略
+    console.log(myVar2);  // 省略
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[039]
+  Access Array Data with Indexes
+  
+[内容]
+  インデックス使用で配列要素にアクセス
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // 出力
+    console.log(myVar1[2]);  // 333
+    console.log(myVar2[2]);  // C
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[040]
+  Modify Array Data With Indexes
+  
+[内容]
+  インデックス使用で配列要素を変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // インデックス使用で配列要素を変更
+    myVar1[2] = 999;
+    myVar2[2] = 'Z';
+    
+    // 出力
+    console.log(myVar1);  // [111, 222, 999, 444]
+    console.log(myVar2);  // ['A', 'B', 'Z', 'D']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[041]
+  Access Multi-Dimensional Arrays With Indexes
+  
+[内容]
+  インデックス使用で多次元配列にアクセス
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [[111, 222], [333, 444]];
+    var myVar2 = [['A', 'B'], ['C', 'D']];
+    
+    // 出力
+    console.log(myVar1[0][1]);  // 222
+    console.log(myVar2[0][1]);  // B
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[042]
+  Manipulate Arrays With push()
+  
+[内容]
+  メソッド「push」
+    配列の最後に要素を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // メソッド「push」
+    myVar1.push(555);
+    myVar2.push('E');
+    
+    // 出力
+    console.log(myVar1);  // [111, 222, 333, 444, 555]
+    console.log(myVar2);  // ['A', 'B', 'C', 'D', 'E']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[043]
+  Manipulate Arrays With pop()
+  
+[内容]
+  メソッド「pop」
+    配列の最後の要素を抽出
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // メソッド「pop」
+    var myTmp1 = myVar1.pop();
+    var myTmp2 = myVar2.pop();
+    
+    // 出力(1)
+    console.log(myTmp1);  // 444
+    console.log(myTmp2);  // D
+    
+    // 出力(2)
+    console.log(myVar1);  // [111, 222, 333]
+    console.log(myVar2);  // ['A', 'B', 'C']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[044]
+  Manipulate Arrays With shift()
+  
+[内容]
+  メソッド「shift」
+    配列の最初の要素を抽出
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // メソッド「shift」
+    var myTmp1 = myVar1.shift();
+    var myTmp2 = myVar2.shift();
+    
+    // 出力(1)
+    console.log(myTmp1);  // 111
+    console.log(myTmp2);  // A
+    
+    // 出力(2)
+    console.log(myVar1);  // [222, 333, 444]
+    console.log(myVar2);  // ['B', 'C', 'D']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[045]
+  Manipulate Arrays With unshift()
+  
+[内容]
+  メソッド「unshift」
+    配列の最初に要素を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = [111, 222, 333, 444];
+    var myVar2 = ['A', 'B', 'C', 'D'];
+    
+    // メソッド「unshift」
+    myVar1.unshift(999);
+    myVar2.unshift('Z');
+    
+    // 出力
+    console.log(myVar1);  // [999, 111, 222, 333, 444]
+    console.log(myVar2);  // ['Z', 'A', 'B', 'C', 'D']
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[046]
+  Shopping List
+  
+[内容]
+  多次元配列の作成実習
+  
+[確認]
+  // 省略
+  
+================================================================================
+[047]
+  Write Reusable JavaScript with Functions
+  
+[内容]
+  関数でコードの再利用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義(1)
+    function myFunc1() {
+      return 'Hello World';
+    }
+    
+    // 関数定義(2)
+    const myFunc2 = () => {
+      return 'Hello World';
+    }
+    
+    // 出力
+    console.log(myFunc1());  // Hello World
+    console.log(myFunc2());  // Hello World
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[048]
+  Passing Values to Functions with Arguments
+  
+[内容]
+  関数パラメータ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義(1)
+    function myFunc1(p1) {
+      return 'Hello ' + p1;
+    }
+    
+    // 関数定義(2)
+    const myFunc2 = (p1) => {
+      return 'Hello ' + p1;
+    }
+    
+    // 出力
+    console.log(myFunc1('AAA'));  // Hello AAA
+    console.log(myFunc2('AAA'));  // Hello AAA
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[049]
+  Global Scope and Functions
+
+[内容]
+  グローバル変数
+    キーワード「var」が無くても変数定義は可能 => 紛らわしいので「var」を使用するべき
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化(1)
+    myVar1 = '柊';
+    
+    // 変数定義と初期化(2)
+    var myVar2 = '楓';
+    
+    // 関数定義
+    const myFunc1 = () => 'Hello ' + myVar1;
+    const myFunc2 = () => 'Hello ' + myVar2;
+    
+    // 出力
+    console.log(myFunc1());  // Hello 柊
+    console.log(myFunc2());  // Hello 楓
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[050]
+  Local Scope and Functions
+  
+[内容]
+  ローカル変数
+    関数の外側から参照不可
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = () => {
+      var myVar = 'AAA';  // ローカル変数
+      return 'Hello ' + myVar;
+    };
+    
+    // 出力
+    console.log(myVar);  // myVar is not defined
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[051]
+  Global vs. Local Scope in Functions
+  
+[内容]
+  同名のローカル変数とグローバル変数の競合時はローカル変数が優先
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar = 'AAA';  // グローバル変数
+    
+    // 関数定義
+    const myFunc = () => {
+      var myVar = 'BBB';  // ローカル変数
+      return 'Hello ' + myVar;
+    };
+    
+    // 出力
+    console.log(myFunc());  // Hello BBB
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[052]
+  Return a Value from a Function with Return
+  
+[内容]
+  関数の処理結果を「return」で返す
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = 11;
+    
+    // 関数定義
+    const myFunc = (p1) => p1 * 2;
+    
+    // 出力
+    console.log(myFunc(myVar1));  // 22
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[053]
+  Understanding Undefined Value returned from a Function
+  
+[内容]
+  関数の処理結果を「return」で返さないケース
+    関数内でグローバル変数の更新 => 戻り値は「undefined」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar = 0;
+    
+    // 関数定義
+    const myFunc = (p1) => {
+      myVar = myVar + p1;
+    }
+    
+    // 出力
+    console.log(myFunc(10));  // undefined
+    console.log(myVar);       // 10
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[054]
+  Assignment with a Returned Value
+  
+[内容]
+  関数の戻り値を変数にセット
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc1 = (p1) => p1 * 2;
+    const myFunc2 = (p1) => p1 * 3;
+    
+    // 変数定義と初期化
+    var myVar1 = myFunc1(11);
+    var myVar2 = myFunc2(11);
+    
+    // 出力
+    console.log(myVar1);  // 22
+    console.log(myVar2);  // 33
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[055]
+  Stand in Line
+  
+[内容]
+  キューの実装
+  
+[確認]
+  // 省略
+  
+================================================================================
+[056]
+  Understanding Boolean Values
+  
+[内容]
+  論理型「Boolean」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc1 = () => true;
+    const myFunc2 = () => false;
+    
+    // 出力
+    console.log(myFunc1());  // true
+    console.log(myFunc2());  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[057]
+  Use Conditional Logic with If Statements
+  
+[内容]
+  関数内で構文「if」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond) => {
+      if (cond) { 
+        return 'It is true';
+      } else { 
+        return 'It is false';
+      }
+    }
+    
+    // 出力
+    console.log(myFunc(100 === 100));  // It is true
+    console.log(myFunc(100 === 111));  // It is false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[058]
+  Comparison with the Equality Operator
+  
+[内容]
+  比較演算子「==」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 == p2 ;
+    
+    // 出力
+    console.log(myFunc(100, 100));    // true
+    console.log(myFunc(100, '100'));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[059]
+  Comparison with the Strict Equality Operator
+  
+[内容]
+  比較演算子「===」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 === p2 ;
+    
+    // 出力
+    console.log(myFunc(100, 100));    // true
+    console.log(myFunc(100, '100'));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[060]
+  Practice comparing different values
+  
+[内容]
+  比較演算子「==」と比較演算子「===」の復習
+  
+[確認]
+  // 省略
+  
+================================================================================
+[061]
+  Comparison with the Inequality Operator
+  
+[内容]
+  比較演算子「==」の否定形「!=」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 != p2 ;
+    
+    // 出力
+    console.log(myFunc(100, 100));    // false
+    console.log(myFunc(100, '100'));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[062]
+  Comparison with the Strict Inequality Operator
+  
+[内容]
+  比較演算子「===」の否定形「!==」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 !== p2 ;
+    
+    // 出力
+    console.log(myFunc(100, 100));    // false
+    console.log(myFunc(100, '100'));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[063]
+  Comparison with the Greater Than Operator
+  
+[内容]
+  比較演算子「>」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 > p2 ;
+    
+    // 出力
+    console.log(myFunc(50, 49));  // true
+    console.log(myFunc(50, 50));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[064]
+  Comparison with the Greater Than Or Equal To Operator
+  
+[内容]
+  比較演算子「>=」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 >= p2 ;
+    
+    // 出力
+    console.log(myFunc(50, 49));  // true
+    console.log(myFunc(50, 50));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[065]
+  Comparison with the Less Than Operator
+  
+[内容]
+  比較演算子「<」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 < p2 ;
+    
+    // 出力
+    console.log(myFunc(50, 51));  // true
+    console.log(myFunc(50, 50));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[066]
+  Comparison with the Less Than Or Equal To Operator
+
+[内容]
+  比較演算子「<=」
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => p1 <= p2 ;
+    
+    // 出力
+    console.log(myFunc(50, 51));  // true
+    console.log(myFunc(50, 50));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[067]
+  Comparisons with the Logical And Operator
+  
+[内容]
+  論理演算子「&&」
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond1, cond2) => cond1 && cond2 ;
+    
+    // 出力
+    console.log(myFunc(50 > 49, 51 > 49));  // true
+    console.log(myFunc(50 < 49, 51 < 49));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[068]
+  Comparisons with the Logical Or Operator
+  
+[内容]
+  論理演算子「||」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond1, cond2) => cond1 || cond2 ;
+    
+    // 出力
+    console.log(myFunc(50 > 49, 49 > 49));  // true
+    console.log(myFunc(50 < 49, 49 < 49));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[069]
+  Introducing Else Statements
+  
+[内容]
+  構文「else」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond) => {
+      if (cond) { 
+        return 'It is true';
+      } else { 
+        return 'It is false';
+      }
+    }
+    
+    // 出力
+    console.log(myFunc(100 === 100));  // It is true
+    console.log(myFunc(100 === 111));  // It is false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[070]
+  Introducing Else If Statements
+  
+[内容]
+  構文「else if」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => {
+      if (p1 === 'A') { 
+        return 'It is A';
+      } else if (p1 === 'B'){ 
+        return 'It is B';
+      } else {
+        return 'It is Unknown'
+      }
+    }
+    
+    // 出力
+    console.log(myFunc('A'));  // It is A
+    console.log(myFunc('B'));  // It is B
+    console.log(myFunc('C'));  // It is Unknown
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[071]
+  Logical Order in If Else Statements
+  
+[内容]
+  構文「if」 => 「else if」 => 「else」の各条件の順番の重要性
+  
+[確認]
+  // 省略
+  
+================================================================================
+[072]
+  Chaining If Else Statements
+  
+[内容]
+  構文「if」 => 「else if」 => 「else」の復習
+  
+[確認]
+  // 省略
+  
+================================================================================
+[073]
+  Golf Code
+  
+[内容]
+  ゴルフコースのパー(基準値)と自分の打数を渡してゴルフスコアを判定する関数作成
+  
+[確認]
+  // 省略
+  
+================================================================================
+[074]
+  Selecting from Many Options with Switch Statements
+  
+[内容]
+  構文「switch」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => {
+      switch (p1) {
+        case 'A':
+          return 'It is A';
+        case 'B':
+          return 'It is B';
+        default:
+          return 'It is Unknown';
+      }
+    }
+    
+    // 出力
+    console.log(myFunc('A'));  // It is A
+    console.log(myFunc('B'));  // It is B
+    console.log(myFunc('C'));  // It is Unknown
+    
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[075]
+  Adding a Default Option in Switch Statements
+  
+[内容]
+  オプション「default」
+  
+[確認]
+  // 上記「074」を参照
+  
+================================================================================
+[076]
+  Multiple Identical Options in Switch Statements
+  
+[内容]
+  構文「switch」 => オプション省略
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => {
+      switch (p1) {
+        case 'A':
+        case 'B':
+        case 'C':
+          return 'It is A or B or C';
+        case 'D':
+        case 'E':
+        case 'F':
+          return 'It is D or E or F';
+        default:
+          return 'It is Unknown';
+      }
+    }
+    
+    // 出力
+    console.log(myFunc('B'));  // It is A or B or C
+    console.log(myFunc('E'));  // It is D or E or F
+    console.log(myFunc('Z'));  // It is Unknown
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[077]
+  Replacing If Else Chains with Switch
+  
+[内容]
+  構文「if」から構文「switch」への書換
+  
+[確認]
+  // 省略
+  
+================================================================================
+[078]
+  Returning Boolean Values from Functions
+  
+[内容]
+  戻り値が論理型「Boolean」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond) => {
+      if (cond) { 
+        return true;
+      } else { 
+        return false;
+      }
+    }
+    
+    // 出力
+    console.log(myFunc(100 === 100));  // true
+    console.log(myFunc(100 === 111));  // false
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[079]
+  Return Early Pattern for Functions
+  
+[内容]
+  戻り値が未定義型「undefined」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (cond) => {
+      if (cond) { 
+        return true;
+      } else { 
+        return undefined;
+      }
+    }
+    
+    // 出力
+    console.log(myFunc(100 === 100));  // true
+    console.log(myFunc(100 === 111));  // undefined
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[080]
+  Counting Cards
+  
+[内容]
+  カードゲーム(ブラックジャック)で使用する関数を作成
+  
+[確認]
+  // 省略
+  
+================================================================================
+[081]
+  Build JavaScript Objects
+  
+[内容]
+  オブジェクト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    var myTriangle = {
+      bottom: 300,
+      height: 400,
+      hypotenuse: 500
+    }
+    
+    // 変数定義と初期化
+    var myVar1 = '底辺 : ' + myTriangle.bottom ;
+    var myVar2 = '高さ : ' + myTriangle.height ;
+    var myVar3 = '斜辺 : ' + myTriangle.hypotenuse ;
+    
+    // 出力
+    console.log(myVar1);  // 底辺 : 300
+    console.log(myVar2);  // 高さ : 400
+    console.log(myVar3);  // 斜辺 : 500
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[082]
+  Accessing Object Properties with Dot Notation
+  
+[内容]
+  プロパティにアクセス(1) => オブジェクト.プロパティ名
+  
+[確認]
+  // 上記「081」を参照
+  
+================================================================================
+[083]
+  Accessing Object Properties with Bracket Notation
+  
+[内容]
+  プロパティにアクセス(2) => オブジェクト[プロパティ名]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    var myTriangle = {
+      bottom: 300,
+      height: 400,
+      hypotenuse: 500
+    }
+    
+    // 変数定義と初期化
+    var myVar1 = '底辺 : ' + myTriangle['bottom'] ;
+    var myVar2 = '高さ : ' + myTriangle['height'] ;
+    var myVar3 = '斜辺 : ' + myTriangle['hypotenuse'] ;
+    
+    // 出力
+    console.log(myVar1);  // 底辺 : 300
+    console.log(myVar2);  // 高さ : 400
+    console.log(myVar3);  // 斜辺 : 500
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[084]
+  Accessing Object Properties with Variables
+  
+[内容]
+  プロパティにアクセス(3) => オブジェクト[変数]
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 目的地
+    var myDestination = {
+      'A': '東京',
+      'B': '神奈川',
+      'C': '千葉',
+      'D': '埼玉',
+      'E': '茨城',
+      'F': '栃木',
+      'G': '群馬'
+    }
+    
+    // 変数定義と初期化
+    var myVar1 = 'A' ;
+    var myVar2 = 'B' ;
+    var myVar3 = 'C' ;
+    
+    // 出力
+    console.log(myDestination[myVar1]);  // 東京
+    console.log(myDestination[myVar2]);  // 神奈川
+    console.log(myDestination[myVar3]);  // 千葉
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[085]
+  Updating Object Properties
+  
+[内容]
+  プロパティを更新
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 目的地
+    var myDestination = {
+      'A': '東京',
+      'B': '神奈川',
+      'C': '千葉',
+      'D': '埼玉',
+      'E': '茨城',
+      'F': '栃木',
+      'G': '群馬'
+    }
+    
+    // 変数定義と初期化
+    var myVar1 = 'A' ;
+    var myVar2 = 'B' ;
+    var myVar3 = 'C' ;
+    
+    // プロパティを更新
+    myDestination[myVar1] = '北海道' ;
+    myDestination[myVar2] = '青森' ;
+    myDestination[myVar3] = '岩手' ;
+    
+    // 出力
+    console.log(myDestination[myVar1]);  // 北海道
+    console.log(myDestination[myVar2]);  // 青森
+    console.log(myDestination[myVar3]);  // 岩手
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[086]
+  Add New Properties to a JavaScript Object
+  
+[内容]
+  プロパティを追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 目的地
+    var myDestination = {
+      'A': '東京',
+      'B': '神奈川',
+      'C': '千葉',
+      'D': '埼玉',
+      'E': '茨城',
+      'F': '栃木',
+      'G': '群馬'
+    }
+    
+    // プロパティを追加
+    myDestination.H = '静岡' ;
+    myDestination.I = '長野' ;
+    myDestination.J = '山梨' ;
+    
+    // プロパティの一覧
+    var myArray = Object.keys(myDestination);
+    
+    // プロパティの値を出力
+    for (var i = 0; i < myArray.length; i++) {
+      var myTmp = '';
+      
+      // 文字列構築
+      myTmp += myArray[i];
+      myTmp += ' : ';
+      myTmp += myDestination[myArray[i]];
+      
+      console.log(myTmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[087]
+  Delete Properties from a JavaScript Object
+  
+[内容]
+  プロパティを削除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 目的地
+    var myDestination = {
+      'A': '東京',
+      'B': '神奈川',
+      'C': '千葉',
+      'D': '埼玉',
+      'E': '茨城',
+      'F': '栃木',
+      'G': '群馬'
+    }
+    
+    // プロパティを削除
+    delete myDestination.A ;
+    delete myDestination.B ;
+    delete myDestination.C ;
+    
+    // プロパティの一覧
+    var myArray = Object.keys(myDestination);
+    
+    // プロパティの値を出力
+    for (var i = 0; i < myArray.length; i++) {
+      var myTmp = '';
+      
+      // 文字列構築
+      myTmp += myArray[i];
+      myTmp += ' : ';
+      myTmp += myDestination[myArray[i]];
+      
+      console.log(myTmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[088]
+  Using Objects for Lookups
+  
+[内容]
+  構文「switch」とオブジェクトを比較 => オブジェクトの方がコード量が少ない
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc1 = (p1) => {
+      switch(p1) {
+        case 'A': return '東京' ;
+        case 'B': return '神奈川' ;
+        case 'C': return '千葉' ;
+        case 'D': return '埼玉' ;
+        case 'E': return '茨城' ;
+        case 'F': return '栃木' ;
+        case 'G': return '群馬' ;
+      }
+    }
+    
+    // 関数定義
+    const myFunc2 = (p1) => {
+      var myDestination = {
+        'A': '東京',
+        'B': '神奈川',
+        'C': '千葉',
+        'D': '埼玉',
+        'E': '茨城',
+        'F': '栃木',
+        'G': '群馬'
+      }
+      return myDestination[p1];
+    }
+    
+    // 出力
+    console.log(myFunc1('A'));  // 東京
+    console.log(myFunc2('A'));  // 東京
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[089]
+  Testing Objects for Properties
+  
+[内容]
+  プロパティ有無を調査
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト定義
+    var OBJ = {
+      'A': '東京',
+      'B': '神奈川',
+      'C': '千葉',
+      'D': '埼玉',
+      'E': '茨城',
+      'F': '栃木',
+      'G': '群馬'
+    }
+    
+    // 関数定義
+    const myFunc = (OBJ, P1) => OBJ.hasOwnProperty(P1) ? OBJ[P1] : 'Not Found' ;
+    
+    // 出力
+    console.log(myFunc(OBJ, 'A'));  // 東京
+    console.log(myFunc(OBJ, 'Z'));  // Not Found
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[090]
+  Manipulating Complex Objects
+  
+[内容]
+  オブジェクト配列
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義 => 地域と県名のペアが正しいか確認
+    const myFunc = (p1, p2) => {
+      var myArea = [
+        {
+          'AREA': '関東',
+          'NAME': ['東京', '神奈川', '千葉', '埼玉', '茨城', '栃木', '群馬']
+        },
+        {
+          'AREA': '東北',
+          'NAME': ['青森', '岩手', '秋田', '宮城', '山形', '福島']
+        }
+      ];
+      
+      for (let i = 0; i < myArea.length; i++) {
+        if (myArea[i]['AREA'] === p1) {
+          for (let j = 0; j < myArea[i]['NAME'].length; j++) {
+            if (myArea[i]['NAME'][j] === p2) {
+              return true;
+            }
+          }
+        }
+      }
+      return false;
+    }
+    
+    // 出力
+    console.log(myFunc('関東', '東京'));  // true
+    console.log(myFunc('関東', '岩手'));  // false
+    console.log(myFunc('関東', '群馬'));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[091]
+  Accessing Nested Objects
+  
+[内容]
+  ネストオブジェクト => オブジェクト内のオブジェクト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義 => 地域と県名と県庁のペアが正しいか確認
+    const myFunc = (p1, p2, p3) => {
+      var myArea = [
+        {
+          'AREA': '関東',
+          'NAME': [
+            {'NAME': '東京', 'CITY': '新宿区'},
+            {'NAME': '千葉', 'CITY': '千葉市'},
+            {'NAME': '埼玉', 'CITY': 'さいたま市'},
+            {'NAME': '茨城', 'CITY': '水戸市'},
+            {'NAME': '栃木', 'CITY': '宇都宮市'},
+            {'NAME': '群馬', 'CITY': '前橋市'}
+          ]
+        },
+        {
+          'AREA': '東北',
+          'NAME': [
+            {'NAME': '青森', 'CITY': '青森市'},
+            {'NAME': '岩手', 'CITY': '盛岡市'},
+            {'NAME': '秋田', 'CITY': '秋田市'},
+            {'NAME': '宮城', 'CITY': '仙台市'},
+            {'NAME': '山形', 'CITY': '山形市'},
+            {'NAME': '福島', 'CITY': '福島市'}
+          ]
+        }
+      ];
+      
+      for (let i = 0; i < myArea.length; i++) {
+        if (myArea[i]['AREA'] === p1) {
+          for (let j = 0; j < myArea[i]['NAME'].length; j++) {
+            if (myArea[i]['NAME'][j]['NAME'] === p2) {
+              if (myArea[i]['NAME'][j]['CITY'] === p3) {
+                return true;
+              }
+            }
+          }
+        }
+      }
+      return false;
+    }
+    
+    // 出力
+    console.log(myFunc('関東', '東京', '新宿区'));  // true
+    console.log(myFunc('関東', '東京', '前橋市'));  // false
+    console.log(myFunc('関東', '群馬', '前橋市'));  // true
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[092]
+  Accessing Nested Arrays
+  
+[内容]
+  オブジェクトのプロパティ(配列)にアクセス
+  
+[確認]
+  // ソース「90」を参照
+  
+================================================================================
+[093]
+  Record Collection
+  
+[内容]
+  演習問題
+  
+[確認]
+  // 省略
+  
+================================================================================
+[094]
+  Iterate with JavaScript While Loops
+  
+[内容]
+  構文「while」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [];
+    var idx = 1;
+    
+    // ループ処理
+    while (idx <= 10) {
+      arr.push(idx++);
+    }
+    
+    // 出力
+    console.log(arr);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[095]
+  Iterate with JavaScript For Loops
+  
+[内容]
+  構文「for」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [];
+    
+    // ループ処理
+    for (let i = 1; i <= 10; i++) {
+      arr.push(i);
+    }
+    
+    // 出力
+    console.log(arr);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[096]
+  Iterate Odd Numbers With a For Loop
+  
+[内容]
+  構文「for」で増分を「1」から「2」に変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [];
+    
+    // ループ処理
+    for (let i = 1; i <= 10; i += 2) {
+      arr.push(i);
+    }
+    
+    // 出力
+    console.log(arr);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[097]
+  Count Backwards With a For Loop
+  
+[内容]
+  構文「for」でデクリメント処理
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [];
+    
+    // ループ処理
+    for (let i = 10; i > 0; i--) {
+      arr.push(i);
+    }
+    
+    // 出力
+    console.log(arr);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[098]
+  Iterate Through an Array with a For Loop
+  
+[内容]
+  構文「for」で配列の全要素にアクセス
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var sum = 0;
+    
+    // ループ処理
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i];
+    }
+    
+    // 出力
+    console.log(sum);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[099]
+  Nesting For Loops
+  
+[内容]
+  構文「for」で多次元配列にアクセス
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [ [1, 2, 3], [4, 5, 6], [7, 8, 9] ];
+    var sum = 0;
+    
+    // ループ処理
+    for (let i = 0; i < arr.length; i++) {
+      for (let j = 0; j < arr[i].length; j++) {
+        sum += arr[i][j];
+      }
+    }
+    
+    // 出力
+    console.log(sum);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[100]
+  Iterate with JavaScript Do...While Loops
+  
+[内容]
+  構文「do-while」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var arr = [];
+    var idx = 1;
+    
+    // ループ処理
+    do {
+      arr.push(idx++);
+    } while(idx <= 10);
+    
+    // 出力
+    console.log(arr);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[101]
+  Replace Loops using Recursion
+  
+[内容]
+  階乗を求める処理をループと再帰処理で記述する
+  
+  階乗とは？
+    入力「5」=> 5 * 4 * 3 * 2 * 1 => 120
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義(ループ)
+    const myFunc1 = (p1) => {
+      var res = 1;
+      
+      for (i = p1; i >= 1; i--) res *= i;
+      
+      return res;
+    }
+    
+    // 関数定義(再起処理)
+    const myFunc2 = (p1) => {
+      if (p1 === 0) {
+        return 1;
+      } else {
+        return p1 * myFunc2(p1 - 1);
+      }
+    }
+    
+    // 出力
+    console.log(myFunc1(5));
+    console.log(myFunc2(5));
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[102]
+  Profile Lookup
+  
+[内容]
+  演習問題
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => {
+      var Profile = [
+        {'姓': '上杉', '名': '謙信', '所在': '新潟'},
+        {'姓': '武田', '名': '信玄', '所在': '山梨'}
+      ];
+      
+      for (i = 0; i < Profile.length; i++) {
+        if (Profile[i]['姓'] === p1 && Profile[i]['名'] === p2) {
+          return Profile[i]['所在'];
+        }
+      }
+      
+      return 'Not Found';
+    }
+    
+    // 出力
+    console.log(myFunc('上杉', '謙信'));  // 新潟
+    console.log(myFunc('武田', '信玄'));  // 山梨
+    console.log(myFunc('上杉', '景勝'));  // Not Found
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[103]
+  Generate Random Fractions with JavaScript
+  
+[内容]
+  乱数(「0」以上 - 「1」未満の小数)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = () => Math.random();
+    
+    // 出力
+    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
+    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
+    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[104]
+  Generate Random Whole Numbers with JavaScript
+  
+[内容]
+  乱数(「0」以上 - 「10」未満の整数)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = () => Math.floor(Math.random() * 10);
+    
+    // 出力
+    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
+    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
+    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[105]
+  Generate Random Whole Numbers within a Range
+  
+[内容]
+  乱数(「p1」以上 - 「p2」以下の整数)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => Math.floor(Math.floor(Math.random() * (p2 - p1 + 1)) + p1);
+    
+    // 出力
+    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
+    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
+    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[106]
+  Use the parseInt Function
+  
+[内容]
+  型変換(文字列から整数)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    var myVar1 = '007';
+    var myVar2 = 'A07';
+    
+    // 出力
+    console.log(myVar1);            // 007
+    console.log(parseInt(myVar1));  // 7
+    
+    // 出力
+    console.log(myVar2);            // A07
+    console.log(parseInt(myVar2));  // NaN
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[107]
+  Use the parseInt Function with a Radix
+  
+[内容]
+  型変換時の基数指定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 文字列「0011」を十進数と指定 => 十進数に型変換
+    console.log(parseInt('0011', 10));  // 11
+    
+    // 文字列「0011」を二進数と指定 => 十進数に型変換
+    console.log(parseInt('0011', 2));   // 3
+    
+    // 文字列「00AA」を十六進数と指定 => 十進数に型変換
+    console.log(parseInt('00AA', 16));  // 170
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[108]
+  Use the Conditional (Ternary) Operator
+  
+[内容]
+  条件演算子の復習
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => {
+      var myDestination = {
+        'A': '東京',
+        'B': '神奈川',
+        'C': '千葉',
+        'D': '埼玉',
+        'E': '茨城',
+        'F': '栃木',
+        'G': '群馬'
+      }
+      return myDestination.hasOwnProperty(p1)
+        ? myDestination[p1]
+        : 'Not Found' ;
+    }
+    
+    // 出力
+    console.log(myFunc('A'));  // 東京
+    console.log(myFunc('Z'));  // Not Found
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[109]
+  Use Multiple Conditional (Ternary) Operators
+  
+[内容]
+  条件演算子のネスト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1, p2) => {
+      var myDestination = {
+        'A': '東京',
+        'B': '神奈川',
+        'C': '千葉',
+        'D': '埼玉',
+        'E': '茨城',
+        'F': '栃木',
+        'G': '群馬'
+      }
+      return myDestination.hasOwnProperty(p1)
+        ? myDestination[p1] === p2 
+          ? myDestination[p1]
+          : 'Not Found1'
+        : 'Not Found2';
+    }
+    
+    // 出力
+    console.log(myFunc('A', '東京'));  // 東京
+    console.log(myFunc('Z', '東京'));  // Not Found2
+    console.log(myFunc('A', '栃木'));  // Not Found1
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[110]
+  Use Recursion to Create a Countdown
+  
+[内容]
+  演習問題(1)
+  
+[確認]
+  // 省略
+  
+================================================================================
+[111]
+  Use Recursion to Create a Range of Numbers
+  
+[内容]
+  演習問題(2)
+  
+[確認]
+  // 省略
+  
+================================================================================

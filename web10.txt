@@ -1,0 +1,2531 @@
+================================================================================
+[00] Introduction to the ES6 Challenges
+[01] Explore Differences Between the var and let Keywords
+[02] Compare Scopes of the var and let Keywords
+[03] Declare a Read-Only Variable with the const Keyword
+[04] Mutate an Array Declared with const
+[05] Prevent Object Mutation
+[06] Use Arrow Functions to Write Concise Anonymous Functions
+[07] Write Arrow Functions with Parameters
+[08] Set Default Parameters for Your Functions
+[09] Use the Rest Parameter with Function Parameters
+[10] Use the Spread Operator to Evaluate Arrays In-Place
+[11] Use Destructuring Assignment to Extract Values from Objects
+[12] Use Destructuring Assignment to Assign Variables from Objects
+[13] Use Destructuring Assignment to Assign Variables from Nested Objects
+[14] Use Destructuring Assignment to Assign Variables from Arrays
+[15] Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
+[16] Use Destructuring Assignment to Pass an Object as a Function's Parameters
+[17] Create Strings using Template Literals
+[18] Write Concise Object Literal Declarations Using Object Property Shorthand
+[19] Write Concise Declarative Functions with ES6
+[20] Use class Syntax to Define a Constructor Function
+[21] Use getters and setters to Control Access to an Object
+[22] Create a Module Script
+[23] Use export to Share a Code Block
+[24] Reuse JavaScript Code Using import
+[25] Use * to Import Everything from a File
+[26] Create an Export Fallback with export default
+[27] Import a Default Export
+[28] Create a JavaScript Promise
+[29] Complete a Promise with resolve and reject
+[30] Handle a Fulfilled Promise with then
+[31] Handle a Rejected Promise with catch
+[32] [Promise] 同期処理と非同期処理の速度比較
+[33] [Promise] 非同期処理間の処理の順番
+[34] [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
+[35] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
+[36] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
+[37] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
+[38] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
+[39] [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
+[40] [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
+[41] [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
+[42] [Promise] 非同期処理の並列実行(1)
+[43] [Promise] 非同期処理の並列実行(2)
+[44] [Promise] キーワード「async」と「await」で記述を簡略化
+================================================================================
+[01]
+  Explore Differences Between the var and let Keywords
+  
+[内容]
+  変数再定義
+    キーワード「var」-> 再定義で上書き可能
+    キーワード「let」-> 構文エラー
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // キーワード「var」=> 再定義で上書き可能
+    var myVar1 = '東京';
+    var myVar1 = '埼玉';
+    
+    // キーワード「let」=> 構文エラー
+    let myVar2 = '長野';
+    let myVar2 = '山梨';  // SyntaxError: redeclaration of let myVar2
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Compare Scopes of the var and let Keywords
+  
+[内容]
+  構文「for」の制御変数
+    キーワード「var」-> グローバル変数
+    キーワード「let」-> ローカル変数
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let sum1 = 0;
+    let sum2 = 0;
+    
+    // キーワード「var」と「let」
+    for (var idx1 = 0; idx1 < 3; idx1++) sum1 += idx1;
+    for (let idx2 = 0; idx2 < 3; idx2++) sum2 += idx2;
+    
+    // 出力
+    console.log(idx1);  // 3
+    console.log(idx2);  // ReferenceError: idx2 is not defined
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Declare a Read-Only Variable with the const Keyword
+  
+[内容]
+  キーワード「const」-> 変数を定数(読み取り専用)化
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // キーワード「const」
+    const myVar1 = 100;
+    const myVar2 = 200;
+    
+    // 定数を更新
+    myVar1 = 'AA';  // TypeError: invalid assignment to const 'myVar1'
+    myVar2 = 3000;  // TypeError: invalid assignment to const 'myVar2'
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Mutate an Array Declared with const
+  
+[内容]
+  キーワード「const」-> 配列を定数(読み取り専用)化
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // キーワード「const」
+    const myArr1 = [111, 222, 333];
+    const myArr2 = ['A', 'B', 'C'];
+    
+    // 個別要素の変更はOK
+    myArr1[0] = 999;
+    myArr2[0] = 'Z';
+    
+    // 全要素の変更はNG
+    myArr1 = [444, 555, 666];  // TypeError: invalid assignment to const 'myArr1'
+    myArr2 = ['D', 'E', 'F'];  // TypeError: invalid assignment to const 'myArr2'
+    
+    // 出力
+    console.log(myArr1);
+    console.log(myArr2);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Prevent Object Mutation
+  
+[内容]
+  オブジェクト保護「Object.freeze」-> 個別要素ならびに全要素の変更可能 -> 配列の保護には使えない
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト
+    let myOBJ = {
+      'AA': '東京',
+      'BB': '千葉',
+      'CC': '埼玉'
+    };
+    
+    // オブジェクトの保護 => 結果は成功
+    Object.freeze(myOBJ);
+    
+    // オブジェクトの保護で失敗
+    myOBJ['AA'] = '北海道';
+    myOBJ['DD'] = '栃木';
+    
+    // オブジェクトの保護で失敗
+    delete myOBJ['BB'];
+    delete myOBJ['CC'];
+    
+    // プロパティの一覧
+    let myTmp = Object.keys(myOBJ);
+    
+    // プロパティの出力
+    for (let i = 0; i < myTmp.length; i++) {
+      console.log(`${myTmp[i]} : ${myOBJ[myTmp[i]]}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Use Arrow Functions to Write Concise Anonymous Functions
+  
+[内容]
+  アロー関数(1)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc1 = () => {
+      return 'Hello World';
+    }
+    
+    // 更に省略可
+    const myFunc2 = () => 'Hello World';
+    
+    // 出力
+    console.log(myFunc1());  // Hello World
+    console.log(myFunc2());  // Hello World
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Write Arrow Functions with Parameters
+  
+[内容]
+  アロー関数(2)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc1 = (p1) => {
+      return 'Hello ' + p1;
+    }
+    
+    // 引数一個なら括弧を省略可
+    const myFunc2 = p1 => {
+      return 'Hello ' + p1;
+    }
+    
+    // 出力
+    console.log(myFunc1('上杉謙信'));  // Hello 上杉謙信
+    console.log(myFunc2('武田信玄'));  // Hello 武田信玄
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Set Default Parameters for Your Functions
+  
+[内容]
+  関数のデフォルト値
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1 = 'AAA') => 'Hello ' + p1;
+    
+    // 出力
+    console.log(myFunc());       // Hello AAA
+    console.log(myFunc('BBB'));  // Hello BBB
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Use the Rest Parameter with Function Parameters
+  
+[内容]
+  可変長引数
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (...args) => {
+      let res = [];
+      
+      for (let i = 0; i < args.length; i++) res.push(args[i]);
+      
+      return res;
+    }
+    
+    // 出力
+    console.log(myFunc(1, 2));     // [1, 2]
+    console.log(myFunc(1, 2, 3));  // [1, 2, 3]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Use the Spread Operator to Evaluate Arrays In-Place
+  
+[内容]
+  スプレッド構文
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let myArr1 = [1, 2];
+    let myArr2 = [...myArr1, 3, 4];
+    
+    // 出力
+    console.log(myArr1);  // [1, 2]
+    console.log(myArr2);  // [1, 2, 3, 4]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Use Destructuring Assignment to Extract Values from Objects
+  
+[内容]
+  オブジェクトからの分割代入
+    オブジェクト内のプロパティ値を複数の変数に保存
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    let Triangle = {
+      key1: 3,
+      key2: 4,
+      key3: 5,
+      key4: [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
+      key5: function() { return this.底辺 * this.高さ / 2 ; }
+    }
+    
+    // オブジェクト内のプロパティ値を複数の変数に保存
+    let { key1: myTmp1, key2: myTmp2, key3: myTmp3 } = Triangle ;
+    
+    // 変数定義と初期化
+    let myVar1 = '底辺 : ' + myTmp1 ;
+    let myVar2 = '高さ : ' + myTmp2 ;
+    let myVar3 = '斜辺 : ' + myTmp3 ;
+    
+    // 出力
+    console.log(myVar1) ;  // 底辺 : 3
+    console.log(myVar2) ;  // 高さ : 4
+    console.log(myVar3) ;  // 斜辺 : 5
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Use Destructuring Assignment to Assign Variables from Objects
+  
+[内容]
+  オブジェクトからの分割代入
+    別名の変数に保存
+  
+[確認]
+  // 上記「11」を参照
+  
+================================================================================
+[13]
+  Use Destructuring Assignment to Assign Variables from Nested Objects
+  
+[内容]
+  オブジェクトからの分割代入
+    内部のオブジェクト群を変数に保存
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    let Triangle = {
+      '底辺': 3,
+      '高さ': 4,
+      '斜辺': 5,
+      '座標': [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
+      '面積': function() { return this.底辺 * this.高さ / 2 ; }
+    }
+    
+    // 内部のオブジェクト群を変数に保存
+    let { '座標': Points } = Triangle ;
+    
+    // 各座標を出力
+    for (let i = 0; i < Points.length; i++) {
+      let tmp = '';
+      
+      // テンプレート文字列を使用
+      tmp += `X値: ${Points[i].X}`;
+      tmp += ` `;
+      tmp += `Y値: ${Points[i].Y}`;
+      
+      console.log(tmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Use Destructuring Assignment to Assign Variables from Arrays
+  
+[内容]
+  配列からの分割代入
+    複数変数に代入
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let var1;
+    let var2;
+    
+    // 先頭から一番目と四番目の要素を変数に代入
+    [var1,,, var2] = [1, 2, 3, 4]
+    
+    // 出力
+    console.log(var1);  // 1
+    console.log(var2);  // 4
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
+  
+[内容]
+  配列からの分割代入
+    その他の要素を構文「...変数」で表現
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let var1;
+    let var2;
+    let rest;
+    
+    // 先頭から一番目と二番目の要素を変数に代入、残りの要素は「...変数」の変数に代入
+    [var1, var2, ...rest] = [1, 2, 3, 4]
+    
+    // 出力
+    console.log(var1);  // 1
+    console.log(var2);  // 2
+    console.log(rest);  // [3, 4]
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Use Destructuring Assignment to Pass an Object as a Function's Parameters
+  
+[内容]
+  分割代入
+    関数の引数にオブジェクト指定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    let Triangle1 = {
+      bottom: 3,
+      height: 4,
+      hypotenuse: 5,
+    }
+    
+    // オブジェクト => 直角三角形
+    let Triangle2 = {
+      bottom: 30,
+      height: 40,
+      hypotenuse: 50,
+    }
+    
+    // 関数定義
+    const Area = (OBJ) => OBJ.bottom * OBJ.height / 2 ;
+    
+    // オブジェクトの面積を計算
+    console.log(Area(Triangle1));  // 6
+    console.log(Area(Triangle2));  // 600
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Create Strings using Template Literals
+  
+[内容]
+  テンプレート文字列「`文字列 ${変数} 文字列`」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクト => 直角三角形
+    let Triangle = {
+      '底辺': 3,
+      '高さ': 4,
+      '斜辺': 5,
+      '座標': [{X: 0, Y: 0}, {X: 3, Y: 0}, {X: 3, Y: 4}],
+      '面積': function() { return this.底辺 * this.高さ / 2 ; }
+    }
+    
+    // 内部のオブジェクト群を変数に保存
+    let { '座標': Points } = Triangle ;
+    
+    // 各座標を出力
+    for (let i = 0; i < Points.length; i++) {
+      let tmp = '';
+      
+      // テンプレート文字列を使用
+      tmp += `X値: ${Points[i].X}`;
+      tmp += ` `;
+      tmp += `Y値: ${Points[i].Y}`;
+      
+      console.log(tmp);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Write Concise Object Literal Declarations Using Object Property Shorthand
+  
+[内容]
+  オブジェクトのプロパティをショートハンドで記述
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // オブジェクトのプロパティ
+    let bottom = 3;
+    let height = 4;
+    let hypotenuse = 5;
+    
+    // オブジェクトのプロパティをショートハンドで記述 => 直角三角形
+    let Triangle = {
+      bottom,
+      height,
+      hypotenuse
+    }
+    
+    // 変数定義と初期化
+    let myVar1 = '底辺 : ' + Triangle.bottom ;
+    let myVar2 = '高さ : ' + Triangle.height ;
+    let myVar3 = '斜辺 : ' + Triangle.hypotenuse ;
+    
+    // 出力
+    console.log(myVar1) ;  // 底辺 : 3
+    console.log(myVar2) ;  // 高さ : 4
+    console.log(myVar3) ;  // 斜辺 : 5
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Write Concise Declarative Functions with ES6
+  
+[内容]
+  オブジェクト内の関数の簡潔な記述
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // ES5 オブジェクト内の関数の記述
+    let Triangle1 = {
+      bottom: 3,
+      height: 4,
+      hypotenuse: 5,
+      area: function() { return this.bottom * this.height / 2 ; }
+    }
+    
+    // ES6 オブジェクト内の関数の記述
+    let Triangle2 = {
+      bottom: 3,
+      height: 4,
+      hypotenuse: 5,
+      area() { return this.bottom * this.height / 2 ; }
+    }
+    
+    // 出力
+    console.log(Triangle1.area()) ;  // 6
+    console.log(Triangle2.area()) ;  // 6
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Use class Syntax to Define a Constructor Function
+  
+[内容]
+  構文「class」でクラス定義およびオブジェクト作成
+    内部プロパティを「ゲッター」と「セッター」で制御
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // クラス定義(ES6) => 頭文字は大文字が慣例
+    class Person {
+      constructor(name) {
+        this._name = name;
+      }
+      getName() {
+        return this._name;
+      }
+      setName(name) {
+        this._name = name;
+      }
+    }
+    
+    // オブジェクト作成
+    const p1 = new Person('上杉謙信');
+    const p2 = new Person('武田信玄');
+    
+    // 内部プロパティへ直接にアクセス
+    console.log(p1._name);
+    console.log(p2._name);
+    
+    // 内部プロパティへ「ゲッター」を通してアクセス
+    console.log(p1.getName());
+    console.log(p2.getName());
+    
+    // 内部プロパティを「セッター」を通して更新
+    p1.setName('上杉景勝');
+    p2.setName('武田勝頼');
+    
+    // 内部プロパティへ「ゲッター」を通してアクセス
+    console.log(p1.getName());
+    console.log(p2.getName());
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Use getters and setters to Control Access to an Object
+  
+[内容]
+  内部プロパティを「ゲッター」と「セッター」ではなく「プロパティ」で制御
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // クラス定義(ES6) => 頭文字は大文字が慣例
+    class Person {
+      constructor(name) {
+        this._name = name;
+      }
+      get name() {
+        return this._name;
+      }
+      set name(name) {
+        this._name = name;
+      }
+    }
+    
+    // オブジェクト作成
+    const p1 = new Person('上杉謙信');
+    const p2 = new Person('武田信玄');
+    
+    // 内部プロパティの値を「プロパティ」から取得
+    console.log(p1.name);
+    console.log(p2.name);
+    
+    // 内部プロパティの値を「プロパティ」を通して更新
+    p1.name = '上杉景勝';
+    p2.name = '武田勝頼';
+    
+    // 内部プロパティの値を「プロパティ」から取得
+    console.log(p1.name);
+    console.log(p2.name);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Create a Module Script
+  
+[内容]
+  ローカルで「HTMLファイル」を編集
+  
+[確認]
+  # cd $HOME
+  # systemctl start httpd
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ローカルで「Webサーバー」を起動)
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JSスクリプト指定
+  <script type='module' src='sample.js'></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  以下の手順に続く
+  
+================================================================================
+[23]
+  Use export to Share a Code Block
+  
+[内容]
+  ローカルで「JSモジュール」を作成
+  
+[確認]
+  # cd /var/www/html
+  # vi mod01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数 + 名前付きエクスポート
+  export const myAdd1 = (x, y) => x + y;
+  export const mySub1 = (x, y) => x - y;
+  export const myMul1 = (x, y) => x * y;
+  export const myDiv1 = (x, y) => x / y;
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi mod02.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数
+  const myAdd2 = (x, y) => x += y;
+  const mySub2 = (x, y) => x -= y;
+  const myMul2 = (x, y) => x *= y;
+  const myDiv2 = (x, y) => x /= y;
+  
+  // 名前付きエクスポート + 別名
+  export {myAdd2 as add2, mySub2 as sub2, myMul2 as mul2, myDiv2 as div2};
+  --------------------------------------------------
+  
+  以下の手順に続く
+  
+================================================================================
+[24]
+  Reuse JavaScript Code Using import
+  
+[内容]
+  ローカルで「JSスクリプト」を作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 名前付きエクスポートのインポート + 別名
+  import { myAdd1 as add1, mySub1 as sub1 } from 'mod01.js';
+  
+  // 名前付きエクスポートのインポート
+  import { add2, sub2 } from 'mod02.js';
+  
+  // インポート関数を使用
+  console.log(add1(22, 11));  // 33
+  console.log(add2(22, 11));  // 33
+  
+  // インポート関数を使用
+  console.log(sub1(22, 11));  // 11
+  console.log(sub2(22, 11));  // 11
+  --------------------------------------------------
+  
+  # (ブラウザ起動)
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ウェブコンソール)
+  
+  GET http://localhost/sample.html  // HTMLファイル読込
+  GET http://localhost/sample.js    // JSスクリプト読込
+  GET http://localhost/mod01.js     // JSモジュール読込
+  GET http://localhost/mod02.js     // JSモジュール読込
+  
+  33  // add1(22, 11)
+  33  // add2(22, 11)
+  11  // sub1(22, 11)
+  11  // sub2(22, 11)
+  --------------------------------------------------
+  
+  以下の手順に続く
+  
+================================================================================
+[25]
+  Use * to Import Everything from a File
+  
+[内容]
+  全関数をインポート
+  
+[確認]
+  # cd /var/www/html
+  # vi mod01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数 + 名前付きエクスポート
+  export const add1 = (x, y) => x + y;
+  export const sub1 = (x, y) => x - y;
+  export const mul1 = (x, y) => x * y;
+  export const div1 = (x, y) => x / y;
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi mod02.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数
+  const add2 = (x, y) => x += y;
+  const sub2 = (x, y) => x -= y;
+  const mul2 = (x, y) => x *= y;
+  const div2 = (x, y) => x /= y;
+  
+  // 名前付きエクスポート
+  export {add2, sub2, mul2, div2};
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 名前付きエクスポートの全インポート + 別名
+  import * as Mod01 from 'mod01.js';
+  import * as Mod02 from 'mod02.js';
+  
+  // インポート関数を使用
+  console.log(Mod01.add1(22, 11));  // 33
+  console.log(Mod02.add2(22, 11));  // 33
+  
+  // インポート関数を使用
+  console.log(Mod01.sub1(22, 11));  // 11
+  console.log(Mod02.sub2(22, 11));  // 11
+  --------------------------------------------------
+  
+  以下の手順に続く
+  
+================================================================================
+[26]
+  Create an Export Fallback with export default
+  
+[内容]
+  デフォルトエクスポート
+    新しく「JSモジュール」を作成してクラスをデフォルトエクスポートする
+  
+[確認]
+  # cd /var/www/html
+  # vi mod03.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // デフォルトエクスポート => クラス名は無名
+  export default class {
+    constructor(name) {
+      this._name = name;
+    }
+    get name() {
+      return this._name;
+    }
+    set name(name) {
+      this._name = name;
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // デフォルトエクスポートのインポート
+  import Person from 'mod03.js';
+  
+  // オブジェクト生成
+  let p1 = new Person('上杉謙信');
+  let p2 = new Person('武田信玄');
+  
+  // 内部プロパティ確認
+  console.log(p1.name);  // 上杉謙信
+  console.log(p2.name);  // 武田信玄
+  
+  // 内部プロパティ更新
+  p1.name = '上杉景勝';
+  p2.name = '武田勝頼';
+  
+  // 内部プロパティ確認
+  console.log(p1.name);  // 上杉景勝
+  console.log(p2.name);  // 武田勝頼
+  --------------------------------------------------
+  
+  以下の手順に続く
+  
+================================================================================
+[27]
+  Import a Default Export
+  
+[内容]
+  デフォルトエクスポート指定の関数をインポート
+    この「JSモジュール」内では関数「add」をデフォルトエクスポートする
+  
+[確認]
+  # cd /var/www/html
+  # vi mod01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数「add1」をデフォルトエクスポート
+  export default function(x, y) { return x + y; }  // add1
+  export const sub1 = (x, y) => x - y;
+  export const mul1 = (x, y) => x * y;
+  export const div1 = (x, y) => x / y;
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi mod02.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数「add2」をデフォルトエクスポート
+  const add2 = (x, y) => x += y;
+  const sub2 = (x, y) => x -= y;
+  const mul2 = (x, y) => x *= y;
+  const div2 = (x, y) => x /= y;
+  
+  // デフォルトエクスポート + 名前付きエクスポート
+  export {add2 as default, sub2, mul2, div2};
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // デフォルトエクスポートのインポート
+  import ADD1 from 'mod01.js';
+  import ADD2 from 'mod02.js';
+  
+  // インポート関数
+  console.log(ADD1(22, 11));  // 33
+  console.log(ADD2(22, 11));  // 33
+  --------------------------------------------------
+  
+  これで「JSモジュール」関連は終了する
+  
+================================================================================
+[28]
+  Create a JavaScript Promise
+  
+[内容]
+  オブジェクト「Promise」を作成
+  
+[確認]
+  // 下記「32」から「44」までを参照
+  
+================================================================================
+[29]
+  Complete a Promise with resolve and reject
+  
+[内容]
+  オブジェクト「Promise」は「成功」か「失敗」で完了する
+  
+[確認]
+  // 下記「32」から「44」までを参照
+  
+================================================================================
+[30]
+  Handle a Fulfilled Promise with then
+  
+[内容]
+  処理成功のパターン
+  
+[確認]
+  // 下記「32」から「44」までを参照
+  
+================================================================================
+[31]
+  Handle a Rejected Promise with catch
+  
+[内容]
+  処理失敗のパターン
+  
+[確認]
+  // 下記「32」から「44」までを参照
+  
+================================================================================
+[32]
+  [Promise] 同期処理と非同期処理の速度比較
+  
+[内容]
+  [Promise] 同期処理と非同期処理の速度比較
+  
+  非同期処理の例
+    ディスクからファイルの内容を出力する
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi test01.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ vi test02.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ vi test03.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  function Func() {
+    
+    // 同期処理1
+    console.log('ファイル読取: 開始');
+    
+    // 非同期処理
+    fs.readFile('test01.txt', { encoding: "utf8" }, (err, data) => {
+      if (err) throw err;
+      console.log(data);
+    });
+    
+    // 同期処理2
+    console.log('ファイル読取: 終了');
+    
+  }
+  
+  // 関数実行
+  Func();
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 同期処理
+  ファイル読取: 開始
+  ファイル読取: 終了
+  
+  // 非同期処理
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[33]
+  [Promise] 非同期処理間の処理の順番
+  
+[内容]
+  [Promise] 非同期処理間の処理の順番
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  function Func() {
+    
+    // 非同期処理1
+    fs.readFile('test01.txt', { encoding: "utf8" }, (err, data) => {
+      if (err) throw err;
+      console.log(data);
+    });
+    
+    // 非同期処理2
+    fs.readFile('test02.txt', { encoding: "utf8" }, (err, data) => {
+      if (err) throw err;
+      console.log(data);
+    });
+    
+    // 非同期処理3
+    fs.readFile('test03.txt', { encoding: "utf8" }, (err, data) => {
+      if (err) throw err;
+      console.log(data);
+    });
+    
+  }
+  
+  // 関数実行
+  Func();
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 非同期処理間でも処理順番は不安定
+  
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[34]
+  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
+  
+[内容]
+  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
+  
+  非同期処理のコールバック内で次の非同期処理を呼び出す
+    ・非同期処理の処理順番が安定化
+    ・ネストが深くなりすぎると「コールバック地獄」と言われる
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  function Func() {
+    
+    // コールバック内で更に非同期処理を呼び出す
+    fs.readFile('test01.txt', { encoding: "utf8" }, (err, data) => {
+      if (err) throw err;
+      console.log(data);
+      
+      // コールバック内で更に非同期処理を呼び出す
+      fs.readFile('test02.txt', { encoding: "utf8" }, (err, data) => {
+        if (err) throw err;
+        console.log(data);
+        
+        // コールバック内で更に非同期処理を呼び出す
+        fs.readFile('test03.txt', { encoding: "utf8" }, (err, data) => {
+          if (err) throw err;
+          console.log(data);
+        });
+      });
+    });
+    
+  }
+  
+  // 関数実行
+  Func();
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 非同期処理のコールバック内で更に非同期処理を呼び出す -> ネストが深くなるとコールバック地獄
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[35]
+  [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
+  
+[内容]
+  [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
+  
+  オブジェクト「Promise」
+    ・三個(保留・成功・失敗)の内部状態を持つ
+    ・初期状態は「保留」で一度でも「成功」または「失敗」になると以降の状態は変わらない
+    ・コンストラクタ引数に関数オブジェクトを取る
+  
+  コンストラクタ引数の関数オブジェクト
+    ・関数オブジェクトは引数に二個(resolve, reject)のコールバック関数を持つ
+    ・コールバック関数「resolve」に引数を渡して実行すると状態が「成功」になる
+    ・コールバック関数「reject」に引数を渡して実行すると状態が「失敗」になる
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 実在するファイルを指定して、メソッド「then」内の「成功」のコード実行
+  Func1('test01.txt')
+  .then(
+    (doc) => console.log(doc),  // 状態が「成功」の場合はこちらのコードが実行
+    (err) => console.log(err)   // 状態が「失敗」の場合はこちらのコードが実行
+  );
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 実在するファイルを指定して、メソッド「then」内の「成功」のコード実行
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[36]
+  [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
+  
+[内容]
+  [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
+  
+  オブジェクト「Promise」
+    ・三個(保留・成功・失敗)の内部状態を持つ
+    ・初期状態は「保留」で一度でも「成功」または「失敗」になると以降の状態は変わらない
+    ・コンストラクタ引数に関数オブジェクトを取る
+  
+  コンストラクタ引数の関数オブジェクト
+    ・関数オブジェクトは引数に二個(resolve, reject)のコールバック関数を持つ
+    ・コールバック関数「resolve」に引数を渡して実行すると状態が「成功」になる
+    ・コールバック関数「reject」に引数を渡して実行すると状態が「失敗」になる
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 実在しないファイルを指定して、メソッド「then」内の「失敗」のコード実行
+  Func('test99.txt')
+  .then(
+    (doc) => console.log(doc),  // 状態が「成功」の場合はこちらのコードが実行
+    (err) => console.log(err)   // 状態が「失敗」の場合はこちらのコードが実行
+  );
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 実在しないファイルを指定して、メソッド「then」内の「失敗」のコード実行
+  
+  [Error: ENOENT: no such file or directory, open './test99.txt'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: './test99.txt'
+  }
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[37]
+  [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
+  
+[内容]
+  [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // メソッド「then」内部のエラー処理をメソッド「catch」に移動
+  Func('test01.txt')
+  .then(doc => console.log(doc))
+  .catch(err => console.log(err));
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // メソッド「then」内部のエラー処理をメソッド「catch」に移動
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[38]
+  [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
+  
+[内容]
+  [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // メソッド「then」内部のエラー処理をメソッド「catch」に移動
+  Func('test99.txt')
+  .then(doc => console.log(doc))
+  .catch(err => console.log(err));
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // メソッド「then」内部のエラー処理をメソッド「catch」に移動
+  
+  [Error: ENOENT: no such file or directory, open './test99.txt'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: './test99.txt'
+  }
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[39]
+  [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
+  
+[内容]
+  [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 非同期処理を順番通りに実行
+  Func('test01.txt')
+  .then(doc => { console.log(doc); return Func('test02.txt'); })  // 次ファイル読込
+  .then(doc => { console.log(doc); return Func('test03.txt'); })  // 次ファイル読込
+  .then(doc => { console.log(doc); })
+  .catch(err => { console.log(err); });
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 非同期処理を順番通りに実行
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[40]
+  [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+[内容]
+  [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 非同期処理を順番通りに実行
+  Func('test01.txt')
+  .then(doc => { console.log(doc); return Func('test99.txt'); })  // 途中で失敗
+  .then(doc => { console.log(doc); return Func('test03.txt'); })  // 次ファイル読込
+  .then(doc => { console.log(doc); })
+  .catch(err => { console.log(err); });
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  [Error: ENOENT: no such file or directory, open './test99.txt'] {
+    errno: -2,
+    code: 'ENOENT',
+    syscall: 'open',
+    path: './test99.txt'
+  }
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[41]
+  [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+[内容]
+  [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // 非同期処理をオブジェクト「Promise」を返す形で書き直す
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 非同期処理を順番通りに実行
+  Func('test01.txt')
+  .then(doc => { console.log(doc); throw new Error('エラー発生'); })  // 人為的に例外発生
+  .then(doc => { console.log(doc); return Func('test03.txt'); })    // 次ファイル読込
+  .then(doc => { console.log(doc); })
+  .catch(err => { console.log(err); });
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  Error: エラー発生
+    at /home/makoto/sample05/sample.js:19:42
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[42]
+  [Promise] 非同期処理の並列実行(1)
+  
+[内容]
+  [Promise] 非同期処理の並列実行(1)
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi file1.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  1. AAA
+  2. BBB
+  3. CCC
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ cp file1.txt file2.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ cp file1.txt file3.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // ファイルの読込処理
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // 非同期処理を並列実行 -> 最初の応答を使用 -> 最初に「失敗」が返ると全体で「失敗」となる
+  Promise.race([Func('file1.txt'), Func('file2.txt'), Func('file3.txt')])
+  .then(doc => console.log(doc))
+  .catch(err => console.log(err));
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // ファイル読込を並列実行して、最初に応答したものを使用する
+  
+  1. AAA
+  2. BBB
+  3. CCC
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[43]
+  [Promise] 非同期処理の並列実行(2)
+  
+[内容]
+  [Promise] 非同期処理の並列実行(2)
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // ファイルの読込処理
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // ファイル読込を並列実行して、全ファイル読込完了後に次処理に移行
+  Promise.all([Func('test01.txt'), Func('test02.txt'), Func('test03.txt')])
+  .then(
+    ([doc1, doc2, doc3]) => {
+      console.log(doc1);
+      console.log(doc2);
+      console.log(doc3);
+    }
+  )
+  .catch(err => console.log(err));
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // ファイル読込を並列実行して、全ファイル読込完了後に次処理に移行
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[44]
+  [Promise] キーワード「async」と「await」で記述を簡略化
+  
+[内容]
+  [Promise] キーワード「async」と「await」で記述を簡略化
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // インポート
+  const fs = require('fs');
+  
+  // ファイルの読込処理
+  function Func(FILE) {
+    return new Promise((res, rej) => {
+      fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    })
+  }
+  
+  // キーワード「async」で非同期処理を内部に持つ関数を宣言
+  async function Main() {
+    try {
+      let data1 = await Func('test01.txt');  // キーワード「await」で「Promise」の「正常」の値を取得
+      let data2 = await Func('test02.txt');  // キーワード「await」で「Promise」の「正常」の値を取得
+      let data3 = await Func('test03.txt');  // キーワード「await」で「Promise」の「正常」の値を取得
+      console.log(data1);
+      console.log(data2);
+      console.log(data3);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  
+  // 非同期処理を順番に実行
+  Main();
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // キーワード「async」と「await」を使用して非同期処理を呼び出す側の関数を簡略化する
+  
+  1274年 文永の役
+  1281年 弘安の役
+  1333年 鎌倉幕府滅亡
+  
+  1582年 本能寺の変
+  1600年 関ヶ原の戦い
+  1615年 大坂夏の陣
+  
+  1853年 ペリー来航
+  1860年 桜田門外の変
+  1867年 大政奉還
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[XX]
+  [Promise] //
+  
+[内容]
+  [Promise] //
+  
+[確認]
+  $ cd $HOME/sample05
+  $ vi sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  $ cd $HOME/sample05
+  $ node sample.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

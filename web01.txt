@@ -1,0 +1,1196 @@
+================================================================================
+[00] Introduction to Basic HTML and HTML5
+[01] Say Hello to HTML Elements
+[02] Headline with the h2 Element
+[03] Inform with the Paragraph Element
+[04] Fill in the Blank with Placeholder Text
+[05] Uncomment HTML
+[06] Comment out HTML
+[07] Delete HTML Elements
+[08] Introduction to HTML5 Elements
+[09] Add Images to Your Website
+[10] Link to External Pages with Anchor Elements
+[11] Link to Internal Sections of a Page with Anchor Elements
+[12] Nest an Anchor Element within a Paragraph
+[13] Make Dead Links Using the Hash Symbol
+[14] Turn an Image into a Link
+[15] Create a Bulleted Unordered List
+[16] Create an Ordered List
+[17] Create a Text Field
+[18] Add Placeholder Text to a Text Field
+[19] Create a Form Element
+[20] Add a Submit Button to a Form
+[21] Use HTML5 to Require a Field
+[22] Create a Set of Radio Buttons
+[23] Create a Set of Checkboxes
+[24] Use the value attribute with Radio Buttons Checkboxes
+[25] Check Radio Buttons and Checkboxes by Default
+[26] Nest Many Elements within a Single div Element
+[27] Declare the Doctype of an HTML Document
+[28] Define the Head and Body of an HTML Document
+================================================================================
+[01]
+  Say Hello to HTML Elements
+  
+[内容]
+  開始タグと終了タグ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 開始タグと終了タグ
+  <h1>Hello World</h1>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Headline with the h2 Element
+  
+[内容]
+  主要タイトル「h1」とサブタイトル「h2-h6」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <h1>主要タイトル</h1>  // 主要タイトル
+  <h2>サブタイトル</h2>  // サブタイトル
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Inform with the Paragraph Element
+  
+[内容]
+  段落タグ「p」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 段落
+  <p>武田信玄</p>
+  <p>上杉謙信</p>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Fill in the Blank with Placeholder Text
+  
+[内容]
+  WEBページの紹介文を作成
+  
+[確認]
+  // 省略
+  
+================================================================================
+[05]
+  Uncomment HTML
+  
+[内容]
+  コメント解除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <!--  // 削除 -> コメント解除
+  <p>武田信玄</p>
+  <p>上杉謙信</p>
+  --->  // 削除 -> コメント解除
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Comment out HTML
+  
+[内容]
+  コメントアウト
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <!--  // コメントアウト
+  <p>武田信玄</p>
+  <p>上杉謙信</p>
+  --->  // コメントアウト
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Delete HTML Elements
+  
+[内容]
+  要素の削除
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  <p>武田信玄</p>  // 記述自体を削除 -> 要素の削除
+  <p>上杉謙信</p>  // 記述自体を削除 -> 要素の削除
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Introduction to HTML5 Elements
+  
+[内容]
+  文書の詳細な意味付けを行うタグ追加 -> main, header, footer, nav, article, section ...
+  
+[確認]
+  // 省略
+  
+================================================================================
+[09]
+  Add Images to Your Website
+  
+[内容]
+  要素「img」に属性を追加 -> 属性「alt」にイメージ説明
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素「img」に属性「src」と「alt」を追加
+  <img src="images/android-icon.png" alt="android">
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Link to External Pages with Anchor Elements
+  
+[内容]
+  要素「a」の属性「href」に外部リンクURLを指定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 属性「href」に外部リンクURL
+  <a href="https://xx1.html">外部リンク1</a>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[11]
+  Link to Internal Sections of a Page with Anchor Elements
+  
+[内容]
+  要素に属性「id」でID付与後、要素「a」の属性「href」に「#ID」で参照
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 内部リンク
+  <a href='#img1'>Android</a>
+  
+  // リンク先
+  <img id='img1' src="images/android-icon.png" alt="android">
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Nest an Anchor Element within a Paragraph
+  
+[内容]
+  外部リンクを他要素で囲む
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 外部リンク
+  <p><a href='#' target='_blank'>外部リンク1</a></p>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[13]
+  Make Dead Links Using the Hash Symbol
+  
+[内容]
+  デッドリンク -> 属性「href」に「#」を指定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // デッドリンク
+  <a href='#' target='_blank'>外部リンク</a>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[14]
+  Turn an Image into a Link
+
+[内容]
+  画像のリンク化 -> 要素「img」を要素「a」で囲む
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 画像のリンク化
+  <a href='#'><img src="images/android-icon.png" alt="android"></a>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[15]
+  Create a Bulleted Unordered List
+
+[内容]
+  リスト(番号無し)
+
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // リスト(番号無し)
+  <ul>
+    <li><a href='#img1'>Android</a></li>
+    <li><a href='#img2'>Firefox</a></li>
+  </ul>
+  
+  // リンク先
+  <img id='img1' src="images/android-icon.png" alt="android">
+  <img id='img2' src="images/firefox-icon.png" alt="firefox">
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[16]
+  Create an Ordered List
+  
+[内容]
+  リスト(番号有り)
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // リスト(番号有り)
+  <ol>
+    <li><a href='#img1'>Android</a></li>
+    <li><a href='#img2'>Firefox</a></li>
+  </ol>
+  
+  // リンク先
+  <img id='img1' src="images/android-icon.png" alt="android">
+  <img id='img2' src="images/firefox-icon.png" alt="firefox">
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[17]
+  Create a Text Field
+  
+[内容]
+  テキストボックス
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // テキストボックス
+  <input type='text'>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[18]
+  Add Placeholder Text to a Text Field
+  
+[内容]
+  テキストボックスにプレースホルダー
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // テキストボックスにプレースホルダー
+  <input type='text' placeholder='名前'>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[19]
+  Create a Form Element
+
+[内容]
+  フォームに属性「action」で送信先プログラムを指定
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 属性「action」で送信先プログラムを指定
+  <form action='#'></form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[20]
+  Add a Submit Button to a Form
+  
+[内容]
+  フォームに送信ボタンを付与
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 送信ボタンを付与
+  <form action='#'>
+    <input type="text" placeholder="名前">
+    <button type="submit">送信</button>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[21]
+  Use HTML5 to Require a Field
+  
+[内容]
+  フォームのテキストボックスを属性「required」で入力必須にする
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 送信ボタン押下時にチェック -> 入力必須とエラーメッセージ
+  <form action='#'>
+    <input type="text" placeholder="名前" required>
+    <button type="submit">送信</button>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[22]
+  Create a Set of Radio Buttons
+  
+[内容]
+  ラジオボタンにグループ設定、グループ名は「性別」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // グループ名は「性別」
+  <form action='#'>
+    <input type="radio" id="男性" name='性別'><label for='男性'>男性</label>
+    <input type="radio" id="女性" name='性別'><label for='女性'>女性</label>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[23]
+  Create a Set of Checkboxes
+  
+[内容]
+  チェックボックスにグループ設定、グループ名は「手段」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // グループ名は「手段」
+  <form action='#'>
+    <input type="checkbox" id="電車" name='手段'><label for='電車'>電車</label>
+    <input type="checkbox" id="バス" name='手段'><label for='バス'>バス</label>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[24]
+  Use the value attribute with Radio Buttons Checkboxes
+  
+[内容]
+  属性「value」の値が選択結果
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 属性「value」の値が選択結果
+  <form id='target'>
+    <input type="radio" id="男性" name='性別' value='男性'><label for='男性'>男性</label>
+    <input type="radio" id="女性" name='性別' value='女性'><label for='女性'>女性</label>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[25]
+  Check Radio Buttons and Checkboxes by Default
+  
+[内容]
+  属性「checked」でデフォルト選択
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 属性「checked」でデフォルト選択
+  <form action='#'>
+    <input type="radio" id="男性" name='性別' checked><label for='男性'>男性</label>
+    <input type="radio" id="女性" name='性別'><label for='女性'>女性</label>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[26]
+  Nest Many Elements within a Single div Element
+
+[内容]
+  要素「div」で要素群をコンテナ格納
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // 要素群をコンテナに格納
+  <form action='#'>
+    <div>
+      <label for='男性'><input type="radio" id="男性" name='性別' value='男性'>男性</label>
+      <label for='女性'><input type="radio" id="女性" name='性別' value='女性'>女性</label>
+    </div>
+  </form>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[27]
+  Declare the Doctype of an HTML Document
+  
+[内容]
+  慣習的に「<!DOCTYPE html>」と冒頭に指定
+  
+[確認]
+  // 省略
+  
+================================================================================
+[28]
+  Define the Head and Body of an HTML Document
+  
+[内容]
+  基本レイアウト -> header, main, footer ...
+  
+[確認]
+  //省略
+  
+================================================================================

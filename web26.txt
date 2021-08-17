@@ -1,0 +1,2667 @@
+================================================================================
+[00] Introduction to the Data Visualization with D3 Challenges
+[01] Add Document Elements with D3
+[02] Select a Group of Elements with D3
+[03] Work with Data in D3
+[04] Work with Dynamic Data in D3
+[05] Add Inline Styling to Elements
+[06] Change Styles Based on Data
+[07] Add Classes with D3
+[08] Update the Height of an Element Dynamically
+[09] Change the Presentation of a Bar Chart
+[10] Learn About SVG in D3
+[11] Display Shapes with SVG
+[12] Create a Bar for Each Data Point in the Set
+[13] Dynamically Set the Coordinates for Each Bar
+[14] Dynamically Change the Height of Each Bar
+[15] Invert SVG Elements
+[16] Change the Color of an SVG Element
+[17] Add Labels to D3 Elements
+[18] Style D3 Labels
+[19] Add a Hover Effect to a D3 Element
+[20] Add a Tooltip to a D3 Element
+[21] Create a Scatterplot with SVG Circles
+[22] Add Attributes to the Circle Elements
+[23] Add Labels to Scatter Plot Circles
+[24] Create a Linear Scale with D3
+[25] Set a Domain and a Range on a Scale
+[26] Use the d3.max and d3.min Functions to Find Minimum and Maximum Values in a Dataset
+[27] Use Dynamic Scales
+[28] Use a Pre-Defined Scale to Place Elements
+[29] Add Axes to a Visualization
+[30] コロプレス図 - 地図ファイルの入手
+[31] コロプレス図 - 地図ファイルの展開
+[32] コロプレス図 - コマンドの入手
+[33] コロプレス図 - 地図ファイルの変換
+[34] コロプレス図 - コマンドの入手
+[35] コロプレス図 - 地図ファイルの調査
+[36] コロプレス図 - 地図ファイルの変換
+[37] コロプレス図 - 地図ファイルの各県名を確認
+[38] コロプレス図 - コマンドの入手
+[39] コロプレス図 - コマンドの入手
+[40] コロプレス図 - 地図ファイルの変換
+[41] コロプレス図 - 地図ファイルの軽量化
+[42] コロプレス図 - 地図ファイル(GeoJSON)を描画
+[43] コロプレス図 - 地図ファイル(TopoJSON)を描画
+[44] コロプレス図 - 各県のデータ作成
+[45] コロプレス図 - 地図(GeoJSON)を人口密度に応じて着色
+[46] コロプレス図 - 地図(TopoJSON)を人口密度に応じて着色
+[47] コロプレス図 - FCC課題
+================================================================================
+[01]
+  Add Document Elements with D3
+  
+[内容]
+  要素追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('p')
+      .text('Hello1');
+    
+    // 要素追加
+    const DOM2 = d3
+      .select('body')
+      .append('p')
+      .text('Hello2');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[02]
+  Select a Group of Elements with D3
+  
+[内容]
+  各要素をグループ単位で操作
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('p')
+      .text('Hello1');
+    
+    // 要素追加
+    const DOM2 = d3
+      .select('body')
+      .append('p')
+      .text('Hello2');
+    
+    // 各要素をグループ単位で操作
+    const DOMS = d3
+      .selectAll('p')
+      .text('D3 Items')
+      .style('color', 'Crimson');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[03]
+  Work with Data in D3
+  
+[内容]
+  配列データ分の要素作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = ['A', 'B', 'C', 'D', 'E'];
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('div');
+    
+    // 配列データ分の要素作成
+    DOM1
+      .selectAll('DOMS')
+      .data(DATA)
+      .enter()
+      .append('p')
+      .text(d => d);
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[04]
+  Work with Dynamic Data in D3
+  
+[内容]
+  配列データを各要素に反映
+  
+[確認]
+  // 上記「03」を参照
+  
+================================================================================
+[05]
+  Add Inline Styling to Elements
+  
+[内容]
+  要素にインラインCSS適用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = ['A', 'B', 'C', 'D', 'E'];
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('div');
+    
+    // 要素にインラインCSS適用
+    DOM1
+      .selectAll('DOMS')
+      .data(DATA)
+      .enter()
+      .append('p')
+      .text(d => d)
+      .style('color', 'Crimson');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[06]
+  Change Styles Based on Data
+  
+[内容]
+  要素に条件付きでインラインCSS適用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = ['A', 'B', 'C', 'D', 'E'];
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('div');
+    
+    // 要素に条件付きでインラインCSS適用
+    DOM1
+      .selectAll('DOMS')
+      .data(DATA)
+      .enter()
+      .append('p')
+      .text(d => d)
+      .style('color', (d, i) => { if (i % 2 === 0) return 'Crimson'; });
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[07]
+  Add Classes with D3
+  
+[内容]
+  要素にクラスCSS適用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    .CLASS1 { color: Crimson }
+    .CLASS2 { color: CornFlowerBlue }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = ['A', 'B', 'C', 'D', 'E'];
+    
+    // 要素追加
+    const DOM1 = d3
+      .select('body')
+      .append('div');
+    
+    // 要素にクラスCSS適用
+    DOM1
+      .selectAll('DOMS')
+      .data(DATA)
+      .enter()
+      .append('p')
+      .text(d => d)
+      .attr('class', (d, i) => (i % 2 === 0) ? 'CLASS1' : 'CLASS2');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[08]
+  Update the Height of an Element Dynamically
+  
+[内容]
+  配列データとCSSプロパティ「height」で棒グラフ作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    .CLASS {
+      width: 25px;
+      height: 100px;
+      display: inline-block;
+      background-color: CornFlowerBlue;
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = [25, 50, 75, 100, 125, 150, 175, 200, 225];
+    
+    // 配列データとCSSプロパティ「height」で棒グラフ作成
+    const DOMS = d3
+      .select('body')
+      .selectAll('BARS')
+      .data(DATA)
+      .enter()
+      .append('div')
+      .attr('class', 'CLASS')
+      .style('height', d => d + 'px');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[09]
+  Change the Presentation of a Bar Chart
+  
+[内容]
+  棒グラフ修正
+    各バーの間隔を「2px」空ける -> プロパティ「margin」で対応
+    各バー同士のコントラスト強化 -> プロパティ「height」の数値を2.5倍
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    .CLASS {
+      width: 25px;
+      height: 100px;
+      margin: 2px;  // 各バーの間隔を「2px」空ける
+      display: inline-block;
+      background-color: CornFlowerBlue;
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 配列データ
+    const DATA = [25, 50, 75, 100, 125, 150, 175, 200, 225];
+    
+    // 棒グラフ修正
+    const DOMS = d3
+      .select('body')
+      .selectAll('BARS')
+      .data(DATA)
+      .enter()
+      .append('div')
+      .attr('class', 'CLASS')
+      .style('height', d => 2 * d + 'px');  // 各バー同士のコントラスト強化
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[10]
+  Learn About SVG in D3
+  
+[内容]
+  SVG要素を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[11]
+  Display Shapes with SVG
+  
+[内容]
+  SVG要素に長方形を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    
+    // カラー配列
+    const COLOR = d3.schemeCategory10;
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // SVG要素に長方形を追加
+    SVG
+      .selectAll('RECT')
+      .data([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+      .enter()
+      .append('rect')
+      .attr('x', (d, i) => 10 + i * 50)
+      .attr('y', 10)
+      .attr('width', 50)
+      .attr('height', 50)
+      .attr('fill', (d, i) => COLOR[i])
+      .attr('stroke', 'White')
+      .attr('stroke-width', '5');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[12]
+  Create a Bar for Each Data Point in the Set
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tip {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 20px;
+      color: White;
+      background-color: Black;
+    }
+    .bar:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    
+    // カラー配列
+    const COLOR = d3.schemeCategory10;
+    
+    // データセット
+    const DATA = [
+      { name: 'A', height: 100 },
+      { name: 'B', height: 150 },
+      { name: 'C', height: 200 },
+      { name: 'D', height: 250 },
+      { name: 'E', height: 300 },
+      { name: 'F', height: 350 },
+      { name: 'G', height: 400 },
+      { name: 'H', height: 450 },
+      { name: 'I', height: 500 },
+      { name: 'J', height: 550 }
+    ];
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 棒グラフの幅
+    const WIDTH = W / DATA.length;
+    
+    // SVG要素に長方形を追加
+    SVG
+      .selectAll('AAA')
+      .data(DATA)
+      .enter()
+      .append('rect')
+      .attr('x', (d, i) => i * WIDTH)
+      .attr('y', (d, i) => H - d.height)
+      .attr('width', WIDTH)
+      .attr('height', (d, i) => d.height)
+      .attr('fill', (d, i) => COLOR[i])
+      .attr('stroke', 'White')
+      .attr('stroke-width', '5')
+      .attr('class', 'bar')
+      .on('mouseover', (d, i) => {
+        TIP.text(d.height);
+        TIP.style('opacity', '1');
+      })
+      .on('mouseout', (d, i) => TIP.style('opacity', '0'))
+      .on('mousemove', (d, i) => {
+        TIP.style('top', `${d3.event.pageY}px`);
+        TIP.style('left', `${d3.event.pageX}px`);
+      });
+    
+    // SVG要素にテキストを追加
+    SVG
+      .selectAll('BBB')
+      .data(DATA)
+      .enter()
+      .append('text')
+      .attr('x', (d, i) => i * WIDTH + 25)
+      .attr('y', H - 20)
+      .attr('fill', 'White')
+      .attr('stroke', 'White')
+      .text(d => d.name)
+      .style('font-size', '30px');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[13]
+  Dynamically Set the Coordinates for Each Bar
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフのX座標を調節
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[14]
+  Dynamically Change the Height of Each Bar
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフのY座標を調節(ただし上下逆さま)
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[15]
+  Invert SVG Elements
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフのY座標を調節(上下逆さまを修正)
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[16]
+  Change the Color of an SVG Element
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフのY座標を調節(各長方形の色を修正)
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[17]
+  Add Labels to D3 Elements
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフにラベルを付与
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[18]
+  Style D3 Labels
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> 棒グラフのラベルにCSS適用
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[19]
+  Add a Hover Effect to a D3 Element
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> マウスオーバー時に該当バーの色変更
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[20]
+  Add a Tooltip to a D3 Element
+  
+[内容]
+  SVG要素に長方形で棒グラフを描画 -> マウスオーバー時にツールチップ表示
+  
+[確認]
+  // 上記「12」を参照
+  
+================================================================================
+[21]
+  Create a Scatterplot with SVG Circles
+  
+[内容]
+  SVG要素に円形の点で散布図を作成
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tip {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 20px;
+      color: White;
+      background-color: Black;
+    }
+    .bar:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    
+    // カラー配列
+    const COLOR = d3.schemeCategory10;
+    
+    // データセット
+    const DATA = [
+      { name: 'A', height: 100 },
+      { name: 'B', height: 150 },
+      { name: 'C', height: 200 },
+      { name: 'D', height: 250 },
+      { name: 'E', height: 300 },
+      { name: 'F', height: 350 },
+      { name: 'G', height: 400 },
+      { name: 'H', height: 450 },
+      { name: 'I', height: 500 },
+      { name: 'J', height: 550 }
+    ];
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 各点の間隔
+    const WIDTH = W / DATA.length;
+    
+    // SVG要素に円形の点を追加
+    SVG
+      .selectAll('AAA')
+      .data(DATA)
+      .enter()
+      .append('circle')
+      .attr('cx', (d, i) => 40 + i * WIDTH)
+      .attr('cy', (d, i) => H - d.height)
+      .attr('r', 15)
+      .attr('stroke', 'Black')
+      .attr('stroke-width', '3px')
+      .attr('fill', (d, i) => COLOR[i])
+      .on('mouseover', (d, i) => {
+        TIP.text(d.height);
+        TIP.style('opacity', '1');
+      })
+      .on('mouseout', (d, i) => TIP.style('opacity', '0'))
+      .on('mousemove', (d, i) => {
+        TIP.style('top', `${d3.event.pageY}px`);
+        TIP.style('left', `${d3.event.pageX}px`);
+      });
+    
+    // SVG要素にテキストを追加
+    SVG
+      .selectAll('BBB')
+      .data(DATA)
+      .enter()
+      .append('text')
+      .attr('x', (d, i) => 30 + i * WIDTH)
+      .attr('y', (d, i) => 50 + H - d.height)
+      .attr('fill', 'Black')
+      .attr('stroke', 'Black')
+      .text(d => d.name)
+      .style('font-size', '30px');
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[22]
+  Add Attributes to the Circle Elements
+  
+[内容]
+  SVG要素に円形の点で散布図を作成 -> 各点に属性追加を行い可視化
+  
+[確認]
+  // 上記「21」を参照
+  
+================================================================================
+[23]
+  Add Labels to Scatter Plot Circles
+  
+[内容]
+  SVG要素に円形の点で散布図を作成 -> 各点の右側に座標をラベル表示
+  
+[確認]
+  // 上記「21」を参照
+  
+================================================================================
+[24]
+  Create a Linear Scale with D3
+  
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tip {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 20px;
+      color: White;
+      background-color: Black;
+    }
+    .axis path {
+      stroke: Black;
+    }
+    .axis line {
+      stroke: Black;
+    }
+    .axis text {
+      fill: Black;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .bar:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    const P = 60;
+    
+    // カラー配列
+    const COLOR = d3.schemeCategory10;
+    
+    // データセット -> 値を画面サイズ外の10倍に変更する
+    const DATA = [
+      { name: 'A', height: 1000 },
+      { name: 'B', height: 1500 },
+      { name: 'C', height: 2000 },
+      { name: 'D', height: 2500 },
+      { name: 'E', height: 3000 },
+      { name: 'F', height: 3500 },
+      { name: 'G', height: 4000 },
+      { name: 'H', height: 4500 },
+      { name: 'I', height: 5000 },
+      { name: 'J', height: 5500 }
+    ];
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 凡例 - 領域作成
+    const LGND = SVG
+      .selectAll('AAA')
+      .data(DATA.map(d => d.name))
+      .enter()
+      .append('g')
+      .attr('transform', (d, i) => `translate(${P + 20}, ${P + i * 30})`);
+      
+    // 凡例 - 四角
+    LGND
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 20)
+      .attr('height', 20)
+      .style('fill', (d, i) => COLOR[i]);
+    
+    // 凡例 - 文言
+    LGND
+      .append('text')
+      .attr('x', 30)
+      .attr('y', 17)
+      .text(d => d)
+      .style('text-anchor', 'start')
+      .style('font-size', '20px');
+    
+    // X軸 - 変換関数
+    const FUNC_X = d3
+      .scaleBand()
+      .domain(DATA.map(d => d.name))
+      .range([P, W - P]);
+    
+    // X軸 - 目盛(スケール)
+    const SCALE_X = d3
+      .axisBottom()
+      .scale(FUNC_X);
+    
+    // X軸 - 描画
+    SVG
+      .append('g')
+      .call(SCALE_X)
+      .attr('class', 'axis')
+      .attr('transform', `translate(0, ${H - P})`);
+    
+    // Y軸 - 変換関数
+    const FUNC_Y = d3
+      .scaleLinear()
+      .domain([
+        d3.min(DATA.map(d => d.height)) - 500,
+        d3.max(DATA.map(d => d.height)) + 500
+      ])
+      .range([H - P, P]);
+    
+    // Y軸 - 目盛(スケール)
+    const SCALE_Y = d3
+      .axisLeft()
+      .scale(FUNC_Y);
+    
+    // Y軸 - 描画
+    SVG
+      .append('g')
+      .call(SCALE_Y)
+      .attr('class', 'axis')
+      .attr('transform', `translate(${P}, 0)`);
+    
+    // 棒グラフの幅
+    const WIDTH = (W - P - P) / DATA.length;
+    
+    // SVG要素に長方形を追加
+    SVG
+      .selectAll('BBB')
+      .data(DATA)
+      .enter()
+      .append('rect')
+      .attr('x', (d, i) => P + i * WIDTH)
+      .attr('y', (d, i) => FUNC_Y(d.height))
+      .attr('width', WIDTH)
+      .attr('height', (d, i) => H - FUNC_Y(d.height) - P)
+      .attr('fill', (d, i) => COLOR[i])
+      .attr('stroke', 'White')
+      .attr('class', 'bar')
+      .on('mouseover', (d, i) => {
+        TIP.text(d.height);
+        TIP.style('opacity', '1');
+      })
+      .on('mouseout', (d, i) => TIP.style('opacity', '0'))
+      .on('mousemove', (d, i) => {
+        TIP.style('top', `${d3.event.pageY}px`);
+        TIP.style('left', `${d3.event.pageX}px`);
+      });
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[25]
+  Set a Domain and a Range on a Scale
+  
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する -> スケールの変換設定
+  
+  使用メソッド
+    d3.domain() -> 入力データ範囲を指定
+    d3.range()  -> 出力データ範囲を指定
+  
+[確認]
+  // 上記「24」を参照
+  
+================================================================================
+[26]
+  Use the d3.max and d3.min Functions to Find Minimum and Maximum Values in a Dataset
+  
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する -> スケールの変換設定時に最大値と最小値を指定
+  
+  使用メソッド
+    d3.max(dataset, d => d[0])
+    d3.min(dataset, d => d[0])
+  
+[確認]
+  // 上記「24」を参照
+  
+================================================================================
+[27]
+  Use Dynamic Scales
+
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する -> 最大値と最小値の効果的な使用
+  
+[確認]
+  // 上記「24」を参照
+  
+================================================================================
+[28]
+  Use a Pre-Defined Scale to Place Elements
+  
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する -> 目盛(スケール)を使用して棒グラフを描画
+  
+[確認]
+  // 上記「24」を参照
+  
+================================================================================
+[29]
+  Add Axes to a Visualization
+  
+[内容]
+  画面サイズをオーバーする値を目盛(スケール)で表現する -> 棒グラフに目盛(スケール)を追加
+  
+[確認]
+  // 上記「24」を参照
+  
+================================================================================
+[30]
+  コロプレス図 - 地図ファイルの入手
+  
+[内容]
+  コマンド「wget」で地図ファイル(Shape)の入手
+  
+[確認]
+  # cd /var/www/html
+  # wget https://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/cultural/ne_10m_admin_1_states_provinces.zip
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  2021-06-03 14:25:38 (3.07 MB/s) - `ne_10m_admin_1_states_provinces.zip' へ保存完了
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh ne_10m*
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 14M 10月 10  2019 ne_10m_admin_1_states_provinces.zip
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[31]
+  コロプレス図 - 地図ファイルの展開
+  
+[内容]
+  コマンド「unzip」で地図ファイル(Shape)の展開
+  
+[確認]
+  # cd /var/www/html
+  # unzip ne_10m_admin_1_states_provinces.zip
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Archive:  ne_10m_admin_1_states_provinces.zip
+  inflating: ne_10m_admin_1_states_provinces.README.html
+  extracting: ne_10m_admin_1_states_provinces.VERSION.txt
+  extracting: ne_10m_admin_1_states_provinces.cpg
+  inflating: ne_10m_admin_1_states_provinces.dbf
+  inflating: ne_10m_admin_1_states_provinces.prj
+  inflating: ne_10m_admin_1_states_provinces.shp  // 地図ファイル(Shape)
+  inflating: ne_10m_admin_1_states_provinces.shx
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -l *.shp
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 21M  5月 21  2018 ne_10m_admin_1_states_provinces.shp
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[32]
+  コロプレス図 - コマンドの入手
+  
+[内容]
+  パッケージ「gdal」のインストール
+  
+[確認]
+  # cd
+  # yum -y install gdal
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  # cd
+  # which ogr2ogr
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /usr/bin/ogr2ogr
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[33]
+  コロプレス図 - 地図ファイルの変換
+  
+[内容]
+  コマンド「ogr2ogr」で地図ファイル(Shape)を「GeoJSON」に変換
+  
+[確認]
+  # cd /var/www/html
+  # ogr2ogr -f GeoJSON ne_10m_admin_1_states_provinces.geojson ne_10m_admin_1_states_provinces.shp
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh ne_10m_admin_1_states_provinces.geojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 64M  6月  3 14:58 ne_10m_admin_1_states_provinces.geojson
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[34]
+  コロプレス図 - コマンドの入手
+  
+[内容]
+  パッケージ「jq」のインストール
+  
+[確認]
+  # cd
+  # yum -y install jq
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  # cd
+  # which jq
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /usr/bin/jq
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[35]
+  コロプレス図 - 地図ファイルの調査
+  
+[内容]
+  コマンド「jq」で地図ファイル(GeoJSON)から「日本」のみの情報の抽出条件を調査
+  
+[確認]
+  # cd /var/www/html
+  # jq .(ルート) ne_10m_admin_1_states_provinces.geojson | grep -i japan
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 鹿児島県
+  "woe_label": "Kagoshima Prefecture, JP, Japan",
+  "admin": "Japan",
+  "geonunit": "Japan",  // 抽出条件は「geonunit = Japan」
+  
+  // 大分県
+  "woe_label": "Oita Prefecture, JP, Japan",
+  "admin": "Japan",
+  "geonunit": "Japan",  // 抽出条件は「geonunit = Japan」
+  
+  // 福岡県
+  "woe_label": "Fukuoka Prefecture, JP, Japan",
+  "admin": "Japan",
+  "geonunit": "Japan",  // 抽出条件は「geonunit = Japan」
+  
+  ...
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[36]
+  コロプレス図 - 地図ファイルの変換
+  
+[内容]
+  コマンド「ogr2ogr」で地図ファイル(Shape)から「日本」のみ抽出して「GeoJSON」に変換
+  
+[確認]
+  # cd /var/www/html
+  # ogr2ogr -f GeoJSON -where 'geonunit = "Japan"' japan.geojson ne_10m_admin_1_states_provinces.shp
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh japan.geojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 646K  6月  3 19:48 japan.geojson
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[37]
+  コロプレス図 - 地図ファイルの各県名を確認
+  
+[内容]
+  コマンド「jq」で地図ファイル(GeoJSON)から各県名を確認
+  
+[確認]
+  # cd /var/www/html
+  # jq .features[].properties.name_local japan.geojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  "鹿児島県"
+  "大分県"
+  "福岡県"
+  "佐賀県"
+  "長崎県"
+  "熊本県"
+  "宮崎県"
+  "徳島県"
+  "香川県"
+  "愛媛県"
+  "高知県"
+  "島根県"
+  "山口県"
+  "鳥取県"
+  "兵庫県"
+  "京都府"
+  "福井県"
+  "石川県"
+  "富山県"
+  "新潟県"
+  "山形県"
+  "秋田県"
+  "青森県"
+  "岩手県"
+  "宮城県"
+  "福島県"
+  "茨城県"
+  "千葉県"
+  "東京都"
+  "神奈川県"
+  null  // 静岡県が抜けている
+  "愛知県"
+  "三重県"
+  "和歌山県"
+  "大阪府"
+  "岡山県"
+  "広島県"
+  "北海道"
+  "沖縄県"
+  "群馬県"
+  "長野県"
+  "栃木県"
+  "岐阜県"
+  "滋賀県"
+  "埼玉県"
+  "山梨県"
+  "奈良県"
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[38]
+  コロプレス図 - コマンドの入手
+  
+[内容]
+  パッケージ「nodejs」と「npm」のインストール
+  
+[確認]
+  # cd
+  # yum -y install nodejs npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  # cd
+  # which npm
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /root/.nvm/versions/node/v15.0.1/bin/npm
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[39]
+  コロプレス図 - コマンドの入手
+  
+[内容]
+  パッケージ「topojson」をインストール
+  
+[確認]
+  # cd
+  # npm -g install topojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  # cd
+  # which geo2topo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /root/.nvm/versions/node/v15.0.1/bin/geo2topo
+  --------------------------------------------------
+  
+  # cd
+  # which toposimplify
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /root/.nvm/versions/node/v15.0.1/bin/toposimplify
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[40]
+  コロプレス図 - 地図ファイルの変換
+  
+[内容]
+  コマンド「geo2topo」で地図ファイル(GeoJSON)を「TopoJSON」に変換
+  
+[確認]
+  # cd /var/www/html
+  # geo2topo -q 1e6 japan.geojson > japan.topojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh japan*
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 646K  6月  3 19:48 japan.geojson
+  -rw-r--r--. 1 root root 193K  6月  3 23:50 japan.topojson
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[41]
+  コロプレス図 - 地図ファイルの軽量化
+  
+[内容]
+  コマンド「toposimplify」で地図ファイル(TopoJSON)を更に軽量化
+  
+[確認]
+  # cd /var/www/html
+  # toposimplify -P 0.05 -f japan.topojson > japan_sim.topojson
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  equivalent --planar-area 0.008600227968788052
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh japan*
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 646K  6月  3 19:48 japan.geojson
+  -rw-r--r--. 1 root root 193K  6月  3 23:50 japan.topojson
+  -rw-r--r--. 1 root root  94K  6月  4 07:46 japan_sim.topojson
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[42]
+  コロプレス図 - 地図ファイル(GeoJSON)を描画
+  
+[内容]
+  SVG要素に地図描画
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    .AAA:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    const P = 60;
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 地図 - ファイル
+    const FILE = 'japan.geojson';
+    
+    // 地図 - 投影方法
+    const PROJ = d3
+      .geoMercator()
+      .center([137, 37])
+      .translate([W/2, H/2])
+      .scale(2000);
+    
+    // 地図 - 変換式(PATH)
+    const PATH = d3
+      .geoPath()
+      .projection(PROJ);
+    
+    // 地図 - 描画
+    d3.json(FILE).then(JSON => {
+      SVG
+        .selectAll('path')
+        .data(JSON.features)
+        .enter()
+        .append('path')
+        .attr('d', PATH)
+        .attr('fill', 'CornFlowerBlue')
+        .attr('class', 'AAA')
+        .attr('stroke', 'White')
+        .attr('stroke-width', '1');
+    });
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[43]
+  コロプレス図 - 地図ファイル(TopoJSON)を描画
+  
+[内容]
+  SVG要素に地図描画
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    .AAA:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    const P = 60;
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 地図 - ファイル「japan_sim.topojson」でもOK
+    const FILE = 'japan.topojson';
+    
+    // 地図 - 投影方法
+    const PROJ = d3
+      .geoMercator()
+      .center([137, 37])
+      .translate([W/2, H/2])
+      .scale(2000);
+    
+    // 地図 - 変換式(PATH)
+    const PATH = d3
+      .geoPath()
+      .projection(PROJ);
+    
+    // 地図 - 描画
+    d3.json(FILE).then(JSON => {
+      SVG
+        .selectAll('path')
+        .data(topojson.feature(JSON, JSON.objects.japan).features)
+        .enter()
+        .append('path')
+        .attr('d', PATH)
+        .attr('fill', 'CornFlowerBlue')
+        .attr('class', 'AAA')
+        .attr('stroke', 'White')
+        .attr('stroke-width', '1');
+    });
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[44]
+  コロプレス図 - 各県のデータ作成
+  
+[内容]
+  各県の人口密度(2021年4月時点)
+  
+[確認]
+  # cd /var/www/html
+  # vi data.csv
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  STATE,VALUE
+  東京都,6367.78
+  大阪府,4627.76
+  神奈川県,3813.63
+  埼玉県,1933.63
+  愛知県,1457.77
+  千葉県,1217.90
+  福岡県,1024.12
+  兵庫県,647.41
+  沖縄県,639.12
+  京都府,556.88
+  香川県,505.55
+  茨城県,468.09
+  静岡県,465.32
+  奈良県,358.44
+  滋賀県,351.58
+  佐賀県,331.39
+  広島県,329.60
+  長崎県,317.28
+  宮城県,314.83
+  三重県,306.11
+  群馬県,302.78
+  栃木県,301.51
+  石川県,269.97
+  岡山県,264.59
+  富山県,243.59
+  熊本県,234.28
+  愛媛県,233.69
+  山口県,219.47
+  和歌山県,193.47
+  岐阜県,185.87
+  福井県,182.00
+  山梨県,180.55
+  大分県,177.42
+  新潟県,174.81
+  徳島県,173.94
+  鹿児島県,172.78
+  鳥取県,157.22
+  長野県,149.99
+  宮崎県,137.52
+  福島県,132.77
+  青森県,127.57
+  山形県,114.23
+  島根県,99.43
+  高知県,97.10
+  秋田県,81.81
+  岩手県,79.36
+  北海道,66.47
+  --------------------------------------------------
+  
+  # cd /var/www/html
+  # ls -lh data.csv
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 root root 822  6月  6 11:28 data.csv
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[45]
+  コロプレス図 - 地図(GeoJSON)を人口密度に応じて着色
+  
+[内容]
+  SVG要素を人口密度に応じて着色、ツールチップ・凡例・ズーム機能を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tip {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 20px;
+      color: White;
+      background-color: Black;
+    }
+    .AAA:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    const P = 60;
+    
+    // カラー関数
+    const COLOR = d3
+      .scaleLinear()
+      .domain([0, 9])
+      .range(['Blue', 'Red']);
+    
+    // 凡例 - 配列
+    const ARR = [
+      { text: '000 - 100', value: 0 },
+      { text: '100 - 200', value: 1 },
+      { text: '200 - 300', value: 2 },
+      { text: '300 - 400', value: 3 },
+      { text: '400 - 500', value: 4 },
+      { text: '500 - 600', value: 5 },
+      { text: '600 - 700', value: 6 },
+      { text: '700 - 800', value: 7 },
+      { text: '800 - 900', value: 8 },
+      { text: '900 -', value: 9 },
+    ];
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 凡例 - 領域作成
+    const LGND = SVG
+      .selectAll('AAA')
+      .data(ARR)
+      .enter()
+      .append('g')
+      .attr('transform', (d, i) => `translate(${P + 20}, ${P + i * 30})`);
+      
+    // 凡例 - 四角
+    LGND
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 20)
+      .attr('height', 20)
+      .style('fill', (d, i) => COLOR(d.value));
+    
+    // 凡例 - 文言
+    LGND
+      .append('text')
+      .attr('x', 30)
+      .attr('y', 17)
+      .text((d, i) => d.text)
+      .style('text-anchor', 'start')
+      .style('font-size', '20px');
+    
+    // 地図 - ファイル
+    const FILE1 = 'japan.geojson';
+    const FILE2 = 'data.csv';
+    
+    // 地図 - 投影方法
+    const PROJ = d3
+      .geoMercator()
+      .center([137, 37])
+      .translate([W/2, H/2])
+      .scale(2000);
+    
+    // 地図 - 変換式(PATH)
+    const PATH = d3
+      .geoPath()
+      .projection(PROJ);
+    
+    // 地図 - 描画
+    d3.json(FILE1).then(JSON => {
+      d3.csv(FILE2).then(CSV => {
+        
+        // 各県の人口密度をCSVから取得後にJSONに追加
+        for (let i = 0; i < CSV.length; i++) {
+          for (let j = 0; j < JSON.features.length; j++) {
+            if (CSV[i].STATE === JSON.features[j].properties.name_local) {
+              JSON.features[j].properties.population = CSV[i].VALUE;
+            }
+          }
+        }
+        
+        // SVG要素に描画
+        SVG
+          .selectAll('path')
+          .data(JSON.features)
+          .enter()
+          .append('path')
+          .attr('d', PATH)
+          .attr('fill', (d, i) => {
+            let RET = 0;
+            if (d.properties.population >= 900) RET = 9;
+            if (d.properties.population >= 800 && d.properties.population < 900) RET = 8;
+            if (d.properties.population >= 700 && d.properties.population < 800) RET = 7;
+            if (d.properties.population >= 600 && d.properties.population < 700) RET = 6;
+            if (d.properties.population >= 500 && d.properties.population < 600) RET = 5;
+            if (d.properties.population >= 400 && d.properties.population < 500) RET = 4;
+            if (d.properties.population >= 300 && d.properties.population < 400) RET = 3;
+            if (d.properties.population >= 200 && d.properties.population < 300) RET = 2;
+            if (d.properties.population >= 100 && d.properties.population < 200) RET = 1;
+            if (d.properties.population >= 0   && d.properties.population < 100) RET = 0;
+            return COLOR(RET);
+          })
+          .on('mouseover', (d, i) => {
+            TIP.text(d.properties.name_ja + '\n' + d.properties.population);
+            TIP.style('opacity', '1');
+          })
+          .on('mouseout', (d, i) => TIP.style('opacity', '0'))
+          .on('mousemove', (d, i) => {
+            TIP.style('top', d3.event.pageY + 'px');
+            TIP.style('left', d3.event.pageX + 'px');
+          })
+          .attr('class', 'AAA')
+          .attr('stroke', 'White')
+          .attr('stroke-width', '1');
+          
+      })
+    });
+    
+    // ズーム - イベント定義
+    const ZOOM = d3
+      .zoom()
+      .scaleExtent([0, 2])
+      .on('zoom', () => { SVG.selectAll('path').attr('transform', d3.event.transform); });
+    
+    // ズーム - イベント登録
+    SVG.call(ZOOM);
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[46]
+  コロプレス図 - 地図(TopoJSON)を人口密度に応じて着色
+  
+[内容]
+  SVG要素を人口密度に応じて着色、ツールチップ・凡例・ズーム機能を追加
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tip {
+      position: absolute;
+      width: 100px;
+      height: 50px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 20px;
+      color: White;
+      background-color: Black;
+    }
+    .AAA:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script> 
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 800;
+    const H = 600;
+    const P = 60;
+    
+    // カラー関数
+    const COLOR = d3
+      .scaleLinear()
+      .domain([0, 9])
+      .range(['Blue', 'Red']);
+    
+    // 凡例 - 配列
+    const ARR = [
+      { text: '000 - 100', value: 0 },
+      { text: '100 - 200', value: 1 },
+      { text: '200 - 300', value: 2 },
+      { text: '300 - 400', value: 3 },
+      { text: '400 - 500', value: 4 },
+      { text: '500 - 600', value: 5 },
+      { text: '600 - 700', value: 6 },
+      { text: '700 - 800', value: 7 },
+      { text: '800 - 900', value: 8 },
+      { text: '900 -', value: 9 },
+    ];
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .style('display', 'block')
+      .style('width', `${W}px`)
+      .style('height', `${H}px`)
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // 凡例 - 領域作成
+    const LGND = SVG
+      .selectAll('AAA')
+      .data(ARR)
+      .enter()
+      .append('g')
+      .attr('transform', (d, i) => `translate(${P + 20}, ${P + i * 30})`);
+      
+    // 凡例 - 四角
+    LGND
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', 20)
+      .attr('height', 20)
+      .style('fill', (d, i) => COLOR(d.value));
+    
+    // 凡例 - 文言
+    LGND
+      .append('text')
+      .attr('x', 30)
+      .attr('y', 17)
+      .text((d, i) => d.text)
+      .style('text-anchor', 'start')
+      .style('font-size', '20px');
+    
+    // 地図 - ファイル
+    const FILE1 = 'japan.topojson';
+    const FILE2 = 'data.csv';
+    
+    // 地図 - 投影方法
+    const PROJ = d3
+      .geoMercator()
+      .center([137, 37])
+      .translate([W/2, H/2])
+      .scale(2000);
+    
+    // 地図 - 変換式(PATH)
+    const PATH = d3
+      .geoPath()
+      .projection(PROJ);
+    
+    // 地図 - 描画
+    d3.json(FILE1).then(JSON => {
+      d3.csv(FILE2).then(CSV => {
+        
+        // 形式「TopoJSON」を形式「GeoJSON」に変換
+        JSON = topojson.feature(JSON, JSON.objects.japan);
+        
+        // 各県の人口密度をCSVから取得後にJSONに追加
+        for (let i = 0; i < CSV.length; i++) {
+          for (let j = 0; j < JSON.features.length; j++) {
+            if (CSV[i].STATE === JSON.features[j].properties.name_local) {
+              JSON.features[j].properties.population = CSV[i].VALUE;
+            }
+          }
+        }
+        
+        // SVG要素に描画
+        SVG
+          .selectAll('path')
+          .data(JSON.features)
+          .enter()
+          .append('path')
+          .attr('d', PATH)
+          .attr('fill', (d, i) => {
+            let RET = 0;
+            if (d.properties.population >= 900) RET = 9;
+            if (d.properties.population >= 800 && d.properties.population < 900) RET = 8;
+            if (d.properties.population >= 700 && d.properties.population < 800) RET = 7;
+            if (d.properties.population >= 600 && d.properties.population < 700) RET = 6;
+            if (d.properties.population >= 500 && d.properties.population < 600) RET = 5;
+            if (d.properties.population >= 400 && d.properties.population < 500) RET = 4;
+            if (d.properties.population >= 300 && d.properties.population < 400) RET = 3;
+            if (d.properties.population >= 200 && d.properties.population < 300) RET = 2;
+            if (d.properties.population >= 100 && d.properties.population < 200) RET = 1;
+            if (d.properties.population >= 0   && d.properties.population < 100) RET = 0;
+            return COLOR(RET);
+          })
+          .on('mouseover', (d, i) => {
+            TIP.text(d.properties.name_ja + '\n' + d.properties.population);
+            TIP.style('opacity', '1');
+          })
+          .on('mouseout', (d, i) => TIP.style('opacity', '0'))
+          .on('mousemove', (d, i) => {
+            TIP.style('top', d3.event.pageY + 'px');
+            TIP.style('left', d3.event.pageX + 'px');
+          })
+          .attr('class', 'AAA')
+          .attr('stroke', 'White')
+          .attr('stroke-width', '1');
+          
+      })
+    });
+    
+    // ズーム - イベント定義
+    const ZOOM = d3
+      .zoom()
+      .scaleExtent([0, 2])
+      .on('zoom', () => { SVG.selectAll('path').attr('transform', d3.event.transform); });
+    
+    // ズーム - イベント登録
+    SVG.call(ZOOM);
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================
+[47]
+  コロプレス図 - FCC課題
+  
+[内容]
+  ネット上の複数のJSONファイルから地図描画 -> JSONファイルのどこからデータを取得するかは解答を参照
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>D3(sample)</title>
+  
+  // CSS
+  <style>
+    * {
+      font-family: sans-serif;
+      background-color: Gray;
+    }
+    #tooltip {
+      position: absolute;
+      width: 250px;
+      height: 20px;
+      padding: 5px;
+      text-align: center;
+      border: 2px solid White;
+      border-radius: 10px;
+      font-size: 15px;
+      color: White;
+      background-color: Black;
+    }
+    .axis path {
+      stroke: Black;
+    }
+    .axis line {
+      stroke: Black;
+    }
+    .axis text {
+      fill: Black;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .county:hover {
+      color: White;
+      fill: Black
+    }
+  </style>
+  
+  </head>
+  <body>
+  
+  // CDN
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <script src="https://d3js.org/topojson.v2.min.js"></script>
+  
+  // D3
+  <script>
+    
+    // 定数
+    const W = 1200;
+    const H = 900;
+    const P = 100;
+    
+    // カラー関数
+    const COLOR = d3
+      .scaleThreshold()
+      .domain([3, 10, 75])
+      .range([
+        d3.interpolateGreens(0.1),
+        d3.interpolateGreens(0.3),
+        d3.interpolateGreens(0.5),
+        d3.interpolateGreens(0.7)
+      ]);
+    
+    // ツールチップ
+    const TIP = d3
+      .select('body')
+      .append('div')
+      .attr('id', 'tooltip')
+      .style('opacity', '0');
+    
+    // SVG要素を追加
+    const SVG = d3
+      .select('body')
+      .append('svg')
+      .attr('width', W)
+      .attr('height', H)
+      .style('display', 'block')
+      .style('background-color', 'White')
+      .style('margin', '10% auto');
+    
+    // タイトル追加
+    SVG
+      .append('text')
+      .attr('x', W / 2)
+      .attr('y', P / 2)
+      .attr('id', 'title')
+      .attr('text-anchor', 'middle')
+      .text('United States Educational Attainment')
+      .style('font-size', '30px');
+    
+    // 副題追加
+    SVG
+      .append('text')
+      .attr('x', W / 2)
+      .attr('y', P + 10)
+      .attr('id', 'description')
+      .attr('text-anchor', 'middle')
+      .text("Percentage of adults age 25 and older with a bachelor's degree or higher (2010-2014)")
+      .style('font-size', '20px');
+    
+    // 凡例 - 配列と定数
+    const ARR = [0.1, 0.3, 0.5, 0.7];
+    const BAR = 80;
+    
+    // 凡例 - 領域作成
+    const LGND = SVG
+      .append('g')
+      .attr('id', 'legend');
+    
+    // 凡例 - 四角
+    LGND
+      .selectAll('RECT')
+      .data(ARR)
+      .enter()
+      .append('rect')
+      .attr('x', 0)
+      .attr('y', 0)
+      .attr('width', BAR)
+      .attr('height', 20)
+      .attr('transform', (d, i) => `translate(${(P + 350) + i * BAR}, ${P + 50})`)
+      .style('fill', d => d3.interpolateGreens(d));
+    
+    // 凡例 - X軸(変換関数)
+    const FUNC_X = d3
+      .scaleLinear()
+      .domain([1, 5])
+      .range([P, P + 4 * BAR]);
+    
+    // 凡例 - X軸(目盛)
+    const SCALE_X = d3
+      .axisBottom()
+      .scale(FUNC_X)
+      .ticks(4)
+      .tickFormat((d, i) => {
+        switch(i) {
+          case 0: return '0%';
+          case 1: return '3%';
+          case 2: return '10%';
+          case 3: return '75%';
+          case 4: return '100%';
+        }
+      });
+    
+    /**/
+    // 凡例 - X軸描画
+    SVG
+      .append('g')
+      .call(SCALE_X)
+      .attr('class', 'axis')
+      .attr('transform', `translate(${P + 250}, ${P + 70})`);
+    /**/
+    
+    // ファイル
+    const FILE1 = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json';
+    const FILE2 = 'https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json';
+    
+    // 描画開始
+    d3.json(FILE1).then(MAP => {
+      d3.json(FILE2).then(DATA => {
+    
+        // SVG要素に地図を描画
+        SVG
+          .selectAll('path')
+          .data(topojson.feature(MAP, MAP.objects.counties).features)
+          .enter()
+          .append('path')
+          .attr('d', d3.geoPath())
+          .attr('data-fips', d => d.id)
+          .attr('data-education', d => {
+            const TMP = DATA.filter(OBJ => OBJ.fips === d.id);
+            return TMP[0].bachelorsOrHigher;
+          })
+          .attr('fill', d => {
+            const TMP = DATA.filter(OBJ => OBJ.fips === d.id);
+            return COLOR(TMP[0].bachelorsOrHigher);
+          })
+          .on('mouseover', d => {
+            const TMP = DATA.filter(OBJ => OBJ.fips === d.id);
+            TIP.text(TMP[0].area_name + ',' + TMP[0].state + ',' + TMP[0].bachelorsOrHigher + '%');
+            TIP.style('opacity', '1');
+            TIP.attr('data-education', TMP[0].bachelorsOrHigher);
+          })
+          .on('mouseout', d => TIP.style('opacity', '0'))
+          .on('mousemove', d => {
+            TIP.style('top', d3.event.pageY + 'px');
+            TIP.style('left', d3.event.pageX + 'px');
+          })
+          .attr('class', 'AAA')
+          .attr('class', 'county')
+          .attr('transform', `translate(${1.2 * P}, ${2.0 * P})`);
+          
+      });
+    });
+    
+  </script>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以後の動作確認に続く
+  
+================================================================================

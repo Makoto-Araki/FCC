@@ -1,0 +1,558 @@
+================================================================================
+[00] Introduction to the React and Redux Challenges
+[01] Getting Started with React Redux
+[02] Manage State Locally First
+[03] Extract State Logic to Redux
+[04] Use Provider to Connect Redux to React
+[05] Map State to Props
+[06] Map Dispatch to Props
+[07] Connect Redux to React
+[08] Connect Redux to the Messages App
+[09] Extract Local State into Redux
+[10] Moving Forward From Here
+================================================================================
+[01]
+  Getting Started with React Redux
+  
+[内容]
+  クラスコンポーネントの作成
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  // React
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
+  
+  // Redux
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.2/react-redux.min.js"></script>
+  
+  // Babel
+  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML -> 要素「JSX」 の描画先
+  <div id="APP"></div>
+  
+  // JSX
+  <script type="text/babel">
+    
+    /* ----------------------------------------------------------------- */
+    /* React Code                                                        */
+    /* ----------------------------------------------------------------- */
+    
+    // 関数コンポーネント
+    const CNT = (props) => {
+      return (
+        <p>Click : {props.P1}</p>
+      );
+    }
+    
+    // メインクラスコンポーネント
+    class MAIN extends React.Component {
+      
+      // コンストラクタ
+      constructor(props) {
+        super(props);
+        this.state = { count: 0 }
+        this.BTN1Click = this.BTN1Click.bind(this);
+        this.BTN2Click = this.BTN2Click.bind(this);
+      }
+      
+      // ボタン「増加」のイベントハンドラ
+      BTN1Click() {
+        this.setState(state => ({ count: this.state.count + 1 }));
+      }
+      
+      // ボタン「減少」のイベントハンドラ
+      BTN2Click() {
+        this.setState(state => ({ count: this.state.count - 1 }));
+      }
+      
+      // 描画処理
+      render() {
+        return (
+          <div>
+            <button onClick={this.BTN1Click}>増加</button>
+            <button onClick={this.BTN2Click}>減少</button>
+            <hr />
+            <CNT P1={this.state.count} />
+          </div>
+        );
+      }
+      
+    }
+    
+    /* ----------------------------------------------------------------- */
+    /* Redux Code                                                        */
+    /* ----------------------------------------------------------------- */
+    
+    // アクション作成プログラム
+    const ACT1 = () => { return { type: 'Inc' }; }
+    const ACT2 = () => { return { type: 'Dec' }; }
+    
+    // ストア内部ロジック -> アクションに応じてステート(状態)変化
+    const REDUCER = (state = { count: 0 }, action) => {
+      switch(action.type) {
+        case 'Inc':
+          return { count: state.count + 1 };
+        case 'Dec':
+          return { count: state.count - 1 };
+        default:
+          return { count: 0 };
+      }
+    }
+    
+    // ストア作成
+    const STORE = Redux.createStore(REDUCER);
+    
+    /* ----------------------------------------------------------------- */
+    /* Container Code                                                    */
+    /* ----------------------------------------------------------------- */
+    
+    // ストア側の情報「state.count」を取り出しコンポーネント側の「props.count」に紐付け
+    const mapStateToProps = state => {
+      return {
+        count: state.count
+      }
+    }
+    
+    // イベントハンドラをアクションに紐付け -> 戻り値はオブジェクト
+    const mapDispatchToProps = dispatch => {
+      return {
+        BTN1Click: () => { dispatch(ACT1()); },
+        BTN2Click: () => { dispatch(ACT2()); }
+      }
+    }
+    
+    // 定数定義
+    const PRV = ReactRedux.Provider;
+    const CON = ReactRedux.connect;
+    
+    // コンテナコンポーネント
+    class CONTAINER extends React.Component {
+    
+      // コンストラクタ
+      constructor(props) {
+        super(props);
+      }
+      
+      // 描画処理
+      render() {
+        
+        // ストア側の情報「state.count」に接続
+        // ストア側へアクション送信するための関数一覧をオブジェクトで取得
+        // メインクラスコンポーネント「MAIN」と接続
+        const CONNECT = CON(mapStateToProps, mapDispatchToProps)(MAIN);
+        
+        // 最上位コンポーネントを「Provider」で囲み配下コンポーネントもストア接続可能
+        return (
+          <PRV store={STORE}>
+            <CONNECT />
+          </PRV>
+        );
+      }
+      
+    }
+    
+    /* ----------------------------------------------------------------- */
+    /* Drawing Code                                                      */
+    /* ----------------------------------------------------------------- */
+    
+    // コンテナコンポーネントを描画指示
+    ReactDOM.render(
+      <CONTAINER />,
+      document.getElementById('APP')
+    );
+    
+  </script>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Manage State Locally First
+  
+[内容]
+  内部情報「state」の内部パラメータ「count」を更新するハンドラ作成
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[03]
+  Extract State Logic to Redux
+  
+[内容]
+  内部情報「state」の内部パラメータ「count」管理のReduxコード追加
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[04]
+  Use Provider to Connect Redux to React
+  
+[内容]
+  コンテナコンポーネント作成(未完成)
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[05]
+  Map State to Props
+  
+[内容]
+  ストア側の情報「count」とメインクラスコンポーネント側の情報「state.count」を紐付け
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[06]
+  Map Dispatch to Props
+  
+[内容]
+  イベントハンドラ発動時にストアにアクション送信
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[07]
+  Connect Redux to React
+  
+[内容]
+  ストアからメインクラスコンポーネントに接続
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[08]
+  Connect Redux to the Messages App
+  
+[内容]
+  動作確認
+    下記のアプリを作る形式で記録を残していく
+  
+  ボタンのクリック数を出力するアプリ
+    ボタン「増加」で増加
+    ボタン「減少」で減少
+  
+[確認]
+  // 上記「01」を参照
+  
+================================================================================
+[09]
+  Extract Local State into Redux
+  
+[内容]
+  ステート管理
+    ローカル管理(React)とグローバル管理(Redux)の併存状態からグローバル管理のみに変更
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  
+  // Bootstrap - CSS
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  
+  // JQuery
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  
+  // React
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
+  
+  // Redux
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/5.0.2/react-redux.min.js"></script>
+  
+  // Babel
+  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
+  
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML -> 要素「JSX」 の描画先
+  <div id="APP"></div>
+  
+  // JSX
+  <script type="text/babel">
+    
+    /* ----------------------------------------------------------------- */
+    /* React Code                                                        */
+    /* ----------------------------------------------------------------- */
+    
+    // 関数コンポーネント
+    const CNT = (props) => {
+      return (
+        <p>Click : {props.P1}</p>
+      );
+    }
+    
+    // メインクラスコンポーネント
+    class MAIN extends React.Component {
+      
+      // コンストラクタ
+      constructor(props) {
+        super(props);
+        // コメントアウト this.state = { count: 0 }
+        this.BTN1Click = this.BTN1Click.bind(this);
+        this.BTN2Click = this.BTN2Click.bind(this);
+      }
+      
+      // ボタン「増加」のイベントハンドラ
+      BTN1Click() {
+        // コメントアウト this.setState(state => ({ count: this.state.count + 1 }));
+      }
+      
+      // ボタン「減少」のイベントハンドラ
+      BTN2Click() {
+        // コメントアウト this.setState(state => ({ count: this.state.count - 1 }));
+      }
+      
+      // グローバル管理(Redux)対応で追加
+      INCREMENT() {
+        dispatch(ACT1());
+      }
+      
+      // グローバル管理(Redux)対応で追加
+      DECREMENT() {
+        dispatch(ACT2());
+      }
+      
+      // 描画処理
+      render() {
+        return (
+          <div>
+            <button onClick={this.props.INCREMENT}>増加</button>  // 変更前 this.BTN1Click
+            <button onClick={this.props.DECREMENT}>減少</button>  // 変更前 this.BTN2Click
+            <hr />
+            <CNT P1={this.props.count} />  // 変更前 this.state.count
+          </div>
+        );
+      }
+      
+    }
+    
+    /* ----------------------------------------------------------------- */
+    /* Redux Code                                                        */
+    /* ----------------------------------------------------------------- */
+    
+    // アクション作成プログラム
+    const ACT1 = () => { return { type: 'Inc' }; }
+    const ACT2 = () => { return { type: 'Dec' }; }
+    
+    // ストア内部ロジック -> アクションに応じてステート(状態)変化
+    const REDUCER = (state = { count: 0 }, action) => {
+      switch(action.type) {
+        case 'Inc':
+          return { count: state.count + 1 };
+        case 'Dec':
+          return { count: state.count - 1 };
+        default:
+          return { count: 0 };
+      }
+    }
+    
+    // ストア作成
+    const STORE = Redux.createStore(REDUCER);
+    
+    /* ----------------------------------------------------------------- */
+    /* Container Code                                                    */
+    /* ----------------------------------------------------------------- */
+    
+    // ストア側の情報「state.count」を取り出しコンポーネント側の「props.count」に紐付け
+    const mapStateToProps = state => {
+      return {
+        count: state.count
+      }
+    }
+    
+    // イベントハンドラをアクションに紐付け -> 戻り値はオブジェクト
+    const mapDispatchToProps = dispatch => {
+      return {
+        // コメントアウト BTN1Click: () => { dispatch(ACT1()); },
+        // コメントアウト BTN2Click: () => { dispatch(ACT2()); }
+        INCREMENT: () => { dispatch(ACT1()); },  // 追加
+        DECREMENT: () => { dispatch(ACT2()); }   // 追加
+      }
+    }
+    
+    // 定数定義
+    const PRV = ReactRedux.Provider;
+    const CON = ReactRedux.connect;
+    
+    // コンテナコンポーネント
+    class CONTAINER extends React.Component {
+    
+      // コンストラクタ
+      constructor(props) {
+        super(props);
+      }
+      
+      // 描画処理
+      render() {
+        
+        // ストア側の情報「state.count」に接続
+        // ストア側へアクション送信するための関数一覧をオブジェクトで取得
+        // メインクラスコンポーネント「MAIN」と接続
+        const CONNECT = CON(mapStateToProps, mapDispatchToProps)(MAIN);
+        
+        // 最上位コンポーネントを「Provider」で囲み配下コンポーネントもストア接続可能
+        return (
+          <PRV store={STORE}>
+            <CONNECT />
+          </PRV>
+        );
+      }
+      
+    }
+    
+    /* ----------------------------------------------------------------- */
+    /* Drawing Code                                                      */
+    /* ----------------------------------------------------------------- */
+    
+    // コンテナコンポーネントを描画指示
+    ReactDOM.render(
+      <CONTAINER />,
+      document.getElementById('APP')
+    );
+    
+  </script>
+  
+  // CSS
+  <style></style>
+  
+  // Bootstrap - JS
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  
+  // Bootstrap - JS
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  
+  // JS -> JQuery
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[10]
+  Moving Forward From Here
+  
+[内容]
+  サイト「GitHub」のソース群を紹介
+  
+[確認]
+  // 省略
+  
+================================================================================

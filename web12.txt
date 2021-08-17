@@ -1,0 +1,630 @@
+================================================================================
+[00] Introduction to the Debugging Challenges
+[01] Use the JavaScript Console to Check the Value of a Variable
+[02] Understanding the Differences between the freeCodeCamp and Browser Console
+[03] Use typeof to Check the Type of a Variable
+[04] Catch Misspelled Variable and Function Names
+[05] Catch Unclosed Parentheses, Brackets, Braces and Quotes
+[06] Catch Mixed Usage of Single and Double Quotes
+[07] Catch Use of Assignment Operator Instead of Equality Operator
+[08] Catch Missing Open and Closing Parenthesis After a Function Call
+[09] Catch Arguments Passed in the Wrong Order When Calling a Function
+[10] Catch Off By One Errors When Using Indexing
+[11] Use Caution When Reinitializing Variables Inside a Loop
+[12] Prevent Infinite Loops with a Valid Terminal Condition
+================================================================================
+[01]
+  Use the JavaScript Console to Check the Value of a Variable
+  
+[内容]
+  変数の値の遷移を「console.log()」で確認
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let str1 = '上杉謙信';
+    let str2 = '武田信玄';
+    
+    // 出力
+    console.log(str1);
+    console.log(str2);
+    
+    // 変数の更新
+    str1 = '上杉景勝';
+    str2 = '武田勝頼';
+    
+    // 出力
+    console.log(str1);
+    console.log(str2);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[02]
+  Understanding the Differences between the freeCodeCamp and Browser Console
+  
+[内容]
+  コンソールクリア
+    メソッド「console.clear()」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let str1 = '上杉謙信';
+    let str2 = '武田信玄';
+    
+    // 出力
+    console.log(str1);
+    console.log(str2);
+    
+    // コンソールクリア => メッセージ「コンソールの内容が消去されました」
+    console.clear();
+    
+    // 変数の更新
+    str1 = '上杉景勝';
+    str2 = '武田勝頼';
+    
+    // 出力
+    console.log(str1);
+    console.log(str2);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[03]
+  Use typeof to Check the Type of a Variable
+  
+[内容]
+  型チェック
+    演算子「typeof」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // チェックするデータ一覧
+    const arr = [
+      'A',        // string
+      "A",        // string
+      0,          // number
+      100,        // number
+      [],         // object
+      {},         // object
+      true,       // boolean
+      false,      // boolean
+      null,       // object
+      undefined,  // undefined
+      NaN         // number
+    ];
+    
+    // 出力
+    for (let i = 0; i < arr.length; i++) {
+      console.log(`${arr[i]} : ${typeof arr[i]}`);
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[04]
+  Catch Misspelled Variable and Function Names
+  
+[内容]
+  変数名や関数名のスペルミス
+    エラー「ReferenceError」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = (p1) => 'Hello ' + p1 ;
+    
+    // 関数名のスペルミス
+    console.log(myFun('上杉謙信'));  // ReferenceError: myFun is not defined
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[05]
+  Catch Unclosed Parentheses, Brackets, Braces and Quotes
+  
+[内容]
+  括弧や引用符の閉じ忘れ
+    エラー「SyntaxError」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 引用符「'」の閉じ忘れ
+    const str = 'Hello ;  // SyntaxError: '' string literal contains an unescaped
+    
+    // 出力
+    console.log(str);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[06]
+  Catch Mixed Usage of Single and Double Quotes
+  
+[内容]
+  引用符「'」と引用符「"」のミックスは禁止
+    エラー「SyntaxError」
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 引用符「'」と引用符「"」のミックス
+    const str = 'She said "Hello' in the kitchen" ;  // SyntaxError: unexpected token
+    
+    // 出力
+    console.log(str);
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[07]
+  Catch Use of Assignment Operator Instead of Equality Operator
+  
+[内容]
+  分岐処理の条件文で論理演算子「===」と誤用して代入演算子「=」を使用
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 変数定義と初期化
+    let val1 = 1;
+    let val2 = 2;
+    
+    // 条件文で論理演算子「===」と誤用して代入演算子「=」を使用
+    if (val1 = val2) {
+      // 実行
+    } else {
+      // 本来なら実行されるべきコードが実行されない
+    }
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[08]
+  Catch Missing Open and Closing Parenthesis After a Function Call
+  
+[内容]
+  関数名の後ろの「()」を忘れた場合の挙動について
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義
+    const myFunc = () => 'Hello World';
+    
+    // チェック
+    console.log(typeof myFunc);    // function
+    console.log(typeof myFunc());  // string => 'Hello World'
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[09]
+  Catch Arguments Passed in the Wrong Order When Calling a Function
+  
+[内容]
+  関数に引数を与える順番を間違えると‥
+  
+[確認]
+  // 省略
+  
+================================================================================
+[10]
+  Catch Off By One Errors When Using Indexing
+  
+[内容]
+  配列や文字列(配列)は「0オリジン」であることを念頭にコードを書く
+  
+[確認]
+  // 省略
+  
+================================================================================
+[11]
+  Use Caution When Reinitializing Variables Inside a Loop
+  
+[内容]
+  ループ内の変数や配列の再初期化を忘れると‥
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義 => 多次元配列の作成
+    const myFunc = (p1, p2) => {
+      let res = [];
+      
+      // ループ内の配列「tmp」の初期化が必要
+      for (let i = 0; i < p1; i++) {
+        let tmp = [];
+        for (let j = 0; j < p2; j++) tmp.push(j);
+        res.push(tmp);
+      }
+      
+      return res;
+    }
+    
+    // 出力
+    console.log(myFunc(2, 2));
+    console.log(myFunc(3, 2));
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================
+[12]
+  Prevent Infinite Loops with a Valid Terminal Condition
+  
+[内容]
+  ループ制御条件に注意して無限ループを防ぐ
+  
+[確認]
+  # cd /var/www/html
+  # vi sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY SAMPLE</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JS
+  <script>
+    
+    // 関数定義 => 引数「p1」の数値次第で無限ループ
+    const myFunc = (p1) => {
+      for (let i = 1; i != p1; i += 2) {
+        console.log('Hello');
+      }
+    }
+    
+    // 出力
+    console.log(myFunc(2));
+    console.log(myFunc(3));
+    
+  </script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  確認完了!
+  
+================================================================================

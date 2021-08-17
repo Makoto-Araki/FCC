@@ -1,0 +1,133 @@
+================================================================================
+[00] Introduction to the APIs and Microservices Projects
+[01] Timestamp Microservice
+[02] Request Header Parser Microservice
+[03] URL Shortener Microservice
+[04] Exercise Tracker
+[05] File Metadata Microservice
+================================================================================
+[01]
+  Timestamp Microservice
+  
+[内容]
+  タイムスタンプを返すサービス作成
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC4-01
+    URL  : https://FCC4-01.makotoaraki.repl.co
+  
+[確認]
+  > replit
+  > Ctrl + Enter (https://FCC4-01.makotoaraki.repl.co)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> この状態で課題のテストボタンをクリックして合格
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[02]
+  Request Header Parser Microservice
+  
+[内容]
+  リクエストヘッダ解析を行いユーザー情報を返すサービス作成
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC4-02
+    URL  : https://FCC4-02.makotoaraki.repl.co
+  
+[確認]
+  > replit
+  > Ctrl + Enter (https://FCC4-02.makotoaraki.repl.co)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> この状態で課題のテストボタンをクリックして合格
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[03]
+  URL Shortener Microservice
+  
+[内容]
+  入力URLを基に短縮URLを生成して返す
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC4-03
+    URL  : https://FCC4-03.makotoaraki.repl.co
+  
+[確認]
+  > replit
+  > Ctrl + Enter (https://FCC4-03.makotoaraki.repl.co)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> この状態で課題のテストボタンをクリックして合格
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[04]
+  Exercise Tracker
+  
+[内容]
+  ユーザーの運動記録を日付単位で登録する
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC4-04
+    URL  : https://FCC4-04.makotoaraki.repl.co
+  
+  FCCサンプル内で作成したデータ(ユーザーID)
+    ma001 -> 6107acd3ffbf5305a8315314
+    ma002 -> 610c958effbf5305a8315531
+    ma003 -> 610e71a3ffbf5305a83155b9
+  
+[確認]
+  > replit
+  > Ctrl + Enter (https://FCC4-04.makotoaraki.repl.co)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 採点機能の不具合が疑われるので次の課題に移る
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[05]
+  File Metadata Microservice
+  
+[内容]
+  ファイルのアップロード機能を実装する
+  
+  Replit
+    User : MakotoAraki
+    Pass : (秘密)
+    Name : FCC4-05
+    URL  : https://FCC4-05.makotoaraki.repl.co
+  
+[確認]
+  > replit
+  > Ctrl + Enter (https://FCC4-05.makotoaraki.repl.co)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> //
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================

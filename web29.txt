@@ -17,99 +17,165 @@
   コマンド「Git」とサービス「GitHub」の基本操作
   
 [内容]
-  以降の学習では、コマンド「Git」とサービス「GitHub」の操作が要求される
+  本ドキュメント群をコマンド「Git」とサービス「GitHub」で管理する
   
   サービス「GitHub」
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : XXX(リポジトリ)
-    URI  : https://github.com/Makoto-Araki/XXX.git
-  
-  サービス「Replit」
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : XXX
-    URI  : https://XXX.makotoaraki.repl.co
+    User  : Makoto-Araki
+    Pass  : (秘密)
+    Name  : FCC(リポジトリ)
+    URI   : https://github.com/Makoto-Araki/FCC.git
+    Token : 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 (2021-08-17 => 90days)
   
 [確認]
-  $ cd $HOME
-  $ git clone クローン元(課題で指示)
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Initialized empty Git repository in /home/makoto/CentOS-8/web/FCC/.git/
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git remote add FCC https://github.com/Makoto-Araki/FCC.git
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> サービス「GitHub」のリポジトリ「FCC」をローカル名「FCC」を紐付け
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git add web*.txt
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 全ファイルをコミット対象にする
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git commit -m '2021-08-17-01'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master (root-commit) 1e50766] 2021-08-17-01  // ブランチ名とコミット時のメッセージ
+  33 files changed, 51787 insertions(+)
+  create mode 100644 web01.txt
+  create mode 100644 web02.txt
+  create mode 100644 web03.txt
+  create mode 100644 web04.txt
+  create mode 100644 web05.txt
+  create mode 100644 web06.txt
+  create mode 100644 web07.txt
+  create mode 100644 web08.txt
+  create mode 100644 web09.txt
+  create mode 100644 web10.txt
+  create mode 100644 web11.txt
+  create mode 100644 web12.txt
+  create mode 100644 web13.txt
+  create mode 100644 web14.txt
+  create mode 100644 web15.txt
+  create mode 100644 web16.txt
+  create mode 100644 web17.txt
+  create mode 100644 web18.txt
+  create mode 100644 web19.txt
+  create mode 100644 web20.txt
+  create mode 100644 web21.txt
+  create mode 100644 web22.txt
+  create mode 100644 web23.txt
+  create mode 100644 web24.txt
+  create mode 100644 web25.txt
+  create mode 100644 web26.txt
+  create mode 100644 web27.txt
+  create mode 100644 web28.txt
+  create mode 100644 web29.txt
+  create mode 100644 web30.txt
+  create mode 100644 web31.txt
+  create mode 100644 web32.txt
+  create mode 100644 web33.txt
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git branch 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master -> 現在はブランチ「master」のみ存在、作業ブランチは「master」
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git push FCC master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // リポジトリ「FCC」へブランチ「master」の内容を送信(push)
+  
+  Username for 'https://github.com': Makoto-Araki  // ユーザー名「Makoto-Araki」を入力
+  Password for 'https://Makoto-Araki@github.com':  // トークンは90日で期限切れ -> 再作成
+  Counting objects: 35, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (35/35), done.
+  Writing objects: 100% (35/35), 140.66 KiB | 0 bytes/s, done.
+  Total 35 (delta 14), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (14/14), done.
+  To https://github.com/Makoto-Araki/FCC.git
+   * [new branch]      master -> master
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ vi web29.txt
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/作成ディレクトリ
-  $ git init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 作成ディレクトリ内を初期化
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
-  $ git remote add XXX https://github.com/Makoto-Araki/XXX.git
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> サービス「GitHub」のリポジトリ「XXX」をローカル名「XXX」を紐付け
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
-  $ ls -lA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> リポジトリ「XXX」内のファイルの展開を確認
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
-  $ git branch 
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 現状ではブランチ「gomix」のみが表示、このブランチで作業する
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
-  $ vi AAA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ここではファイル「AAA」を編集
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
-  $ git add AAA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 編集ファイル「AAA」をコミット対象にする
-  --------------------------------------------------
-  
-  $ cd $HOME/作成ディレクトリ
+  $ cd $HOME/CentOS-8/web/FCC
   $ git status
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> ファイル「AAA」がステータス「modified」で表示
+  # On branch master
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  #	modified:   web29.txt  // 変更ファイルを表示してくれる
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
   --------------------------------------------------
   
-  $ cd $HOME/作成ディレクトリ
-  $ git commit -m 'Commit-01'
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git add web29.txt
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> コミット対象のファイル群をメッセージ「Commit-01」でコミット
+  (省略) -> コミット対象にする
   --------------------------------------------------
   
-  $ cd $HOME/作成ディレクトリ
-  $ git push XXX gomix
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git commit -m '2021-08-17-02'
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> リポジトリ(XXX)へ指定ブランチ(gomix)をアップ(push)
+  (省略) -> ファイルをコミット
+  --------------------------------------------------
+  
+  $ cd $HOME/CentOS-8/web/FCC
+  $ git push FCC master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // リポジトリ「FCC」へブランチ「master」の内容を送信(push)
+  
+  Username for 'https://github.com': Makoto-Araki  // ユーザー名「Makoto-Araki」を入力
+  Password for 'https://Makoto-Araki@github.com':  // トークンは90日で期限切れ -> 再作成
+  Counting objects: 35, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (35/35), done.
+  Writing objects: 100% (35/35), 140.66 KiB | 0 bytes/s, done.
+  Total 35 (delta 14), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (14/14), done.
+  To https://github.com/Makoto-Araki/FCC.git
+   * [new branch]      master -> master
   --------------------------------------------------
   
   以下の記録に続く
@@ -269,12 +335,6 @@
 [内容]
   設定ファイル「pakage.json」の編集
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -402,12 +462,6 @@
 [内容]
   キー「description」でパッケージ説明
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -423,12 +477,6 @@
   
 [内容]
   キー「keywords」で関連用語を登録
-  
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
   
   Replit
     User : MakotoAraki
@@ -446,12 +494,6 @@
 [内容]
   キー「license」でユーザーにライセンス通知
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -467,12 +509,6 @@
   
 [内容]
   キー「version」でバージョンを表示する
-  
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
   
   Replit
     User : MakotoAraki
@@ -490,12 +526,6 @@
 [内容]
   キー「dependencies」でパッケージ間の依存関係を指示
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -511,12 +541,6 @@
   
 [内容]
   バージョン表記を「2.10.2」に修正 -> 2(MAJOR).10(MINOR).2(PATCH)
-  
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
   
   Replit
     User : MakotoAraki
@@ -534,12 +558,6 @@
 [内容]
   バージョン表記を「~2.10.2」に修正 -> パッチレベル「2.10.x」で自動更新
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -556,12 +574,6 @@
 [内容]
   バージョン表記を「^2.10.2」に修正 -> マイナーレベル「2.x.x」で自動更新
   
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
-  
   Replit
     User : MakotoAraki
     Pass : (秘密)
@@ -577,12 +589,6 @@
   
 [内容]
   依存関係リストからパッケージ削除 -> パッケージをリストから単に削除すれば良い
-  
-  GitHub
-    User : Makoto-Araki
-    Pass : (秘密)
-    Name : FCC1
-    URL  : https://github.com/Makoto-Araki/FCC1.git
   
   Replit
     User : MakotoAraki

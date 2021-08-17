@@ -243,7 +243,7 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => 'Hello ' + p1 ;
+    const myFunc = (P1) => 'Hello ' + P1 ;
     
     // 関数名のスペルミス
     console.log(myFun('上杉謙信'));  // ReferenceError: myFun is not defined

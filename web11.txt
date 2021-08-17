@@ -80,7 +80,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -146,7 +146,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -212,7 +212,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -278,7 +278,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -344,7 +344,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -400,9 +400,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      'My dog chased the cat.',  // dog, cat
-      'My Dog chased the cat.',  // Dog, cat
-      'My DOG chased the cat.'   // DOG, cat
+      'My dog chased the cat.',  // [ dog, cat ]
+      'My Dog chased the cat.',  // [ Dog, cat ]
+      'My DOG chased the cat.'   // [ DOG, cat ]
     ];
     
     // 正規表現
@@ -410,7 +410,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -466,9 +466,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      'My dog chased the cat.',  // dog, cat
-      'My Dog chased the cat.',  // Dog, cat
-      'My DOG chased the cat.'   // DOG, cat
+      'My dog chased the cat.',  // [ dog, cat ]
+      'My Dog chased the cat.',  // [ Dog, cat ]
+      'My DOG chased the cat.'   // [ DOG, cat ]
     ];
     
     // 正規表現
@@ -476,7 +476,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -532,9 +532,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      'My dog stared at the wall dot.',  // dog, dot
-      'My Dog stared at the wall dot.',  // Dog, dot
-      'My DOG stared at the wall dot.'   // DOG, dot
+      'My dog stared at the wall dot.',  // [ dog, dot ]
+      'My Dog stared at the wall dot.',  // [ Dog, dot ]
+      'My DOG stared at the wall dot.'   // [ DOG, dot ]
     ];
     
     // 正規表現
@@ -542,7 +542,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -598,9 +598,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      'My dog stared at the wall dot.',  // dog
-      'My Dog stared at the wall dot.',  // Dog
-      'My DOG stared at the wall dot.'   // DOG
+      'My dog stared at the wall dot.',  // [ dog ]
+      'My Dog stared at the wall dot.',  // [ Dog ]
+      'My DOG stared at the wall dot.'   // [ DOG ]
     ];
     
     // 正規表現
@@ -608,7 +608,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -664,9 +664,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '001 002 AAA 003',  // 001, 002, 003
-      '004 005 BBB 006',  // 004, 005, 006
-      '007 008 CCC 009'   // 007, 008, 009
+      '001 002 AAA 003',  // [ 001, 002, 003 ]
+      '004 005 BBB 006',  // [ 004, 005, 006 ]
+      '007 008 CCC 009'   // [ 007, 008, 009 ]
     ];
     
     // 正規表現
@@ -674,7 +674,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -730,9 +730,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '001 002 AAA 003',  // AAA
-      '004 005 BBB 006',  // BBB
-      '007 008 CCC 009'   // CCC
+      '001 002 AAA 003 DDD',  // [ AAA, DDD ]
+      '004 005 BBB 006 EEE',  // [ BBB, EEE ]
+      '007 008 CCC 009 FFF'   // [ CCC, FFF ]
     ];
     
     // 正規表現
@@ -740,7 +740,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -808,7 +808,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -876,7 +876,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -944,7 +944,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1000,9 +1000,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      'ABCDEFGHICCJKLMCCCNOPQRCCCCSTUVCCCCCWXYZ',  // C, CC, CCC, CCCC, CCCCC
-      'ZZZZYYYY991C22CC333CCC4444CCCC55555CCCCC',  // C, CC, CCC, CCCC, CCCCC
-      'C#CC#CCC#CCCC#CCCCC#####################'   // C, CC, CCC, CCCC, CCCCC
+      'ABCDEFGHICCJKLMCCCNOPQRCCCCSTUVCCCCCWXYZ',  // [ C, CC, CCC, CCCC, CCCCC ]
+      'ZZZZYYYY991C22CC333CCC4444CCCC55555CCCCC',  // [ C, CC, CCC, CCCC, CCCCC ]
+      'C#CC#CCC#CCCC#CCCCC#####################'   // [ C, CC, CCC, CCCC, CCCCC ]
     ];
     
     // 正規表現
@@ -1010,7 +1010,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1077,7 +1077,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1143,7 +1143,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1199,9 +1199,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '###AAA###',  // AAA
-      '###000###',  // 000
-      '###___###'   // ___
+      '###AAA###000###___###DDD',  // [ AAA, 000, ___, DDD ]
+      '###BBB###111###___###EEE',  // [ BBB, 111, ___, EEE ]
+      '###CCC###222###___###FFF'   // [ CCC, 222, ___, FFF ]
     ];
     
     // 正規表現
@@ -1209,7 +1209,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1265,9 +1265,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '###AAA###',  // ###, ###
-      '###000###',  // ###, ###
-      '###___###'   // ###, ###
+      '###AAA###000###___###DDD',  // [ ###, ###, ###, ### ]
+      '###BBB###111###___###EEE',  // [ ###, ###, ###, ### ]
+      '###CCC###222###___###FFF'   // [ ###, ###, ###, ### ]
     ];
     
     // 正規表現
@@ -1275,7 +1275,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1331,9 +1331,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '001 AAA 002 BBB 003',  // 001, 002, 003
-      '004 CCC 005 DDD 006',  // 004, 005, 006
-      '007 EEE 008 FFF 009'   // 007, 008, 009
+      '001 AAA 002 BBB 003',  // [ 001, 002, 003 ]
+      '004 CCC 005 DDD 006',  // [ 004, 005, 006 ]
+      '007 EEE 008 FFF 009'   // [ 007, 008, 009 ]
     ];
     
     // 正規表現
@@ -1341,7 +1341,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1397,9 +1397,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '001 AAA 002 BBB 003',  // AAA , BBB 
-      '004 CCC 005 DDD 006',  // CCC , DDD 
-      '007 EEE 008 FFF 009'   // EEE , FFF 
+      '001 AAA 002 BBB 003',  // [ AAA , BBB ] 
+      '004 CCC 005 DDD 006',  // [ CCC , DDD ] 
+      '007 EEE 008 FFF 009'   // [ EEE , FFF ] 
     ];
     
     // 正規表現
@@ -1407,7 +1407,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1487,7 +1487,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1543,17 +1543,17 @@
     
     // チェックする文字列一覧
     const arr = [
-      '111 222 333',  // 222 
-      'AAA BBB CCC',  // BBB 
-      '444 555 666'   // 555 
+      '111 AAA 222 BBB 333 CCC',  // [ ' ', ' ', ' ', ' ', ' ' ] 
+      '444 DDD 555 EEE 666 FFF',  // [ ' ', ' ', ' ', ' ', ' ' ]
+      '777 GGG 888 HHH 999 III'   // [ ' ', ' ', ' ', ' ', ' ' ]
     ];
     
     // 正規表現
-    const reg = /\s\w+\s/g;
+    const reg = /\s/g;
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1609,9 +1609,9 @@
     
     // チェックする文字列一覧
     const arr = [
-      '111 222 333',  // 111, 222, 333 
-      'AAA BBB CCC',  // AAA, BBB, CCC 
-      '444 555 666'   // 444, 555, 666 
+      '111 AAA 222 BBB 333 CCC',  // [ 111, AAA, 222, BBB, 333, CCC ] 
+      '444 DDD 555 EEE 666 FFF',  // [ 444, DDD, 555, EEE, 666, FFF ]
+      '777 GGG 888 HHH 999 III'   // [ 777, GGG, 888, HHH, 999, III ]
     ];
     
     // 正規表現
@@ -1619,7 +1619,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1687,7 +1687,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1755,7 +1755,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1823,7 +1823,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1891,7 +1891,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -1970,7 +1970,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>
@@ -2040,7 +2040,7 @@
     
     // 出力
     for (let i = 0; i < arr.length; i++) {
-      console.log(`${arr[i]} : ${myFunc(arr[i], reg)}`);
+      console.log(myFunc(arr[i], reg));
     }
     
   </script>

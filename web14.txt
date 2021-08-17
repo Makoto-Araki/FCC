@@ -19,7 +19,7 @@
 ================================================================================
 [01]
   Convert Celsius to Fahrenheit
-
+  
 [内容]
   温度変換プログラム
     華氏 = 摂氏 * 9 / 5 + 32
@@ -612,7 +612,7 @@
   <script>
     
     // 関数定義
-    const myFunc = (p1) => typeof p1 === 'boolean' ;
+    const myFunc = P1 => typeof P1 === 'boolean' ;
     
     // 関数の引数が論理型かチェック
     console.log(myFunc(true));     // true

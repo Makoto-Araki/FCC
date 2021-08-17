@@ -24,8 +24,9 @@
     Pass  : (秘密)
     Name  : FCC(リポジトリ)
     URI   : https://github.com/Makoto-Araki/FCC.git
-    Token : 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 (2021-08-17 => 90days)
-  
+    Token : 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 (2021-08-17 => 90days) // 失効?
+            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 (2021-08-17 => 90days) // 現在
+    
 [確認]
   $ cd $HOME/CentOS-8/web/FCC
   $ git init

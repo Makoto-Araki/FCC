@@ -2603,7 +2603,7 @@
   Run Functional Tests on API Endpoints using Chai-HTTP
   
 [内容]
-  API試験(1) - リクエスト「GET」
+  API試験(1)
   
 [確認]
   $ cd $HOME
@@ -2631,7 +2631,7 @@
   --------------------------------------------------
   
   $ cd $HOME/cha19
-  $ npm install mocha chai chai-http express --save
+  $ npm install mocha chai express request --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -2655,10 +2655,10 @@
     "author": "",
     "license": "ISC",
     "dependencies": {
-      "chai": "^4.3.4",       // 確認
-      "chai-http": "^4.3.0",  // 確認
-      "express": "^4.17.1",   // 確認
-      "mocha": "^9.0.3"       // 確認
+      "chai": "^4.3.4",      // 確認
+      "express": "^4.17.1",  // 確認
+      "mocha": "^9.0.3",     // 確認
+      "request": "^2.88.2"   // 確認
     }
   }
   --------------------------------------------------
@@ -2674,8 +2674,8 @@
   // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res) => res.send('Hello ' + req.query.name));
+  // GET - /name/:name
+  app.get('/name/:name', (req, res) => res.send('Hello ' + req.params.name));
   
   // アプリケーション起動
   app.listen(3000, () => console.log('Listening on port 3000'));
@@ -2687,39 +2687,45 @@
   コマンドの実行結果
   --------------------------------------------------
   const chai = require('chai');
-  const mocha = require('mocha');
+  const expect = chai.expect;
   const assert = chai.assert;
-  const server = require('../app/server');
-  const chaiHttp = require('chai-http');
-  
-  // モジュール使用
-  chai.use(chaiHttp);
+  const request = require('request');
   
   // API試験(1)
-  suite('GET - /?name=[name]', function() {
+  describe('GET - /name/:name', function() {
     
-    // パターン1
-    test('?name=AAA', function(done) {
-      chai
-      .request(server)
-      .get('/?name=AAA')
-      .end(function(err, res) {
-        assert.equal(res.status, 200);
-        assert.equal(res.text, 'Hello AAA');
-        done();
-      })
+    // テスト項目を「expect」で記述
+    describe('Expect', function() {
+      let URL = 'http://localhost:3000/name/AAA';
+      it('status: 200', function(done) {
+        request(URL, function(err, res, body) {
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
+      });
+      it('return: Hello AAA', function(done) {
+        request(URL, function(err, res, body) {
+          expect(body).to.equal('Hello AAA');
+          done();
+        });
+      });
     });
     
-    // パターン2
-    test('?name=BBB', function(done) {
-      chai
-      .request(server)
-      .get('/?name=BBB')
-      .end(function(err, res) {
-        assert.equal(res.status, 200);
-        assert.equal(res.text, 'Hello BBB');
-        done();
-      })
+    // テスト項目を「assert」で記述
+    describe('Assert', function() {
+      let URL = 'http://localhost:3000/name/BBB';
+      it('status: 200', function(done) {
+        request(URL, function(err, res, body) {
+          assert.equal(res.statusCode, 200);
+          done();
+        });
+      });
+      it('return: Hello BBB', function(done) {
+        request(URL, function(err, res, body) {
+          assert.equal(body, 'Hello BBB');
+          done();
+        });
+      });
     });
     
   });
@@ -2743,21 +2749,16 @@
   > cha01@1.0.0 test
   > mocha --reporter spec
   
-  // 単体テスト結果1
-  Test - expect
-    Func1 is instance of FuncA
-      ✔ 結果: True
-    Func1 is instance of FuncA
-      ✔ 結果: False
+  // 単体テスト結果
+  GET - /name/:name
+    Expect
+      ✔ status: 200
+      ✔ return: Hello AAA
+    Assert
+      ✔ status: 200
+      ✔ return: Hello BBB
   
-  // 単体テスト結果2
-  Test - assert
-    Func1 is instance of FuncA
-      ✔ 結果: True
-    Func1 is instance of FuncA
-      ✔ 結果: False
-  
-  4 passing (9ms)
+  4 passing (39ms)
   --------------------------------------------------
   
   以下の確認に続く
@@ -2767,7 +2768,7 @@
   Run Functional Tests on API Endpoints using Chai-HTTP II
   
 [内容]
-  //
+  API試験(2)
   
 [確認]
   //

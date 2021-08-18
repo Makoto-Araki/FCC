@@ -194,8 +194,8 @@
   関数作成
     関数(配列, 要素1, 要素2 ...)で配列から各要素を消去した新しい配列を返す
   
-  myFunc([1, 2, 3, 4], 1, 3);  // [2, 4]
-  myFunc([1, 2, 3, 4], 2, 4);  // [1, 3]
+  myFunc([1, 2, 3, 4], 1, 3);  // [2, 4] -> 1, 3 を削除
+  myFunc([1, 2, 3, 4], 2, 4);  // [1, 3] -> 2, 4 を削除
   
 [確認]
   # cd /var/www/html
@@ -228,9 +228,7 @@
       let ret = arr.slice(0, arr.length);
       
       // 配列から各要素を消去
-      for (let i = 0; i < rest.length; i++) {
-        ret.splice(ret.indexOf(rest[i]), 1);
-      }
+      for (let i = 0; i < rest.length; i++) ret.splice(ret.indexOf(rest[i]), 1);
       
       // 戻り値
       return ret;

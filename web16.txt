@@ -29,19 +29,17 @@
   Learn About Functional Programming
   
 [内容]
-  関数型プログラミング
-    入力 => 処理 => 出力
+  入力 => 処理 => 出力
   
 [確認]
-  // 省略
+  // 関数設計の「基本中の基本」と習った
   
 ================================================================================
 [02]
   Understand Functional Programming Terminology
   
 [内容]
-  関数型プログラミング
-    高階関数(コールバック関数)
+  高階関数 -> 引数にコールバック関数を取る関数
   
 [確認]
   # cd /var/www/html
@@ -67,31 +65,13 @@
   // JS
   <script>
     
-    // コールバック関数 => 普通の関数と変わらない
-    const myCall = (num) => {
-      for (let i = 0; i < num; i++) {
-        console.log(`callback : ${i}`);
-      }
-    }
+    // 高階関数 -> 引数にコールバック関数を取る
+    const myFunc = (callback, num) => callback(num);
     
-    // 高階関数
-    const myFunc = (callback, num) => {
-      if (num > 0) {
-        callback(num);
-      }
-    }
-    
-    // 高階関数からコールバック関数を実行
-    myFunc(myCall, 2);
-    myFunc(myCall, 3);
-    myFunc(myCall, 4);
-    
-    // 関数を直接記述
-    myFunc((num) => {
-      for (let i = 0; i < num; i++) {
-        console.log(`直接記述 : ${i}`);
-      }
-    }, 2)
+    // コールバック関数は無名の関数オブジェクトでも可
+    myFunc(P1 => console.log(P1 + 1), 1);  // 2
+    myFunc(P1 => console.log(P1 + 2), 2);  // 3
+    myFunc(P1 => console.log(P1 + 3), 3);  // 4
     
   </script>
   
@@ -115,10 +95,9 @@
   
 [内容]
   タイトルは「命令型コード」の危険性
-    危険性について話が見えないのでコード確認は省略
   
 [確認]
-  // 省略
+  // 下記「04」を参照
   
 ================================================================================
 [04]
@@ -126,11 +105,11 @@
   
 [内容]
   上記「03」の危険性
-    関数内から引数配列を関数「splice」の抽出で壊すこと
-    関数内からグローバル変数やオブジェクトを変更すること
+    ・関数内から引数配列を関数「splice」の抽出で壊すこと
+    ・関数内からグローバル変数やオブジェクトを変更すること
   
   対処法
-    関数内で配列やオブジェクトのコピーを作成して変更すればOK
+    ・関数内で配列やオブジェクトのコピーを作成して変更する
   
 [確認]
   # cd /var/www/html
@@ -156,27 +135,17 @@
   // JS
   <script>
     
-    // 配列定義
-    const arr1 = [11, 12, 13, 14];
-    const arr2 = [21, 22, 23, 24];
+    // 配列
+    const arr = [11, 12, 13, 14, 15];
     
-    // 関数定義
-    const myFunc = (arr) => {
-      
-      // 引数配列から要素を抽出して配列を壊す
-      let tmp1 = arr.splice(0, 1);
-      let tmp2 = arr.splice(0, 1);
-      
-      // 抽出した要素
-      console.log(`抽出 : ${tmp1}`);
-      console.log(`抽出 : ${tmp2}`);
-      
-      return arr;
-    }
+    // 配列の先頭から要素を二個抽出するが…配列を壊してしまう
+    const myFunc = arr => arr.splice(0, 2);
     
-    // 要素抽出後の壊れた配列を出力
-    console.log(`配列 : ${myFunc(arr1)}`);
-    console.log(`配列 : ${myFunc(arr2)}`);
+    // 抽出
+    console.log(myFunc(arr));  // [11, 12]
+    
+    // 抽出元
+    console.log(arr);  // [13, 14, 15]
     
   </script>
   
@@ -199,8 +168,8 @@
   Pass Arguments to Avoid External Dependence in a Function
   
 [内容]
-問題点
-  関数内でグローバル変数を参照時に当然ながら、グローバル変数が存在しなければ関数は動かない
+  問題点
+    関数内でグローバル変数を参照時に当然ながら、グローバル変数が存在しなければ関数は動かない
   
   対処法
     依存関係を明確化して関数に引数を設置すればOK
@@ -229,11 +198,11 @@
   // JS
   <script>
     
-    // 変数定義と初期化
+    // グローバル変数
     let val = 12;
     
     // 関数定義 => グローバル変数が存在しないと関数は動かない
-    const myFunc = () => { console.log(`グローバル変数 : ${val}`); }
+    const myFunc = () => console.log(val);
     
     // 出力
     myFunc();
@@ -262,7 +231,7 @@
   上記「03、04、05」のまとめ
     1. 関数内でグローバル変数やオブジェクトの直接変更は禁止する
     2. グローバル変数やオブジェクトはパラメータとして関数に渡す
-    3. パラメータを関数内でローカル変数にコピー後にローカル変数に変更を行う
+    3. パラメータを関数内でローカル変数にコピー後にローカル変数で処理を行う
   
 [確認]
   # cd /var/www/html
@@ -288,29 +257,25 @@
   // JS
   <script>
     
-    // 変数定義と初期化
-    let arr1 = [11, 12, 13, 14];
-    let arr2 = [21, 22, 23, 24];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
-    // 関数定義
+    // 関数
     const myFunc = (callback, arr) => {
-      
-      // 引数をローカル変数にコピー
+      // 引数配列をローカル配列にコピー
       let tmp = arr.slice(0, arr.length);
       
-      // ローカル変数を更新
-      for (let i = 0; i < tmp.length; i++) {
-        tmp[i] = callback(tmp[i]);
-      }
+      // ローカル配列の各要素をコールバック関数で処理
+      for (let i = 0; i < tmp.length; i++) tmp[i] = callback(tmp[i]);
       
-      // 更新済みのローカル変数を返す
+      // ローカル配列を戻す
       return tmp;
-      
     }
     
     // 出力
-    console.log(myFunc((val) => val * 2, arr1));  // [22, 24, 26, 28]
-    console.log(myFunc((val) => val * 2, arr2));  // [42, 44, 46, 48]
+    console.log(arr);                          // [11, 12, 13, 14, 15]
+    console.log(myFunc(val => val * 2, arr));  // [22, 24, 26, 28, 30]
+    console.log(arr);                          // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -359,15 +324,16 @@
   // JS
   <script>
     
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
     // 各要素を二倍
-    let ret = arr.map((val) => val * 2);
+    let ret = arr.map(val => val * 2);
     
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [22, 24, 26, 28]
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15]
+    console.log(ret);  // [22, 24, 26, 28, 30]
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -416,29 +382,28 @@
   // JS
   <script>
     
-    // プロトタイプに関数追加
+    // オブジェクト「Array」のプロトタイプ配下に関数追加
     Array.prototype.MAP = function(callback) {
-      
       // 戻り値の配列
       let tmp = [];
       
       // コールバック関数で配列の各要素を処理後に戻り値の配列に格納する
-      this.forEach((A) => tmp.push(callback(A)));
+      this.forEach(A => tmp.push(callback(A)));
       
       // 戻り値
       return tmp;
-      
     }
     
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
     // 各要素を二倍
-    let ret = arr.MAP((val) => val * 2);
+    let ret = arr.MAP(val => val * 2);
     
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [22, 24, 26, 28]
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15]
+    console.log(ret);  // [22, 24, 26, 28, 30]
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -487,15 +452,16 @@
   // JS
   <script>
     
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
     // 偶数のみ抽出
-    let ret = arr.filter((val) => val % 2 === 0);
+    let ret = arr.filter(val => val % 2 === 0);
     
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [12, 14]
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15]
+    console.log(ret);  // [12, 14]
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -544,29 +510,28 @@
   // JS
   <script>
     
-    // プロトタイプに関数追加
+    // オブジェクト「Array」のプロトタイプ配下に関数追加
     Array.prototype.FILTER = function(callback) {
-      
       // 戻り値の配列
       let tmp = [];
       
       // コールバック関数で配列の各要素を処理後に戻り値の配列に格納する
-      this.forEach((A) => { if (callback(A)) tmp.push(A); });
+      this.forEach(A => { if (callback(A)) tmp.push(A); });
       
       // 戻り値
       return tmp;
-      
     }
     
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
     // 偶数のみ抽出
-    let ret = arr.FILTER((val) => val % 2 === 0);
+    let ret = arr.FILTER(val => val % 2 === 0);
     
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [12, 14]
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15]
+    console.log(ret);  // [12, 14]
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -615,15 +580,16 @@
   // JS
   <script>
     
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
+    // 配列
+    let arr = [11, 12, 13, 14, 15];
     
     // 配列のコピー
     let ret = arr.slice(0, 2);
     
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [11, 12]
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15]
+    console.log(ret);  // [11, 12]
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -653,54 +619,7 @@
     配列のコピーのため配列は壊さない => 通常はこちらを使用
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // 変数定義と初期化
-    let arr = [11, 12, 13, 14];
-    
-    // 配列の要素「13、14」を削除
-    let ret = arr.slice(0, 2);
-    
-    // 確認
-    console.log(`変更前 : ${arr}`);  // [11, 12, 13, 14]
-    console.log(`変更後 : ${ret}`);  // [11, 12]
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  上記「11」を参照
   
 ================================================================================
 [13]
@@ -738,12 +657,12 @@
     let arr2 = [4, 5, 6];
     
     // 配列の結合
-    console.log(`パターン1 : ${arr1.concat(arr2)}`);  // [1, 2, 3, 4, 5, 6]
-    console.log(`パターン2 : ${arr2.concat(arr1)}`);  // [4, 5, 6, 1, 2, 3]
+    console.log(arr1.concat(arr2));  // [1, 2, 3, 4, 5, 6]
+    console.log(arr2.concat(arr1));  // [4, 5, 6, 1, 2, 3]
     
     // 結合元の確認
-    console.log(`結合元 : ${arr1}`);  // [1, 2, 3] -> 結合元の「arr1、arr2」は壊れていない
-    console.log(`結合元 : ${arr2}`);  // [4, 5, 6] -> 結合元の「arr1、arr2」は壊れていない
+    console.log(arr1);  // [1, 2, 3] -> 結合元は壊れていない
+    console.log(arr2);  // [4, 5, 6] -> 結合元は壊れていない
     
   </script>
   
@@ -769,64 +688,7 @@
   メソッド「concat」をメソッド「push」のように使用する
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // 変数定義と初期化
-    let arr1 = [1, 2, 3];
-    let arr2 = [4, 5, 6];
-    
-    // concat
-    console.log(`パターン1 : ${arr1.concat(arr2)}`);  // [1, 2, 3, 4, 5, 6]
-    console.log(`パターン2 : ${arr2.concat(arr1)}`);  // [4, 5, 6, 1, 2, 3]
-    
-    // 結合元の確認
-    console.log(`結合元 : ${arr1}`);  // [1, 2, 3] -> 結合元の「arr1、arr2」は壊れていない
-    console.log(`結合元 : ${arr2}`);  // [4, 5, 6] -> 結合元の「arr1、arr2」は壊れていない
-    
-    // push
-    console.log(`パターン1 : ${arr1.push(arr2)}`);  // 4 ？
-    console.log(`パターン2 : ${arr2.push(arr1)}`);  // 4 ？
-    
-    // 結合元の確認
-    console.log(`結合元 : ${arr1}`);  // [1, 2, 3, 4, 5, 6] -> 結合元が壊れた
-    console.log(`結合元 : ${arr2}`);  // [4, 5, 6, 1, 2, 3] -> 結合元が壊れた
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  上記「13」を参照
   
 ================================================================================
 [15]
@@ -872,12 +734,12 @@
     let arr2 = [5, 6, 7, 8];
     
     // 配列内の要素の合計
-    console.log(`合計 : ${arr1.reduce((acm, val) => acm + val)}`);  // 10
-    console.log(`合計 : ${arr2.reduce((acm, val) => acm + val)}`);  // 26
+    console.log(arr1.reduce((acm, val) => acm + val));  // 10
+    console.log(arr2.reduce((acm, val) => acm + val));  // 26
     
     // 結合元の確認
-    console.log(`配列 : ${arr1}`);  // [1, 2, 3, 4] -> 配列は壊れていない
-    console.log(`配列 : ${arr2}`);  // [5, 6, 7, 8] -> 配列は壊れていない
+    console.log(arr1);  // [1, 2, 3, 4] -> 配列は壊れていない
+    console.log(arr2);  // [5, 6, 7, 8] -> 配列は壊れていない
     
   </script>
   
@@ -927,16 +789,20 @@
   // JS
   <script>
     
-    // 変数定義と初期化
+    // 配列
     let arr = [-2, -1.5, -1, 0, 1, 1.5, 2];
     
     // 正の正数のみ抽出
     let tmp = arr.filter(val => val > 0 && Number.isInteger(val));
-    console.log(`処理(1) : ${tmp}`);  // [1, 2]
+    
+    // 出力
+    console.log(tmp);  // [1, 2]
     
     // 各要素を二乗する
     let ret = tmp.map(val => val ** 2);
-    console.log(`処理(2) : ${ret}`);  // [1, 4]
+    
+    // 出力
+    console.log(ret);  // [1, 4]
     
   </script>
   
@@ -990,8 +856,10 @@
     
     // 数字を昇順にソート
     let ret = arr.sort((a, b) => a - b);
-    console.log(`処理前 : ${arr}`);  // [11, 12, 13, 14, 15] -> 配列が壊れている
-    console.log(`処理後 : ${ret}`);  // [11, 12, 13, 14, 15]
+    
+    // 出力
+    console.log(arr);  // [11, 12, 13, 14, 15] -> 配列が壊れている
+    console.log(ret);  // [11, 12, 13, 14, 15]
     
   </script>
   
@@ -1050,9 +918,9 @@
     // 数字を昇順にソート
     let ret = tmp.sort((a, b) => a - b);
     
-    // 確認
-    console.log(`処理前 : ${arr}`);  // [12, 14, 11, 15, 13]
-    console.log(`処理後 : ${ret}`);  // [11, 12, 13, 14, 15]
+    // 出力
+    console.log(arr);  // [12, 14, 11, 15, 13]
+    console.log(ret);  // [11, 12, 13, 14, 15]
     
   </script>
   
@@ -1107,9 +975,9 @@
     // 文字列(配列)を区切文字に従い分割
     let ret = str.split(/\s/);
     
-    // 確認
-    console.log(`処理前 : ${str}`);  // Hello World
-    console.log(`処理後 : ${ret}`);  // Hello,World
+    // 出力
+    console.log(str);  // Hello World
+    console.log(ret);  // Hello,World
     
   </script>
   
@@ -1165,8 +1033,8 @@
     let ret = str.join(' ');
     
     // 確認
-    console.log(`処理前 : ${str}`);  // Hello,World
-    console.log(`処理後 : ${ret}`);  // Hello World
+    console.log(str);  // [ Hello, World ]
+    console.log(ret);  // Hello World
     
   </script>
   
@@ -1217,7 +1085,7 @@
   <script>
     
     // 変数定義と初期化
-    let str = 'AAA BBB ';
+    let str = ' AAA BBB ';
     let ret = '';
     
     // 冒頭と末尾の空白を削除
@@ -1229,9 +1097,9 @@
     // 大文字を小文字に変換
     ret = ret.toLowerCase();
     
-    // 確認
-    console.log(`処理前 :「${str}」`);  // 「AAA BBB 」
-    console.log(`処理後 :「${ret}」`);  // 「aaa-bbb」
+    // 出力
+    console.log(str);  // ' AAA BBB '
+    console.log(ret);  // 'aaa-bbb'
     
   </script>
   
@@ -1282,11 +1150,11 @@
     
     // 変数定義と初期化
     let arr1 = [1, 2, 3, 4, 5];
-    let arr2 = [1, 2, 3, 4, -5];
+    let arr2 = [1, 2, 3, 4, 0];
     
     // 全要素が条件を満たしてはじめて「真」となる
-    console.log(`配列1 : ${arr1.every(val => val > 0)}`);  // true
-    console.log(`配列2 : ${arr2.every(val => val > 0)}`);  // false
+    console.log(arr1.every(val => val > 0));  // true
+    console.log(arr2.every(val => val > 0));  // false
     
   </script>
   
@@ -1337,11 +1205,11 @@
     
     // 変数定義と初期化
     let arr1 = [1, 2, 3, 4, 5];
-    let arr2 = [1, 2, 3, 4, -5];
+    let arr2 = [1, 2, 3, 4, 0];
     
     // 条件を満たす要素が一つでも存在すれば「真」となる
-    console.log(`配列1 : ${arr1.some(val => val < 0)}`);  // false
-    console.log(`配列2 : ${arr2.some(val => val < 0)}`);  // true
+    console.log(arr1.some(val => val === 0));  // false
+    console.log(arr2.some(val => val === 0));  // true
     
   </script>
   
@@ -1393,17 +1261,15 @@
     // 通常の関数
     const add1 = (x, y) => x + y;
     
-    console.log(`通常 : ${add1(1, 1)}`);  // 2 (1 + 1)
-    console.log(`通常 : ${add1(1, 2)}`);  // 3 (1 + 2)
-    console.log(`通常 : ${add1(1, 3)}`);  // 4 (1 + 3)
+    console.log(add1(1, 1));  // 2 (1 + 1)
+    console.log(add1(1, 2));  // 3 (1 + 2)
     
     // カリー関数
     const add = (x) => (y) => x + y;
     const add2 = add(1)
     
-    console.log(`カリー : ${add2(1)}`);  // 2 (1 + 1)
-    console.log(`カリー : ${add2(2)}`);  // 3 (1 + 2)
-    console.log(`カリー : ${add2(3)}`);  // 4 (1 + 3)
+    console.log(add2(1));  // 2 (1 + 1)
+    console.log(add2(2));  // 3 (1 + 2)
     
   </script>
   

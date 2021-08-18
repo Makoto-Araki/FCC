@@ -57,15 +57,15 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    const Triangle = {
-      底辺: 3,
-      高さ: 4,
-      斜辺: 5
+    // オブジェクト
+    const OBJ = {
+      key1: 10,
+      key2: 10,
+      key3: 10
     }
     
     // 出力
-    console.log(Triangle);
+    console.log(OBJ);
     
   </script>
   
@@ -115,17 +115,17 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    const Triangle = {
-      底辺: 3,
-      高さ: 4,
-      斜辺: 5
+    // オブジェクト
+    const OBJ = {
+      key1: 10,
+      key2: 10,
+      key3: 10
     }
     
     // 出力
-    console.log(`底辺 : ${Triangle.底辺}`);  // 3
-    console.log(`高さ : ${Triangle.高さ}`);  // 4
-    console.log(`斜辺 : ${Triangle.斜辺}`);  // 5
+    console.log(OBJ.key1);  // 10
+    console.log(OBJ.key2);  // 10
+    console.log(OBJ.key3);  // 10
     
   </script>
   
@@ -174,18 +174,18 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    const Triangle = {
-      底辺: 3,
-      高さ: 4,
-      斜辺: 5,
-      周辺: function() { return Triangle.底辺 + Triangle.高さ + Triangle.斜辺 ; },
-      面積: function() { return Triangle.底辺 * Triangle.高さ / 2 ; }
+    // オブジェクト
+    const OBJ = {
+      key1: 10,
+      key2: 10,
+      key3: 10,
+      sum: function() { return OBJ.key1 + OBJ.key2 + OBJ.key3 ; }
+      avg: function() { return OBJ.sum() / 3 ; }
     }
     
     // 出力
-    console.log(`周辺 : ${Triangle.周辺()}`);  // 12
-    console.log(`面積 : ${Triangle.面積()}`);  // 6
+    console.log(OBJ.sum());  // 30
+    console.log(OBJ.avg());  // 10
     
   </script>
   
@@ -235,18 +235,18 @@
   // JS
   <script>
     
-    // オブジェクト => 直角三角形
-    const Triangle = {
-      底辺: 3,
-      高さ: 4,
-      斜辺: 5,
-      周辺: function() { return this.底辺 + this.高さ + this.斜辺 ; },
-      面積: function() { return this.底辺 * this.高さ / 2 ; }
+    // オブジェクト
+    const OBJ = {
+      key1: 10,
+      key2: 10,
+      key3: 10,
+      sum: function() { return this.key1 + this.key2 + this.key3 ; }
+      avg: function() { return this.sum() / 3 ; }
     }
     
     // 出力
-    console.log(`周辺 : ${Triangle.周辺()}`);  // 12
-    console.log(`面積 : ${Triangle.面積()}`);  // 6
+    console.log(OBJ.sum());  // 30
+    console.log(OBJ.avg());  // 10
     
   </script>
   
@@ -269,9 +269,7 @@
   Define a Constructor Function
   
 [内容]
-  コンストラクタ関数で擬似的なクラス実装
-    プロパティ => 底辺, 高さ, 斜辺
-    メソッド => 周辺, 面積
+  コンストラクタ関数で擬似的なクラス実装 -> オブジェクト生成
   
 [確認]
   # cd /var/www/html
@@ -297,24 +295,21 @@
   // JS
   <script>
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle() {
-      this.底辺 = 3;
-      this.高さ = 4;
-      this.斜辺 = 5;
-      this.周辺 = () => this.底辺 + this.高さ + this.斜辺;
-      this.面積 = () => this.底辺 * this.高さ / 2;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+      this.sum = () => this.key1 + this.key2 + this.key3;
+      this.avg = () => this.sum() / 3;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle();
-    const t2 = new Triangle();
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 12
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 6
+    console.log(OBJ1.sum());  // 30
+    console.log(OBJ1.avg());  // 10
     
   </script>
   
@@ -373,24 +368,21 @@
   // JS
   <script>
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
-      this.周辺 = () => this.底辺 + this.高さ + this.斜辺;
-      this.面積 = () => this.底辺 * this.高さ / 2;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+      this.sum = () => this.key1 + this.key2 + this.key3;
+      this.avg = () => this.sum() / 3;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ1.sum());  // 30
+    console.log(OBJ1.avg());  // 10
     
   </script>
   
@@ -440,22 +432,20 @@
   // JS
   <script>
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
-      this.周辺 = () => this.底辺 + this.高さ + this.斜辺;
-      this.面積 = () => this.底辺 * this.高さ / 2;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+      this.sum = () => this.key1 + this.key2 + this.key3;
+      this.avg = () => this.sum() / 3;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // コンストラクタ由来のオブジェクトか検証
-    console.log(t1 instanceof Triangle);  // true
-    console.log(t2 instanceof Triangle);  // true
+    console.log(OBJ1 instanceof OBJ);  // true
     
   </script>
   
@@ -504,24 +494,24 @@
   // JS
   <script>
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
-      this.周辺 = () => this.底辺 + this.高さ + this.斜辺;
-      this.面積 = () => this.底辺 * this.高さ / 2;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+      this.sum = () => this.key1 + this.key2 + this.key3;
+      this.avg = () => this.sum() / 3;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // 各プロパティが固有プロパティか確認
-    console.log(`底辺 : ${t1.hasOwnProperty('底辺')}`);  // true
-    console.log(`高さ : ${t1.hasOwnProperty('高さ')}`);  // true
-    console.log(`斜辺 : ${t1.hasOwnProperty('斜辺')}`);  // true
-    console.log(`周辺 : ${t1.hasOwnProperty('周辺')}`);  // true
-    console.log(`面積 : ${t1.hasOwnProperty('面積')}`);  // true
+    console.log(OBJ1.hasOwnProperty('key1'));  // true
+    console.log(OBJ1.hasOwnProperty('key2'));  // true
+    console.log(OBJ1.hasOwnProperty('key3'));  // true
+    console.log(OBJ1.hasOwnProperty('sum'));   // true
+    console.log(OBJ1.hasOwnProperty('avg'));   // true
     
   </script>
   
@@ -571,32 +561,29 @@
   // JS
   <script>
     
-    // プロトタイプ配下のメソッド
-    Triangle.prototype.周辺 = function() {
-      return this.底辺 + this.高さ + this.斜辺 ;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
     // プロトタイプ配下のメソッド
-    Triangle.prototype.面積 = function() {
-      return this.底辺 * this.高さ / 2 ;
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ1.sum());  // 30
+    console.log(OBJ1.avg());  // 10
     
   </script>
   
@@ -645,32 +632,32 @@
   // JS
   <script>
     
-    // プロトタイプ配下のメソッド
-    Triangle.prototype.周辺 = function() {
-      return this.底辺 + this.高さ + this.斜辺 ;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
     // プロトタイプ配下のメソッド
-    Triangle.prototype.面積 = function() {
-      return this.底辺 * this.高さ / 2 ;
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // 各プロパティが固有プロパティか確認
-    console.log(`底辺 : ${t1.hasOwnProperty('底辺')}`);  // true
-    console.log(`高さ : ${t1.hasOwnProperty('高さ')}`);  // true
-    console.log(`斜辺 : ${t1.hasOwnProperty('斜辺')}`);  // true
-    console.log(`周辺 : ${t1.hasOwnProperty('周辺')}`);  // false
-    console.log(`面積 : ${t1.hasOwnProperty('面積')}`);  // false
+    console.log(OBJ1.hasOwnProperty('key1'));  // true
+    console.log(OBJ1.hasOwnProperty('key2'));  // true
+    console.log(OBJ1.hasOwnProperty('key3'));  // true
+    console.log(OBJ1.hasOwnProperty('sum'));   // false -> プロトタイプ
+    console.log(OBJ1.hasOwnProperty('avg'));   // false -> プロトタイプ
     
   </script>
   
@@ -720,36 +707,28 @@
   // JS
   <script>
     
-    // プロトタイプ配下のメソッド
-    Triangle.prototype.周辺 = function() {
-      return this.底辺 + this.高さ + this.斜辺 ;
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
     // プロトタイプ配下のメソッド
-    Triangle.prototype.面積 = function() {
-      return this.底辺 * this.高さ / 2 ;
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // オブジェクトのコンストラクタ関数を参照
-    console.log(t1.constructor);  // function Triangle(p1, p2, p3)
-    console.log(t2.constructor);  // function Triangle(p1, p2, p3)
-    
-    // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3)
     
   </script>
   
@@ -773,7 +752,7 @@
   
 [内容]
   プロトタイプをオブジェクトで指定
-    プロパティ「constructor」まで上書き => 値が「function Object」に初期化
+    プロパティ「constructor」まで上書き => 値が「function Object」に初期化されてしまう
   
 [確認]
   # cd /var/www/html
@@ -799,37 +778,24 @@
   // JS
   <script>
     
-    // プロトタイプをオブジェクトで指定
-    Triangle.prototype = {
-      
-      // メソッド
-      周辺() { return this.底辺 + this.高さ + this.斜辺 ; },
-      
-      // メソッド
-      面積() { return this.底辺 * this.高さ / 2 ; }
-      
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype = {
+      sum() { this.key1 + this.key2 + this.key3; },
+      avg() { this.sum() / 3; }
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // オブジェクトのコンストラクタ関数を参照
-    console.log(t1.constructor);  // function Object() -> プロパティ「constructor」まで上書き
-    console.log(t2.constructor);  // function Object() -> プロパティ「constructor」まで上書き
-    
-    // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3) -> function Object()
     
   </script>
   
@@ -878,40 +844,25 @@
   // JS
   <script>
     
-    // プロトタイプをオブジェクトで指定
-    Triangle.prototype = {
-      
-      // コンストラクタを明示
-      constructor: Triangle,
-      
-      // メソッド
-      周辺() { return this.底辺 + this.高さ + this.斜辺 ; },
-      
-      // メソッド
-      面積() { return this.底辺 * this.高さ / 2 ; }
-      
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype = {
+      constructor: OBJ,  // コンストラクタ明示
+      sum() { this.key1 + this.key2 + this.key3; },
+      avg() { this.sum() / 3; }
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // オブジェクトのコンストラクタ関数を参照
-    console.log(t1.constructor);  // function Triangle(p1, p2, p3)
-    console.log(t2.constructor);  // function Triangle(p1, p2, p3)
-    
-    // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3)
     
   </script>
   
@@ -961,44 +912,28 @@
   // JS
   <script>
     
-    // プロトタイプをオブジェクトで指定
-    Triangle.prototype = {
-      
-      // コンストラクタを明示
-      constructor: Triangle,
-      
-      // メソッド
-      周辺() { return this.底辺 + this.高さ + this.斜辺 ; },
-      
-      // メソッド
-      面積() { return this.底辺 * this.高さ / 2 ; }
-      
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 直角三角形
-    function Triangle(p1, p2, p3) {
-      this.底辺 = p1;
-      this.高さ = p2;
-      this.斜辺 = p3;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
+    }
+    
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const t1 = new Triangle(3, 4, 5);
-    const t2 = new Triangle(6, 8, 10);
-    
-    // オブジェクトのコンストラクタ関数を参照
-    console.log(t1.constructor);  // function Triangle(p1, p2, p3)
-    console.log(t2.constructor);  // function Triangle(p1, p2, p3)
+    const OBJ1 = new OBJ(10, 10, 10);
     
     // プロタイプの由来を確認
-    console.log(Triangle.prototype.isPrototypeOf(t1));  // true
-    console.log(Triangle.prototype.isPrototypeOf(t2));  // true
-    
-    // 出力
-    console.log(`周辺(t1) : ${t1.周辺()}`);  // 12
-    console.log(`周辺(t2) : ${t2.周辺()}`);  // 24
-    console.log(`面積(t1) : ${t1.面積()}`);  // 6
-    console.log(`面積(t2) : ${t2.面積()}`);  // 24
+    console.log(OBJ.prototype.isPrototypeOf(OBJ1));  // true
     
   </script>
   
@@ -1022,7 +957,7 @@
   
 [内容]
   プロトタイプチェーン
-    あるオブジェクトのプロトタイプを別のオブジェクトのプロトタイプとして使用可能にする
+    別オブジェクトのプロトタイプを自分のプロトタイプとして使用する
   
 [確認]
   # cd /var/www/html
@@ -1048,35 +983,40 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      挨拶(p1) { return 'こんにちは ' + p1 + ' さん' ; }
+    // コンストラクタ関数(1)
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 少年
-    function Boy(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
-    // 少年が人間のプロトタイプの使用を可能にする
-    Boy.prototype = new Human();
+    // コンストラクタ関数(2)
+    function OTHER(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+    }
     
-    // 少年のオブジェクト生成
-    const B1 = new Boy('柊');
-    const B2 = new Boy('楓');
+    // 他オブジェクトのプロトタイプを使用する
+    OTHER.prototype = new OBJ();
     
-    // コンストラクタ
-    console.log(B1.constructor);  // function Object() -> プロパティ「constructor」まで上書き
-    console.log(B2.constructor);  // function Object() -> プロパティ「constructor」まで上書き
+    // コンストラクタ関数からオブジェクト生成
+    const O1 = new OTHER(10, 10, 10);
     
-    // 少年が人間のプロトタイプのメソッドを使用可能か確認
-    console.log(B1.挨拶('山本'));  // こんにちは 山本 さん
-    console.log(B2.挨拶('山本'));  // こんにちは 山本 さん
+    // 出力
+    console.log(O1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(O1.sum());        // 30
+    console.log(O1.avg());        // 10
     
   </script>
   
@@ -1099,8 +1039,7 @@
   Use Inheritance So You Don't Repeat Yourself
   
 [内容]
-  上位のプロトタイプに重複コードを移動
-    上記「16」のように「少年」ではなく「人間」にメソッドを移動しておけばコード量を削減可能
+  一方のプロトタイプに重複コードを移動
   
 [確認]
   // 上記「16」を参照
@@ -1111,8 +1050,8 @@
   
 [内容]
   メソッド「Object.create」を使用して上記「16」のプロトタイプチェーンを実現
-    変更前 : Boy.prototype = new Human();
-    変更後 : Boy.prototype = Object.create(Human.prototype);
+    変更前 : OTHER.prototype = new OBJ();
+    変更後 : OTHER.prototype = Object.create(OBJ.prototype);
   
 [確認]
   # cd /var/www/html
@@ -1138,35 +1077,40 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      挨拶(p1) { return 'こんにちは ' + p1 + ' さん' ; }
+    // コンストラクタ関数(1)
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 少年
-    function Boy(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
-    // 少年が人間のプロトタイプの使用を可能にする
-    Boy.prototype = Object.create(Human.prototype);
+    // コンストラクタ関数(2)
+    function OTHER(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+    }
     
-    // 少年のオブジェクト生成
-    const B1 = new Boy('柊');
-    const B2 = new Boy('楓');
+    // 他オブジェクトのプロトタイプを使用する
+    OTHER.prototype = Object.create(OBJ.prototype);
     
-    // コンストラクタ
-    console.log(B1.constructor);  // function Object() -> プロパティ「constructor」まで上書き
-    console.log(B2.constructor);  // function Object() -> プロパティ「constructor」まで上書き
+    // コンストラクタ関数からオブジェクト生成
+    const O1 = new OTHER(10, 10, 10);
     
-    // 少年が人間のプロトタイプのメソッドを使用可能か確認
-    console.log(B1.挨拶('山本'));  // こんにちは 山本 さん
-    console.log(B2.挨拶('山本'));  // こんにちは 山本 さん
+    // 出力
+    console.log(O1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(O1.sum());        // 30
+    console.log(O1.avg());        // 10
     
   </script>
   
@@ -1189,8 +1133,7 @@
   Set the Child's Prototype to an Instance of the Parent
   
 [内容]
-  親クラス「人間」のプロトタイプを子クラス「少年」のプロトタイプに継承
-    メソッド「Object.create」を使用
+  メソッド「Object.create」を使用
   
 [確認]
   // 上記「18」を参照
@@ -1200,8 +1143,7 @@
   Reset an Inherited Constructor Property
   
 [内容]
-  親クラス「人間」のプロトタイプを子クラス「少年」のプロトタイプに継承
-    コンストラクタ修正
+  コンストラクタ修正
   
 [確認]
   # cd /var/www/html
@@ -1227,38 +1169,43 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      挨拶(p1) { return 'こんにちは ' + p1 + ' さん' ; }
+    // コンストラクタ関数(1)
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 少年
-    function Boy(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
-    // 少年が人間のプロトタイプの使用を可能にする
-    Boy.prototype = Object.create(Human.prototype);
+    // コンストラクタ関数(2)
+    function OTHER(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+    }
+    
+    // 他オブジェクトのプロトタイプを使用する
+    OTHER.prototype = Object.create(OBJ.prototype);
     
     // コンストラクタ修正
-    Boy.prototype.constructor = Boy;
+    OTHER.prototype.constructor = OTHER;
     
-    // 少年のオブジェクト生成
-    const B1 = new Boy('柊');
-    const B2 = new Boy('楓');
+    // コンストラクタ関数からオブジェクト生成
+    const O1 = new OTHER(10, 10, 10);
     
-    // コンストラクタ
-    console.log(B1.constructor);  // function Boy(p1)
-    console.log(B2.constructor);  // function Boy(p1)
-    
-    // 少年が人間のプロトタイプのメソッドを使用可能か確認
-    console.log(B1.挨拶('山本'));  // こんにちは 山本 さん
-    console.log(B2.挨拶('山本'));  // こんにちは 山本 さん
+    // 出力
+    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
+    console.log(O1.sum());        // 30
+    console.log(O1.avg());        // 10
     
   </script>
   
@@ -1281,8 +1228,7 @@
   Add Methods After Inheritance
   
 [内容]
-  親クラス「人間」のプロトタイプを子クラス「少年」のプロトタイプに継承
-    子クラス「少年」のプロトタイプに関数を追加
+  プロトタイプにメソッド追加
   
 [確認]
   # cd /var/www/html
@@ -1308,45 +1254,49 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      挨拶(p1) { return 'こんにちは ' + p1 + ' さん' ; }
+    // コンストラクタ関数(1)
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 少年
-    function Boy(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
-    // 少年が人間のプロトタイプの使用を可能にする
-    Boy.prototype = Object.create(Human.prototype);
+    // コンストラクタ関数(2)
+    function OTHER(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+    }
+    
+    // 他オブジェクトのプロトタイプを使用する
+    OTHER.prototype = Object.create(OBJ.prototype);
     
     // コンストラクタ修正
-    Boy.prototype.constructor = Boy;
+    OTHER.prototype.constructor = OTHER;
     
-    // プロトタイプに関数を追加
-    Boy.prototype.別れ = (p1) => 'さようなら ' + p1 + ' さん' ;
+    // プロトタイプにメソッド追加
+    OTHER.prototype.mul = function() {
+      return this.key1 * this.key2 * this.key3 ;
+    }
     
-    // 少年のオブジェクト生成
-    const B1 = new Boy('柊');
-    const B2 = new Boy('楓');
+    // コンストラクタ関数からオブジェクト生成
+    const O1 = new OTHER(10, 10, 10);
     
-    // コンストラクタ
-    console.log(B1.constructor);  // function Boy(p1)
-    console.log(B2.constructor);  // function Boy(p1)
-    
-    // 少年が人間のプロトタイプのメソッドを使用可能か確認
-    console.log(B1.挨拶('山本'));  // こんにちは 山本 さん
-    console.log(B2.挨拶('山本'));  // こんにちは 山本 さん
-    
-    // 追加した関数を使用
-    console.log(B1.別れ('山本'));  // さようなら 山本 さん
-    console.log(B2.別れ('山本'));  // さようなら 山本 さん
+    // 出力
+    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
+    console.log(O1.sum());        // 30
+    console.log(O1.avg());        // 10
+    console.log(O1.mul());        // 1000 -> 追加したメソッド
     
   </script>
   
@@ -1369,8 +1319,7 @@
   Override Inherited Methods
   
 [内容]
-  親クラス「人間」のプロトタイプを子クラス「少年」のプロトタイプに継承
-    継承した親クラス「人間」のメソッドをオーバーライド
+  プロトタイプのメソッドをオーバーライド
   
 [確認]
   # cd /var/www/html
@@ -1396,48 +1345,54 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      挨拶(p1) { return 'こんにちは ' + p1 + ' さん' ; }
+    // コンストラクタ関数(1)
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.sum = function() {
+      return this.key1 + this.key2 + this.key3 ;
     }
     
-    // コンストラクタ関数 => 少年
-    function Boy(p1) {
-      this.名前 = p1;
+    // プロトタイプ配下のメソッド
+    OBJ.prototype.avg = function() {
+      return this.sum() / 3 ;
     }
     
-    // 少年が人間のプロトタイプの使用を可能にする
-    Boy.prototype = Object.create(Human.prototype);
+    // コンストラクタ関数(2)
+    function OTHER(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+    }
+    
+    // 他オブジェクトのプロトタイプを使用する
+    OTHER.prototype = Object.create(OBJ.prototype);
     
     // コンストラクタ修正
-    Boy.prototype.constructor = Boy;
+    OTHER.prototype.constructor = OTHER;
     
-    // プロトタイプに関数を追加
-    Boy.prototype.別れ = (p1) => 'さようなら ' + p1 + ' さん' ;
+    // プロトタイプに関数追加
+    OTHER.prototype.mul = function() {
+      return this.key1 * this.key2 * this.key3 ;
+    }
     
-    // オーバーライド
-    Boy.prototype.挨拶 = (p1) => 'こんばんわ ' + p1 + ' さん' ;
+    // プロトタイプのメソッドをオーバーライド
+    OTHER.prototype.sum = function() {
+      return (this.key1 + this.key2 + this.key3) * 2 ;
+    }
     
-    // 少年のオブジェクト生成
-    const B1 = new Boy('柊');
-    const B2 = new Boy('楓');
+    // コンストラクタ関数からオブジェクト生成
+    const O1 = new OTHER(10, 10, 10);
     
-    // コンストラクタ
-    console.log(B1.constructor);  // function Boy(p1)
-    console.log(B2.constructor);  // function Boy(p1)
-    
-    // 少年が人間のプロトタイプのメソッドを使用可能か確認
-    console.log(B1.挨拶('山本'));  // こんばんわ 山本 さん
-    console.log(B2.挨拶('山本'));  // こんばんわ 山本 さん
-    
-    // 追加した関数を使用
-    console.log(B1.別れ('山本'));  // さようなら 山本 さん
-    console.log(B2.別れ('山本'));  // さようなら 山本 さん
+    // 出力
+    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
+    console.log(O1.sum());        // 60 -> メソッドをオーバーライド
+    console.log(O1.avg());        // 10
+    console.log(O1.mul());        // 1000 -> 追加した関数
     
   </script>
   
@@ -1461,7 +1416,7 @@
   
 [内容]
   共有関数
-    共有関数の引数にオブジェクトを指定して、オブジェクトに関数を実装する
+    関数の引数にオブジェクトを指定、オブジェクト間で同一の関数を共有
   
 [確認]
   # cd /var/www/html
@@ -1487,22 +1442,26 @@
   // JS
   <script>
     
-    // 共有関数
+    // 共有関数1
     const add = function(OBJ) {
-      OBJ.add = (p1, p2) => p1 + p2 ;
+      OBJ.add = (P1, P2) => P1 + P2 ;
     }
     
     // オブジェクト
-    const 飛行機 = { 名前: 'A-001', 製造: '2021-01-10' }
-    const 自動車 = { 名前: 'C-001', 製造: '2021-01-10' }
+    const OBJ1 = { key1: 100, key2: 200 }
+    const OBJ2 = { key1: 101, key2: 201 }
     
     // 各オブジェクトに共有関数を実装
-    add(飛行機);
-    add(自動車);
+    add(OBJ1);
+    add(OBJ2);
+    
+    // プロパティ一覧
+    console.log(Object.keys(OBJ1));  // [ key1, key2, add ]
+    console.log(Object.keys(OBJ2));  // [ key1, key2, add ]
     
     // 共有関数を実行
-    console.log(飛行機.add(12, 11));
-    console.log(自動車.add(22, 21));
+    console.log(OBJ1.add(10, 15));  // 25
+    console.log(OBJ2.add(10, 15));  // 25
     
   </script>
   
@@ -1526,7 +1485,49 @@
   
 [内容]
   クロージャー
-    関数内で一時的に使用する関数 => 一つ上のローカル変数を使用
+  
+  (例1)
+    // 関数「Add」はクロージャー「Sub」を返す
+    function Add(P1) {
+      let CN = 10;
+      return function Sub(P2) { return P1 + P2 + CN; }
+    }
+    
+    // クロージャー作成
+    let sub1 = Add(10);
+    let sub2 = Add(20);
+    let sub3 = Add(30);
+    let sub4 = Add(40);
+    
+    // クロージャー実行
+    console.log(sub1(5));  // 10 + 5 + 10 -> 25
+    console.log(sub2(5));  // 20 + 5 + 10 -> 35
+    console.log(sub3(5));  // 30 + 5 + 10 -> 45
+    console.log(sub4(5));  // 40 + 5 + 10 -> 55
+    
+  (例2)
+    // 関数「Counter」はクロージャー「オブジェクト」を返す
+    function Counter() {
+      let CN = 0;
+      function Add(P1) { CN += P1; }
+      return {
+        inc: function() { Add( 1); return CN; },
+        dec: function() { Add(-1); return CN; },
+        val: function() { return CN; }
+      }
+    }
+    
+    // クロージャー作成
+    let cls1 = Counter();
+    let cls2 = Counter();
+    
+    // クロージャー実行
+    console.log('cls1: ' + cls1.val());  // cls1: 0
+    console.log('cls1: ' + cls1.inc());  // cls1: 1
+    console.log('cls1: ' + cls1.inc());  // cls1: 2
+    console.log('cls1: ' + cls1.val());  // cls1: 2
+    console.log('cls2: ' + cls2.val());  // cls2: 0 -> 各クロージャーの保持する値は独立している
+    console.log('cls1: ' + cls1.val());  // cls1: 2
   
 [確認]
   # cd /var/www/html
@@ -1552,45 +1553,23 @@
   // JS
   <script>
     
-    // 人間のプロトタイプ
-    Human.prototype = {
-      紹介()   { return '初めまして ' + this.名前 + ' と申します' ; },
-      挨拶(p1) { return 'こんにちわ ' + p1 + ' さん' ; },
-      別れ(p1) { return 'さようなら ' + p1 + ' さん' ; }
+    // コンストラクタ関数
+    function OBJ(P1, P2, P3) {
+      this.key1 = P1;
+      this.key2 = P2;
+      this.key3 = P3;
+      this.getKey1 = function() { return this.key1; }  // クロージャー「getKey1」
+      this.getKey2 = function() { return this.key2; }  // クロージャー「getKey2」
+      this.getKey3 = function() { return this.key3; }  // クロージャー「getKey3」
     }
     
-    // コンストラクタ関数 => 人間
-    function Human(p1, p2, p3, p4) {
-      
-      // プロパティ
-      this.名前 = p1;
-      this.性別 = p2;
-      this.身長 = p3;  // (m)
-      this.体重 = p4;  // (kg)
-      
-      // ローカル変数
-      const BMI = this.体重 / this.身長 / this.身長 ;
-      
-      // クロージャー(関数内で一時的に使用する関数) => 一つ上のローカル変数「BMI」を参照
-      this.計算 = () => `BMI値 : ${BMI}` ;
-      
-    }
+    // コンストラクタ関数からオブジェクト生成
+    const OBJ1 = new OBJ(10, 20, 30);
     
-    // オブジェクト生成
-    const p1 = new Human('荒木1', '男', 1.7, 73);
-    const p2 = new Human('荒木2', '男', 1.9, 73);
-    
-    // 紹介
-    console.log(p1.紹介());  // はじめまして 荒木1 と申します
-    console.log(p2.紹介());  // はじめまして 荒木2 と申します
-    
-    // ローカル変数へアクセス
-    console.log(p1.BMI);  // undefined => 直接参照は不可つまりカプセル化？
-    console.log(p2.BMI);  // undefined => 直接参照は不可つまりカプセル化？
-    
-    // クロージャー実行
-    console.log(p1.計算());  // 25.25...
-    console.log(p2.計算());  // 20.22...
+    // 出力
+    console.log(OBJ1.getKey1());
+    console.log(OBJ1.getKey2());
+    console.log(OBJ1.getKey3());
     
   </script>
   
@@ -1641,20 +1620,13 @@
   <script>
     
     // 通常関数
-    const myFunc = () => {
-      console.log('Hello');
-    }
+    function Func() { console.log('通常関数: Hello'); }
     
-    // 通常関数は呼出が必要
-    myFunc();  // Hello
+    // 即時関数(IIFE)
+    (function() { console.log('即時関数: Hello'); })()
     
-    // 即時関数
-    (() => {
-      console.log('Hello');
-    })()
-    
-    // 即時関数は呼出が必要ない
-    // Hello
+    // 通常関数はコール必要
+    Func();
     
   </script>
   
@@ -1703,35 +1675,27 @@
   // JS
   <script>
     
-    // モジュール
-    const Calculation = (() => {
+    // 即時関数(IIFE)を使用してモジュール作成
+    const Calc = (() => {
       return {
-        add: (OBJ) => {
-          OBJ.add = (p1, p2) => p1 + p2;
-        },
-        sub: (OBJ) => {
-          OBJ.sub = (p1, p2) => p1 - p2;
-        },
-        mul: (OBJ) => {
-          OBJ.mul = (p1, p2) => p1 * p2;
-        },
-        div: (OBJ) => {
-          OBJ.div = (p1, p2) => p1 / p2;
-        }
+        add: (OBJ) => OBJ.add = (P1, P2) => P1 + P2,
+        sub: (OBJ) => OBJ.sub = (P1, P2) => P1 - P2,
+        mul: (OBJ) => OBJ.mul = (P1, P2) => P1 * P2,
+        div: (OBJ) => OBJ.div = (P1, P2) => P1 / P2
       }
     })();
     
     // オブジェクト
-    const 飛行機 = { 名前: 'A-001', 製造: '2021-01-10' }
-    const 自動車 = { 名前: 'C-001', 製造: '2021-01-10' }
+    const OBJ1 = { key1: 100, key2: 200 }
+    const OBJ2 = { key1: 101, key2: 201 }
     
     // 各オブジェクトに共有関数を実装
-    Calculation.add(飛行機);
-    Calculation.add(自動車);
+    Calc.add(OBJ1);
+    Calc.add(OBJ2);
     
     // 共有関数を実行
-    console.log(飛行機.add(12, 11));
-    console.log(自動車.add(22, 21));
+    console.log(OBJ1.add(12, 11));  // 23
+    console.log(OBJ2.add(22, 21));  // 43
     
   </script>
   

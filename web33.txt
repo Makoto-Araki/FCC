@@ -2933,20 +2933,245 @@
   Run Functional Tests on an API Response using Chai-HTTP III - PUT method
   
 [内容]
-  //
+  API試験(3)
   
 [確認]
-  //
+  $ cd $HOME
+  $ mkdir -p cha21/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha21/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21
+  $ npm install body-parser mocha chai express request --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha21",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",  // 確認
+      "chai": "^4.3.4",          // 確認
+      "express": "^4.17.1",      // 確認
+      "mocha": "^9.0.3",         // 確認
+      "request": "^2.88.2"       // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  let express = require('express');
+  let parser = require('body-parser');
+  
+  // インスタンス生成
+  let app = express();
+  
+  // JSON
+  app.use(parser.json());
+  
+  // PUT - /
+  app.put('/', (req, res) => {
+    let data = {};
+    if (req.body && req.body.key) {
+      switch(req.body.key) {
+        case 'A': data = { key1: 'AAA', key2: 100 }; break;
+        case 'B': data = { key1: 'BBB', key2: 200 }; break;
+        case 'C': data = { key1: 'CCC', key2: 300 }; break;
+        default : data = { key1: '---', key2: 999 }; break;
+      }
+    }
+    res.json(data);
+  });
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21
+  $ curl -X PUT -H "Content-Type: application/json" -d '{ "key": "A" }' http://localhost:3000/
+  $ curl -X PUT -H "Content-Type: application/json" -d '{ "key": "B" }' http://localhost:3000/
+  $ curl -X PUT -H "Content-Type: application/json" -d '{ "key": "C" }' http://localhost:3000/
+  $ curl -X PUT -H "Content-Type: application/json" -d '{ "key": "Z" }' http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // コマンド「curl」からリクエスト「PUT」でJSONデータを送信して返信を受け取った
+  
+  {"key1":"AAA","key2":100}
+  {"key1":"BBB","key2":200}
+  {"key1":"CCC","key2":300}
+  {"key1":"---","key2":999}
+  --------------------------------------------------
+  
+  $ cd $HOME/cha21/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const request = require('request');
+  
+  // API試験(3)
+  describe('PUT - /', function() {
+    
+    // テスト項目を「expect」で記述
+    describe('Expect', function() {
+      let OBJ = {
+        url: 'http://localhost:3000/',
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: 'A' })
+      };
+      it('status: 200', function(done) {
+        request(OBJ, function(err, res, body) {
+          expect(res.statusCode).to.equal(200);
+          done();
+        });
+      });
+      it('key1: AAA', function(done) {
+        request(OBJ, function(err, res, body) {
+          let TMP = JSON.parse(res.body);
+          expect(TMP.key1).to.equal('AAA');
+          done();
+        });
+      });
+      it('key2: 100', function(done) {
+        request(OBJ, function(err, res, body) {
+          let TMP = JSON.parse(res.body);
+          expect(TMP.key2).to.equal(100);
+          done();
+        });
+      });
+    });
+    
+    // テスト項目を「assert」で記述
+    describe('Assert', function() {
+      let OBJ = {
+        url: 'http://localhost:3000/',
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ key: 'A' })
+      };
+      it('status: 200', function(done) {
+        request(OBJ, function(err, res, body) {
+          assert.equal(res.statusCode, 200);
+          done();
+        });
+      });
+      it('key1: AAA', function(done) {
+        request(OBJ, function(err, res, body) {
+          let TMP = JSON.parse(res.body);
+          assert.equal(TMP.key1, 'AAA');
+          done();
+        });
+      });
+      it('key2: 100', function(done) {
+        request(OBJ, function(err, res, body) {
+          let TMP = JSON.parse(res.body);
+          assert.equal(TMP.key2, 100);
+          done();
+        });
+      });
+    });
+    
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha20
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/cha20 <- 別の端末から実行
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // 単体テスト結果
+  PUT - /
+    Expect
+      ✔ status: 200 (51ms)
+      ✔ key1: AAA
+      ✔ key2: 100
+    Assert
+      ✔ status: 200
+      ✔ key1: AAA
+      ✔ key2: 100
+  
+  6 passing (80ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [22]
   Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
   
 [内容]
-  //
+  上記「21」の復習
   
 [確認]
-  //
+  上記「21」を参照
   
 ================================================================================
 [23]

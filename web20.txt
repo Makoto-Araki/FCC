@@ -37,9 +37,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -48,20 +45,11 @@
   <body>
   
   // HTML
-  <button class='btn-default' id='INC'>増加</button>
-  <button class='btn-default' id='DEC'>減少</button>
+  <button id='INC'>増加</button>
+  <button id='DEC'>減少</button>
   
   // CSS
   <style></style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -70,19 +58,13 @@
     let cnt = 0;
     
     // 初期表示
-    $(document).ready(() => {
-      console.log(`cnt : ${cnt}`);
-    });
+    $(document).ready(() => console.log(cnt));
     
     // 増加ボタンのクリック時
-    $('#INC').on('click', () => {
-      console.log(`cnt : ${++cnt}`);
-    });
+    $('#INC').on('click', () => console.log(++cnt));
     
     // 減少ボタンのクリック時
-    $('#DEC').on('click', () => {
-      console.log(`cnt : ${--cnt}`);
-    });
+    $('#DEC').on('click', () => console.log(--cnt));
     
   </script>
   
@@ -119,9 +101,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -130,39 +109,25 @@
   <body>
   
   // HTML
-  <h1 class='text-center'>サンプル文字列</h1>
-  <button class='btn-default' id='GRA'>付与</button>
-  <button class='btn-default' id='DEP'>剥奪</button>
+  <h2>サンプル文字列</h2>
+  <button id='GRA'>付与</button>
+  <button id='DEP'>剥奪</button>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample { color: red; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
     
     // 付与ボタンのクリック時
-    $('#GRA').on('click', () => {
-      $('h1').addClass('sample');
-    });
+    $('#GRA').on('click', () => $('h2').addClass('sample'));
     
     // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => {
-      $('h1').removeClass('sample');
-    });
+    $('#DEP').on('click', () => $('h2').removeClass('sample'));
     
   </script>
   
@@ -199,9 +164,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -210,40 +172,26 @@
   <body>
   
   // HTML
-  <h2 class='text-center myTitle'>サンプル文字列1</h2>
-  <h2 class='text-center myTitle'>サンプル文字列2</h2>
-  <button class='btn-default' id='GRA'>付与</button>
-  <button class='btn-default' id='DEP'>剥奪</button>
+  <h2 class='myTitle'>サンプル文字列1</h2>
+  <h2 class='myTitle'>サンプル文字列2</h2>
+  <button id='GRA'>付与</button>
+  <button id='DEP'>剥奪</button>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample { color: red; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
     
     // 付与ボタンのクリック時
-    $('#GRA').on('click', () => {
-      $('.myTitle').addClass('sample');
-    });
+    $('#GRA').on('click', () => $('.myTitle').addClass('sample'));
     
     // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => {
-      $('.myTitle').removeClass('sample');
-    });
+    $('#DEP').on('click', () => $('.myTitle').removeClass('sample'));
     
   </script>
   
@@ -300,9 +248,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -311,28 +256,18 @@
   <body>
   
   // HTML
-  <h2 class='text-center myTitle'>サンプル文字列1</h2>
-  <h2 class='text-center myTitle'>サンプル文字列2</h2>
-  <button class='btn-default' id='GRA'>付与</button>
-  <button class='btn-default' id='DEP'>剥奪</button>
+  <h2 class='myTitle'>サンプル文字列1</h2>
+  <h2 class='myTitle'>サンプル文字列2</h2>
+  <button id='GRA'>付与</button>
+  <button id='DEP'>剥奪</button>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample1 { color: white; }
     .sample2 { background-color: black; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -394,9 +329,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -405,28 +337,18 @@
   <body>
   
   // HTML
-  <h2 class='text-center myTitle'>サンプル文字列1</h2>
-  <h2 class='text-center myTitle'>サンプル文字列2</h2>
-  <button class='btn-default' id='GRA'>付与</button>
-  <button class='btn-default' id='DEP'>剥奪</button>
+  <h2 class='myTitle'>サンプル文字列1</h2>
+  <h2 class='myTitle'>サンプル文字列2</h2>
+  <button id='GRA'>付与</button>
+  <button id='DEP'>剥奪</button>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample1 { color: white; }
     .sample2 { background-color: black; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -478,9 +400,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -489,30 +408,20 @@
   <body>
   
   // HTML
-  <h2 class='text-center myTitle'>サンプル文字列1</h2>
-  <h2 class='text-center myTitle'>サンプル文字列2</h2>
-  <button class='btn-default' id='GRA'>付与</button>
-  <button class='btn-default' id='DEP'>剥奪</button>
-  <button class='btn-default' id='DIS'>無効</button>
-  <button class='btn-default' id='ACT'>有効</button>
+  <h2 class='myTitle'>サンプル文字列1</h2>
+  <h2 class='myTitle'>サンプル文字列2</h2>
+  <button id='GRA'>付与</button>
+  <button id='DEP'>剥奪</button>
+  <button id='DIS'>無効</button>
+  <button id='ACT'>有効</button>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample1 { color: white; }
     .sample2 { background-color: black; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -537,7 +446,6 @@
     
     // 有効ボタンのクリック時
     $('#ACT').on('click', () => {
-      // 付与ボタンを有効化
       $('#GRA').prop('disabled', false);
       $('#DEP').prop('disabled', false);
     });
@@ -577,9 +485,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -589,27 +494,17 @@
   
   // HTML
   <input id='EDT' type='text'>
-  <button class='btn-default' id='GRA'>反映</button>
+  <button id='GRA'>反映</button>
   <hr>
-  <p class='text-left' id='RS1'>初期表示1</p>
-  <p class='text-left' id='RS2'>初期表示2</p>
+  <p id='RS1'>初期表示1</p>
+  <p id='RS2'>初期表示2</p>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .sample { font-size: 26px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -629,7 +524,7 @@
       // 入力文字列を反映
       if (tmp !== '') {
         $('#RS1').text(tmp);
-        $('#RS2').html(`<p class='text-left' id='RS2'>${tmp}</p>`);
+        $('#RS2').html(`<p id='RS2'>${tmp}</p>`);
       }
       
     });
@@ -669,9 +564,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -680,9 +572,9 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='ADD'>追加</button>
-    <button class='btn-default' id='REM'>削除</button>
+  <div>
+    <button id='ADD'>追加</button>
+    <button id='REM'>削除</button>
   </div>
   <hr>
   <div id='DSP'>
@@ -693,32 +585,18 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
     
     // 追加ボタンのクリック時
-    $('#ADD').on('click', () => {
-      $('#DSP').append('<p class="SAM">Hello!</p>');
-    });
+    $('#ADD').on('click', () => $('#DSP').append('<p class="SAM">Hello!</p>'));
     
     // 削除ボタンのクリック時
-    $('#REM').on('click', () => {
-      $('.SAM:last').remove();
-    });
+    $('#REM').on('click', () => $('.SAM:last').remove());
     
   </script>
   
@@ -755,9 +633,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -766,9 +641,9 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <div>
+    <button id='MV1'>移動1</button>
+    <button id='MV2'>移動2</button>
   </div>
   <hr>
   <div id='DS1'>
@@ -784,32 +659,18 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
     
     // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
+    $('#MV1').on('click', () => $('#DS1 > .SAM:last').appendTo('#DS2'));
     
     // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
+    $('#MV2').on('click', () => $('#DS2 > .SAM:last').appendTo('#DS1'));
     
   </script>
   
@@ -846,9 +707,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -857,9 +715,9 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='CP1'>複製1</button>
-    <button class='btn-default' id='CP2'>複製2</button>
+  <div>
+    <button id='CP1'>複製1</button>
+    <button id='CP2'>複製2</button>
   </div>
   <hr>
   <div id='DS1'>
@@ -875,32 +733,18 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
     
     // 複製1ボタンのクリック時
-    $('#CP1').on('click', () => {
-      $('#DS1 > .SAM:last').clone().appendTo('#DS2');
-    });
+    $('#CP1').on('click', () => $('#DS1 > .SAM:last').clone().appendTo('#DS2'));
     
     // 複製2ボタンのクリック時
-    $('#CP2').on('click', () => {
-      $('#DS2 > .SAM:last').clone().appendTo('#DS1');
-    });
+    $('#CP2').on('click', () => $('#DS2 > .SAM:last').clone().appendTo('#DS1'));
     
   </script>
   
@@ -937,9 +781,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -948,9 +789,9 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='PR1'>親要素1</button>
-    <button class='btn-default' id='PR2'>親要素2</button>
+  <div>
+    <button id='PR1'>親要素1</button>
+    <button id='PR2'>親要素2</button>
   </div>
   <hr>
   <div id='DSP'>
@@ -961,19 +802,9 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -1025,9 +856,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -1036,9 +864,9 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='CH1'>子要素1</button>
-    <button class='btn-default' id='CH2'>子要素2</button>
+  <div>
+    <button id='CH1'>子要素1</button>
+    <button id='CH2'>子要素2</button>
   </div>
   <hr>
   <div id='DSP'>
@@ -1049,19 +877,9 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -1113,9 +931,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -1124,12 +939,12 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='EL1'>要素1</button>
-    <button class='btn-default' id='EL2'>要素2</button>
-    <button class='btn-default' id='EL3'>要素3</button>
-    <button class='btn-default' id='EL4'>要素4</button>
-    <button class='btn-default' id='CLR'>回復</button>
+  <div>
+    <button id='EL1'>要素1</button>
+    <button id='EL2'>要素2</button>
+    <button id='EL3'>要素3</button>
+    <button id='EL4'>要素4</button>
+    <button id='CLR'>回復</button>
   </div>
   <hr>
   <div id='DSP'>
@@ -1142,19 +957,9 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -1224,9 +1029,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -1235,10 +1037,10 @@
   <body>
   
   // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='ODD'>奇数</button>
-    <button class='btn-default' id='EVE'>偶数</button>
-    <button class='btn-default' id='CLR'>回復</button>
+  <div>
+    <button id='ODD'>奇数</button>
+    <button id='EVE'>偶数</button>
+    <button id='CLR'>回復</button>
   </div>
   <hr>
   <div id='DSP'>
@@ -1251,19 +1053,9 @@
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM { font-size: 15px; }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>
@@ -1321,9 +1113,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
   // JQuery
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
@@ -1332,12 +1121,11 @@
   <body>
   
   // HTML
-  // なし
+  <main></main>
   
   // CSS
   <style>
     
-    /* クラス属性 */
     .SAM {
       color: white;
       font-size: 30px;
@@ -1345,15 +1133,6 @@
     }
     
   </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
   <script>

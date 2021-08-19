@@ -22,9 +22,9 @@
 [20] Run Functional Tests on API Endpoints using Chai-HTTP II
 [21] Run Functional Tests on an API Response using Chai-HTTP III - PUT method
 [22] Run Functional Tests on an API Response using Chai-HTTP IV - PUT method
-[23] Run Functional Tests using a Headless Browser
-[24] Run Functional Tests using a Headless Browser II
-[25] Simulate Actions Using a Headless Browser
+[23] Simulate Actions Using a Headless Browser
+[24] Run Functional Tests using a Headless Browser
+[25] Run Functional Tests using a Headless Browser II
 ================================================================================
 [01]
   Learn How JavaScript Assertions Work
@@ -3175,7 +3175,7 @@
   
 ================================================================================
 [23]
-  Run Functional Tests using a Headless Browser
+  Simulate Actions Using a Headless Browser
   
 [内容]
   //
@@ -3185,7 +3185,7 @@
   
 ================================================================================
 [24]
-  Run Functional Tests using a Headless Browser II
+  Run Functional Tests using a Headless Browser
   
 [内容]
   //
@@ -3195,7 +3195,7 @@
   
 ================================================================================
 [25]
-  Simulate Actions Using a Headless Browser
+  Run Functional Tests using a Headless Browser II
   
 [内容]
   //

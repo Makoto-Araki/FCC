@@ -306,8 +306,8 @@
   Taste the Bootstrap Button Color Rainbow
   
 [内容]
-ボタン追加
-  btn-primary
+  ボタン追加
+    btn-primary
   
 [確認]
   // 上記「04」と「05」を参照
@@ -328,8 +328,8 @@
   Warn Your Users of a Dangerous Action with btn-danger
   
 [内容]
-ボタン追加
-  btn-danger
+  ボタン追加
+    btn-danger
   
 [確認]
   // 上記「04」と「05」を参照
@@ -341,14 +341,14 @@
 [内容]
   各種ボタンを「グリッドシステム」で横に並べる
   
-  パソコン画面のような中型(medium)スクリーンの横幅を12分割
+  // パソコン画面のような中型(medium)スクリーンの横幅を12分割
   <div class="row">
     <div class="col-md-4"></div>  // 12分割した横幅を4割当
     <div class="col-md-4"></div>  // 12分割した横幅を4割当
     <div class="col-md-4"></div>  // 12分割した横幅を4割当
   </div>
   
-  スマートフォンのような小型(extra-small)スクリーンの横幅を12分割
+  // スマートフォンのような小型(extra-small)スクリーンの横幅を12分割
   <div class="row">
     <div class="col-xs-4"></div>  // 12分割した横幅を4割当
     <div class="col-xs-4"></div>  // 12分割した横幅を4割当

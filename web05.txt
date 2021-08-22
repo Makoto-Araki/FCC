@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Responsive Web Design Challenges
 [01] Create a Media Query
 [02] Make an Image Responsive
 [03] Use a Retina Image for Higher Resolution Displays

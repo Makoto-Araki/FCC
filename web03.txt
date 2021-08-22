@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Applied Visual Design Challenges
 [01] Create Visual Balance Using the text-align Property
 [02] Adjust the Width of an Element Using the width Property
 [03] Adjust the Height of an Element Using the height Property

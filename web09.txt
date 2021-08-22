@@ -1,5 +1,4 @@
 ================================================================================
-[000] Introduction to JavaScript
 [001] Comment Your JavaScript Code
 [002] Declare JavaScript Variables
 [003] Storing Values with the Assignment Operator

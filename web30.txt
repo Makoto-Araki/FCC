@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Basic Node and Express Challenges
 [01] Meet the Node console
 [02] Start a Working Express Server
 [03] Serve an HTML File

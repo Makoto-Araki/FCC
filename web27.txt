@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the JSON APIs and AJAX Challenges
 [01] Handle Click Events with JavaScript using the onclick property
 [02] Change Text with click Events
 [03] Get JSON with the JavaScript XMLHttpRequest Method

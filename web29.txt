@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Managing Packages with npm Challenges
 [X1] コマンド「Git」とサービス「GitHub」の基本操作
 [X2] 実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
 [01] How to Use package.json, the Core of Any Node.js Project or npm Package
@@ -17,16 +16,15 @@
   コマンド「Git」とサービス「GitHub」の基本操作
   
 [内容]
-  本ドキュメント群をコマンド「Git」とサービス「GitHub」で管理する
+  コマンド「Git」とサービス「GitHub」でこの「webXX.txt」を管理する
   
   サービス「GitHub」
     User  : Makoto-Araki
     Pass  : (秘密)
     Name  : FCC(リポジトリ)
     URI   : https://github.com/Makoto-Araki/FCC.git
-    Token : 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 (2021-08-17 => 90days) // 失効?
-            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 (2021-08-17 => 90days) // 現在
-    
+    Token : (パスワード認証廃止でアップの度に生成が必要)
+  
 [確認]
   $ cd $HOME/CentOS-8/web/FCC
   $ git init

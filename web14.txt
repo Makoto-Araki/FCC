@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to Basic Algorithm Scripting
 [01] Convert Celsius to Fahrenheit
 [02] Reverse a String
 [03] Factorialize a Number

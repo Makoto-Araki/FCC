@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to Basic CSS
 [01] Change the Color of Text
 [02] Use CSS Selectors to Style Elements
 [03] Use a CSS Class to Style an Element

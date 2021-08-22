@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the CSS Flexbox Challenges
 [01] Use display: flex to Position Two Boxes
 [02] Add Flex Superpowers to the Tweet Embed
 [03] Use the flex-direction Property to Make a Row

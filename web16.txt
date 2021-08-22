@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Functional Programming Challenges
 [01] Learn About Functional Programming
 [02] Understand Functional Programming Terminology
 [03] Understand the Hazards of Using Imperative Code

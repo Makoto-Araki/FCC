@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the CSS Grid Challenges
 [01] Create Your First CSS Grid
 [02] Add Columns with grid-template-columns
 [03] Add Rows with grid-template-rows

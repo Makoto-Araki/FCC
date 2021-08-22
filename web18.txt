@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the JavaScript Algorithms and Data Structures Projects
 [01] Palindrome Checker
 [02] Roman Numeral Converter
 [03] Caesars Cipher

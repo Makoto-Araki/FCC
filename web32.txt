@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the APIs and Microservices Projects
 [01] Timestamp Microservice
 [02] Request Header Parser Microservice
 [03] URL Shortener Microservice

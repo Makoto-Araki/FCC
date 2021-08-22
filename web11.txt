@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Regular Expression Challenges
 [01] Using the Test Method
 [02] Match Literal Strings
 [03] Match a Literal String with Different Possibilities

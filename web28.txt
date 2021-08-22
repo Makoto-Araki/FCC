@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Data Visualization Projects
 [01] Visualize Data with a Bar Chart
 [02] Visualize Data with a Scatterplot Graph
 [03] Visualize Data with a Heat Map

@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Front End Libraries Projects
 [01] Build a Random Quote Machine
 [02] Build a Markdown Previewer
 [03] Build a Drum Machine

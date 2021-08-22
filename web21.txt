@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Sass Challenges
 [01] Store Data with Sass Variables
 [02] Nest CSS with Sass
 [03] Create Reusable CSS with Mixins
@@ -10,11 +9,11 @@
 [08] Split Your Styles into Smaller Chunks with Partials
 [09] Extend One Set of CSS Styles to Another Element
 ================================================================================
-[00]
-  Introduction to the Sass Challenges
+[X1]
+  インストールおよび環境構築時の記録
   
 [内容]
-  インストールおよび環境構築時の記録を記述
+  インストールおよび環境構築時の記録
   
 [確認]
   # cd $HOME

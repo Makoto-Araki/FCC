@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Responsive Web Design Projects
 [01] Build a Tribute Page
 [02] Build a Survey Form
 [03] Build a Product Landing Page

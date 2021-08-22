@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Basic Data Structure Challenges
 [01] Use an Array to Store a Collection of Data
 [02] Access an Array's Contents Using Bracket Notation
 [03] Add Items to an Array with push() and unshift()

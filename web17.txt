@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Intermediate Algorithm Scripting Challenges
 [01] Sum All Numbers in a Range
 [02] Diff Two Arrays
 [03] Seek and Destroy

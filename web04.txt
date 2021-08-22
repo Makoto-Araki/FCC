@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Applied Accessibility Challenges
 [01] Add a Text Alternative to Images for Visually Impaired Accessibility
 [02] Know When Alt Text Should be Left Blank
 [03] Use Headings to Show Hierarchical Relationships of Content

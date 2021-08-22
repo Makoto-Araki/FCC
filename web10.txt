@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the ES6 Challenges
 [01] Explore Differences Between the var and let Keywords
 [02] Compare Scopes of the var and let Keywords
 [03] Declare a Read-Only Variable with the const Keyword

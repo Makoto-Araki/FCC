@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the MongoDB and Mongoose Challenges
 [01] Install and Set Up Mongoose
 [02] Create a Model
 [03] Create and Save a Record of a Model

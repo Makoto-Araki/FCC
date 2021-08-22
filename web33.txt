@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Quality Assurance with Chai Challenges
 [01] Learn How JavaScript Assertions Work
 [02] Test if a Variable or Function is Defined
 [03] Use Assert.isOK and Assert.isNotOK

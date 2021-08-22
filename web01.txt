@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to Basic HTML and HTML5
 [01] Say Hello to HTML Elements
 [02] Headline with the h2 Element
 [03] Inform with the Paragraph Element

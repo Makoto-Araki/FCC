@@ -1,5 +1,4 @@
 ================================================================================
-[00] Introduction to the Data Visualization with D3 Challenges
 [01] Add Document Elements with D3
 [02] Select a Group of Elements with D3
 [03] Work with Data in D3

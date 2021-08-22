@@ -3129,7 +3129,7 @@
   });
   --------------------------------------------------
   
-  $ cd $HOME/cha20
+  $ cd $HOME/cha21
   $ node app/server.js
   
   コマンドの実行結果
@@ -3139,7 +3139,7 @@
   ■ <- 完了後に「Ctrl + C」で停止
   --------------------------------------------------
   
-  $ cd $HOME/cha20 <- 別の端末から実行
+  $ cd $HOME/cha21 <- 別の端末から実行
   $ npm test
   
   コマンドの実行結果
@@ -3178,29 +3178,264 @@
   Simulate Actions Using a Headless Browser
   
 [内容]
-  //
+  ヘッドレスブラウザ
+    画面(GUI)の存在しないブラウザ
+  
+  モジュール「Zombie」
+    ヘッドレスブラウザを生成して画面(GUI)上の入力やボタン押下時や押下後の画面要素をバックグラウンドでテスト可能
   
 [確認]
-  //
+  $ cd $HOME
+  $ mkdir -p cha23/views
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha23/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p cha23/test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23
+  $ npm install body-parser mocha chai express request zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "cha23",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
+      "test": "mocha --reporter spec"                        // 修正後
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",  // 確認
+      "chai": "^4.3.4",          // 確認
+      "express": "^4.17.1",      // 確認
+      "mocha": "^9.0.3",         // 確認
+      "request": "^2.88.2"       // 確認
+      "zombie": "^6.1.4"         // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23/views
+  $ vi index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <title>Zombie Test01</title>
+  </head>
+  <body>
+    <style>
+      form, p { text-align: center; }
+      p { font-size: 20px; }
+    </style>
+    <form action='/key' method='POST'>
+      <input type='text' id='key' name='key'>
+      <button type='submit' id='submit'>Submit</button>
+    </form>
+    <hr>
+    <div>
+      <p id='P1'><%-content1 %></p>
+      <p id='P2'><%-content2 %></p>
+    </div>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  let express = require('express');
+  let parser = require('body-parser');
+  
+  // インスタンス生成
+  let app = express();
+  
+  // テンプレートエンジン「EJS」を使用
+  app.set('view engine', 'ejs');
+  
+  // エンコード方式
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // GET - /
+  app.get('/', (req, res) => {
+    let data = { content1: '', content2: '' };
+    res.render('index.ejs', data);
+  });
+  
+  // POST - /key
+  app.post('/key', (req, res) => {
+    console.log(`${req.body.key} が送信されました`)
+    let data = {};
+    switch(req.body.key) {
+      case 'A': data = { content1: 'AAA', content2: '100' }; break;
+      case 'B': data = { content1: 'BBB', content2: '200' }; break;
+      case 'C': data = { content1: 'CCC', content2: '300' }; break;
+      default : data = { content1: '---', content2: '999' }; break;
+    }
+    res.render('index.ejs', data);
+  });
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23/test
+  $ vi func.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  const Browser = require('zombie');
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  
+  // 接続先
+  Browser.localhost('localhost', 3000);
+  
+  // ヘッドレスブラウザの生成
+  const browser = new Browser();
+  
+  // API試験準備
+  before(function(done) {
+    browser.visit('/', done);
+  });
+  
+  // API試験(1)
+  describe('Submit key=A to API', function() {
+    before(function(done) {
+      browser
+      .fill('#key', 'A')  // Promiseを返す
+      .then(() => browser.pressButton('#submit', done));
+    });
+    it('It should be successful', function() {
+      browser.assert.success();
+    });
+    it('P1 should be AAA', function() {
+      expect(browser.text('#P1')).to.equal('AAA');  // expect
+    });
+    it('P2 should be 100', function() {
+      expect(browser.text('#P2')).to.equal('100');  // expect
+    });
+  });
+  
+  // API試験(2)
+  describe('Submit key=B to API', function() {
+    before(function(done) {
+      browser
+      .fill('#key', 'B')  // Promiseを返す
+      .then(() => browser.pressButton('#submit', done));
+    });
+    it('It should be successful', function() {
+      browser.assert.success();
+    });
+    it('P1 should be BBB', function() {
+      assert.equal(browser.text('#P1'), 'BBB');  // assert
+    });
+    it('P2 should be 200', function() {
+      assert.equal(browser.text('#P2'), '200');  // assert
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  A が送信されました
+  B が送信されました
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/cha23 <- 別の端末から実行
+  $ npm test
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > cha01@1.0.0 test
+  > mocha --reporter spec
+  
+  // テスト結果(1)
+  Submit key=A to API
+    ✔ It should be successful
+    ✔ P1 should be AAA
+    ✔ P2 should be 100
+  
+  // テスト結果(2)
+  Submit key=B to API
+    ✔ It should be successful
+    ✔ P1 should be BBB
+    ✔ P2 should be 200
+  
+  6 passing (185ms)
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [24]
   Run Functional Tests using a Headless Browser
   
 [内容]
-  //
+  上記「23」の復習
   
 [確認]
-  //
+  上記「23」を参照
   
 ================================================================================
 [25]
   Run Functional Tests using a Headless Browser II
   
 [内容]
-  //
+  上記「23」の復習
   
 [確認]
-  //
+  上記「23」を参照
   
 ================================================================================

@@ -1,0 +1,401 @@
+================================================================================
+[01] Set up a Template Engine
+[02] Use a Template Engine's Powers
+[03] Set up Passport
+[04] Serialization of a User Object
+[05] Implement the Serialization of a Passport User
+[06] Authentication Strategies
+[07] How to Use Passport Strategies
+[08] Create New Middleware
+[09] How to Put a Profile Together
+[10] Logging a User Out
+[11] Registration of New Users
+[12] Hashing Your Passwords
+[13] Clean Up Your Project with Modules
+[14] Implementation of Social Authentication
+[15] Implementation of Social Authentication II
+[16] Implementation of Social Authentication III
+[17] Set up the Environment
+[18] Communicate by Emitting
+[19] Handle a Disconnect
+[20] Authentication with Socket.IO
+[21] Announce New Users
+[22] Send and Display Chat Messages
+================================================================================
+[01]
+  Set up a Template Engine
+  
+[内容]
+  テンプレートエンジン「PUG」の使用
+  
+[確認]
+  $ cd $HOME
+  $ mkdir -p pug01/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug01/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug01/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ npm install express pug --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pug01",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "express": "^4.17.1",  // 確認
+      "pug": "^3.0.2"        // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01/views/pug
+  $ vi index.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='style.css')
+      title #{T1}      // パラメータ「T1」
+    body
+      h1.Class1 #{T2}  // パラメータ「T2」
+      hr
+      p#Id1=C1         // パラメータ「C1」
+      p#Id2=C2         // パラメータ「C2」
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01/public
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  .Class1, #Id1, #Id2 {
+    text-align: center;
+  }
+  
+  #Id1, #Id2 {
+    font-size: 25px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  let express = require('express');
+  
+  // インスタンス生成
+  let app = express();
+  
+  // ディレクトリ「public」配下の静的ファイル使用
+  app.use(express.static('public'));
+  
+  // テンプレートエンジン「PUG」の使用
+  app.set('view engine', 'pug');
+  
+  // GET - /
+  app.get('/', (req, res) => {
+    res.render('../views/pug/index', {
+      T1: 'PUG01',
+      T2: 'PUG01 - Express',
+      C1: 'This is Content1',
+      C2: 'This is Content2'
+    });
+  });
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01 <- 別の端末から実行
+  $ curl http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 改行して読み易くした
+  <html>
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="style.css"/>
+    <title>PUG01</title>
+  </head>
+  <body>
+    <h1 class="Class1">PUG01 - Express</h1>
+    <hr/>
+    <p id="Id1">This is Content1</p>
+    <p id="Id2">This is Content2</p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[02]
+  Use a Template Engine's Powers
+  
+[内容]
+  テンプレートのパラメータに値を設定する
+  
+[確認]
+  上記「01」を参照
+  
+================================================================================
+[03]
+  Set up Passport
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[04]
+  Serialization of a User Object
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[05]
+  Implement the Serialization of a Passport User
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[06]
+  Authentication Strategies
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[07]
+  How to Use Passport Strategies
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[08]
+  Create New Middleware
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[09]
+  How to Put a Profile Together
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[10]
+  Logging a User Out
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[11]
+  Registration of New Users
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[12]
+  Hashing Your Passwords
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[13]
+  Clean Up Your Project with Modules
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[14]
+  Implementation of Social Authentication
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[15]
+  Implementation of Social Authentication II
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[16]
+  Implementation of Social Authentication III
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[17]
+  Set up the Environment
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[18]
+  Communicate by Emitting
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[19]
+  Handle a Disconnect
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[20]
+  Authentication with Socket.IO
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[21]
+  Announce New Users
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================
+[22]
+  Send and Display Chat Messages
+  
+[内容]
+  //
+  
+[確認]
+  //
+  
+================================================================================

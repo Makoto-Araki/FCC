@@ -101,12 +101,12 @@
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
       link(rel='stylesheet', href='style.css')
-      title #{T1}      // パラメータ「T1」
+      title #{T1}
     body
-      h1.Class1 #{T2}  // パラメータ「T2」
+      h1.Class1 #{H1}
       hr
-      p#Id1=C1         // パラメータ「C1」
-      p#Id2=C2         // パラメータ「C2」
+      p#Id1=P1
+      p#Id2=P2
   --------------------------------------------------
   
   $ cd $HOME/pug01/public
@@ -144,9 +144,9 @@
   app.get('/', (req, res) => {
     res.render('../views/pug/index', {
       T1: 'PUG01',
-      T2: 'PUG01 - Express',
-      C1: 'This is Content1',
-      C2: 'This is Content2'
+      H1: 'PUG01 - Express',
+      P1: 'This is Content1',
+      P2: 'This is Content2'
     });
   });
   
@@ -203,20 +203,291 @@
   Set up Passport
   
 [内容]
-  //
+  認証機能の実装(1) -> 基本的な「USER/PASS」認証
   
 [確認]
-  //
+  $ cd $HOME
+  $ mkdir -p pug03/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug03/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug03/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03
+  $ npm install body-parser express express-session passport passport-local pug --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pug03",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.19.0",      // 確認
+      "express": "^4.17.1",          // 確認
+      "express-session": "^1.17.2",  // 確認
+      "passport": "^0.4.1",          // 確認
+      "passport-local": "^1.0.0",    // 確認
+      "pug": "^3.0.2"                // 確認
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/views/pug
+  $ vi login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title Login
+    body
+      form(action='/login' method='POST')
+        input(type='text' id='user' name='username' placeholder='USER')
+        input(type='text' id='pass' name='password' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/public
+  $ vi login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/views/pug
+  $ vi profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title Profile
+    body
+      form(action='/logout' method='post')
+        p='user: ' + P1
+        p='key1: ' + P2
+        p='key2: ' + P3
+        p='key3: ' + P4
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/public
+  $ vi profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 一般モジュールのインポート
+  let express = require('express');
+  let session = require('express-session');
+  let parser  = require('body-parser');
+  
+  // 認証モジュールのインポート
+  let passport = require('passport');
+  let strategy = require('passport-local').Strategy;
+  
+  // 認証データ(オブジェクト配列版)
+  let USER = [
+    { username: 'AAA', password: 'AAA', key1: '100', key2: '100', key3: '100' },
+    { username: 'BBB', password: 'BBB', key1: '200', key2: '200', key3: '200' },
+    { username: 'CCC', password: 'CCC', key1: '300', key2: '300', key3: '300' }
+  ]
+  
+  // 認証プログラムのストラテジー設定(オブジェクト配列版)
+  passport.use(new strategy(
+    (user, pass, done) => {
+      const OBJ = USER.find(val => val.username === user);
+      if (OBJ === undefined) {
+        return done(null, false);
+      } else if (user !== OBJ.username) {
+        return done(null, false);
+      } else if (pass !== OBJ.password) {
+        return done(null, false);
+      } else {
+        return done(null, { username: user, password: pass });
+      }
+    }
+  ));
+  
+  // インスタンス生成
+  let app = express();
+  
+  // テンプレートエンジン「PUG」の使用
+  app.set('view engine', 'pug');
+  
+  // ディレクトリ「public」配下の静的ファイル使用
+  app.use(express.static('public'));
+  
+  // エンコード方式
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false
+  }));
+  
+  // 認証プログラムを初期化
+  app.use(passport.initialize());
+  
+  // セッション管理を開始
+  app.use(passport.session());
+  
+  // ユーザー情報のシリアル化
+  passport.serializeUser((user, done) => done(null, user));
+  
+  // ユーザー情報のシリアル化解除
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  // 既に認証済みか確認用の関数を用意
+  const isAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // GET - /login
+  app.get('/login',
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // GET - /profile
+  app.get('/profile', isAuthenticated,  // 既に認証済みか確認を行う
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // POST - /login
+  app.post('/login',
+    passport.authenticate('local'),  // ストラテジーを使用して認証を行う
+    (req, res) => {                  // 認証成功後の処理をコールバックで記述
+      const OBJ = USER.find(val => val.username === req.user.username);
+      res.render('../views/pug/profile.pug', {
+        P1: OBJ.username,
+        P2: OBJ.key1,
+        P3: OBJ.key2,
+        P4: OBJ.key3
+      })
+    }
+  );
+  
+  // POST - /logout
+  app.post('/logout',
+    (req, res) => {
+      req.logout();
+      res.redirect('/login');
+    }
+  );
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/profile
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール画面 -> ログアウト -> ログイン画面
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=111 -> Unauthorized -> 戻る -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> Unauthorized -> 戻る -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> Unauthorized -> 戻る -> ログイン画面
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [04]
   Serialization of a User Object
   
 [内容]
-  //
+  認証機能の実装(2) -> セッション情報の保存、各ページにおける認証
   
 [確認]
-  //
+  上記「03」を参照
   
 ================================================================================
 [05]

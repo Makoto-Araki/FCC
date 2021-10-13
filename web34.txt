@@ -28,13 +28,18 @@
 [内容]
   テンプレートエンジン「PUG」の使用
   
+  ## 該当コード ##
+  
+  // テンプレートエンジン「PUG」の使用
+  app.set('view engine', 'pug');
+  
 [確認]
   $ cd $HOME
   $ mkdir -p pug01/views/pug
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> テンプレートファイルのデフォルト位置
   --------------------------------------------------
   
   $ cd $HOME
@@ -42,7 +47,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> スタイルシート(CSS)
   --------------------------------------------------
   
   $ cd $HOME
@@ -50,7 +55,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> スクリプト(JavaScript)
   --------------------------------------------------
   
   $ cd $HOME/pug01
@@ -74,21 +79,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  {
-    "name": "pug01",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "express": "^4.17.1",  // 確認
-      "pug": "^3.0.2"        // 確認
-    }
-  }
+  (省略)
   --------------------------------------------------
   
   $ cd $HOME/pug01/views/pug
@@ -100,13 +91,22 @@
     head
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
-      link(rel='stylesheet', href='style.css')
-      title #{T1}
+      link(rel='stylesheet', href='style.css')  // スタイルシート適用
+      title PUG01                               // タイトルも変数指定可能
     body
-      h1.Class1 #{H1}
+      p #{P01}      // 要素 #{パラメータ名}
+      p #{P02}      // 要素 #{パラメータ名}
+      p#id1 #{P03}  // 要素(ID) #{パラメータ名}
+      p#id2 #{P04}  // 要素(ID) #{パラメータ名}
+      p.cl1 #{P05}  // 要素(クラス) #{パラメータ名}
+      p.cl1 #{P06}  // 要素(クラス) #{パラメータ名}
       hr
-      p#Id1=P1
-      p#Id2=P2
+      p=P07         // 要素=パラメータ名
+      p=P08         // 要素=パラメータ名
+      p#id3=P09     // 要素(ID)=パラメータ名
+      p#id4=P10     // 要素(ID)=パラメータ名
+      p.cl1=P11     // 要素(クラス)=パラメータ名
+      p.cl1=P12     // 要素(クラス)=パラメータ名
   --------------------------------------------------
   
   $ cd $HOME/pug01/public
@@ -114,13 +114,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  .Class1, #Id1, #Id2 {
-    text-align: center;
-  }
-  
-  #Id1, #Id2 {
-    font-size: 25px;
-  }
+  (省略) -> 今回はCSSを使用しない
   --------------------------------------------------
   
   $ cd $HOME/pug01/app
@@ -129,10 +123,10 @@
   コマンドの実行結果
   --------------------------------------------------
   // モジュールのインポート
-  let express = require('express');
+  const express = require('express');
   
   // インスタンス生成
-  let app = express();
+  const app = express();
   
   // ディレクトリ「public」配下の静的ファイル使用
   app.use(express.static('public'));
@@ -140,13 +134,21 @@
   // テンプレートエンジン「PUG」の使用
   app.set('view engine', 'pug');
   
-  // GET - /
+  // リクエストハンドラ
   app.get('/', (req, res) => {
     res.render('../views/pug/index', {
-      T1: 'PUG01',
-      H1: 'PUG01 - Express',
-      P1: 'This is Content1',
-      P2: 'This is Content2'
+      P01: 'A-01',
+      P02: 'A-02',
+      P03: 'A-03',
+      P04: 'A-04',
+      P05: 'A-05',
+      P06: 'A-06',
+      P07: 'A-07',
+      P08: 'A-08',
+      P09: 'A-09',
+      P10: 'A-10',
+      P11: 'A-11',
+      P12: 'A-12'
     });
   });
   
@@ -169,21 +171,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  // 改行して読み易くした
-  <html>
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <link rel="stylesheet" href="style.css"/>
-    <title>PUG01</title>
-  </head>
-  <body>
-    <h1 class="Class1">PUG01 - Express</h1>
-    <hr/>
-    <p id="Id1">This is Content1</p>
-    <p id="Id2">This is Content2</p>
-  </body>
-  </html>
+  (省略)
   --------------------------------------------------
   
   以下の確認に続く
@@ -193,17 +181,207 @@
   Use a Template Engine's Powers
   
 [内容]
-  テンプレートのパラメータに値を設定する
+  テンプレートにパラメータ付与
+  
+  ## 該当コード ##
+  
+  // オブジェクト定義
+  const OBJ1 = { arr: ['00', '01', '02'] };
+  const OBJ2 = { arr: ['03', '04', '05'] };
+  const OBJ3 = { arr: ['06', '07', '08'] };
+  
+  // テンプレートにパラメータ付与
+  res.render('../views/pug/index', {
+    P01: OBJ1,
+    P02: OBJ2,
+    P03: OBJ3
+  });
   
 [確認]
-  上記「01」を参照
+  $ cd $HOME
+  $ mkdir -p pug02/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> テンプレートファイルのデフォルト位置
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug02/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スタイルシート(CSS)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug02/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スクリプト(JavaScript)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02
+  $ npm install express pug --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02/views/pug
+  $ vi index.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const CNT1 = parseInt(P01.arr.length);
+  - const CNT2 = parseInt(P02.arr.length);
+  - const CNT3 = parseInt(P03.arr.length);
+  - let m = 0;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='style.css')
+      title PUG02
+    body
+      - for (let i = 0; i < CNT1; i++)
+        p #{P01.arr[i]}
+      hr
+      each val, idx in P02.arr
+        p #{val}
+      hr
+      while (m < CNT3)
+        p #{P03.arr[m++]}
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02/public
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // モジュールのインポート
+  let express = require('express');
+  
+  // インスタンス生成
+  let app = express();
+  
+  // ディレクトリ「public」配下の静的ファイル使用
+  app.use(express.static('public'));
+  
+  // テンプレートエンジン「PUG」の使用
+  app.set('view engine', 'pug');
+  
+  // GET - /
+  app.get('/', (req, res) => {
+    
+    // オブジェクト定義
+    const OBJ1 = { arr: ['00', '01', '02'] };
+    const OBJ2 = { arr: ['03', '04', '05'] };
+    const OBJ3 = { arr: ['06', '07', '08'] };
+    
+    // テンプレートにパラメータ付与
+    res.render('../views/pug/index', {
+      P01: OBJ1,
+      P02: OBJ2,
+      P03: OBJ3
+    });
+    
+  });
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ cd $HOME/pug02 <- 別の端末から実行
+  $ curl http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [03]
   Set up Passport
   
 [内容]
-  認証機能の実装(1) -> 基本的な「USER/PASS」認証
+  パスワード認証
+    クライアント上で「cookie」として管理されているセッション情報をサーバー上にも保存・使用する
+  
+  ## 該当コード(03) ##
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // セッション管理(基本設定)
+  app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  ## 該当コード(04) ##
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // セッション管理(基本設定)
+  app.use(session({
+    secret: 'AAABBBCCC',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
   
 [確認]
   $ cd $HOME
@@ -211,7 +389,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> テンプレートファイルのデフォルト位置
   --------------------------------------------------
   
   $ cd $HOME
@@ -219,7 +397,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> スタイルシート(CSS)
   --------------------------------------------------
   
   $ cd $HOME
@@ -227,7 +405,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (省略) -> スクリプト(JavaScript)
   --------------------------------------------------
   
   $ cd $HOME/pug03
@@ -239,7 +417,7 @@
   --------------------------------------------------
   
   $ cd $HOME/pug03
-  $ npm install body-parser express express-session passport passport-local pug --save
+  $ npm install dotenv body-parser express express-session passport passport-local pug --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -251,25 +429,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  {
-    "name": "pug03",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "body-parser": "^1.19.0",      // 確認
-      "express": "^4.17.1",          // 確認
-      "express-session": "^1.17.2",  // 確認
-      "passport": "^0.4.1",          // 確認
-      "passport-local": "^1.0.0",    // 確認
-      "pug": "^3.0.2"                // 確認
-    }
-  }
+  (省略)
   --------------------------------------------------
   
   $ cd $HOME/pug03/views/pug
@@ -282,7 +442,7 @@
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
       link(rel='stylesheet', href='login.css')
-      title Login
+      title PUG03
     body
       form(action='/login' method='POST')
         input(type='text' id='user' name='username' placeholder='USER')
@@ -299,6 +459,31 @@
   --------------------------------------------------
   
   $ cd $HOME/pug03/views/pug
+  $ vi failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title PUG03
+    body
+      form(action='/login' method='GET')
+        p='Please Return'
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/public
+  $ vi failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/views/pug
   $ vi profile.pug
   
   コマンドの実行結果
@@ -308,13 +493,11 @@
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
       link(rel='stylesheet', href='profile.css')
-      title Profile
+      title PUG03
     body
-      form(action='/logout' method='post')
-        p='user: ' + P1
-        p='key1: ' + P2
-        p='key2: ' + P3
-        p='key3: ' + P4
+      form(action='/logout' method='POST')
+        p='USER: ' + P01
+        p='PASS: ' + P02
         input(type='submit' id='submit' value='Logout')
   --------------------------------------------------
   
@@ -327,35 +510,41 @@
   --------------------------------------------------
   
   $ cd $HOME/pug03/app
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SESSION_SECRET=Hello
+  --------------------------------------------------
+  
+  $ cd $HOME/pug03/app
   $ vi server.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // 一般モジュールのインポート
-  let express = require('express');
-  let session = require('express-session');
-  let parser  = require('body-parser');
+  const dotenv = require('dotenv').config();
+  const parser = require('body-parser');
+  const express = require('express');
   
-  // 認証モジュールのインポート
-  let passport = require('passport');
-  let strategy = require('passport-local').Strategy;
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
   
-  // 認証データ(オブジェクト配列版)
-  let USER = [
-    { username: 'AAA', password: 'AAA', key1: '100', key2: '100', key3: '100' },
-    { username: 'BBB', password: 'BBB', key1: '200', key2: '200', key3: '200' },
-    { username: 'CCC', password: 'CCC', key1: '300', key2: '300', key3: '300' }
+  // 使用する認証データベースをソースコード中に記述
+  const USER = [
+    { username: 'AAA', password: 'AAA' },
+    { username: 'BBB', password: 'BBB' },
+    { username: 'CCC', password: 'CCC' }
   ]
   
-  // 認証プログラムのストラテジー設定(オブジェクト配列版)
+  // ストラテジー(認証アルゴリズム)をインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)を実装
   passport.use(new strategy(
     (user, pass, done) => {
       const OBJ = USER.find(val => val.username === user);
-      if (OBJ === undefined) {
-        return done(null, false);
-      } else if (user !== OBJ.username) {
-        return done(null, false);
-      } else if (pass !== OBJ.password) {
+      if (OBJ === undefined || OBJ.password !== pass) {
         return done(null, false);
       } else {
         return done(null, { username: user, password: pass });
@@ -363,39 +552,29 @@
     }
   ));
   
-  // インスタンス生成
-  let app = express();
-  
-  // テンプレートエンジン「PUG」の使用
-  app.set('view engine', 'pug');
-  
-  // ディレクトリ「public」配下の静的ファイル使用
-  app.use(express.static('public'));
-  
-  // エンコード方式
-  app.use(parser.urlencoded({ extended: false }));
-  
-  // セッション管理の設定
-  app.use(session({
-    secret: 'keyboard cat',
-    resave: false,
-    saveUninitialized: false
-  }));
-  
-  // 認証プログラムを初期化
-  app.use(passport.initialize());
-  
-  // セッション管理を開始
-  app.use(passport.session());
-  
-  // ユーザー情報のシリアル化
+  // ユーザー情報(全体)の暗号化と暗号化解除の設定
   passport.serializeUser((user, done) => done(null, user));
-  
-  // ユーザー情報のシリアル化解除
   passport.deserializeUser((user, done) => done(null, user));
   
-  // 既に認証済みか確認用の関数を用意
-  const isAuthenticated = (req, res, next) => {
+  const app = express();
+  app.set('view engine', 'pug');
+  app.use(express.static('public'));
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定(基本設定)
+  app.use(session({
+    secret: process.env.SESSION_SECRET,  // ユーザー情報の暗号化時に使用
+    resave: true,                        // ユーザー情報をサーバー保存
+    saveUninitialized: true,             // 未初期化のユーザー情報を強制的に保存
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // 既に認証済みか判定する関数
+  const FUNC = (req, res, next) => {
     if (req.isAuthenticated()) {
       return next();
     } else {
@@ -403,35 +582,38 @@
     }
   }
   
-  // GET - /login
+  // リクエストハンドラ
   app.get('/login',
     (req, res) => res.render('../views/pug/login.pug')
   );
   
-  // GET - /profile
-  app.get('/profile', isAuthenticated,  // 既に認証済みか確認を行う
+  // リクエストハンドラ
+  app.get('/failure',
+    (req, res) => res.render('../views/pug/failure.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC,            // 既に認証済みか判定
     (req, res) => res.render('../views/pug/login.pug')
   );
   
-  // POST - /login
+  // リクエストハンドラ
   app.post('/login',
-    passport.authenticate('local'),  // ストラテジーを使用して認証を行う
-    (req, res) => {                  // 認証成功後の処理をコールバックで記述
-      const OBJ = USER.find(val => val.username === req.user.username);
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗
+    (req, res) => {                    // 認証成功
       res.render('../views/pug/profile.pug', {
-        P1: OBJ.username,
-        P2: OBJ.key1,
-        P3: OBJ.key2,
-        P4: OBJ.key3
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
       })
     }
   );
   
-  // POST - /logout
+  // リクエストハンドラ
   app.post('/logout',
     (req, res) => {
-      req.logout();
-      res.redirect('/login');
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
     }
   );
   
@@ -454,7 +636,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  (省略) -> ログイン画面が表示(セッション管理が有効で認証が求められる)
   --------------------------------------------------
   
   $ firefox <- 別の端末から実行
@@ -462,9 +644,9 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール画面 -> ログアウト -> ログイン画面
-  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール画面 -> ログアウト -> ログイン画面
-  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面
   --------------------------------------------------
   
   $ firefox <- 別の端末から実行
@@ -472,9 +654,9 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  ログイン画面 -> USER=AAA, PASS=111 -> Unauthorized -> 戻る -> ログイン画面
-  ログイン画面 -> USER=BBB, PASS=111 -> Unauthorized -> 戻る -> ログイン画面
-  ログイン画面 -> USER=111, PASS=CCC -> Unauthorized -> 戻る -> ログイン画面
+  ログイン画面 -> USER=AAA, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> エラーの画面 -> ログアウト -> ログイン画面
   --------------------------------------------------
   
   以下の確認に続く
@@ -484,107 +666,2117 @@
   Serialization of a User Object
   
 [内容]
-  認証機能の実装(2) -> セッション情報の保存、各ページにおける認証
+  パスワード認証
+    クライアント上で「cookie」として管理されているセッション情報をサーバー上に保存時に暗号化・暗号化解除
+  
+  ## 該当コード(03) ##
+  
+  // ユーザー情報(全体)を暗号化・暗号化解除
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  ## 該当コード(04) ##
+  
+  // ユーザー情報(全体)を暗号化・暗号化解除
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
   
 [確認]
-  上記「03」を参照
+  $ cd $HOME
+  $ sudo systemctl start mongod
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > コレクション作成(ドキュメント作成)
+  > db.testcoll.insert({ username: 'AAA', password: 'AAA' })
+  > db.testcoll.insert({ username: 'BBB', password: 'BBB' })
+  > db.testcoll.insert({ username: 'CCC', password: 'CCC' })
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "username" : "AAA", "password" : "AAA" }
+  { "username" : "BBB", "password" : "BBB" }
+  { "username" : "CCC", "password" : "CCC" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug04/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> テンプレートファイルのデフォルト位置
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug04/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スタイルシート(CSS)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug04/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スクリプト(JavaScript)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04
+  $ npm install dotenv body-parser express express-session passport passport-local pug mongoose --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/views/pug
+  $ vi login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title PUG04
+    body
+      form(action='/login' method='POST')
+        input(type='text' id='user' name='username' placeholder='USER')
+        input(type='text' id='pass' name='password' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/public
+  $ vi login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/views/pug
+  $ vi failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title PUG04
+    body
+      form(action='/login' method='GET')
+        p='Please Return'
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/public
+  $ vi failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/views/pug
+  $ vi profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title PUG04
+    body
+      form(action='/logout' method='POST')
+        p='USER: ' + P01
+        p='PASS: ' + P02
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/public
+  $ vi profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/app
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (なし) -> 今回は設定ファイルを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const dotenv = require('dotenv').config();
+  const parser = require('body-parser');
+  const express = require('express');
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // データベース接続
+  const MONG = require('mongoose');
+  const CONN = MONG.connect('mongodb://localhost/testdb');
+  const DATA = MONG.connection;
+  
+  // 接続エラー時の処理
+  DATA.on('error', console.error.bind(console, 'connection error:'));
+  
+  // スキーマ定義
+  const testcollSchema = new MONG.Schema({
+    username: { type: String },
+    password: { type: String }
+  });
+  
+  // モデル作成 -> コレクション名「testcoll」
+  const COLL = MONG.model('testcoll', testcollSchema, 'testcoll');
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ストラテジー(認証アルゴリズム)をインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)を実装
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const RET = await FUNC1({ username: user });
+        if (!RET || RET.password !== pass) {
+          return done(null, false);
+        } else {
+          return done(null, RET);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
+  
+  // ユーザー情報(全体)の暗号化と暗号化解除の設定
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  const app = express();
+  app.set('view engine', 'pug');
+  app.use(express.static('public'));
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定(基本設定)
+  app.use(session({
+    secret: 'AAABBBCCC',      // ユーザー情報の暗号化時に使用 -> 設定ファイル参照だとエラー(原因不明)
+    resave: true,             // ユーザー情報をサーバー保存
+    saveUninitialized: true,  // 未初期化のユーザー情報を強制的に保存
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // 既に認証済みか判定する関数
+  const FUNC2 = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/login',
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/failure',
+    (req, res) => res.render('../views/pug/failure.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC2,           // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗時
+    (req, res) => {                    // 認証成功時
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug04
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/profile
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> エラーの画面 -> ログアウト -> ログイン画面
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [05]
   Implement the Serialization of a Passport User
   
 [内容]
-  //
+  パスワード認証
+    ユーザー情報(全体)を暗号化・暗号化解除を実装
+  
+  ## 該当コード(03) ##
+  
+  // ユーザー情報(全体)を暗号化・暗号化解除
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  ## 該当コード(04) ##
+  
+  // ユーザー情報(全体)を暗号化・暗号化解除
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [06]
   Authentication Strategies
   
 [内容]
-  //
+  パスワード認証
+    ストラテジー(認証アルゴリズム)を作成
+  
+  ## 該当コード(03) ##
+  
+  // 使用する認証データベースをソースコード中に記述
+  const USER = [
+    { username: 'AAA', password: 'AAA' },
+    { username: 'BBB', password: 'BBB' },
+    { username: 'CCC', password: 'CCC' }
+  ]
+  
+  // ストラテジー(認証アルゴリズム)をインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)を実装
+  passport.use(new strategy(
+    (user, pass, done) => {
+      const OBJ = USER.find(val => val.username === user);
+      if (OBJ === undefined || OBJ.password !== pass) {
+        return done(null, false);
+      } else {
+        return done(null, { username: user, password: pass });
+      }
+    }
+  ));
+  
+  ## 該当コード(04) ##
+  
+  // データベース接続
+  const MONG = require('mongoose');
+  const CONN = MONG.connect('mongodb://localhost/testdb');
+  const DATA = MONG.connection;
+  
+  // 接続エラー時の処理
+  DATA.on('error', console.error.bind(console, 'connection error:'));
+  
+  // スキーマ定義
+  const testcollSchema = new MONG.Schema({
+    username: { type: String },
+    password: { type: String }
+  });
+  
+  // モデル作成
+  const COLL = MONG.model('testcoll', testcollSchema, 'testcoll');
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ストラテジー(認証アルゴリズム)を実装
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const RET = await FUNC1({ username: user });
+        if (!RET || RET.password !== pass) {
+          return done(null, false);
+        } else {
+          return done(null, RET);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [07]
   How to Use Passport Strategies
   
 [内容]
-  //
+  パスワード認証
+    ストラテジー(認証アルゴリズム)をリクエストハンドラ内で使用
+  
+  ## 該当コード(03) ##
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗
+    (req, res) => {                    // 認証成功
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
+  
+  ## 該当コード(04) ##
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗時
+    (req, res) => {                    // 認証成功時
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [08]
   Create New Middleware
   
 [内容]
-  //
+  パスワード認証
+    認証済みか判定する関数を作成、リクエストハンドラで使用
+  
+  ## 該当コード(03) ##
+  
+  // 既に認証済みか判定する関数
+  const FUNC = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC,  // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  ## 該当コード(04) ##
+  
+  // 既に認証済みか判定する関数
+  const FUNC2 = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC2, // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [09]
   How to Put a Profile Together
   
 [内容]
-  //
+  パスワード認証
+    ログイン成功時にテンプレートにパラメータ付与
+  
+  ## 該当コード(03) ##
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',
+    { failureRedirect: '/failure' }),
+    (req, res) => {
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,  // テンプレートにパラメータ付与
+        P02: req.session.passport.user.password   // テンプレートにパラメータ付与
+      })
+    }
+  );
+  
+  ## 該当コード(04) ##
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',
+    { failureRedirect: '/failure' }),
+    (req, res) => {
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,  // テンプレートにパラメータ付与
+        P02: req.session.passport.user.password   // テンプレートにパラメータ付与
+      })
+    }
+  );
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [10]
   Logging a User Out
   
 [内容]
-  //
+  パスワード認証
+    ログアウト時にセッション情報を削除
+  
+  ## 該当コード(03) ##
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
+  
+  ## 該当コード(04) ##
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
   
 [確認]
-  //
+  // 上記「03, 04」を参照
   
 ================================================================================
 [11]
   Registration of New Users
   
 [内容]
-  //
+  パスワード認証
+    ログイン時にユーザー未登録の場合、ユーザー登録後にログイン処理を行う
+  
+  ## 該当コード ##
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ドキュメント登録用の関数
+  const FUNC2 = (OBJ) => {
+    return new Promise((res, rej) => {
+      let TMP = new COLL();
+      TMP.username = OBJ.username;
+      TMP.password = OBJ.password;
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  ..(省略)
+  
+  // ストラテジー(認証アルゴリズム)を実装
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const TMP1 = await FUNC1({ username: user });
+        if (!TMP1) {
+          
+          // ユーザー登録
+          await FUNC2({ username: user, password: pass });
+          
+          // 登録語に再検索
+          const TMP2 = await FUNC1({ username: user });
+          
+          if (!TMP2 || TMP2.password !== pass) {
+            return done(null, false);
+          } else {
+            return done(null, TMP2);
+          }
+          
+        } else if (TMP1.username !== user || TMP1.password !== pass) {
+          return done(null, false);
+        } else {
+          return done(null, TMP1);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
   
 [確認]
-  //
+  $ cd $HOME
+  $ sudo systemctl start mongod
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (レコードなし)
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug11/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> テンプレートファイルのデフォルト位置
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug11/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スタイルシート(CSS)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug11/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スクリプト(JavaScript)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11
+  $ npm install dotenv body-parser express express-session passport passport-local pug mongoose --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/views/pug
+  $ vi login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title PUG11
+    body
+      form(action='/login' method='POST')
+        input(type='text' id='user' name='username' placeholder='USER')
+        input(type='text' id='pass' name='password' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/public
+  $ vi login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/views/pug
+  $ vi failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title PUG11
+    body
+      form(action='/login' method='GET')
+        p='Please Return'
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/public
+  $ vi failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/views/pug
+  $ vi profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title PUG11
+    body
+      form(action='/logout' method='POST')
+        p='USER: ' + P01
+        p='PASS: ' + P02
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/public
+  $ vi profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/app
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (なし) -> 今回は設定ファイルを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const dotenv = require('dotenv').config();
+  const parser = require('body-parser');
+  const express = require('express');
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // データベース接続
+  const MONG = require('mongoose');
+  const CONN = MONG.connect('mongodb://localhost/testdb');
+  const DATA = MONG.connection;
+  
+  // 接続エラー時の処理
+  DATA.on('error', console.error.bind(console, 'connection error:'));
+  
+  // スキーマ定義
+  const testcollSchema = new MONG.Schema({
+    username: { type: String },
+    password: { type: String }
+  });
+  
+  // モデル作成 -> コレクション名「testcoll」
+  const COLL = MONG.model('testcoll', testcollSchema, 'testcoll');
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ドキュメント登録用の関数
+  const FUNC2 = (OBJ) => {
+    return new Promise((res, rej) => {
+      let TMP = new COLL();
+      TMP.username = OBJ.username;
+      TMP.password = OBJ.password;
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ストラテジー(認証アルゴリズム)をインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)を実装
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const TMP1 = await FUNC1({ username: user });
+        if (!TMP1) {
+          
+          // ユーザー登録
+          await FUNC2({ username: user, password: pass });
+          
+          // 登録語に再検索
+          const TMP2 = await FUNC1({ username: user });
+          
+          if (!TMP2 || TMP2.password !== pass) {
+            return done(null, false);
+          } else {
+            return done(null, TMP2);
+          }
+          
+        } else if (TMP1.username !== user || TMP1.password !== pass) {
+          return done(null, false);
+        } else {
+          return done(null, TMP1);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
+  
+  // ユーザー情報(全体)の暗号化と暗号化解除の設定
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  const app = express();
+  app.set('view engine', 'pug');
+  app.use(express.static('public'));
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定(基本設定)
+  app.use(session({
+    secret: 'AAABBBCCC',      // ユーザー情報の暗号化時に使用 -> 設定ファイル参照だとエラー(原因不明)
+    resave: true,             // ユーザー情報をサーバー保存
+    saveUninitialized: true,  // 未初期化のユーザー情報を強制的に保存
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // 既に認証済みか判定する関数
+  const FUNC3 = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/login',
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/failure',
+    (req, res) => res.render('../views/pug/failure.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC3,           // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗時
+    (req, res) => {                    // 認証成功時
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug11
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/profile
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "username" : "AAA", "password" : "AAA" }
+  { "username" : "BBB", "password" : "BBB" }
+  { "username" : "CCC", "password" : "CCC" }
+  { "username" : "111", "password" : "CCC" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [12]
   Hashing Your Passwords
   
 [内容]
-  //
+  パスワード認証
+    登録パスワードを暗号化してデータベースに格納する
+  
+  ## 該当コード ##
+  
+  // ドキュメント登録用の関数
+  const FUNC2 = (OBJ) => {
+    return new Promise((res, rej) => {
+      let TMP = new COLL();
+      TMP.username = OBJ.username;
+      TMP.password = bcrypt.hashSync(OBJ.password, 12);  // 登録パスワードを暗号化
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  ..(省略)
+  
+  // ストラテジー(認証アルゴリズム)を実装 -> 暗号化パスワード対応
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const TMP1 = await FUNC1({ username: user });
+        if (!TMP1) {
+          
+          // ユーザー登録
+          await FUNC2({ username: user, password: pass });
+          
+          // 登録後に再検索
+          const TMP2 = await FUNC1({ username: user });
+          
+          if (!TMP2 || !bcrypt.compareSync(pass, TMP2.password)) {
+            return done(null, false);
+          } else {
+            return done(null, TMP3);
+          }
+          
+        } else if (TMP1.username !== user || !bcrypt.compareSync(pass, TMP1.password)) {
+          return done(null, false);
+        } else {
+          return done(null, TMP1);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
   
 [確認]
-  //
+  $ cd $HOME
+  $ sudo systemctl start mongod
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (レコードなし)
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug12/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> テンプレートファイルのデフォルト位置
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug12/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スタイルシート(CSS)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug12/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スクリプト(JavaScript)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12
+  $ npm install dotenv body-parser express express-session passport passport-local pug mongoose bcrypt --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/views/pug
+  $ vi login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title PUG12
+    body
+      form(action='/login' method='POST')
+        input(type='text' id='user' name='username' placeholder='USER')
+        input(type='text' id='pass' name='password' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/public
+  $ vi login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/views/pug
+  $ vi failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title PUG12
+    body
+      form(action='/login' method='GET')
+        p='Please Return'
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/public
+  $ vi failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/views/pug
+  $ vi profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title PUG12
+    body
+      form(action='/logout' method='POST')
+        p='USER: ' + P01
+        p='PASS: ' + P02
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/public
+  $ vi profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/app
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (なし) -> 今回は設定ファイルを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const dotenv = require('dotenv').config();
+  const parser = require('body-parser');
+  const bcrypt = require('bcrypt');
+  const express = require('express');
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // データベース接続
+  const MONG = require('mongoose');
+  const CONN = MONG.connect('mongodb://localhost/testdb');
+  const DATA = MONG.connection;
+  
+  // 接続エラー時の処理
+  DATA.on('error', console.error.bind(console, 'connection error:'));
+  
+  // スキーマ定義
+  const testcollSchema = new MONG.Schema({
+    username: { type: String },
+    password: { type: String }
+  });
+  
+  // モデル作成 -> コレクション名「testcoll」
+  const COLL = MONG.model('testcoll', testcollSchema, 'testcoll');
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ドキュメント登録用の関数
+  const FUNC2 = (OBJ) => {
+    return new Promise((res, rej) => {
+      let TMP = new COLL();
+      TMP.username = OBJ.username;
+      TMP.password = bcrypt.hashSync(OBJ.password, 12);  // 登録パスワードを暗号化
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ストラテジー(認証アルゴリズム)をインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)を実装 -> 暗号化パスワード対応
+  passport.use(new strategy(
+    async (user, pass, done) => {
+      try {
+        const TMP1 = await FUNC1({ username: user });
+        if (!TMP1) {
+          
+          // ユーザー登録
+          await FUNC2({ username: user, password: pass });
+          
+          // 登録後に再検索
+          const TMP2 = await FUNC1({ username: user });
+          
+          if (!TMP2 || !bcrypt.compareSync(pass, TMP2.password)) {
+            return done(null, false);
+          } else {
+            return done(null, TMP2);
+          }
+          
+        } else if (TMP1.username !== user || !bcrypt.compareSync(pass, TMP1.password)) {
+          return done(null, false);
+        } else {
+          return done(null, TMP1);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  ));
+  
+  // ユーザー情報(全体)の暗号化と暗号化解除の設定
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  const app = express();
+  app.set('view engine', 'pug');
+  app.use(express.static('public'));
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定(基本設定)
+  app.use(session({
+    secret: 'AAABBBCCC',      // ユーザー情報の暗号化時に使用 -> 設定ファイル参照だとエラー(原因不明)
+    resave: true,             // ユーザー情報をサーバー保存
+    saveUninitialized: true,  // 未初期化のユーザー情報を強制的に保存
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // 既に認証済みか判定する関数
+  const FUNC3 = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/login',
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/failure',
+    (req, res) => res.render('../views/pug/failure.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC3,           // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗時
+    (req, res) => {                    // 認証成功時
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug12
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/profile
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "username" : "AAA", "password" : "$2b$12$0pVZUTNaqsg3WMnk9bysF.qxby0344c/Ipxlg9a4VLtn9ZOTeX42i" }
+  { "username" : "BBB", "password" : "$2b$12$yyYQhtSd/v8YjmIgbHtELuzG6Nv2BG9s9A0p.c5thkM7haB4dnrDK" }
+  { "username" : "CCC", "password" : "$2b$12$z3/7qvpjRUV8oIxDVICVPebgdJBMoyNq/d..Y1x5De3JSbJmrC.YO" }
+  { "username" : "111", "password" : "$2b$12$KIPi6laTH9rpfhUek5sey.Ul6GbZdAL94MradykOosYibVN/X/OQ6" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [13]
   Clean Up Your Project with Modules
   
 [内容]
-  //
+  パスワード認証
+    上記「12」の各部分をモジュール化
   
 [確認]
-  //
+  $ cd $HOME
+  $ sudo systemctl start mongod
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (レコードなし)
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug13/views/pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> テンプレートファイルのデフォルト位置
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug13/public
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スタイルシート(CSS)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mkdir -p pug13/app
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> スクリプト(JavaScript)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13
+  $ npm init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ファイル「package.json」が作成される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13
+  $ npm install dotenv body-parser express express-session passport passport-local pug mongoose bcrypt --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/views/pug
+  $ vi login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title PUG13
+    body
+      form(action='/login' method='POST')
+        input(type='text' id='user' name='username' placeholder='USER')
+        input(type='text' id='pass' name='password' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/public
+  $ vi login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/views/pug
+  $ vi failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title PUG13
+    body
+      form(action='/login' method='GET')
+        p='Please Return'
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/public
+  $ vi failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/views/pug
+  $ vi profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title PUG13
+    body
+      form(action='/logout' method='POST')
+        p='USER: ' + P01
+        p='PASS: ' + P02
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/public
+  $ vi profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> 今回はCSSを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/app
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (なし) -> 今回は設定ファイルを使用しない
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/app
+  $ vi database.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const MONG = require('mongoose');
+  const CONN = MONG.connect('mongodb://localhost/testdb');
+  const DATA = MONG.connection;
+  
+  // 接続エラー時の処理
+  DATA.on('error', console.error.bind(console, 'connection error:'));
+  
+  // スキーマ定義
+  const testcollSchema = new MONG.Schema({
+    username: { type: String },
+    password: { type: String }
+  });
+  
+  // モデル作成 -> コレクション名「testcoll」
+  module.exports = MONG.model('testcoll', testcollSchema, 'testcoll');
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/app
+  $ vi authlogic.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const bcrypt = require('bcrypt');
+  
+  // データベースのモデルをロード
+  const COLL = require('./database');
+  
+  // ドキュメント検索用の関数
+  const FUNC1 = (OBJ) => {
+    return new Promise((res, rej) => {
+      COLL
+      .findOne(OBJ, {_id: 0, __v: 0})
+      .exec((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ドキュメント登録用の関数
+  const FUNC2 = (OBJ) => {
+    return new Promise((res, rej) => {
+      let TMP = new COLL();
+      TMP.username = OBJ.username;
+      TMP.password = bcrypt.hashSync(OBJ.password, 12);  // 登録パスワードを暗号化
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);
+        } else {
+          rej(err);
+        }
+      });
+    });
+  }
+  
+  // ユーザー確認または登録の関数(非同期) -> エクスポート設定
+  module.exports = async function FUNC3(user, pass, done) {
+    try {
+      const TMP1 = await FUNC1({ username: user });
+      if (!TMP1) {
+        await FUNC2({ username: user, password: pass });
+        const TMP2 = await FUNC1({ username: user });
+        
+        if (!TMP2 || !bcrypt.compareSync(pass, TMP2.password)) {
+          return done(null, false);
+        } else {
+          return done(null, TMP2);
+        }
+      } else if (TMP1.username !== user || !bcrypt.compareSync(pass, TMP1.password)) {
+        return done(null, false);
+      } else {
+        return done(null, TMP1);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13/app
+  $ vi server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const dotenv = require('dotenv').config();
+  const parser = require('body-parser');
+  const express = require('express');
+  
+  // インスタンス生成
+  const passport = require('passport');
+  const session = require('express-session');
+  
+  // ストラテジー(認証アルゴリズム)のロジックをロード
+  const FUNC = require('./authlogic');
+  
+  // ストラテジー(認証アルゴリズム)のインスタンス生成
+  const strategy = require('passport-local').Strategy;
+  
+  // ストラテジー(認証アルゴリズム)のインスタンスにロジックを実装 -> 暗号化パスワード対応
+  passport.use(new strategy(FUNC));
+  
+  // ユーザー情報(全体)の暗号化と暗号化解除の設定
+  passport.serializeUser((user, done) => done(null, user));
+  passport.deserializeUser((user, done) => done(null, user));
+  
+  const app = express();
+  app.set('view engine', 'pug');
+  app.use(express.static('public'));
+  app.use(parser.urlencoded({ extended: false }));
+  
+  // セッション管理の設定(基本設定)
+  app.use(session({
+    secret: 'AAABBBCCC',      // ユーザー情報の暗号化時に使用 -> 設定ファイル参照だとエラー(原因不明)
+    resave: true,             // ユーザー情報をサーバー保存
+    saveUninitialized: true,  // 未初期化のユーザー情報を強制的に保存
+    cookie: { secure: false }
+  }));
+  
+  // セッション管理の開始
+  app.use(passport.initialize());
+  app.use(passport.session());
+  
+  // 既に認証済みか判定する関数
+  const FUNC3 = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  // リクエストハンドラ
+  app.get('/login',
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/failure',
+    (req, res) => res.render('../views/pug/failure.pug')
+  );
+  
+  // リクエストハンドラ
+  app.get('/profile', FUNC3,           // 既に認証済みか判定
+    (req, res) => res.render('../views/pug/login.pug')
+  );
+  
+  // リクエストハンドラ
+  app.post('/login',
+    passport.authenticate('local',     // ストラテジーを使用して認証
+    { failureRedirect: '/failure' }),  // 認証失敗時
+    (req, res) => {                    // 認証成功時
+      res.render('../views/pug/profile.pug', {
+        P01: req.session.passport.user.username,
+        P02: req.session.passport.user.password
+      })
+    }
+  );
+  
+  // リクエストハンドラ
+  app.post('/logout',
+    (req, res) => {
+      req.logout();            // セッション情報を削除
+      res.redirect('/login');  // ログイン画面に戻る
+    }
+  );
+  
+  // アプリケーション起動
+  app.listen(3000, () => console.log('Listening on port 3000'));
+  --------------------------------------------------
+  
+  $ cd $HOME/pug13
+  $ node app/server.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Listening on port 3000
+  
+  ■ <- 完了後に「Ctrl + C」で停止
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/profile
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) -> ログイン画面が表示 -> セッション管理が有効で認証が求められる
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=AAA -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=BBB, PASS=BBB -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  ログイン画面 -> USER=CCC, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ firefox <- 別の端末から実行
+  $ http://localhost:3000/login
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ログイン画面 -> USER=AAA, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=BBB, PASS=111 -> エラーの画面 -> ログアウト -> ログイン画面
+  ログイン画面 -> USER=111, PASS=CCC -> プロフィール -> ログアウト -> ログイン画面  // 新規登録
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 対象データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧
+  > db.testcoll.find( {}, { _id: 0, __v: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "username" : "AAA", "password" : "$2b$12$XUcjEHIqj2TJhbSVaZyE/ejVNatTQPKY9fxdROKbT2SXWNVKuA0Pq" }
+  { "username" : "BBB", "password" : "$2b$12$qkVYaQMp4z.Z3MVWJeST5uLbCnoqwceP/7bgV4NRJaI1bQSzEaIRW" }
+  { "username" : "CCC", "password" : "$2b$12$uJgme/c0j99r986HHyUXyeR2IYaXyWr4p6T1fAYFU4XrAwTz2Uq7G" }
+  { "username" : "111", "password" : "$2b$12$mZVRmSnM1iRun6uo/1qoyuDvoJqTAL9h4BHJXPrAL4dz7MQk3H/NW" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  以下の確認に続く
   
 ================================================================================
 [14]
   Implementation of Social Authentication
   
 [内容]
-  //
+  SNS認証
+    SNSアカウント(GitHub)でログイン
+  
+  ## 該当コード ##
   
 [確認]
   //

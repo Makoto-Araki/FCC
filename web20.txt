@@ -115,7 +115,10 @@
   // CSS
   <style>
     
-    .sample { color: red; }
+    .sample {
+      color: red;
+      font-weight: bold;
+    }
     
   </style>
   
@@ -179,7 +182,10 @@
   // CSS
   <style>
     
-    .sample { color: red; }
+    .sample {
+      color: red;
+      font-weight: bold;
+    }
     
   </style>
   

@@ -1,6 +1,7 @@
 ================================================================================
-[X1] コマンド「Git」とサービス「GitHub」の基本操作
-[X2] 実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+[X1] ブランチ「master」で新規作成
+[X2] ブランチ「sub1」で機能追加
+[X3] 実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
 [01] How to Use package.json, the Core of Any Node.js Project or npm Package
 [02] Add a Description to Your package.json
 [03] Add Keywords to Your package.json
@@ -13,164 +14,486 @@
 [10] Remove a Package from Your Dependencies
 ================================================================================
 [X1]
-  コマンド「Git」とサービス「GitHub」の基本操作
+  ブランチ「master」で新規作成
   
 [内容]
-  コマンド「Git」とサービス「GitHub」でこの「webXX.txt」を管理する
+  ブランチ「master(デフォルト)」でソース記述
   
   サービス「GitHub」
     User  : Makoto-Araki
     Pass  : (秘密)
-    Name  : FCC(リポジトリ)
-    URI   : https://github.com/Makoto-Araki/FCC.git
+    Name  : APP(リポジトリ) -> 作成直後のリポジトリ内は空
+    URI   : https://github.com/Makoto-Araki/APP.git
     Token : (パスワード認証廃止でアップの度に生成が必要)
   
 [確認]
-  $ cd $HOME/CentOS-8/web/FCC
+  $ cd $HOME/APP
   $ git init
   
   コマンドの実行結果
   --------------------------------------------------
-  Initialized empty Git repository in /home/makoto/CentOS-8/web/FCC/.git/
+  Initialized empty Git repository in /home/makoto/APP/.git/
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git remote add FCC https://github.com/Makoto-Araki/FCC.git
+  $ cd $HOME/APP
+  $ git config --global -l
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> サービス「GitHub」のリポジトリ「FCC」をローカル名「FCC」を紐付け
+  user.name=Makoto-Araki
+  user.email=mj-araki@ivy.ocn.ne.jp
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git add web*.txt
+  $ cd $HOME/APP
+  $ git remote add APP https://github.com/Makoto-Araki/APP.git
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> 全ファイルをコミット対象にする
+  (出力なし) -> サービス「GitHub」のリポジトリ「APP」をローカル名「APP」で紐付け
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git commit -m '2021-08-17-01'
+  $ cd $HOME/APP
+  $ git remote -v
   
   コマンドの実行結果
   --------------------------------------------------
-  [master (root-commit) 1e50766] 2021-08-17-01  // ブランチ名とコミット時のメッセージ
-  33 files changed, 51787 insertions(+)
-  create mode 100644 web01.txt
-  create mode 100644 web02.txt
-  create mode 100644 web03.txt
-  create mode 100644 web04.txt
-  create mode 100644 web05.txt
-  create mode 100644 web06.txt
-  create mode 100644 web07.txt
-  create mode 100644 web08.txt
-  create mode 100644 web09.txt
-  create mode 100644 web10.txt
-  create mode 100644 web11.txt
-  create mode 100644 web12.txt
-  create mode 100644 web13.txt
-  create mode 100644 web14.txt
-  create mode 100644 web15.txt
-  create mode 100644 web16.txt
-  create mode 100644 web17.txt
-  create mode 100644 web18.txt
-  create mode 100644 web19.txt
-  create mode 100644 web20.txt
-  create mode 100644 web21.txt
-  create mode 100644 web22.txt
-  create mode 100644 web23.txt
-  create mode 100644 web24.txt
-  create mode 100644 web25.txt
-  create mode 100644 web26.txt
-  create mode 100644 web27.txt
-  create mode 100644 web28.txt
-  create mode 100644 web29.txt
-  create mode 100644 web30.txt
-  create mode 100644 web31.txt
-  create mode 100644 web32.txt
-  create mode 100644 web33.txt
+  APP	https://github.com/Makoto-Araki/APP.git (fetch)
+  APP	https://github.com/Makoto-Araki/APP.git (push)
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git branch 
+  $ cd $HOME/APP
+  $ git branch
   
   コマンドの実行結果
   --------------------------------------------------
-  * master -> 現在はブランチ「master」のみ存在、作業ブランチは「master」
+  * master -> ローカルブランチが「master」を確認
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git push FCC master
+  $ cd $HOME/APP/mod
+  $ vi mod01.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // リポジトリ「FCC」へブランチ「master」の内容を送信(push)
-  
-  Username for 'https://github.com': Makoto-Araki  // ユーザー名「Makoto-Araki」を入力
-  Password for 'https://Makoto-Araki@github.com':  // トークンは90日で期限切れ -> 再作成
-  Counting objects: 35, done.
-  Delta compression using up to 4 threads.
-  Compressing objects: 100% (35/35), done.
-  Writing objects: 100% (35/35), 140.66 KiB | 0 bytes/s, done.
-  Total 35 (delta 14), reused 0 (delta 0)
-  remote: Resolving deltas: 100% (14/14), done.
-  To https://github.com/Makoto-Araki/FCC.git
-   * [new branch]      master -> master
+  // 関数 + 名前付きエクスポート
+  export const myAdd1 = (x, y) => x + y;
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ vi web29.txt
+  $ cd $HOME/APP/mod
+  $ vi mod02.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  // 関数 + 名前付きエクスポート
+  export const myAdd2 = (x, y, z) => x + y + z;
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
+  $ cd $HOME/APP
+  $ vi myApp.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 名前付きエクスポートのインポート + 別名
+  import { myAdd1 as add1 } from './mod/mod01.js';
+  import { myAdd2 as add2 } from './mod/mod02.js';
+  
+  // インポート関数を使用
+  console.log(add1(2, 1));     // 3
+  console.log(add2(3, 2, 1));  // 6
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi myApp.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>MY APP</title>
+  </head>
+  <body>
+  
+  // HTML
+  <main></main>
+  
+  // CSS
+  <style></style>
+  
+  // JSスクリプト指定
+  <script type='module' src='myApp.js'></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ (ブラウザ起動)
+  $ http://localhost/myApp.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  3  // add1(2, 1)
+  6  // add2(3, 2, 1)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
   $ git status
   
   コマンドの実行結果
   --------------------------------------------------
   # On branch master
-  # Changes not staged for commit:
-  #   (use "git add <file>..." to update what will be committed)
-  #   (use "git checkout -- <file>..." to discard changes in working directory)
   #
-  #	modified:   web29.txt  // 変更ファイルを表示してくれる
+  # Initial commit
   #
-  no changes added to commit (use "git add" and/or "git commit -a")
+  # Untracked files:
+  #   (use "git add <file>..." to include in what will be committed)
+  #
+  #	mod/        // コミット対象
+  #	myApp.html  // コミット対象
+  #	myApp.js    // コミット対象
+  #
+  nothing added to commit but untracked files present (use "git add" to track)
   --------------------------------------------------
   
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git add web29.txt
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> コミット対象にする
-  --------------------------------------------------
-  
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git commit -m '2021-08-17-02'
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  [master aea2e88] 2021-08-17-02
-   1 file changed, 105 insertions(+), 99 deletions(-)
-  --------------------------------------------------
-  
-  $ cd $HOME/CentOS-8/web/FCC
-  $ git push FCC master
+  $ cd $HOME/APP
+  $ git add mod myApp*
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> リポジトリ「FCC」へブランチ「master」の内容を送信(push)
+  (出力なし) -> コミット対象にする
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  #
+  # Initial commit
+  #
+  # Changes to be committed:
+  #   (use "git rm --cached <file>..." to unstage)
+  #
+  #	new file:   mod/mod01.js  // コミット対象
+  #	new file:   mod/mod02.js  // コミット対象
+  #	new file:   myApp.html    // コミット対象
+  #	new file:   myApp.js      // コミット対象
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '2022-06-06-01'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master (root-commit) 6544a93] 2022-06-06-01
+    4 files changed, 26 insertions(+)
+  
+  // コミットされたファイル一覧
+  create mode 100644 mod/mod01.js
+  create mode 100644 mod/mod02.js
+  create mode 100644 myApp.html
+  create mode 100644 myApp.js
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push APP master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 7, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (5/5), done.
+  Writing objects: 100% (7/7), 834 bytes | 0 bytes/s, done.
+  Total 7 (delta 0), reused 0 (delta 0)
+  
+  // ローカルブランチ「master」からリポジトリ「APP」のリモートブランチ「master」へ送信(push)
+  To https://github.com/Makoto-Araki/APP.git
+  * [new branch]      master -> master
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
 [X2]
+  ブランチ「sub1」で機能追加
+  
+[内容]
+  ブランチ「sub1」で関数「sub1」を機能追加
+  
+  サービス「GitHub」
+    User  : Makoto-Araki
+    Pass  : (秘密)
+    Name  : APP(リポジトリ)
+    URI   : https://github.com/Makoto-Araki/APP.git
+    Token : (パスワード認証廃止でアップの度に生成が必要)
+  
+[確認]
+  $ cd $HOME/APP
+  $ git pull APP master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // リモートリポジトリ「APP」のブランチ「master」からローカルリポジトリのブランチ「master」にダウンロード
+  From https://github.com/Makoto-Araki/APP
+  * branch            master     -> FETCH_HEAD
+  Already up-to-date.
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master  // 作業ブランチ「master」
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch sub1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし) -> ローカルリポジトリにブランチ「sub1」を作成
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master  // 作業ブランチ「master」
+    sub1    // 作成されたブランチ「sub1」
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout sub1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'sub1'  // 作業ブランチ変更
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master  // 現在は作業ブランチではない
+  * sub1    // 作業ブランチ
+  --------------------------------------------------
+  
+  $ cd $HOME/APP/mod
+  $ vi mod01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 関数 + 名前付きエクスポート
+  export const myAdd1 = (x, y) => x + y;
+  export const mySub1 = (x, y) => x - y;  // 追加
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi myApp.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 名前付きエクスポートのインポート + 別名
+  import { myAdd1 as add1 } from './mod/mod01.js';
+  import { myAdd2 as add2 } from './mod/mod02.js';
+  import { mySub1 as sub1 } from './mod/mod01.js';  // 追加
+  
+  // インポート関数を使用
+  console.log(add1(2, 1));     // 3
+  console.log(add2(3, 2, 1));  // 6
+  console.log(sub1(2, 1));     // 1 追加
+  --------------------------------------------------
+  
+  $ (ブラウザ起動)
+  $ http://localhost/myApp.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  3  // add1(2, 1)
+  6  // add2(3, 2, 1)
+  1  // sub1(2, 1)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch sub1
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  #	modified:   mod/mod01.js  // コミット対象
+  #	modified:   myApp.js      // コミット対象
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add mod/mod01.js myApp.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし) -> コミット対象にする
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch sub1
+  # Changes to be committed:
+  #   (use "git reset HEAD <file>..." to unstage)
+  #
+  #	modified:   mod/mod01.js  // コミット対象
+  #	modified:   myApp.js      // コミット対象
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '2022-06-06-02'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [sub1 736d06b] 2022-06-06-02
+    2 files changed, 3 insertions(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push -u APP sub1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 9, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (5/5), done.
+  Writing objects: 100% (5/5), 548 bytes | 0 bytes/s, done.
+  Total 5 (delta 1), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+  remote: 
+  remote: Create a pull request for 'sub1' on GitHub by visiting:
+  remote:      https://github.com/Makoto-Araki/APP/pull/new/sub1
+  remote: 
+  To https://github.com/Makoto-Araki/APP.git
+    * [new branch]      sub1 -> sub1  // ローカルブランチ「sub1」をリモートブランチ「sub1」として作成
+  Branch sub1 set up to track remote branch sub1 from APP.
+  --------------------------------------------------
+  
+    $ (下記の操作を行う)
+    $ (GitHub -> Makoto-Araki/APP -> タブ「Pull-Request」-> ボタン「Compute & Pull Request」)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    // 第一段階
+    画面下部の各ファイルの修正内容を確認
+
+    // 第二段階
+    上記がOKの場合はコメント欄にメッセージ追加
+
+    // 第三段階
+    ボタン「Create Pull Request」
+    --------------------------------------------------
+    
+    $ (下記の操作を行う)
+    $ (GitHub -> Makoto-Araki/APP -> タブ「Commits」-> ボタン「Merge Pull Request」)
+
+    コマンドの実行結果
+    --------------------------------------------------
+    // 第一段階
+    画面下部のコメント欄にメッセージ追加
+
+    // 第二段階
+    ボタン「Confirm Merge」-> ブランチ「sub1」の「Pull-Request」が完了した
+
+    // 第三段階
+    ボタン「Delete Branch」-> ブランチ「sub1」が削除された
+    --------------------------------------------------
+    
+  $ cd $HOME/APP
+  $ git checkout master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'master'  // 作業ブランチ変更
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master  // 作業ブランチ
+    sub1    // 現在は作業ブランチではない
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch -d sub1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // 警告が出るが「GitHub」上でマージ済みのためブランチ「sub1」の削除は問題なし
+  
+  warning: deleting branch 'sub1' that has been merged to
+           'refs/remotes/APP/sub1', but not yet merged to HEAD.
+  Deleted branch sub1 (was 736d06b).
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master  // 作業ブランチ
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git pull APP master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  remote: Enumerating objects: 1, done.
+  remote: Counting objects: 100% (1/1), done.
+  remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+  Unpacking objects: 100% (1/1), done.
+  From https://github.com/Makoto-Araki/APP
+    * branch            master     -> FETCH_HEAD
+  Updating 6544a93..816beb3
+  Fast-forward
+  mod/mod01.js | 1 +   // 1 箇所追加
+  myApp.js     | 2 ++  // 2 箇所追加
+    2 files changed, 3 insertions(+)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X3]
   実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
   
 [内容]

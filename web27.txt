@@ -266,7 +266,6 @@
           document.getElementById('MSG').innerHTML = RCV;
           
         };
-        
       }
     });
     
@@ -493,7 +492,6 @@
           const RCV = JSON.parse(REQ.responseText);
           document.getElementById('MSG').innerHTML = RCV[1]['名前'];
         };
-        
       }
     });
     
@@ -630,7 +628,6 @@
           // HTML上の要素を書き替え
           document.getElementById('MSG').innerHTML = RET;
         };
-        
       }
     });
     
@@ -757,7 +754,6 @@
           // HTML上の要素を書き替え
           document.getElementById('MSG').innerHTML = RET;
         };
-        
       }
     });
     
@@ -887,7 +883,6 @@
           // HTML上の要素を書き替え
           document.getElementById('MSG').innerHTML = RET;
         };
-        
       }
     });
     
@@ -996,7 +991,6 @@
         if (RET !== '') {
           document.getElementById('MSG').innerHTML = RET;
         }
-        
       }
     });
     
@@ -1126,7 +1120,6 @@
         REQ.onerror = () => {
           alert('エラー発生');
         };
-        
       }
     });
     

@@ -104,11 +104,11 @@
     1. 各数字の千・百・十・一の位のそれぞれの数字を保持
     2. それぞれ位の数字に対応するローマ数字を出力
   
-  千の位の数      百の位の数      十の位の数      一の位の数
-  0 → (NONE)    0 → (NONE)    0 → (NONE)    0 → (NONE)
-  1 → M         1 → C         1 → X         1 → I
-  2 → MM        2 → CC        2 → XX        2 → II
-  3 → MMM       3 → CCC       3 → XXX       3 → III
+  千の位の数    百の位の数     十の位の数     一の位の数
+  0 → (NONE)   0 → (NONE)    0 → (NONE)    0 → (NONE)
+  1 → M        1 → C         1 → X         1 → I
+  2 → MM       2 → CC        2 → XX        2 → II
+  3 → MMM      3 → CCC       3 → XXX       3 → III
                 4 → CD        4 → XL        4 → IV
                 5 → D         5 → L         5 → V
                 6 → DC        6 → LX        6 → VI

@@ -440,14 +440,15 @@
   
   // CSS
   <style>
+    
     .CLASS {
       width: 25px;
       height: 100px;
       display: inline-block;
       background-color: CornFlowerBlue;
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -509,6 +510,7 @@
   
   // CSS
   <style>
+    
     .CLASS {
       width: 25px;
       height: 100px;
@@ -516,8 +518,8 @@
       display: inline-block;
       background-color: CornFlowerBlue;
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -577,12 +579,13 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -643,12 +646,13 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -726,10 +730,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tip {
       position: absolute;
       width: 50px;
@@ -742,12 +748,13 @@
       color: White;
       background-color: Black;
     }
+
     .bar:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -952,10 +959,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tip {
       position: absolute;
       width: 100px;
@@ -968,12 +977,13 @@
       color: White;
       background-color: Black;
     }
+
     .bar:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -1116,10 +1126,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tip {
       position: absolute;
       width: 50px;
@@ -1132,23 +1144,27 @@
       color: White;
       background-color: Black;
     }
+
     .axis path {
       stroke: Black;
     }
+
     .axis line {
       stroke: Black;
     }
+
     .axis text {
       fill: Black;
       font-size: 15px;
       font-weight: bold;
     }
+
     .bar:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -1758,16 +1774,18 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     .AAA:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -1858,16 +1876,18 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     .AAA:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -2032,10 +2052,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tip {
       position: absolute;
       width: 100px;
@@ -2048,12 +2070,13 @@
       color: White;
       background-color: Black;
     }
+
     .AAA:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -2243,10 +2266,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tip {
       position: absolute;
       width: 100px;
@@ -2259,12 +2284,13 @@
       color: White;
       background-color: Black;
     }
+
     .AAA:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   
@@ -2458,10 +2484,12 @@
   
   // CSS
   <style>
+    
     * {
       font-family: sans-serif;
       background-color: Gray;
     }
+
     #tooltip {
       position: absolute;
       width: 250px;
@@ -2474,23 +2502,27 @@
       color: White;
       background-color: Black;
     }
+
     .axis path {
       stroke: Black;
     }
+
     .axis line {
       stroke: Black;
     }
+
     .axis text {
       fill: Black;
       font-size: 15px;
       font-weight: bold;
     }
+
     .county:hover {
       color: White;
       fill: Black
     }
+
   </style>
-  
   </head>
   <body>
   

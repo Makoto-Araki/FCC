@@ -1154,7 +1154,7 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 出力
@@ -1209,11 +1209,11 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 出力
-    console.log(myVar1[0]);  // 荒
+    console.log(myVar1[0]);  // 埼
     console.log(myVar2[0]);  // H
     
   </script>
@@ -1264,15 +1264,15 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 文字列(配列)の最初の文字を変更
-    myVar1[0] = '新';
+    myVar1[2] = '市';
     myVar2[0] = 'B';
     
     // 出力
-    console.log(myVar1);  // 荒木誠 -> 文字列の一部変更は不可 -> 不変性
+    console.log(myVar1);  // 埼玉県 -> 文字列の一部変更は不可 -> 不変性
     console.log(myVar2);  // Hello -> 文字列の一部変更は不可 -> 不変性
     
   </script>
@@ -1323,11 +1323,11 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 出力
-    console.log(myVar1[1]);  // 木
+    console.log(myVar1[1]);  // 玉
     console.log(myVar2[1]);  // e
     
   </script>
@@ -1378,11 +1378,11 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 出力
-    console.log(myVar1[myVar1.length - 1]);  // 誠
+    console.log(myVar1[myVar1.length - 1]);  // 県
     console.log(myVar2[myVar2.length - 1]);  // o
     
   </script>
@@ -1433,11 +1433,11 @@
   <script>
     
     // 変数定義と初期化
-    var myVar1 = '荒木誠';
+    var myVar1 = '埼玉県';
     var myVar2 = 'Hello';
     
     // 出力
-    console.log(myVar1[myVar1.length - 2]);  // 木
+    console.log(myVar1[myVar1.length - 2]);  // 玉
     console.log(myVar2[myVar2.length - 2]);  // l
     
   </script>

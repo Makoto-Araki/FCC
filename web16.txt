@@ -31,14 +31,14 @@
   入力 => 処理 => 出力
   
 [確認]
-  // 関数設計の「基本中の基本」と習った
+  // 省略
   
 ================================================================================
 [02]
   Understand Functional Programming Terminology
   
 [内容]
-  高階関数 -> 引数にコールバック関数を取る関数
+  高階関数 => 引数に関数(コールバック関数)を取る関数
   
 [確認]
   # cd /var/www/html
@@ -64,13 +64,11 @@
   // JS
   <script>
     
-    // 高階関数 -> 引数にコールバック関数を取る
-    const myFunc = (callback, num) => callback(num);
+    // 高階関数
+    const myFunc = (func, num) => func(num);
     
-    // コールバック関数は無名の関数オブジェクトでも可
-    myFunc(P1 => console.log(P1 + 1), 1);  // 2
-    myFunc(P1 => console.log(P1 + 2), 2);  // 3
-    myFunc(P1 => console.log(P1 + 3), 3);  // 4
+    // 高階関数を実行する
+    myFunc(P1 => console.log(P1), 1);  // 1
     
   </script>
   
@@ -135,16 +133,16 @@
   <script>
     
     // 配列
-    const arr = [11, 12, 13, 14, 15];
+    const ARR = [11, 12, 13, 14, 15];
     
-    // 配列の先頭から要素を二個抽出するが…配列を壊してしまう
-    const myFunc = arr => arr.splice(0, 2);
+    // 配列の先頭から要素を二個抽出するが…抽出元の配列を壊してしまう
+    const myFunc = (arr) => arr.splice(0, 2);
     
     // 抽出
-    console.log(myFunc(arr));  // [11, 12]
+    console.log(myFunc(ARR));  // [11, 12]
     
     // 抽出元
-    console.log(arr);  // [13, 14, 15]
+    console.log(ARR);  // [13, 14, 15]
     
   </script>
   
@@ -257,24 +255,26 @@
   <script>
     
     // 配列
-    let arr = [11, 12, 13, 14, 15];
+    let ARR = [11, 12, 13, 14, 15];
     
     // 関数
-    const myFunc = (callback, arr) => {
+    const myFunc = (func, arr) => {
+
       // 引数配列をローカル配列にコピー
       let tmp = arr.slice(0, arr.length);
       
       // ローカル配列の各要素をコールバック関数で処理
-      for (let i = 0; i < tmp.length; i++) tmp[i] = callback(tmp[i]);
+      for (let i = 0; i < tmp.length; i++) tmp[i] = func(tmp[i]);
       
       // ローカル配列を戻す
       return tmp;
+      
     }
     
     // 出力
-    console.log(arr);                          // [11, 12, 13, 14, 15]
-    console.log(myFunc(val => val * 2, arr));  // [22, 24, 26, 28, 30]
-    console.log(arr);                          // [11, 12, 13, 14, 15] => 配列は壊れていない
+    console.log(ARR);                          // [11, 12, 13, 14, 15]
+    console.log(myFunc(val => val * 2, ARR));  // [22, 24, 26, 28, 30]
+    console.log(ARR);                          // [11, 12, 13, 14, 15] => 配列は壊れていない
     
   </script>
   
@@ -382,14 +382,9 @@
   <script>
     
     // オブジェクト「Array」のプロトタイプ配下に関数追加
-    Array.prototype.MAP = function(callback) {
-      // 戻り値の配列
+    Array.prototype.MAP = function(func) {
       let tmp = [];
-      
-      // コールバック関数で配列の各要素を処理後に戻り値の配列に格納する
-      this.forEach(A => tmp.push(callback(A)));
-      
-      // 戻り値
+      this.forEach(A => tmp.push(func(A)));
       return tmp;
     }
     
@@ -510,14 +505,9 @@
   <script>
     
     // オブジェクト「Array」のプロトタイプ配下に関数追加
-    Array.prototype.FILTER = function(callback) {
-      // 戻り値の配列
+    Array.prototype.FILTER = function(func) {
       let tmp = [];
-      
-      // コールバック関数で配列の各要素を処理後に戻り値の配列に格納する
-      this.forEach(A => { if (callback(A)) tmp.push(A); });
-      
-      // 戻り値
+      this.forEach(A => { if (func(A)) tmp.push(A); });
       return tmp;
     }
     
@@ -1258,14 +1248,14 @@
   <script>
     
     // 通常の関数
-    const add1 = (x, y) => x + y;
+    const add = (x, y) => x + y;
     
-    console.log(add1(1, 1));  // 2 (1 + 1)
-    console.log(add1(1, 2));  // 3 (1 + 2)
+    console.log(add(1, 1));  // 2 (1 + 1)
+    console.log(add(1, 2));  // 3 (1 + 2)
     
     // カリー関数
-    const add = (x) => (y) => x + y;
-    const add2 = add(1)
+    const add1 = (x) => (y) => x + y;  // x => y => x + y
+    const add2 = add1(1)               //      y => 1 + y
     
     console.log(add2(1));  // 2 (1 + 1)
     console.log(add2(2));  // 3 (1 + 2)

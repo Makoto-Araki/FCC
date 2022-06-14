@@ -305,10 +305,15 @@
     
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
+    const OBJ2 = new OBJ(20, 20, 20);
     
-    // 出力
+    // 出力(1)
     console.log(OBJ1.sum());  // 30
     console.log(OBJ1.avg());  // 10
+    
+    // 出力(2)
+    console.log(OBJ2.sum());  // 60
+    console.log(OBJ2.avg());  // 20
     
   </script>
   
@@ -341,63 +346,10 @@
   Extend Constructors to Receive Arguments
   
 [内容]
-  コンストラクタ関数を引数指定が可能にする
+  コンストラクタ関数の引数指定を可能にする
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // コンストラクタ関数
-    function OBJ(P1, P2, P3) {
-      this.key1 = P1;
-      this.key2 = P2;
-      this.key3 = P3;
-      this.sum = () => this.key1 + this.key2 + this.key3;
-      this.avg = () => this.sum() / 3;
-    }
-    
-    // コンストラクタ関数からオブジェクト生成
-    const OBJ1 = new OBJ(10, 10, 10);
-    
-    // 出力
-    console.log(OBJ1.sum());  // 30
-    console.log(OBJ1.avg());  // 10
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「05」を参照
   
 ================================================================================
 [08]
@@ -442,9 +394,11 @@
     
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
+    const OBJ2 = new OBJ(20, 20, 20);
     
     // コンストラクタ由来のオブジェクトか検証
     console.log(OBJ1 instanceof OBJ);  // true
+    console.log(OBJ2 instanceof OBJ);  // true
     
   </script>
   
@@ -651,7 +605,7 @@
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
     
-    // 各プロパティが固有プロパティか確認
+    // 各プロパティを固有プロパティかプロトタイプか確認
     console.log(OBJ1.hasOwnProperty('key1'));  // true
     console.log(OBJ1.hasOwnProperty('key2'));  // true
     console.log(OBJ1.hasOwnProperty('key3'));  // true
@@ -784,7 +738,7 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
+    // プロトタイプ配下をオブジェクト指定
     OBJ.prototype = {
       sum() { this.key1 + this.key2 + this.key3; },
       avg() { this.sum() / 3; }
@@ -794,7 +748,7 @@
     const OBJ1 = new OBJ(10, 10, 10);
     
     // オブジェクトのコンストラクタ関数を参照
-    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3) -> function Object()
+    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3) -> function Object() に上書き
     
   </script>
   
@@ -850,9 +804,9 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
+    // プロトタイプ配下をオブジェクト指定
     OBJ.prototype = {
-      constructor: OBJ,  // コンストラクタ明示
+      constructor: OBJ,  // 追加
       sum() { this.key1 + this.key2 + this.key3; },
       avg() { this.sum() / 3; }
     }
@@ -885,7 +839,7 @@
   
 [内容]
   メソッド「isPrototypeOf」
-    プロタイプの由来を確認
+    オブジェクトが指定プロタイプ由来かを確認
   
 [確認]
   # cd /var/www/html
@@ -930,9 +884,11 @@
     
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
+    const OBJ2 = new OBJ(20, 20, 20);
     
-    // プロタイプの由来を確認
+    // オブジェクトが指定プロタイプ由来かを確認
     console.log(OBJ.prototype.isPrototypeOf(OBJ1));  // true
+    console.log(OBJ.prototype.isPrototypeOf(OBJ2));  // true
     
   </script>
   
@@ -1010,12 +966,12 @@
     OTHER.prototype = new OBJ();
     
     // コンストラクタ関数からオブジェクト生成
-    const O1 = new OTHER(10, 10, 10);
+    const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(O1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
-    console.log(O1.sum());        // 30
-    console.log(O1.avg());        // 10
+    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(OH1.sum());        // 30
+    console.log(OH1.avg());        // 10
     
   </script>
   
@@ -1104,12 +1060,12 @@
     OTHER.prototype = Object.create(OBJ.prototype);
     
     // コンストラクタ関数からオブジェクト生成
-    const O1 = new OTHER(10, 10, 10);
+    const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(O1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
-    console.log(O1.sum());        // 30
-    console.log(O1.avg());        // 10
+    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(OH1.sum());        // 30
+    console.log(OH1.avg());        // 10
     
   </script>
   
@@ -1199,12 +1155,12 @@
     OTHER.prototype.constructor = OTHER;
     
     // コンストラクタ関数からオブジェクト生成
-    const O1 = new OTHER(10, 10, 10);
+    const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
-    console.log(O1.sum());        // 30
-    console.log(O1.avg());        // 10
+    console.log(OH1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが「OTHER」に修正された
+    console.log(OH1.sum());        // 30
+    console.log(OH1.avg());        // 10
     
   </script>
   
@@ -1289,13 +1245,13 @@
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const O1 = new OTHER(10, 10, 10);
+    const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
-    console.log(O1.sum());        // 30
-    console.log(O1.avg());        // 10
-    console.log(O1.mul());        // 1000 -> 追加したメソッド
+    console.log(OH1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
+    console.log(OH1.sum());        // 30
+    console.log(OH1.avg());        // 10
+    console.log(OH1.mul());        // 1000
     
   </script>
   
@@ -1385,13 +1341,13 @@
     }
     
     // コンストラクタ関数からオブジェクト生成
-    const O1 = new OTHER(10, 10, 10);
+    const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(O1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
-    console.log(O1.sum());        // 60 -> メソッドをオーバーライド
-    console.log(O1.avg());        // 10
-    console.log(O1.mul());        // 1000 -> 追加した関数
+    console.log(OH1.constructor);  // function OTHER(P1, P2, P3)
+    console.log(OH1.sum());        // 60 -> オーバーライド
+    console.log(OH1.avg());        // 10
+    console.log(OH1.mul());        // 1000
     
   </script>
   
@@ -1441,7 +1397,7 @@
   // JS
   <script>
     
-    // 共有関数1
+    // 共有関数
     const add = function(OBJ) {
       OBJ.add = (P1, P2) => P1 + P2 ;
     }
@@ -1486,17 +1442,17 @@
   クロージャー
   
   (例1)
-    // 関数「Add」はクロージャー「Sub」を返す
+    // 関数「Add」はクロージャー「Sub(関数)」を返す
     function Add(P1) {
       let CN = 10;
       return function Sub(P2) { return P1 + P2 + CN; }
     }
     
     // クロージャー作成
-    let sub1 = Add(10);
-    let sub2 = Add(20);
-    let sub3 = Add(30);
-    let sub4 = Add(40);
+    let sub1 = Add(10);  // 内部に「P1 = 10」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
+    let sub2 = Add(20);  // 内部に「P1 = 20」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
+    let sub3 = Add(30);  // 内部に「P1 = 30」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
+    let sub4 = Add(40);  // 内部に「P1 = 40」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
     
     // クロージャー実行
     console.log(sub1(5));  // 10 + 5 + 10 -> 25
@@ -1504,30 +1460,6 @@
     console.log(sub3(5));  // 30 + 5 + 10 -> 45
     console.log(sub4(5));  // 40 + 5 + 10 -> 55
     
-  (例2)
-    // 関数「Counter」はクロージャー「オブジェクト」を返す
-    function Counter() {
-      let CN = 0;
-      function Add(P1) { CN += P1; }
-      return {
-        inc: function() { Add( 1); return CN; },
-        dec: function() { Add(-1); return CN; },
-        val: function() { return CN; }
-      }
-    }
-    
-    // クロージャー作成
-    let cls1 = Counter();
-    let cls2 = Counter();
-    
-    // クロージャー実行
-    console.log('cls1: ' + cls1.val());  // cls1: 0
-    console.log('cls1: ' + cls1.inc());  // cls1: 1
-    console.log('cls1: ' + cls1.inc());  // cls1: 2
-    console.log('cls1: ' + cls1.val());  // cls1: 2
-    console.log('cls2: ' + cls2.val());  // cls2: 0 -> 各クロージャーの保持する値は独立している
-    console.log('cls1: ' + cls1.val());  // cls1: 2
-  
 [確認]
   # cd /var/www/html
   # vi sample.html
@@ -1552,23 +1484,33 @@
   // JS
   <script>
     
-    // コンストラクタ関数
-    function OBJ(P1, P2, P3) {
-      this.key1 = P1;
-      this.key2 = P2;
-      this.key3 = P3;
-      this.getKey1 = function() { return this.key1; }  // クロージャー「getKey1」
-      this.getKey2 = function() { return this.key2; }  // クロージャー「getKey2」
-      this.getKey3 = function() { return this.key3; }  // クロージャー「getKey3」
+    // クロージャー定義
+    function Accumlator() {
+      let VAL = 0;                     // クロージャー変数
+      function Add(P1) { VAL += P1; }  // クロージャー関数
+      function Sub(P1) { VAL -= P1; }  // クロージャー関数
+      return {
+        inc: function() { Add(1); },     // 戻り値オブジェクトにクロージャー関数を内包
+        dec: function() { Sub(1); },     // 戻り値オブジェクトにクロージャー関数を内包
+        val: function() { return VAL; }  // 戻り値オブジェクトにクロージャー変数を内包
+      }
     }
     
-    // コンストラクタ関数からオブジェクト生成
-    const OBJ1 = new OBJ(10, 20, 30);
+    // クロージャー生成
+    const A1 = Accumlator();  // クロージャー変数や関数を内包している
+    const A2 = Accumlator();  // クロージャー変数や関数を内包している
     
+    // クロージャー操作(1)
+    A1.inc();
+    A1.inc();
+
+    // クロージャー操作(2)
+    A2.dec();
+    A2.dec();
+
     // 出力
-    console.log(OBJ1.getKey1());
-    console.log(OBJ1.getKey2());
-    console.log(OBJ1.getKey3());
+    console.log(A1.val());  // 2
+    console.log(A2.val());  // -2
     
   </script>
   

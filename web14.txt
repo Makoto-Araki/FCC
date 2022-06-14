@@ -109,7 +109,7 @@
       return arr.join('');
     } ;
     
-    // 摂氏から華氏を算出
+    // 引数の文字列を文字を逆にして返す
     console.log(myFunc('Hello'));  // olleH
     console.log(myFunc('Araki'));  // ikarA
     
@@ -311,7 +311,7 @@
     let arr1 = [[11, 12, 13, 14], [21, 22, 23, 24]];
     let arr2 = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
     
-    // 入力文章で最長の単語を探索
+    // 最大値の要素を抽出後に空の配列に格納
     console.log(myFunc(arr1));  // [14, 24]
     console.log(myFunc(arr2));  // [3, 6, 9]
     
@@ -525,7 +525,7 @@
   Finders Keepers
   
 [内容]
-  配列の全要素を指定関数でチェック、合致した最初の要素を返す
+  配列の全要素をコールバック関数でチェック、合致した最初の要素を返す
     関数([11, 12, 13], (num) => num % 2 === 0) => 12
   
 [確認]
@@ -559,9 +559,9 @@
       }
     } ;
     
-    // 配列の全要素を指定関数でチェック
-    console.log(myFunc([11, 12, 13], (num) => num % 2 === 0));  // 12
-    console.log(myFunc([11, 12, 13], (num) => num % 2 === 1));  // 11
+    // 配列の全要素をコールバック関数でチェック
+    console.log(myFunc([11, 12, 13, 14, 15], (num) => num % 2 === 0));  // 12
+    console.log(myFunc([11, 12, 13, 14, 15], (num) => num % 2 === 1));  // 11
     
   </script>
   
@@ -818,6 +818,7 @@
     // 関数定義
     const myFunc = (arr) => {
       let tmp = [];
+
       for (let i = 0; i < arr.length; i++) {
         if (arr[i] === false) continue;
         if (arr[i] === null) continue;
@@ -827,6 +828,7 @@
         if (Number.isNaN(arr[i])) continue;
         tmp.push(arr[i]);
       }
+
       return tmp;
     } ;
     
@@ -897,8 +899,8 @@
     } ;
     
     // 配列1の内容を配列2の挿入場所にコピー
-    console.log(myFunc([22, 11, 44, 33], 40));  // 配列 : 11, 22, 33, 44 (挿入場所) : 3
-    console.log(myFunc([22, 11, 44, 33], 30));  // 配列 : 11, 22, 33, 44 (挿入場所) : 2
+    console.log(myFunc([22, 11, 44, 33], 40));  // 配列 : 11, 22, 33, 44 => 挿入場所 : 3
+    console.log(myFunc([22, 11, 44, 33], 30));  // 配列 : 11, 22, 33, 44 => 挿入場所 : 2
     
   </script>
   

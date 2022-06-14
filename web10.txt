@@ -1,56 +1,56 @@
 ================================================================================
-[01] Explore Differences Between the var and let Keywords
-[02] Compare Scopes of the var and let Keywords
-[03] Declare a Read-Only Variable with the const Keyword
-[04] Mutate an Array Declared with const
-[05] Prevent Object Mutation
-[06] Use Arrow Functions to Write Concise Anonymous Functions
-[07] Write Arrow Functions with Parameters
-[08] Set Default Parameters for Your Functions
-[09] Use the Rest Parameter with Function Parameters
-[10] Use the Spread Operator to Evaluate Arrays In-Place
-[11] Use Destructuring Assignment to Extract Values from Objects
-[12] Use Destructuring Assignment to Assign Variables from Objects
-[13] Use Destructuring Assignment to Assign Variables from Nested Objects
-[14] Use Destructuring Assignment to Assign Variables from Arrays
-[15] Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
-[16] Use Destructuring Assignment to Pass an Object as a Function's Parameters
-[17] Create Strings using Template Literals
-[18] Write Concise Object Literal Declarations Using Object Property Shorthand
-[19] Write Concise Declarative Functions with ES6
-[20] Use class Syntax to Define a Constructor Function
-[21] Use getters and setters to Control Access to an Object
-[22] Create a Module Script
-[23] Use export to Share a Code Block
-[24] Reuse JavaScript Code Using import
-[25] Use * to Import Everything from a File
-[26] Create an Export Fallback with export default
-[27] Import a Default Export
-[28] Create a JavaScript Promise
-[29] Complete a Promise with resolve and reject
-[30] Handle a Fulfilled Promise with then
-[31] Handle a Rejected Promise with catch
-[32] [Promise] 同期処理と非同期処理の速度比較
-[33] [Promise] 非同期処理間の処理の順番
-[34] [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
-[35] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
-[36] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
-[37] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
-[38] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
-[39] [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
-[40] [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
-[41] [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
-[42] [Promise] 非同期処理の並列実行(1)
-[43] [Promise] 非同期処理の並列実行(2)
-[44] [Promise] キーワード「async」と「await」で記述を簡略化
+[001] Explore Differences Between the var and let Keywords
+[002] Compare Scopes of the var and let Keywords
+[003] Declare a Read-Only Variable with the const Keyword
+[004] Mutate an Array Declared with const
+[005] Prevent Object Mutation
+[006] Use Arrow Functions to Write Concise Anonymous Functions
+[007] Write Arrow Functions with Parameters
+[008] Set Default Parameters for Your Functions
+[009] Use the Rest Parameter with Function Parameters
+[010] Use the Spread Operator to Evaluate Arrays In-Place
+[011] Use Destructuring Assignment to Extract Values from Objects
+[012] Use Destructuring Assignment to Assign Variables from Objects
+[013] Use Destructuring Assignment to Assign Variables from Nested Objects
+[014] Use Destructuring Assignment to Assign Variables from Arrays
+[015] Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
+[016] Use Destructuring Assignment to Pass an Object as a Function's Parameters
+[017] Create Strings using Template Literals
+[018] Write Concise Object Literal Declarations Using Object Property Shorthand
+[019] Write Concise Declarative Functions with ES6
+[020] Use class Syntax to Define a Constructor Function
+[021] Use getters and setters to Control Access to an Object
+[022] Create a Module Script
+[023] Use export to Share a Code Block
+[024] Reuse JavaScript Code Using import
+[025] Use * to Import Everything from a File
+[026] Create an Export Fallback with export default
+[027] Import a Default Export
+[028] Create a JavaScript Promise
+[029] Complete a Promise with resolve and reject
+[030] Handle a Fulfilled Promise with then
+[031] Handle a Rejected Promise with catch
+[X01] [Promise] 同期処理と非同期処理の速度比較
+[X02] [Promise] 非同期処理間の処理の順番
+[X03] [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
+[X04] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
+[X05] [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
+[X06] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
+[X07] [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
+[X08] [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
+[X09] [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
+[X10] [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
+[X11] [Promise] 非同期処理の並列実行(1)
+[X12] [Promise] 非同期処理の並列実行(2)
+[X13] [Promise] キーワード「async」と「await」で記述を簡略化
 ================================================================================
-[01]
+[001]
   Explore Differences Between the var and let Keywords
   
 [内容]
-  変数再定義
-    キーワード「var」-> 再定義で上書き可能
-    キーワード「let」-> 構文エラー
+  キーワード「var」と「let」の違い
+    キーワード「var」-> 変数の再定義で上書き可能
+    キーワード「let」-> 変数の再定義で構文エラー
   
 [確認]
   # cd /var/www/html
@@ -101,7 +101,7 @@
   確認完了!
   
 ================================================================================
-[02]
+[002]
   Compare Scopes of the var and let Keywords
   
 [内容]
@@ -162,11 +162,11 @@
   確認完了!
   
 ================================================================================
-[03]
+[003]
   Declare a Read-Only Variable with the const Keyword
   
 [内容]
-  キーワード「const」-> 変数を定数(読み取り専用)化
+  キーワード「const」-> 変数を定数(読取専用)化
   
 [確認]
   # cd /var/www/html
@@ -217,11 +217,11 @@
   確認完了!
   
 ================================================================================
-[04]
+[004]
   Mutate an Array Declared with const
   
 [内容]
-  キーワード「const」-> 配列を定数(読み取り専用)化
+  キーワード「const」-> 配列を定数(読取専用)化
   
 [確認]
   # cd /var/www/html
@@ -280,7 +280,7 @@
   確認完了!
   
 ================================================================================
-[05]
+[005]
   Prevent Object Mutation
   
 [内容]
@@ -345,11 +345,12 @@
   確認完了!
   
 ================================================================================
-[06]
+[006]
   Use Arrow Functions to Write Concise Anonymous Functions
   
 [内容]
   アロー関数(1)
+    関数の記述を簡略化
   
 [確認]
   # cd /var/www/html
@@ -410,11 +411,12 @@
   確認完了!
   
 ================================================================================
-[07]
+[007]
   Write Arrow Functions with Parameters
   
 [内容]
   アロー関数(2)
+    関数の記述を簡略化
   
 [確認]
   # cd /var/www/html
@@ -471,11 +473,11 @@
   確認完了!
   
 ================================================================================
-[08]
+[008]
   Set Default Parameters for Your Functions
   
 [内容]
-  関数のデフォルト値
+  関数パラメータのデフォルト値
   
 [確認]
   # cd /var/www/html
@@ -525,11 +527,11 @@
   確認完了!
   
 ================================================================================
-[09]
+[009]
   Use the Rest Parameter with Function Parameters
   
 [内容]
-  可変長引数
+  関数パラメータを可変長引数で表現する
   
 [確認]
   # cd /var/www/html
@@ -584,7 +586,7 @@
   確認完了!
   
 ================================================================================
-[10]
+[010]
   Use the Spread Operator to Evaluate Arrays In-Place
   
 [内容]
@@ -615,12 +617,12 @@
   <script>
     
     // 変数定義と初期化
-    let myArr1 = [1, 2];
-    let myArr2 = [...myArr1, 3, 4];
+    let ARR1 = [1, 2];
+    let ARR2 = [...ARR1, 3, 4];
     
     // 出力
-    console.log(myArr1);  // [1, 2]
-    console.log(myArr2);  // [1, 2, 3, 4]
+    console.log(ARR1);  // [1, 2]
+    console.log(ARR2);  // [1, 2, 3, 4]
     
   </script>
   
@@ -639,7 +641,7 @@
   確認完了!
   
 ================================================================================
-[11]
+[011]
   Use Destructuring Assignment to Extract Values from Objects
   
 [内容]
@@ -702,7 +704,7 @@
   確認完了!
   
 ================================================================================
-[12]
+[012]
   Use Destructuring Assignment to Assign Variables from Objects
   
 [内容]
@@ -710,15 +712,15 @@
     別名の変数に保存
   
 [確認]
-  // 上記「11」を参照
+  // 上記「011」を参照
   
 ================================================================================
-[13]
+[013]
   Use Destructuring Assignment to Assign Variables from Nested Objects
   
 [内容]
   オブジェクトからの分割代入
-    内部のオブジェクト群を変数に保存
+    オブジェクト内部のオブジェクト群を変数に保存
   
 [確認]
   # cd /var/www/html
@@ -749,18 +751,17 @@
       key1: 300,
       key2: 400,
       key3: 500,
-      ARR: [ { key4: 60, key5: 61 }, { key4: 70, key5: 71 }, { key4: 80, key5: 81 } ],
+      arr1: [ { key4: 100, key5: 111 }, { key4: 200, key5: 211 }, { key4: 300, key5: 311 } ],
+      arr2: [ { key6: 'A', key7: 'B' }, { key6: 'C', key7: 'D' }, { key6: 'E', key7: 'F' } ]
     }
     
-    // OBJ.ARR -> ANOTHER
-    let { ARR: ANOTHER } = OBJ;
+    // オブジェクト内部のオブジェクト群を変数に保存
+    let { arr1: ARR1, arr2: ARR2 } = OBJ;
     
     // 出力
-    for (let i = 0; i < ANOTHER.length; i++) {
-      console.log(`key4: ${ANOTHER[i].key4}`);
-      console.log(`key5: ${ANOTHER[i].key5}`);
-    }
-    
+    console.log(ARR1);
+    console.log(ARR2);
+  
   </script>
   
   </body>
@@ -778,12 +779,12 @@
   確認完了!
   
 ================================================================================
-[14]
+[014]
   Use Destructuring Assignment to Assign Variables from Arrays
   
 [内容]
   配列からの分割代入
-    複数変数に代入
+    複数の変数へ分割代入
   
 [確認]
   # cd /var/www/html
@@ -810,15 +811,15 @@
   <script>
     
     // 変数定義と初期化
-    let var1;
-    let var2;
+    let V1;
+    let V2;
     
     // 先頭から一番目と四番目の要素を変数に代入
-    [var1,,, var2] = [1, 2, 3, 4]
+    [V1,,, V2] = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
     // 出力
-    console.log(var1);  // 1
-    console.log(var2);  // 4
+    console.log(V1);  // 1
+    console.log(V2);  // 9
     
   </script>
   
@@ -837,7 +838,7 @@
   確認完了!
   
 ================================================================================
-[15]
+[015]
   Use Destructuring Assignment with the Rest Parameter to Reassign Array Elements
   
 [内容]
@@ -898,7 +899,7 @@
   確認完了!
   
 ================================================================================
-[16]
+[016]
   Use Destructuring Assignment to Pass an Object as a Function's Parameters
   
 [内容]
@@ -929,17 +930,17 @@
   <script>
     
     // オブジェクト
-    let OBJ1 = {
+    let OBJ = {
       key1: 3,
       key2: 4,
       key3: 5,
     }
     
     // 関数定義
-    const Func = (OBJ) => OBJ.key1 * OBJ.key2 / 2;
+    const Func = (P1) => P1.key1 * P1.key2 / 2;
     
     // 出力
-    console.log(Func(OBJ1));  // 6
+    console.log(Func(OBJ));  // 6
     
   </script>
   
@@ -958,7 +959,7 @@
   確認完了!
   
 ================================================================================
-[17]
+[017]
   Create Strings using Template Literals
   
 [内容]
@@ -995,10 +996,10 @@
       key3: 500
     }
     
-    // 各プロパティ名を取得
+    // オブジェクトの各プロパティ名を取得
     let ARR = Object.keys(OBJ);
     
-    // 各プロパティ値を出力
+    // オブジェクトの各プロパティ値を出力
     for (let i = 0; i < ARR.length; i++) console.log(`${ARR[i]}: ${OBJ[ARR[i]]}`);
     
   </script>
@@ -1018,7 +1019,7 @@
   確認完了!
   
 ================================================================================
-[18]
+[018]
   Write Concise Object Literal Declarations Using Object Property Shorthand
   
 [内容]
@@ -1082,7 +1083,7 @@
   確認完了!
   
 ================================================================================
-[19]
+[019]
   Write Concise Declarative Functions with ES6
   
 [内容]
@@ -1149,7 +1150,7 @@
   確認完了!
   
 ================================================================================
-[20]
+[020]
   Use class Syntax to Define a Constructor Function
   
 [内容]
@@ -1180,7 +1181,7 @@
   // JS
   <script>
     
-    // クラス定義(ES6) => 頭文字は大文字が慣例
+    // クラス定義(ES6) => クラス名の頭文字は大文字が慣例
     class Person {
       constructor(name) {
         this._name = name;
@@ -1194,24 +1195,24 @@
     }
     
     // オブジェクト作成
-    const p1 = new Person('上杉謙信');
-    const p2 = new Person('武田信玄');
+    const P1 = new Person('上杉謙信');
+    const P2 = new Person('武田信玄');
     
     // 内部プロパティへ直接にアクセス
-    console.log(p1._name);
-    console.log(p2._name);
+    console.log(P1._name);
+    console.log(P2._name);
     
     // 内部プロパティへ「ゲッター」を通してアクセス
-    console.log(p1.getName());
-    console.log(p2.getName());
+    console.log(P1.getName());
+    console.log(P2.getName());
     
     // 内部プロパティを「セッター」を通して更新
-    p1.setName('上杉景勝');
-    p2.setName('武田勝頼');
+    P1.setName('上杉景勝');
+    P2.setName('武田勝頼');
     
     // 内部プロパティへ「ゲッター」を通してアクセス
-    console.log(p1.getName());
-    console.log(p2.getName());
+    console.log(P1.getName());
+    console.log(P2.getName());
     
   </script>
   
@@ -1230,11 +1231,12 @@
   確認完了!
   
 ================================================================================
-[21]
+[021]
   Use getters and setters to Control Access to an Object
   
 [内容]
-  内部プロパティを「ゲッター」と「セッター」ではなく「プロパティ」で制御
+  構文「class」でクラス定義およびオブジェクト作成
+    内部プロパティを「ゲッター」と「セッター」ではなく「プロパティ」で制御
   
 [確認]
   # cd /var/www/html
@@ -1260,7 +1262,7 @@
   // JS
   <script>
     
-    // クラス定義(ES6) => 頭文字は大文字が慣例
+    // クラス定義(ES6) => クラス名の頭文字は大文字が慣例
     class Person {
       constructor(name) {
         this._name = name;
@@ -1274,20 +1276,20 @@
     }
     
     // オブジェクト作成
-    const p1 = new Person('上杉謙信');
-    const p2 = new Person('武田信玄');
+    const P1 = new Person('上杉謙信');
+    const P2 = new Person('武田信玄');
     
     // 内部プロパティの値を「プロパティ」から取得
-    console.log(p1.name);
-    console.log(p2.name);
+    console.log(P1.name);
+    console.log(P2.name);
     
     // 内部プロパティの値を「プロパティ」を通して更新
-    p1.name = '上杉景勝';
-    p2.name = '武田勝頼';
+    P1.name = '上杉景勝';
+    P2.name = '武田勝頼';
     
     // 内部プロパティの値を「プロパティ」から取得
-    console.log(p1.name);
-    console.log(p2.name);
+    console.log(P1.name);
+    console.log(P2.name);
     
   </script>
   
@@ -1306,11 +1308,12 @@
   確認完了!
   
 ================================================================================
-[22]
+[022]
   Create a Module Script
   
 [内容]
-  ローカルで「HTMLファイル」を編集
+  モジュール化
+    内部でモジュールを呼び出す「JSスクリプト」を呼び出す「HTMLファイル」を編集
   
 [確認]
   # cd $HOME
@@ -1341,7 +1344,7 @@
   // CSS
   <style></style>
   
-  // JSスクリプト指定
+  // JS
   <script type='module' src='sample.js'></script>
   
   </body>
@@ -1351,14 +1354,15 @@
   以下の手順に続く
   
 ================================================================================
-[23]
+[023]
   Use export to Share a Code Block
   
 [内容]
-  ローカルで「JSモジュール」を作成
+  モジュール化
+    モジュール作成 -> 「JSスクリプト」の内部で呼び出される
   
 [確認]
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod01.js
   
   コマンドの実行結果
@@ -1370,16 +1374,16 @@
   export const myDiv1 = (x, y) => x / y;
   --------------------------------------------------
   
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod02.js
   
   コマンドの実行結果
   --------------------------------------------------
   // 関数
-  const myAdd2 = (x, y) => x += y;
-  const mySub2 = (x, y) => x -= y;
-  const myMul2 = (x, y) => x *= y;
-  const myDiv2 = (x, y) => x /= y;
+  const myAdd2 = (x, y) => x + y;
+  const mySub2 = (x, y) => x - y;
+  const myMul2 = (x, y) => x * y;
+  const myDiv2 = (x, y) => x / y;
   
   // 名前付きエクスポート + 別名
   export {myAdd2 as add2, mySub2 as sub2, myMul2 as mul2, myDiv2 as div2};
@@ -1388,11 +1392,12 @@
   以下の手順に続く
   
 ================================================================================
-[24]
+[024]
   Reuse JavaScript Code Using import
   
 [内容]
-  ローカルで「JSスクリプト」を作成
+  モジュール化
+    内部でモジュールを呼び出す「JSスクリプト」を作成
   
 [確認]
   # cd /var/www/html
@@ -1401,10 +1406,10 @@
   コマンドの実行結果
   --------------------------------------------------
   // 名前付きエクスポートのインポート + 別名
-  import { myAdd1 as add1, mySub1 as sub1 } from 'mod01.js';
+  import { myAdd1 as add1, mySub1 as sub1 } from './mod/mod01.js';
   
   // 名前付きエクスポートのインポート
-  import { add2, sub2 } from 'mod02.js';
+  import { add2, sub2 } from './mod/mod02.js';
   
   // インポート関数を使用
   console.log(add1(22, 11));  // 33
@@ -1420,30 +1425,21 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (ウェブコンソール)
-  
-  GET http://localhost/sample.html  // HTMLファイル読込
-  GET http://localhost/sample.js    // JSスクリプト読込
-  GET http://localhost/mod01.js     // JSモジュール読込
-  GET http://localhost/mod02.js     // JSモジュール読込
-  
-  33  // add1(22, 11)
-  33  // add2(22, 11)
-  11  // sub1(22, 11)
-  11  // sub2(22, 11)
+  (省略)
   --------------------------------------------------
   
   以下の手順に続く
   
 ================================================================================
-[25]
+[025]
   Use * to Import Everything from a File
   
 [内容]
-  全関数をインポート
+  モジュール化
+    全関数をインポート
   
 [確認]
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod01.js
   
   コマンドの実行結果
@@ -1455,16 +1451,16 @@
   export const div1 = (x, y) => x / y;
   --------------------------------------------------
   
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod02.js
   
   コマンドの実行結果
   --------------------------------------------------
   // 関数
-  const add2 = (x, y) => x += y;
-  const sub2 = (x, y) => x -= y;
-  const mul2 = (x, y) => x *= y;
-  const div2 = (x, y) => x /= y;
+  const add2 = (x, y) => x + y;
+  const sub2 = (x, y) => x - y;
+  const mul2 = (x, y) => x * y;
+  const div2 = (x, y) => x / y;
   
   // 名前付きエクスポート
   export {add2, sub2, mul2, div2};
@@ -1476,8 +1472,8 @@
   コマンドの実行結果
   --------------------------------------------------
   // 名前付きエクスポートの全インポート + 別名
-  import * as Mod01 from 'mod01.js';
-  import * as Mod02 from 'mod02.js';
+  import * as Mod01 from './mod01.js';
+  import * as Mod02 from './mod02.js';
   
   // インポート関数を使用
   console.log(Mod01.add1(22, 11));  // 33
@@ -1491,15 +1487,15 @@
   以下の手順に続く
   
 ================================================================================
-[26]
+[026]
   Create an Export Fallback with export default
   
 [内容]
-  デフォルトエクスポート
-    新しく「JSモジュール」を作成してクラスをデフォルトエクスポートする
+  モジュール化
+    モジュール内のクラスをデフォルトエクスポート指定
   
 [確認]
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod03.js
   
   コマンドの実行結果
@@ -1524,58 +1520,58 @@
   コマンドの実行結果
   --------------------------------------------------
   // デフォルトエクスポートのインポート
-  import Person from 'mod03.js';
+  import Person from './mod/mod03.js';
   
   // オブジェクト生成
-  let p1 = new Person('上杉謙信');
-  let p2 = new Person('武田信玄');
+  let P1 = new Person('上杉謙信');
+  let P2 = new Person('武田信玄');
   
   // 内部プロパティ確認
-  console.log(p1.name);  // 上杉謙信
-  console.log(p2.name);  // 武田信玄
+  console.log(P1.name);  // 上杉謙信
+  console.log(P2.name);  // 武田信玄
   
   // 内部プロパティ更新
-  p1.name = '上杉景勝';
-  p2.name = '武田勝頼';
+  P1.name = '上杉景勝';
+  P2.name = '武田勝頼';
   
   // 内部プロパティ確認
-  console.log(p1.name);  // 上杉景勝
-  console.log(p2.name);  // 武田勝頼
+  console.log(P1.name);  // 上杉景勝
+  console.log(P2.name);  // 武田勝頼
   --------------------------------------------------
   
   以下の手順に続く
   
 ================================================================================
-[27]
+[027]
   Import a Default Export
   
 [内容]
-  デフォルトエクスポート指定の関数をインポート
-    この「JSモジュール」内では関数「add」をデフォルトエクスポートする
+  モジュール化
+    モジュール内のデフォルトエクスポート指定された関数をインポート
   
 [確認]
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod01.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // 関数「add1」をデフォルトエクスポート
+  // デフォルトエクスポート指定時に関数名を付けるとエラー
   export default function(x, y) { return x + y; }  // add1
   export const sub1 = (x, y) => x - y;
   export const mul1 = (x, y) => x * y;
   export const div1 = (x, y) => x / y;
   --------------------------------------------------
   
-  # cd /var/www/html
+  # cd /var/www/html/mod
   # vi mod02.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // 関数「add2」をデフォルトエクスポート
-  const add2 = (x, y) => x += y;
-  const sub2 = (x, y) => x -= y;
-  const mul2 = (x, y) => x *= y;
-  const div2 = (x, y) => x /= y;
+  // 関数「add2」をデフォルトエクスポートする
+  const add2 = (x, y) => x + y;
+  const sub2 = (x, y) => x - y;
+  const mul2 = (x, y) => x * y;
+  const div2 = (x, y) => x / y;
   
   // デフォルトエクスポート + 名前付きエクスポート
   export {add2 as default, sub2, mul2, div2};
@@ -1595,50 +1591,50 @@
   console.log(ADD2(22, 11));  // 33
   --------------------------------------------------
   
-  これで「JSモジュール」関連は終了する
+  これにて「モジュール化」は終了する
   
 ================================================================================
-[28]
+[028]
   Create a JavaScript Promise
   
 [内容]
   オブジェクト「Promise」を作成
   
 [確認]
-  // 下記「32」から「44」までを参照
+  // 下記「X01」から「X13」までを参照
   
 ================================================================================
-[29]
+[029]
   Complete a Promise with resolve and reject
   
 [内容]
   オブジェクト「Promise」は「成功」か「失敗」で完了する
   
 [確認]
-  // 下記「32」から「44」までを参照
+  // 下記「X01」から「X13」までを参照
   
 ================================================================================
-[30]
+[030]
   Handle a Fulfilled Promise with then
   
 [内容]
   処理成功のパターン
   
 [確認]
-  // 下記「32」から「44」までを参照
+  // 下記「X01」から「X13」までを参照
   
 ================================================================================
-[31]
+[031]
   Handle a Rejected Promise with catch
   
 [内容]
   処理失敗のパターン
   
 [確認]
-  // 下記「32」から「44」までを参照
+  // 下記「X01」から「X13」までを参照
   
 ================================================================================
-[32]
+[X01]
   [Promise] 同期処理と非同期処理の速度比較
   
 [内容]
@@ -1724,7 +1720,7 @@
   確認完了!
   
 ================================================================================
-[33]
+[X02]
   [Promise] 非同期処理間の処理の順番
   
 [内容]
@@ -1770,7 +1766,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  // 非同期処理間でも処理順番は不安定
+  // 非同期処理1-3間でも処理順番は不安定
   
   1853年 ペリー来航
   1860年 桜田門外の変
@@ -1788,15 +1784,11 @@
   確認完了!
   
 ================================================================================
-[34]
+[X03]
   [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
   
 [内容]
-  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
-  
-  非同期処理のコールバック内で次の非同期処理を呼び出す
-    ・非同期処理の処理順番が安定化
-    ・ネストが深くなりすぎると「コールバック地獄」と言われる
+  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す -> 処理順番をコントロール(コールバック地獄)
   
 [確認]
   $ cd $HOME/sample05
@@ -1823,6 +1815,7 @@
         fs.readFile('test03.txt', { encoding: "utf8" }, (err, data) => {
           if (err) throw err;
           console.log(data);
+
         });
       });
     });
@@ -1838,7 +1831,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  // 非同期処理のコールバック内で更に非同期処理を呼び出す -> ネストが深くなるとコールバック地獄
+  // 非同期処理の処理順番をコントロール可能 -> ネストが深くなるとコールバック地獄
   
   1274年 文永の役
   1281年 弘安の役
@@ -1856,7 +1849,7 @@
   確認完了!
   
 ================================================================================
-[35]
+[X04]
   [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(1)
   
 [内容]
@@ -1864,7 +1857,7 @@
   
   オブジェクト「Promise」
     ・三個(保留・成功・失敗)の内部状態を持つ
-    ・初期状態は「保留」で一度でも「成功」または「失敗」になると以降の状態は変わらない
+    ・初期状態は「保留」、一度でも「成功」または「失敗」になると以降の状態は変わらない
     ・コンストラクタ引数に関数オブジェクトを取る
   
   コンストラクタ引数の関数オブジェクト
@@ -1917,7 +1910,7 @@
   確認完了!
   
 ================================================================================
-[36]
+[X05]
   [Promise] オブジェクト「Promise」の処理結果をメソッド「then」で制御する(2)
   
 [内容]
@@ -1925,7 +1918,7 @@
   
   オブジェクト「Promise」
     ・三個(保留・成功・失敗)の内部状態を持つ
-    ・初期状態は「保留」で一度でも「成功」または「失敗」になると以降の状態は変わらない
+    ・初期状態は「保留」、一度でも「成功」または「失敗」になると以降の状態は変わらない
     ・コンストラクタ引数に関数オブジェクトを取る
   
   コンストラクタ引数の関数オブジェクト
@@ -1981,7 +1974,7 @@
   確認完了!
   
 ================================================================================
-[37]
+[X06]
   [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(1)
   
 [内容]
@@ -2011,8 +2004,12 @@
   
   // メソッド「then」内部のエラー処理をメソッド「catch」に移動
   Func('test01.txt')
-  .then(doc => console.log(doc))
-  .catch(err => console.log(err));
+  .then(
+    (doc) => console.log(doc)
+  )
+  .catch(
+    (err) => console.log(err)
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2030,7 +2027,7 @@
   確認完了!
   
 ================================================================================
-[38]
+[X07]
   [Promise] メソッド「then」内部のエラー処理をメソッド「catch」に移動(2)
   
 [内容]
@@ -2060,8 +2057,12 @@
   
   // メソッド「then」内部のエラー処理をメソッド「catch」に移動
   Func('test99.txt')
-  .then(doc => console.log(doc))
-  .catch(err => console.log(err));
+  .then(
+    (doc) => console.log(doc)
+  )
+  .catch(
+    (err) => console.log(err)
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2082,7 +2083,7 @@
   確認完了!
   
 ================================================================================
-[39]
+[X08]
   [Promise] オブジェクト「Promise」で非同期処理を順番通りに実行
   
 [内容]
@@ -2112,10 +2113,30 @@
   
   // 非同期処理を順番通りに実行
   Func('test01.txt')
-  .then(doc => { console.log(doc); return Func('test02.txt'); })  // 次ファイル読込
-  .then(doc => { console.log(doc); return Func('test03.txt'); })  // 次ファイル読込
-  .then(doc => { console.log(doc); })
-  .catch(err => { console.log(err); });
+  .then(
+    (doc) => {
+      console.log(doc);
+      return Func('test02.txt');  // 次ファイル読込
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      return Func('test03.txt');  // 次ファイル読込
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      // ファイル読込終了
+    }
+  )
+  .catch(
+    (err) => {
+      console.log(err);
+      // エラー処理追加
+    }
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2141,7 +2162,7 @@
   確認完了!
   
 ================================================================================
-[40]
+[X09]
   [Promise] 途中で失敗したらメソッド「catch」までのメソッド「then」の処理はスキップ
   
 [内容]
@@ -2171,10 +2192,30 @@
   
   // 非同期処理を順番通りに実行
   Func('test01.txt')
-  .then(doc => { console.log(doc); return Func('test99.txt'); })  // 途中で失敗
-  .then(doc => { console.log(doc); return Func('test03.txt'); })  // 次ファイル読込
-  .then(doc => { console.log(doc); })
-  .catch(err => { console.log(err); });
+  .then(
+    (doc) => {
+      console.log(doc);
+      return Func('test99.txt');  // 実在しないファイル指定で失敗
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      return Func('test03.txt');  // この処理はスキップ
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      // この処理はスキップ
+    }
+  )
+  .catch(
+    (err) => {
+      console.log(err);
+      // エラー発生時に実行される
+    }
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2199,7 +2240,7 @@
   確認完了!
   
 ================================================================================
-[41]
+[X10]
   [Promise] 人為的に例外発生させてもメソッド「catch」までのメソッド「then」の処理はスキップ
   
 [内容]
@@ -2229,10 +2270,30 @@
   
   // 非同期処理を順番通りに実行
   Func('test01.txt')
-  .then(doc => { console.log(doc); throw new Error('エラー発生'); })  // 人為的に例外発生
-  .then(doc => { console.log(doc); return Func('test03.txt'); })    // 次ファイル読込
-  .then(doc => { console.log(doc); })
-  .catch(err => { console.log(err); });
+  .then(
+    (doc) => {
+      console.log(doc);
+      throw new Error('エラー発生');  // 人為的に例外発生
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      return Func('test03.txt');  // 次ファイル読込
+    }
+  )
+  .then(
+    (doc) => {
+      console.log(doc);
+      // ファイル読込終了
+    }
+  )
+  .catch(
+    (err) => {
+      console.log(err);
+      // エラー処理追加
+    }
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2253,7 +2314,7 @@
   確認完了!
   
 ================================================================================
-[42]
+[X11]
   [Promise] 非同期処理の並列実行(1)
   
 [内容]
@@ -2261,29 +2322,13 @@
   
 [確認]
   $ cd $HOME/sample05
-  $ vi file1.txt
+  $ vi file1.txt file2.txt file3.txt
   
   コマンドの実行結果
   --------------------------------------------------
   1. AAA
   2. BBB
   3. CCC
-  --------------------------------------------------
-  
-  $ cd $HOME/sample05
-  $ cp file1.txt file2.txt
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/sample05
-  $ cp file1.txt file3.txt
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2309,8 +2354,12 @@
   
   // 非同期処理を並列実行 -> 最初の応答を使用 -> 最初に「失敗」が返ると全体で「失敗」となる
   Promise.race([Func('file1.txt'), Func('file2.txt'), Func('file3.txt')])
-  .then(doc => console.log(doc))
-  .catch(err => console.log(err));
+  .then(
+    (doc) => console.log(doc)
+  )
+  .catch(
+    (err) => console.log(err)
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2328,7 +2377,7 @@
   確認完了!
   
 ================================================================================
-[43]
+[X12]
   [Promise] 非同期処理の並列実行(2)
   
 [内容]
@@ -2356,7 +2405,7 @@
     })
   }
   
-  // ファイル読込を並列実行して、全ファイル読込完了後に次処理に移行
+  // ファイル読込を並列実行して、全ファイル読込後に次処理に移行
   Promise.all([Func('test01.txt'), Func('test02.txt'), Func('test03.txt')])
   .then(
     ([doc1, doc2, doc3]) => {
@@ -2365,7 +2414,9 @@
       console.log(doc3);
     }
   )
-  .catch(err => console.log(err));
+  .catch(
+    (err) => console.log(err)
+  );
   --------------------------------------------------
   
   $ cd $HOME/sample05
@@ -2391,7 +2442,7 @@
   確認完了!
   
 ================================================================================
-[44]
+[X13]
   [Promise] キーワード「async」と「await」で記述を簡略化
   
 [内容]
@@ -2455,32 +2506,6 @@
   1853年 ペリー来航
   1860年 桜田門外の変
   1867年 大政奉還
-  --------------------------------------------------
-  
-  確認完了!
-  
-================================================================================
-[XX]
-  [Promise] //
-  
-[内容]
-  [Promise] //
-  
-[確認]
-  $ cd $HOME/sample05
-  $ vi sample.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  //
-  --------------------------------------------------
-  
-  $ cd $HOME/sample05
-  $ node sample.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  //
   --------------------------------------------------
   
   確認完了!

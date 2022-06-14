@@ -57,16 +57,25 @@
     const myFunc = (arr) => {
       
       // 変数定義と初期化
-      let ret = [];
+      let sum = 0;
+      
+      // 引数配列をローカル変数にコピー
+      let tmp1 = arr.slice(0, arr.length);
       
       // 配列のソート
-      let tmp = arr.sort((a, b) => a - b);
+      let tmp2 = tmp1.sort((a, b) => a - b);
       
-      // 各数字の合計
-      for (let i = tmp[0]; i <= tmp[1]; i++) ret.push(i);
+      // 空配列を作成
+      let tmp3 = [];
+      
+      // 空配列に要素を追加
+      for (let i = tmp2[0]; i <= tmp2[1]; i++) tmp3.push(i);
+      
+      // 合計値を算出
+      for (let i = 0; i < tmp3.length; i++) sum += tmp3[i];
       
       // 戻り値
-      return ret;
+      return sum;
       
     }
     
@@ -74,17 +83,9 @@
     const arr1 = [4, 1];
     const arr2 = [1, 4];
     
-    // 配列のコピー
-    const tmp1 = arr1.slice(0, arr1.length);
-    const tmp2 = arr2.slice(0, arr2.length);
-    
-    // 合計を出す各数字を生成
-    const tmp3 = myFunc(tmp1);
-    const tmp4 = myFunc(tmp2);
-    
-    // 合計を算出
-    console.log(`合計 : ${tmp3.reduce((acm, val) => acm + val)}`);  // 10
-    console.log(`合計 : ${tmp3.reduce((acm, val) => acm + val)}`);  // 10
+    // 出力
+    console.log(myFunc(arr1));  // 10
+    console.log(myFunc(arr2));  // 10
     
   </script>
   
@@ -137,37 +138,44 @@
     // 関数定義
     const myFunc = (arr1, arr2) => {
       
-      // 変数定義と初期化
-      let ret = [];
+      // 引数配列をローカル変数にコピー
+      let tmp1 = arr1.slice(0, arr1.length);
+      let tmp2 = arr2.slice(0, arr2.length);
       
-      // 片方の配列にのみ存在する要素を抽出
-      for (let i = 0; i < arr1.length; i++) {
-        if (!arr2.some(val => val === arr1[i])) ret.push(arr1[i]);
+      // 空配列を作成
+      let tmp3 = [];
+      
+      // 片方の配列にのみ存在する要素を空配列に格納
+      for (let i = 0; i < tmp1.length; i++) {
+        if (!tmp2.some(val => val === tmp1[i])) {
+          tmp3.push(tmp1[i]);
+        }
+      }
+      
+      // 片方の配列にのみ存在する要素を空配列に格納
+      for (let i = 0; i < tmp2.length; i++) {
+        if (!tmp1.some(val => val === tmp2[i])) {
+          tmp3.push(tmp2[i]);
+        }
       }
       
       // 戻り値
-      return ret;
+      return tmp3;
       
     }
     
     // 変数定義と初期化
-    const arr1 = [1, 3, 5];
-    const arr2 = [1, 4, 6];
-    
-    // 配列のコピー
-    const tmp1 = arr1.slice(0, arr1.length);
-    const tmp2 = arr2.slice(0, arr2.length);
+    const arr1 = [1, 3, 5, 2];
+    const arr2 = [1, 4, 6, 2];
     
     // 片方の配列にのみ存在する要素を抽出
-    const tmp3 = myFunc(tmp1, tmp2);
-    const tmp4 = myFunc(tmp2, tmp1);
+    let tmp = myFunc(arr1, arr2);
     
-    // 配列の統合とソート
-    const ret1 = tmp3.concat(tmp4);
-    const ret2 = ret1.sort((a, b) => a - b);
+    // 配列のソート
+    let ret = tmp.sort((a, b) => a - b);
     
     // 確認
-    console.log(`確認 : ${ret2}`);  // [3, 4, 5, 6]
+    console.log(ret);  // [3, 4, 5, 6]
     
   </script>
   
@@ -190,11 +198,9 @@
   Seek and Destroy
   
 [内容]
-  関数作成
-    関数(配列, 要素1, 要素2 ...)で配列から各要素を消去した新しい配列を返す
-  
-  myFunc([1, 2, 3, 4], 1, 3);  // [2, 4] -> 1, 3 を削除
-  myFunc([1, 2, 3, 4], 2, 4);  // [1, 3] -> 2, 4 を削除
+  関数(配列, 要素1, 要素2 ...)で配列から各要素を消去した新しい配列を返す
+    Func([1, 2, 3, 4], 1, 3);  // [2, 4] => 1, 3 を削除
+    Func([1, 2, 3, 4], 2, 4);  // [1, 3] => 2, 4 を削除
   
 [確認]
   # cd /var/www/html
@@ -223,7 +229,7 @@
     // 関数定義
     const myFunc = (arr, ...rest) => {
       
-      // 変数定義と初期化
+      // 引数配列をローカル変数にコピー
       let ret = arr.slice(0, arr.length);
       
       // 配列から各要素を消去
@@ -239,8 +245,8 @@
     let ret2 = myFunc([1, 2, 3, 4], 2, 4);  // [1, 3]
     
     // 確認
-    console.log(`処理済 : ${ret1}`);  // [2, 4]
-    console.log(`処理済 : ${ret2}`);  // [1, 3]
+    console.log(ret1);  // [2, 4]
+    console.log(ret2);  // [1, 3]
     
   </script>
   
@@ -263,7 +269,18 @@
   Wherefore art thou
   
 [内容]
-  オブジェクト配列から検索オブジェクトのプロパティと値が全て存在するオブジェクトを返す
+  検索オブジェクト内のキーが全て存在し、値も一致するオブジェクトを配列から抽出する
+  
+  検索オブジェクト
+    { key1: 12, key2: 12 }
+  
+  オブジェクト配列
+    { key1: 11, key2: 11 },
+    { key1: 12, key2: 12 }, => 抽出
+    { key1: 13, key2: 13 },
+    { key1: 14, key2: 14 },
+    { key1: 15, key2: 15 },
+    { key1: 12, key2: 12, key3: 12 } => 抽出
   
 [確認]
   # cd /var/www/html
@@ -289,40 +306,54 @@
   // JS
   <script>
     
-    // オブジェクト配列 => 四角形
-    const Squares = [
-      { 底辺: 11, 高さ: 11 },
-      { 底辺: 12, 高さ: 12 },
-      { 底辺: 13, 高さ: 13 },
-      { 底辺: 12, 高さ: 12, 面積: 144 },
-      { 底辺: 14 },
-      { 底辺: 15, 高さ: 15 }
-    ];
+    // 検索オブジェクト
+    const OBJ = { key1: 12, key2: 12 };
     
-    // 検索オブジェクト => 四角形
-    const Search1 = { 底辺: 12, 高さ: 12 };
-    const Search2 = { 底辺: 14 };
+    // オブジェクト配列
+    const ARR = [
+      { key1: 11, key2: 11 },
+      { key1: 12, key2: 12 },  // 抽出
+      { key1: 13, key2: 13 },
+      { key1: 14, key2: 14 },
+      { key1: 15, key2: 15 },
+      { key1: 12, key2: 12, key3: 12 }  // 抽出
+    ];
     
     // 関数定義
     const myFunc = (ARR, OBJ) => {
       
-      // 変数定義と初期化
+      // ローカル変数にコピー
       let arr = ARR.slice(0, ARR.length);
-      let obj = Object.keys(OBJ);
+      let obj = OBJ;
+
+      // 検索オブジェクトのキーの一覧
+      let key = Object.keys(OBJ);
+      
+      // 空配列を作成
       let ret = [];
+      
+      // キーと値の一致数
       let cnt = 0;
       
-      // 検索オブジェクトのプロパティと値が全て存在すれば戻り値に追加
+      // オブジェクト配列でループ処理を行う
       for (let i = 0; i < arr.length; i++) {
+
+        // キーと値の一致数を初期化
         cnt = 0;
         
-        for (let j = 0; j < obj.length; j++) {
-          if (arr[i].hasOwnProperty(obj[j])) {
-            if (arr[i][obj[j]] === OBJ[obj[j]]) cnt++;
+        // 検索オブジェクトのキーでループ処理を行う
+        for (let j = 0; j < key.length; j++) {
+          if (arr[i].hasOwnProperty(key[j])) {
+            if (arr[i][key[j]] === obj[key[j]]) {
+              cnt++;
+            }
           }
         }
         
-        if (cnt === obj.length) ret.push(arr[i]);
+        // 一致数が検索オブジェクトのキー数と一致すれば戻り値に格納
+        if (cnt === key.length) {
+          ret.push(arr[i]);
+        }
       }
       
       // 戻り値
@@ -331,8 +362,7 @@
     }
     
     // 関数実行
-    console.log(myFunc(Squares, Search1));
-    console.log(myFunc(Squares, Search2));
+    console.log(myFunc(ARR, OBJ));
     
   </script>
   

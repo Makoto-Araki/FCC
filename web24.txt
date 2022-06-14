@@ -104,7 +104,6 @@
           </div>
         );
       }
-      
     }
     
     /* ----------------------------------------------------------------- */
@@ -134,14 +133,14 @@
     /* Container Code                                                    */
     /* ----------------------------------------------------------------- */
     
-    // ストア側の情報「state.count」を取り出しコンポーネント側の「props.count」に紐付け
+    // コンポーネント側の「props.state.count」をストア側の情報「state.count」に紐付け
     const mapStateToProps = state => {
       return {
         count: state.count
       }
     }
     
-    // イベントハンドラをアクションに紐付け -> 戻り値はオブジェクト
+    // コンポーネント側のイベントハンドラをストア側のアクションに紐付け
     const mapDispatchToProps = dispatch => {
       return {
         BTN1Click: () => { dispatch(ACT1()); },
@@ -164,19 +163,16 @@
       // 描画処理
       render() {
         
-        // ストア側の情報「state.count」に接続
-        // ストア側へアクション送信するための関数一覧をオブジェクトで取得
-        // メインクラスコンポーネント「MAIN」と接続
+        // メインクラスコンポーネント「MAIN」と接続 => 最上位コンポーネント
         const CONNECT = CON(mapStateToProps, mapDispatchToProps)(MAIN);
         
-        // 最上位コンポーネントを「Provider」で囲み配下コンポーネントもストア接続可能
+        // 最上位コンポーネントを「PRV」で囲んで配下コンポーネントもストア接続
         return (
           <PRV store={STORE}>
             <CONNECT />
           </PRV>
         );
       }
-      
     }
     
     /* ----------------------------------------------------------------- */
@@ -196,11 +192,7 @@
   
   // Bootstrap - JS
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
@@ -456,14 +448,14 @@
     /* Container Code                                                    */
     /* ----------------------------------------------------------------- */
     
-    // ストア側の情報「state.count」を取り出しコンポーネント側の「props.count」に紐付け
+    // ストア側の情報「state.count」を取り出しコンポーネント側の「props.state.count」に紐付け
     const mapStateToProps = state => {
       return {
         count: state.count
       }
     }
     
-    // イベントハンドラをアクションに紐付け -> 戻り値はオブジェクト
+    // イベントハンドラをアクションに紐付け
     const mapDispatchToProps = dispatch => {
       return {
         // コメントアウト BTN1Click: () => { dispatch(ACT1()); },
@@ -488,19 +480,16 @@
       // 描画処理
       render() {
         
-        // ストア側の情報「state.count」に接続
-        // ストア側へアクション送信するための関数一覧をオブジェクトで取得
-        // メインクラスコンポーネント「MAIN」と接続
+        // メインクラスコンポーネント「MAIN」と接続 => 最上位コンポーネント
         const CONNECT = CON(mapStateToProps, mapDispatchToProps)(MAIN);
         
-        // 最上位コンポーネントを「Provider」で囲み配下コンポーネントもストア接続可能
+        // 最上位コンポーネントを「PRV」で囲んで配下コンポーネントもストア接続可能
         return (
           <PRV store={STORE}>
             <CONNECT />
           </PRV>
         );
       }
-      
     }
     
     /* ----------------------------------------------------------------- */
@@ -520,11 +509,7 @@
   
   // Bootstrap - JS
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  
-  // Bootstrap - JS
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   
   // JS -> JQuery
@@ -549,7 +534,7 @@
   Moving Forward From Here
   
 [内容]
-  サイト「GitHub」のソース群を紹介
+  サービス「GitHub」のソース群を紹介
   
 [確認]
   // 省略

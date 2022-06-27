@@ -45,17 +45,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 開始タグと終了タグ
+  <!-- 開始タグと終了タグ --->
   <h1>Hello World</h1>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -90,17 +90,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  <h1>主要タイトル</h1>  // 主要タイトル
-  <h2>サブタイトル</h2>  // サブタイトル
+  <!-- 主要タイトル --->
+  <h1>Hello</h1>
+
+  <!-- サブタイトル --->
+  <h2>World</h2>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -135,18 +138,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 段落
-  <p>武田信玄</p>
-  <p>上杉謙信</p>
+  <!-- 段落タグ --->
+  <p>Hello</p>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -191,19 +193,19 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  <!--  // 削除 -> コメント解除
-  <p>武田信玄</p>
-  <p>上杉謙信</p>
-  --->  // 削除 -> コメント解除
+  <!-- コメント解除してタグを有効化
+  <p>Hello</p>
+  <p>World</p>
+  --->
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -238,19 +240,19 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  <!--  // コメントアウト
-  <p>武田信玄</p>
-  <p>上杉謙信</p>
-  --->  // コメントアウト
+  <!-- コメントアウトしてタグを無効化
+  <p>Hello</p>
+  <p>World</p>
+  --->
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -285,17 +287,19 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  <p>武田信玄</p>  // 記述自体を削除 -> 要素の削除
-  <p>上杉謙信</p>  // 記述自体を削除 -> 要素の削除
-  
-  // CSS
+  <!-- 記述自体を削除して要素自体を消す
+  <p>Hello</p>
+  <p>World</p>
+  --->
+
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -327,7 +331,7 @@
   Add Images to Your Website
   
 [内容]
-  要素「img」に属性を追加 -> 属性「alt」にイメージ説明
+  要素「img」に属性を追加 => 属性「alt」にイメージ説明
   
 [確認]
   # cd /var/www/html
@@ -340,17 +344,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 要素「img」に属性「src」と「alt」を追加
+  <!-- 要素「img」に属性「src」と「alt」を追加 --->
   <img src="images/android-icon.png" alt="android">
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -385,17 +389,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 属性「href」に外部リンクURL
-  <a href="https://xx1.html">外部リンク1</a>
+  <!-- 属性「href」に外部リンクURLを指定 --->
+  <a href="https://xx1.html">link1</a>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -430,20 +434,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 内部リンク
+  <!-- 内部リンク --->
   <a href='#img1'>Android</a>
   
-  // リンク先
+  <!-- 内部リンク先 --->
   <img id='img1' src="images/android-icon.png" alt="android">
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -465,7 +469,7 @@
   Nest an Anchor Element within a Paragraph
   
 [内容]
-  外部リンクを他要素で囲む
+  リンクを他要素で囲む
   
 [確認]
   # cd /var/www/html
@@ -478,17 +482,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 外部リンク
-  <p><a href='#' target='_blank'>外部リンク1</a></p>
+  <!-- リンクを他要素で囲む --->
+  <p><a href='#' target='_blank'>link1</a></p>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -510,7 +514,7 @@
   Make Dead Links Using the Hash Symbol
   
 [内容]
-  デッドリンク -> 属性「href」に「#」を指定
+  デッドリンク => 属性「href」に「#」を指定
   
 [確認]
   # cd /var/www/html
@@ -523,17 +527,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // デッドリンク
-  <a href='#' target='_blank'>外部リンク</a>
+  <!-- デッドリンク --->
+  <a href='#' target='_blank'>link</a>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -555,7 +559,7 @@
   Turn an Image into a Link
 
 [内容]
-  画像のリンク化 -> 要素「img」を要素「a」で囲む
+  画像のリンク化 => 要素「img」を要素「a」で囲む
   
 [確認]
   # cd /var/www/html
@@ -568,17 +572,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 画像のリンク化
-  <a href='#'><img src="images/android-icon.png" alt="android"></a>
+  <!-- 画像のリンク化 --->
+  <a href='#'><img src="images/android-icon.png" alt="android logo"></a>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -613,24 +617,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // リスト(番号無し)
+  <!-- リスト(番号無し) --->
   <ul>
     <li><a href='#img1'>Android</a></li>
     <li><a href='#img2'>Firefox</a></li>
   </ul>
   
-  // リンク先
-  <img id='img1' src="images/android-icon.png" alt="android">
-  <img id='img2' src="images/firefox-icon.png" alt="firefox">
+  <!-- リンク先 --->
+  <img id='img1' src="images/android-icon.png" alt="android logo">
+  <img id='img2' src="images/firefox-icon.png" alt="firefox logo">
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -665,24 +669,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // リスト(番号有り)
+  <!-- リスト(番号有り) --->
   <ol>
     <li><a href='#img1'>Android</a></li>
     <li><a href='#img2'>Firefox</a></li>
   </ol>
   
-  // リンク先
-  <img id='img1' src="images/android-icon.png" alt="android">
-  <img id='img2' src="images/firefox-icon.png" alt="firefox">
+  <!-- リンク先 --->
+  <img id='img1' src="images/android-icon.png" alt="android logo">
+  <img id='img2' src="images/firefox-icon.png" alt="firefox logo">
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -717,17 +721,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // テキストボックス
-  <input type='text'>
+  <!-- テキストボックス --->
+  <input type='text' placeholder='name'>
+  <input type='text' placeholder='addr'>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -762,17 +767,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // テキストボックスにプレースホルダー
-  <input type='text' placeholder='名前'>
+  <!-- テキストボックスにプレースホルダー --->
+  <input type='text' placeholder='name'>
+  <input type='text' placeholder='addr'>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -807,17 +813,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 属性「action」で送信先プログラムを指定
+  <!-- 属性「action」で送信先プログラムを指定 --->
   <form action='#'></form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -852,20 +858,21 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 送信ボタンを付与
+  <!-- 送信ボタンを付与 --->
   <form action='#'>
-    <input type="text" placeholder="名前">
-    <button type="submit">送信</button>
+    <input type='text' placeholder='name'>
+    <input type='text' placeholder='addr'>
+    <button type="submit">ADD</button>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -900,20 +907,21 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 送信ボタン押下時にチェック -> 入力必須とエラーメッセージ
+  <!-- ボタン押下時に入力必須のメッセージ出力 --->
   <form action='#'>
-    <input type="text" placeholder="名前" required>
-    <button type="submit">送信</button>
+    <input type='text' placeholder='name'>
+    <input type='text' placeholder='addr'>
+    <button type="submit">ADD</button>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -948,20 +956,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // グループ名は「性別」
+  <!-- ラジオボタンのグループ名は「性別」--->
   <form action='#'>
     <input type="radio" id="男性" name='性別'><label for='男性'>男性</label>
     <input type="radio" id="女性" name='性別'><label for='女性'>女性</label>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -996,20 +1004,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // グループ名は「手段」
+  <!-- チェックボックスのグループ名は「手段」--->
   <form action='#'>
     <input type="checkbox" id="電車" name='手段'><label for='電車'>電車</label>
     <input type="checkbox" id="バス" name='手段'><label for='バス'>バス</label>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1044,20 +1052,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 属性「value」の値が選択結果
+  <!-- 属性「value」の値が選択結果 --->
   <form id='target'>
     <input type="radio" id="男性" name='性別' value='男性'><label for='男性'>男性</label>
     <input type="radio" id="女性" name='性別' value='女性'><label for='女性'>女性</label>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1092,20 +1100,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 属性「checked」でデフォルト選択
+  <!-- 属性「checked」でデフォルト選択 --->
   <form action='#'>
     <input type="radio" id="男性" name='性別' checked><label for='男性'>男性</label>
     <input type="radio" id="女性" name='性別'><label for='女性'>女性</label>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1140,11 +1148,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 要素群をコンテナに格納
+  <!-- 要素群をコンテナ格納 --->
   <form action='#'>
     <div>
       <label for='男性'><input type="radio" id="男性" name='性別' value='男性'>男性</label>
@@ -1152,10 +1160,10 @@
     </div>
   </form>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>

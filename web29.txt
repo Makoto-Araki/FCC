@@ -1,42 +1,74 @@
 ================================================================================
-[X1] ブランチ「master」で新規作成
-[X2] ブランチ「sub1」で機能追加
-[X3] 実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
-[01] How to Use package.json, the Core of Any Node.js Project or npm Package
-[02] Add a Description to Your package.json
-[03] Add Keywords to Your package.json
-[04] Add a License to Your package.json
-[05] Add a Version to Your package.json
-[06] Expand Your Project with External Packages from npm
-[07] Manage npm Dependencies By Understanding Semantic Versioning
-[08] Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
-[09] Use the Caret-Character to Use the Latest Minor Version of a Dependency
-[10] Remove a Package from Your Dependencies
+[X01] [Git] 設定確認
+[X02] [Git] ユーザー名とメールアドレス登録
+[X03] [Git] エディタ設定
+[X04] [Git] 設定削除
+[X05] [Git] ローカルリポジトリ作成
+[X06] [Git] ステージングエリア登録
+[X07] [Git] ファイル差分
+[X08] [Git] ファイルコミット
+[X09] [Git] 簡易コミット
+[X10] [Git] ワーキングエリアの変更取消
+[X11] [Git] ステージングエリアの変更取消
+[X12] [Git] ファイル削除
+[X13] [Git] 管理対象外ファイル
+[X14] [Git] コミット履歴
+[X15] [Git] リモートリポジトリ設定
+[X16] [Git] リモートリポジトリへプッシュ
+[X17] [Git] リモートリポジトリをクローン
+[X18] [Git] 別ブランチでファイル修正
+[X19] [GitHub] プルリクエストでレビュー依頼
+[X20] [GitHub] プルリクエストをレビュー
+[X21] [GitHub] 別ブランチをマージ
+[X22] [Git] リモートリポジトリの内容をローカルリポジトリにマージ
+[X23] [Git] 並行作業(1)
+[X24] [Git] 並行作業(2)
+[X25] [Git] 並行作業(3)
+[X26] [Git] 並行作業(4)
+[X27] [Git] 並行作業(5)
+[X28] [Git] 並行作業(6)
+[X29] [GitHub] 並行作業(7)
+[X30] [GitHub] 並行作業(8)
+[X31] [Git] 並行作業(9)
+[X32] [Git] ブランチ削除
+[Y01] [Npm] パッケージ管理「npm」のインストール
+[Y02] [Npm] グローバルインストール
+[Y03] [Npm] ローカルインストール
+[Y04] [Npm] パッケージのインストール
+[Y05] [Npm] パッケージのアンインストール
+[Y06] [Npm] パッケージの情報を表示
+[Y07] [Npm] パッケージをバージョン指定でインストール
+[Y08] [Npm] パッケージのアップデート
+[Y09] [Npm] 設定ファイル「package.json」を確認
+[Y10] [Npm] 設定ファイル「package.json」でプロジェクト作成
+[Y11] [Npm] 設定ファイル「package.json」の編集(1)
+[Y12] [Npm] 設定ファイル「package.json」の編集(2)
+[Y13] [Npm] 設定ファイル「package.json」の編集(3)
+[Y14] [Npm] 設定ファイル「package.json」の編集(4)
+[Y15] [Npm] 設定ファイル「package.json」の編集(5)
+[Y16] [Npm] 設定ファイル「package.json」の設定でプロジェクト構成
+[Y17] [Npm] 設定ファイル「package.json」の設定で他プロジェクト構成
+[Y18] [Npm] プロジェクトでアプリケーション作成
+[001] How to Use package.json, the Core of Any Node.js Project or npm Package
+[002] Add a Description to Your package.json
+[003] Add Keywords to Your package.json
+[004] Add a License to Your package.json
+[005] Add a Version to Your package.json
+[006] Expand Your Project with External Packages from npm
+[007] Manage npm Dependencies By Understanding Semantic Versioning
+[008] Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
+[009] Use the Caret-Character to Use the Latest Minor Version of a Dependency
+[010] Remove a Package from Your Dependencies
 ================================================================================
-[X1]
-  ブランチ「master」で新規作成
+[X01]
+  [Git] 設定確認
   
 [内容]
-  ブランチ「master(デフォルト)」でソース記述
-  
-  サービス「GitHub」
-    User  : Makoto-Araki
-    Pass  : (秘密)
-    Name  : APP(リポジトリ) -> 作成直後のリポジトリ内は空
-    URI   : https://github.com/Makoto-Araki/APP.git
-    Token : (パスワード認証廃止でアップの度に生成が必要)
+  同上
   
 [確認]
-  $ cd $HOME/APP
-  $ git init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Initialized empty Git repository in /home/makoto/APP/.git/
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git config --global -l
+  $ cd $HOME
+  $ git config --global --list (設定値一覧)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -44,101 +76,164 @@
   user.email=mj-araki@ivy.ocn.ne.jp
   --------------------------------------------------
   
+  $ cd $HOME
+  $ git config --global user.name (特定の項目)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Makoto-Araki
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global user.email (特定の項目)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  mj-araki@ivy.ocn.ne.jp
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X02]
+  [Git] ユーザー名とメールアドレス登録
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ git config --global user.name Makoto-Araki (ユーザー名)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global user.email mj-araki@ivy.ocn.ne.jp (メールアドレス)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global --list (設定値一覧)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  user.name=Makoto-Araki
+  user.email=mj-araki@ivy.ocn.ne.jp
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X03]
+  [Git] エディタ設定
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ git config --global core.editor (エディタ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global core.editor "/usr/bin/vim" (エディタ設定)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global core.editor (エディタ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /usr/bin/vim
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X04]
+  [Git] 設定削除
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ git config --global --unset core.editor (設定削除)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global core.editor (設定確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ git config --global core.editor "/usr/bin/vim" (再設定)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X05]
+  [Git] ローカルリポジトリ作成
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ mkdir APP (ローカルリポジトリ用のディレクトリ作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
   $ cd $HOME/APP
-  $ git remote add APP https://github.com/Makoto-Araki/APP.git
+  $ vi sample.md (ファイル作成) => マークダウン記法を使用
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし) -> サービス「GitHub」のリポジトリ「APP」をローカル名「APP」で紐付け
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git remote -v
+  $ git init (ローカルリポジトリ作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  APP	https://github.com/Makoto-Araki/APP.git (fetch)
-  APP	https://github.com/Makoto-Araki/APP.git (push)
+  Initialized empty Git repository in /home/makoto/APP/.git/
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git branch
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  * master -> ローカルブランチが「master」を確認
-  --------------------------------------------------
-  
-  $ cd $HOME/APP/mod
-  $ vi mod01.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // 関数 + 名前付きエクスポート
-  export const myAdd1 = (x, y) => x + y;
-  --------------------------------------------------
-  
-  $ cd $HOME/APP/mod
-  $ vi mod02.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // 関数 + 名前付きエクスポート
-  export const myAdd2 = (x, y, z) => x + y + z;
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ vi myApp.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // 名前付きエクスポートのインポート + 別名
-  import { myAdd1 as add1 } from './mod/mod01.js';
-  import { myAdd2 as add2 } from './mod/mod02.js';
-  
-  // インポート関数を使用
-  console.log(add1(2, 1));     // 3
-  console.log(add2(3, 2, 1));  // 6
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ vi myApp.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY APP</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JSスクリプト指定
-  <script type='module' src='myApp.js'></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ (ブラウザ起動)
-  $ http://localhost/myApp.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  3  // add1(2, 1)
-  6  // add2(3, 2, 1)
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git status
+  $ git status (ローカルリポジトリの状態を確認)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -149,23 +244,30 @@
   # Untracked files:
   #   (use "git add <file>..." to include in what will be committed)
   #
-  #	mod/        // コミット対象
-  #	myApp.html  // コミット対象
-  #	myApp.js    // コミット対象
-  #
+  # sample.md
   nothing added to commit but untracked files present (use "git add" to track)
   --------------------------------------------------
   
+  以下の記録に続く
+  
+================================================================================
+[X06]
+  [Git] ステージングエリア登録
+  
+[内容]
+  同上
+  
+[確認]
   $ cd $HOME/APP
-  $ git add mod myApp*
+  $ git add sample.md (ステージングエリア登録)
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし) -> コミット対象にする
+  (出力なし)
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git status
+  $ git status (ローカルリポジトリの状態を確認)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -176,208 +278,245 @@
   # Changes to be committed:
   #   (use "git rm --cached <file>..." to unstage)
   #
-  #	new file:   mod/mod01.js  // コミット対象
-  #	new file:   mod/mod02.js  // コミット対象
-  #	new file:   myApp.html    // コミット対象
-  #	new file:   myApp.js      // コミット対象
+  # new file:   sample.md
   #
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git commit -m '2022-06-06-01'
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  [master (root-commit) 6544a93] 2022-06-06-01
-    4 files changed, 26 insertions(+)
-  
-  // コミットされたファイル一覧
-  create mode 100644 mod/mod01.js
-  create mode 100644 mod/mod02.js
-  create mode 100644 myApp.html
-  create mode 100644 myApp.js
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git status
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  # On branch master
-  nothing to commit, working directory clean
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git push APP master
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Counting objects: 7, done.
-  Delta compression using up to 4 threads.
-  Compressing objects: 100% (5/5), done.
-  Writing objects: 100% (7/7), 834 bytes | 0 bytes/s, done.
-  Total 7 (delta 0), reused 0 (delta 0)
-  
-  // ローカルブランチ「master」からリポジトリ「APP」のリモートブランチ「master」へ送信(push)
-  To https://github.com/Makoto-Araki/APP.git
-  * [new branch]      master -> master
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[X2]
-  ブランチ「sub1」で機能追加
+[X07]
+  [Git] ファイル差分
   
 [内容]
-  ブランチ「sub1」で関数「sub1」を機能追加
-  
-  サービス「GitHub」
-    User  : Makoto-Araki
-    Pass  : (秘密)
-    Name  : APP(リポジトリ)
-    URI   : https://github.com/Makoto-Araki/APP.git
-    Token : (パスワード認証廃止でアップの度に生成が必要)
+  同上
   
 [確認]
   $ cd $HOME/APP
-  $ git pull APP master
+  $ vi sample.md (ファイル変更)
   
   コマンドの実行結果
   --------------------------------------------------
-  // リモートリポジトリ「APP」のブランチ「master」からローカルリポジトリのブランチ「master」にダウンロード
-  From https://github.com/Makoto-Araki/APP
-  * branch            master     -> FETCH_HEAD
-  Already up-to-date.
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣  // 追加
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git branch
+  $ git diff (ワーキングエリアとステージングエリアのファイル差分)
   
   コマンドの実行結果
   --------------------------------------------------
-  * master  // 作業ブランチ「master」
+  diff --git a/sample.md b/sample.md
+  index 5d08e34..aa2db1b 100644
+  --- a/sample.md           // ステージングエリア
+  +++ b/sample.md           // ワーキングエリア
+  @@ -2,3 +2,4 @@           // ステージングエリア「2,3」 ワーキングエリア「2,4」
+   ## 年表一覧              // 同一
+   ### 1582年 本能寺の変    // 同一
+   ### 1600年 関ヶ原の戦い  // 同一
+  +### 1615年 大坂夏の陣    // ワーキングエリアで追加
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git branch sub1
+  $ git diff --cached (ステージングエリアとデータベースエリアのファイル差分)
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし) -> ローカルリポジトリにブランチ「sub1」を作成
+  diff --git a/sample.md b/sample.md
+  new file mode 100644
+  index 0000000..5d08e34
+  --- /dev/null             // データベースエリア
+  +++ b/sample.md           // ステージングエリア
+  @@ -0,0 +1,4 @@           // データベースエリア「0,0」 ステージングエリア「1,4」
+  +# 日本史重要年表         // ステージングエリアで追加
+  +## 年表一覧              // ステージングエリアで追加
+  +### 1582年 本能寺の変    // ステージングエリアで追加
+  +### 1600年 関ヶ原の戦い  // ステージングエリアで追加
   --------------------------------------------------
   
+  以下の記録に続く
+  
+================================================================================
+[X08]
+  [Git] ファイルコミット
+  
+[内容]
+  同上
+  
+[確認]
   $ cd $HOME/APP
-  $ git branch
+  $ git status (ローカルリポジトリの状態を確認)
   
   コマンドの実行結果
   --------------------------------------------------
-  * master  // 作業ブランチ「master」
-    sub1    // 作成されたブランチ「sub1」
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git checkout sub1
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Switched to branch 'sub1'  // 作業ブランチ変更
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git branch
-  
-  コマンドの実行結果
-  --------------------------------------------------
-    master  // 現在は作業ブランチではない
-  * sub1    // 作業ブランチ
-  --------------------------------------------------
-  
-  $ cd $HOME/APP/mod
-  $ vi mod01.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // 関数 + 名前付きエクスポート
-  export const myAdd1 = (x, y) => x + y;
-  export const mySub1 = (x, y) => x - y;  // 追加
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ vi myApp.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // 名前付きエクスポートのインポート + 別名
-  import { myAdd1 as add1 } from './mod/mod01.js';
-  import { myAdd2 as add2 } from './mod/mod02.js';
-  import { mySub1 as sub1 } from './mod/mod01.js';  // 追加
-  
-  // インポート関数を使用
-  console.log(add1(2, 1));     // 3
-  console.log(add2(3, 2, 1));  // 6
-  console.log(sub1(2, 1));     // 1 追加
-  --------------------------------------------------
-  
-  $ (ブラウザ起動)
-  $ http://localhost/myApp.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  3  // add1(2, 1)
-  6  // add2(3, 2, 1)
-  1  // sub1(2, 1)
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git status
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  # On branch sub1
+  # On branch master
+  #
+  # Initial commit
+  #
+  # Changes to be committed:
+  #   (use "git rm --cached <file>..." to unstage)
+  #
+  # new file:   sample.md   // ステージングエリア
+  #
   # Changes not staged for commit:
   #   (use "git add <file>..." to update what will be committed)
   #   (use "git checkout -- <file>..." to discard changes in working directory)
   #
-  #	modified:   mod/mod01.js  // コミット対象
-  #	modified:   myApp.js      // コミット対象
+  # modified:   sample.md   // ワーキングエリア
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit (ファイルコミット) => エディタ(vim)が起動
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  作成開始        // 一行目に要約を記述
+                  // 二行目は空白行
+  年表一覧を作成  // 三行目以降は詳細を記述
+  # Please enter the commit message for your changes. Lines starting
+  # with '#' will be ignored, and an empty message aborts the commit.
+  # On branch master
+  #
+  # Initial commit
+  #
+  # Changes to be committed:
+  #   (use "git rm --cached <file>..." to unstage)
+  #
+  #       new file:   sample.md
+  #
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  #       modified:   sample.md
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ (コミット完了メッセージ出力)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master (root-commit) 4e2fbbb] 作成開始
+   1 file changed, 4 insertions(+)
+   create mode 100644 sample.md
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   sample.md   // ワーキングエリア
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X09]
+  [Git] 簡易コミット
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes to be committed:
+  #   (use "git reset HEAD <file>..." to unstage)
+  #
+  # modified:   sample.md   // ステージングエリア
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '年表追加' (簡易コミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master c780059] 年表追加
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X10]
+  [Git] ワーキングエリアの変更取消
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱  // 追加
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   sample.md   // ワーキングエリア
   #
   no changes added to commit (use "git add" and/or "git commit -a")
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git add mod/mod01.js myApp.js
+  $ git checkout -- sample.md (ワーキングエリアの変更取消)
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし) -> コミット対象にする
+  (出力なし)
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git status
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  # On branch sub1
-  # Changes to be committed:
-  #   (use "git reset HEAD <file>..." to unstage)
-  #
-  #	modified:   mod/mod01.js  // コミット対象
-  #	modified:   myApp.js      // コミット対象
-  #
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git commit -m '2022-06-06-02'
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  [sub1 736d06b] 2022-06-06-02
-    2 files changed, 3 insertions(+)
-  --------------------------------------------------
-  
-  $ cd $HOME/APP
-  $ git status
+  $ git status (ローカルリポジトリの状態を確認)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -386,94 +525,861 @@
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git push -u APP sub1
+  $ vi sample.md (ファイル確認)
   
   コマンドの実行結果
   --------------------------------------------------
-  Counting objects: 9, done.
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣  // 1737年 の年表追加が元に戻っている
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X11]
+  [Git] ステージングエリアの変更取消
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱  // 追加
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   sample.md   // ワーキングエリア
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes to be committed:
+  #   (use "git reset HEAD <file>..." to unstage)
+  #
+  # modified:   sample.md   // ステージングエリア
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git reset HEAD sample.md (ステージングエリアの変更取消)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Unstaged changes after reset:  // ステージングエリア登録が解除
+  M sample.md
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   sample.md   // ワーキングエリア
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱  // ファイル変更後の状態のまま
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout -- sample.md (ワーキングエリアの変更取消)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X12]
+  [Git] ファイル削除
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ touch test01.txt (ファイル作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add test01.txt (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m 'ファイル追加' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master 6f22278] ファイル追加
+   1 file changed, 0 insertions(+), 0 deletions(-)
+   create mode 100644 test01.txt
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ ls -lh (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-rw-r--. 1 makoto makoto 127  6月 23 13:23 sample.md
+  -rw-rw-r--. 1 makoto makoto   0  6月 23 13:25 test01.txt
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git rm test01.txt (ファイル削除)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  rm 'test01.txt'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ ls -lh (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-rw-r--. 1 makoto makoto 211  6月 23 09:53 sample.md
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Changes to be committed:
+  #   (use "git reset HEAD <file>..." to unstage)
+  #
+  # deleted:    test01.txt
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m 'ファイル削除' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master 4b0fcb5] ファイル削除
+   1 file changed, 0 insertions(+), 0 deletions(-)
+   delete mode 100644 test01.txt  // データベース上からもファイル削除完了
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X13]
+  [Git] 管理対象外ファイル
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ touch test02.txt (ファイル作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Untracked files:
+  #   (use "git add <file>..." to include in what will be committed)
+  #
+  # test02.txt  // 管理対象外ファイル(予定)
+  nothing added to commit but untracked files present (use "git add" to track)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi .gitignore (管理対象外ファイルを設定ファイルに登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  test02.txt
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  # Untracked files:
+  #   (use "git add <file>..." to include in what will be committed)
+  #
+  # .gitignore  // 管理対象外ファイルは表示されず設定ファイルが表示
+  nothing added to commit but untracked files present (use "git add" to track)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add .gitignore (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '管理対象外ファイルを作成' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [master 8575682] 管理対象外ファイルを作成
+   1 file changed, 1 insertion(+)
+   create mode 100644 .gitignore
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch master
+  nothing to commit, working directory clean
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X14]
+  [Git] コミット履歴
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ git log (コミット履歴)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  commit  8575682ace48e3cc064b9e307bbc9633e812bf72
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:36:39 2022 +0900
+    
+    管理対象外ファイルを作成
+    
+  commit  4b0fcb5ba621b05e98d592573fbfc6d0a7e1ce08
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:29:16 2022 +0900
+    
+    ファイル削除
+    
+  commit  6f222780567beaf3946d6a77b2f718de27aa8ab7
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:26:31 2022 +0900
+    
+    ファイル追加
+    
+  commit  c780059b11609b3199a8d4746b5d20885b4263ac
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:10:52 2022 +0900
+    
+    年表追加
+    
+  commit  4e2fbbba7fcdd0d6e3e3b8f6f8532b32146112d8
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:05:27 2022 +0900
+    
+    作成開始
+    
+    年表一覧を作成
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git log -p (差分付コミット履歴)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  commit  8575682ace48e3cc064b9e307bbc9633e812bf72
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:36:39 2022 +0900
+    
+    管理対象外ファイルを作成
+    
+  diff --git a/.gitignore b/.gitignore
+  new file mode 100644
+  index 0000000..b468276
+  --- /dev/null
+  +++ b/.gitignore
+  @@ -0,0 +1 @@
+  +test02.txt
+  
+  commit  4b0fcb5ba621b05e98d592573fbfc6d0a7e1ce08
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:29:16 2022 +0900
+    
+    ファイル削除
+    
+  diff --git a/test01.txt b/test01.txt
+  deleted file mode 100644
+  index e69de29..0000000
+  
+  commit  6f222780567beaf3946d6a77b2f718de27aa8ab7
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:26:31 2022 +0900
+    
+    ファイル追加
+    
+  diff --git a/test01.txt b/test01.txt
+  new file mode 100644
+  index 0000000..e69de29
+  
+  commit  c780059b11609b3199a8d4746b5d20885b4263ac
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:10:52 2022 +0900
+    
+    年表追加
+    
+  diff --git a/sample.md b/sample.md
+  index 5d08e34..aa2db1b 100644
+  --- a/sample.md
+  +++ b/sample.md
+  @@ -2,3 +2,4 @@
+   ## 年表一覧
+   ### 1582年 本能寺の変
+   ### 1600年 関ヶ原の戦い
+  +### 1615年 大坂夏の陣
+  
+  commit  4e2fbbba7fcdd0d6e3e3b8f6f8532b32146112d8
+  Author: Makoto-Araki <mj-araki@ivy.ocn.ne.jp>
+  Date:   Thu Jun 23 13:05:27 2022 +0900
+    
+    作成開始
+    
+    年表一覧を作成
+    
+  diff --git a/sample.md b/sample.md
+  new file mode 100644
+  index 0000000..5d08e34
+  --- /dev/null
+  +++ b/sample.md
+  @@ -0,0 +1,4 @@
+  +# 日本史重要年表
+  +## 年表一覧
+  +### 1582年 本能寺の変
+  +### 1600年 関ヶ原の戦い
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X15]
+  [Git] リモートリポジトリ設定
+  
+[内容]
+  アカウント
+    User  : Makoto-Araki
+    Email : mj-araki@ivy.ocn.ne.jp
+    Pass  : (秘密)
+    Token : (パスワード認証廃止のため「Setting」から予め生成しておく)
+  
+  リモートリポジトリ
+    Name  : APP(リポジトリ) => 作成直後のため中身は空
+    URI   : https://github.com/Makoto-Araki/APP.git
+  
+[確認]
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote add APP https://github.com/Makoto-Araki/APP.git => 慣例では「APP」を「origin」にするらしい
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし) => リモートリポジトリ「APP」をローカル名「APP」で紐付け
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  APP https://github.com/Makoto-Araki/APP.git (fetch)
+  APP https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X16]
+  [Git] リモートリポジトリへプッシュ
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => まだブランチ「master」しか存在しない
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push APP master (リモートリポジトリへプッシュ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 13, done.
   Delta compression using up to 4 threads.
-  Compressing objects: 100% (5/5), done.
-  Writing objects: 100% (5/5), 548 bytes | 0 bytes/s, done.
-  Total 5 (delta 1), reused 0 (delta 0)
+  Compressing objects: 100% (9/9), done.
+  Writing objects: 100% (13/13), 1.26 KiB | 0 bytes/s, done.
+  Total 13 (delta 2), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (2/2), done.
+  
+  // リモートリポジトリ「APP」にブランチ「master」を作成
+  To https://github.com/Makoto-Araki/APP.git
+   * [new branch]    master -> master
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ rm -rf APP (ローカルリポジトリの削除)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし) => リモートリポジトリをクローンするために一旦削除
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X17]
+  [Git] リモートリポジトリをクローン
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ git clone https://github.com/Makoto-Araki/APP.git (リモートリポジトリをクローン)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Cloning into 'APP'...
+  remote: Enumerating objects: 13, done.
+  remote: Counting objects: 100% (13/13), done.
+  remote: Compressing objects: 100% (7/7), done.
+  remote: Total 13 (delta 2), reused 13 (delta 2), pack-reused 0
+  Unpacking objects: 100% (13/13), done.
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ ls -lhA (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  drwxrwxr-x. 8 makoto makoto 163  6月 23 19:09 .git
+  -rw-rw-r--. 1 makoto makoto  11  6月 23 19:09 .gitignore
+  -rw-rw-r--. 1 makoto makoto 127  6月 23 19:09 sample.md
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定) => クローン時にリモートリポジトリ設定も対象となるようだ
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  APP https://github.com/Makoto-Araki/APP.git (fetch)
+  APP https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X18]
+  [Git] 別ブランチでファイル修正
+  
+[内容]
+  作業指示1
+    年表に「1637年 島原の乱」を追加する作業を別ブランチ「work01」で行う
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => 現在はブランチ「master」にいる
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch work01 (ブランチ作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => まだブランチ「master」にいる
+    work01
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout work01 (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'work01'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+  * work01 => ブランチ「work01」に切り替わった
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱  // 追加
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch work01  // ブランチ「work01」
+  # Changes not staged for commit:
+  #   (use "git add <file>..." to update what will be committed)
+  #   (use "git checkout -- <file>..." to discard changes in working directory)
+  #
+  # modified:   sample.md   // ワーキングエリア
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch work01  // ブランチ「work01」
+  # Changes to be committed:
+  #   (use "git reset HEAD <file>..." to unstage)
+  #
+  # modified:   sample.md   // ステージングエリア
+  #
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '年表追加「1637年」' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [work01 cbda0d3] 年表追加「1637年」
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git diff master (ブランチ「master」との差分を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  diff --git a/sample.md b/sample.md
+  index aa2db1b..4919f41 100644
+  --- a/sample.md  // ブランチ「master」
+  +++ b/sample.md  // ブランチ「work01」
+  @@ -3,3 +3,4 @@
+   ### 1582年 本能寺の変
+   ### 1600年 関ヶ原の戦い
+   ### 1615年 大坂夏の陣
+  +### 1637年 島原の乱  // ブランチ「work01」で追加
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定) => リモートリポジトリ名が「APP」からデフォルトの「origin」に戻っていた
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  origin https://github.com/Makoto-Araki/APP.git (fetch)
+  origin https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push origin work01 (リモートリポジトリへプッシュ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 5, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (3/3), 367 bytes | 0 bytes/s, done.
+  Total 3 (delta 1), reused 0 (delta 0)
+  
+  // プルリクエストがブランチ「work01」用に作成
   remote: Resolving deltas: 100% (1/1), completed with 1 local object.
   remote: 
-  remote: Create a pull request for 'sub1' on GitHub by visiting:
-  remote:      https://github.com/Makoto-Araki/APP/pull/new/sub1
+  remote: Create a pull request for 'work01' on GitHub by visiting:
+  remote: https://github.com/Makoto-Araki/APP/pull/new/work01  // プルリクエストの場所
   remote: 
+  
+  // リモートリポジトリ「APP」にブランチ「work01」を作成
   To https://github.com/Makoto-Araki/APP.git
-    * [new branch]      sub1 -> sub1  // ローカルブランチ「sub1」をリモートブランチ「sub1」として作成
-  Branch sub1 set up to track remote branch sub1 from APP.
+   * [new branch]    work01 -> work01
   --------------------------------------------------
   
-    $ (下記の操作を行う)
-    $ (GitHub -> Makoto-Araki/APP -> タブ「Pull-Request」-> ボタン「Compute & Pull Request」)
-    
-    コマンドの実行結果
-    --------------------------------------------------
-    // 第一段階
-    画面下部の各ファイルの修正内容を確認
-
-    // 第二段階
-    上記がOKの場合はコメント欄にメッセージ追加
-
-    // 第三段階
-    ボタン「Create Pull Request」
-    --------------------------------------------------
-    
-    $ (下記の操作を行う)
-    $ (GitHub -> Makoto-Araki/APP -> タブ「Commits」-> ボタン「Merge Pull Request」)
-
-    コマンドの実行結果
-    --------------------------------------------------
-    // 第一段階
-    画面下部のコメント欄にメッセージ追加
-
-    // 第二段階
-    ボタン「Confirm Merge」-> ブランチ「sub1」の「Pull-Request」が完了した
-
-    // 第三段階
-    ボタン「Delete Branch」-> ブランチ「sub1」が削除された
-    --------------------------------------------------
-    
-  $ cd $HOME/APP
-  $ git checkout master
+  以下の記録に続く
+  
+================================================================================
+[X19]
+  [GitHub] プルリクエストでレビュー依頼
+  
+[内容]
+  作業者視点
+    作業完了を「GitHub」上のプルリクエストに報告してレビュー依頼を行う
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/new/work01
+  $ [Create pull request] => [Conversation] => [Write] => 作業完了しました => [Create Pull Request]
   
   コマンドの実行結果
   --------------------------------------------------
-  Switched to branch 'master'  // 作業ブランチ変更
+  (省略) => 作業完了を報告
   --------------------------------------------------
   
-  $ cd $HOME/APP
-  $ git branch
+  $ https://github.com/Makoto-Araki/APP/pull/1
+  $ [Conversation] => [Reviewers] => (指定できるレビューワーが存在しないため続行不可) => 別アカウントを招待？
   
   コマンドの実行結果
   --------------------------------------------------
-  * master  // 作業ブランチ
-    sub1    // 現在は作業ブランチではない
+  (省略) => 続行不可
   --------------------------------------------------
   
-  $ cd $HOME/APP
-  $ git branch -d sub1
+  以下の記録に続く
+  
+================================================================================
+[X20]
+  [GitHub] プルリクエストをレビュー
+  
+[内容]
+  管理者視点
+    プルリクエストの作業内容を確認してコメントとレビュー結果を記述する
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/1
+  $ [Files changed] => [Review changes] => [Write] => [コメント記述] => [Comment] => [Submit review]
   
   コマンドの実行結果
   --------------------------------------------------
-  // 警告が出るが「GitHub」上でマージ済みのためブランチ「sub1」の削除は問題なし
-  
-  warning: deleting branch 'sub1' that has been merged to
-           'refs/remotes/APP/sub1', but not yet merged to HEAD.
-  Deleted branch sub1 (was 736d06b).
+  (省略) => コメント記述 => 自アカウントでも可能
   --------------------------------------------------
   
-  $ cd $HOME/APP
-  $ git branch
+  $ https://github.com/Makoto-Araki/APP/pull/1
+  $ [Conversation] => [This branch has no conflicts with the base branch] => [Approve changes(承認)]
   
   コマンドの実行結果
   --------------------------------------------------
-  * master  // 作業ブランチ
+  (省略) => レビュー結果 => 自アカウントでは「Approve changes」が表示されないため続行不可
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X21]
+  [GitHub] 別ブランチをマージ
+  
+[内容]
+  作業者視点
+    別ブランチ「work01」をブランチ「master」にマージ
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/1
+  $ [Conversation] => [Merge pull request] => [▼(右隣)] => [Create a merge commit]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => コミット履歴とマージ履歴の持ち方を選択
+  --------------------------------------------------
+  
+  $ https://github.com/Makoto-Araki/APP/pull/1
+  $ [Conversation] => [Merge pull request] => [Confirm merge]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 画面上に「Pull request successfully merged and closed」が出力
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X22]
+  [Git] リモートリポジトリの内容をローカルリポジトリにマージ
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+  * work01 => ブランチ「work01」にいる
   --------------------------------------------------
   
   $ cd $HOME/APP
-  $ git pull APP master
+  $ git checkout master (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'master'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => ブランチ「master」に切替完了
+    work01
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定) => 自分で設定した「APP」が「origin」に置換されている
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  origin https://github.com/Makoto-Araki/APP.git (fetch)
+  origin https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git pull origin master (リモートリポジトリのブランチ「master」の内容をローカルリポジトリにマージ)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -482,22 +1388,690 @@
   remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
   Unpacking objects: 100% (1/1), done.
   From https://github.com/Makoto-Araki/APP
-    * branch            master     -> FETCH_HEAD
-  Updating 6544a93..816beb3
+   * branch            master     -> FETCH_HEAD
+  Updating 8575682..03c8b24
   Fast-forward
-  mod/mod01.js | 1 +   // 1 箇所追加
-  myApp.js     | 2 ++  // 2 箇所追加
-    2 files changed, 3 insertions(+)
+   sample.md | 1 +
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[X3]
-  実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+[X23]
+  [Git] 並行作業(1)
   
 [内容]
-  実行環境「Node」と付属するパッケージ管理「npm」の導入と基本操作
+  作業指示2
+    年表に「1603年 江戸幕府開府」を追加する作業を別ブランチ「work02」で行う
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => ブランチ「master」にいる
+    work01
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch work02 (ブランチ作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout work02 (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'work02'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1603年 江戸幕府開府  // 追加
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '年表追加「1603年」' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [work02 9e89df4] 年表追加「1603年」
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push origin work02 (リモートリポジトリへプッシュ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 5, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (3/3), 373 bytes | 0 bytes/s, done.
+  Total 3 (delta 1), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+  remote: 
+  remote: Create a pull request for 'work02' on GitHub by visiting:
+  remote: https://github.com/Makoto-Araki/APP/pull/new/work02
+  remote: 
+  To https://github.com/Makoto-Araki/APP.git
+   * [new branch]    work02 -> work02
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X24]
+  [Git] 並行作業(2)
+  
+[内容]
+  作業指示3
+    年表に「1614年 大坂冬の陣」を追加する作業を別ブランチ「work03」で行う
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+    work01
+  * work02 => ブランチ「work02」にいる
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch work03 (ブランチ作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout work03 (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'work03'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1614年 大坂冬の陣  // 追加
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '年表追加「1614年」' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [work03 9498ccd] 年表追加「1614年」
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push origin work03 (リモートリポジトリへプッシュ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 5, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (3/3), 371 bytes | 0 bytes/s, done.
+  Total 3 (delta 1), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+  remote: 
+  remote: Create a pull request for 'work03' on GitHub by visiting:
+  remote: https://github.com/Makoto-Araki/APP/pull/new/work03
+  remote: 
+  To https://github.com/Makoto-Araki/APP.git
+   * [new branch]    work03 -> work03
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X25]
+  [GitHub] 並行作業(3)
+  
+[内容]
+  作業指示2のブランチ「work02」のプルリクエスト作成
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/new/work02
+  $ [Create pull request] => [Conversation] => [Write] => 作業完了しました => [Create Pull Request]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 作業完了を報告
+  --------------------------------------------------
+  
+  $ https://github.com/Makoto-Araki/APP/pull/2
+  $ [Conversation] => [Reviewers] => (指定できるレビューワーが存在しないため続行不可) => 別アカウントを招待？
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 続行不可
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X26]
+  [GitHub] 並行作業(4)
+  
+[内容]
+  作業指示2のブランチ「work02」をブランチ「master」にマージ
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/2
+  $ [Conversation] => [Merge pull request] => [▼(右隣)] => [Create a merge commit]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => コミット履歴とマージ履歴の持ち方を選択
+  --------------------------------------------------
+  
+  $ https://github.com/Makoto-Araki/APP/pull/2
+  $ [Conversation] => [Merge pull request] => [Confirm merge]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 画面上に「Pull request successfully merged and closed」が出力
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X27]
+  [Git] 並行作業(5)
+  
+[内容]
+  リモートリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「master」にマージ
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+    work01
+    work02
+  * work03 => ブランチ「work03」にいる
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout master (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'master'
+  Your branch is ahead of 'origin/master' by 2 commits.
+    (use "git push" to publish your local commits)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => ブランチ「master」に切替完了
+    work01
+    work02
+    work03
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定) => 自分で設定した「APP」が「origin」に置換されている
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  origin https://github.com/Makoto-Araki/APP.git (fetch)
+  origin https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git pull origin master (リモートリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「master」にマージ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  remote: Enumerating objects: 1, done.
+  remote: Counting objects: 100% (1/1), done.
+  remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+  Unpacking objects: 100% (1/1), done.
+  From https://github.com/Makoto-Araki/APP
+   * branch            master     -> FETCH_HEAD
+  Updating 03c8b24..a1ea74a
+  Fast-forward
+   sample.md | 1 +
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1603年 江戸幕府開府  // ブランチ「work02」の内容が反映
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X28]
+  [Git] 並行作業(6)
+  
+[内容]
+  ローカルリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「work03」にマージ
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => ブランチ「master」にいる
+    work01
+    work02
+    work03
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout work03 (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'work03'
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+    work01
+    work02
+  * work03 => ブランチ「master」に切替完了
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+                         // ブランチ「work02」の修正内容がここに反映される予定
+  ### 1614年 大坂冬の陣  // ブランチ「work03」の修正内容
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git merge master (ローカルリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「work03」にマージ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Auto-merging sample.md
+  CONFLICT (content): Merge conflict in sample.md  // コンフリクト発生
+  Automatic merge failed; fix conflicts and then commit the result.
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git status (ローカルリポジトリの状態を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # On branch work03
+  # You have unmerged paths.
+  #   (fix conflicts and run "git commit")
+  #
+  # Unmerged paths:
+  #   (use "git add <file>..." to mark resolution)
+  #
+  # both modified:      sample.md
+  #
+  no changes added to commit (use "git add" and/or "git commit -a")
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ cat sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  <<<<<<< HEAD             // ブランチ「work03」の元々の内容
+  ### 1614年 大坂冬の陣    // ブランチ「work03」の元々の内容
+  =======                  // 
+  ### 1603年 江戸幕府開府  // ブランチ「master」から取得した内容
+  >>>>>>> master           // ブランチ「master」から取得した内容
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル変更)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1603年 江戸幕府開府
+  ### 1614年 大坂冬の陣
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git add sample.md (ステージングエリア登録)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git commit -m '年表追加「1614年」' (ファイルコミット)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [work03 9498ccd] 年表追加「1614年」
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git push origin work03 (リモートリポジトリへプッシュ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Counting objects: 7, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (3/3), 398 bytes | 0 bytes/s, done.
+  Total 3 (delta 1), reused 0 (delta 0)
+  remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+  To https://github.com/Makoto-Araki/APP.git
+     9498ccd..003cd57  work03 -> work03
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X29]
+  [GitHub] 並行作業(7)
+  
+[内容]
+  作業指示3のブランチ「work03」のプルリクエスト作成
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/new/work03
+  $ [Create pull request] => [Conversation] => [Write] => 作業完了しました => [Create Pull Request]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 作業完了を報告
+  --------------------------------------------------
+  
+  $ https://github.com/Makoto-Araki/APP/pull/2
+  $ [Conversation] => [Reviewers] => (指定できるレビューワーが存在しないため続行不可) => 別アカウントを招待？
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 続行不可
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X30]
+  [GitHub] 並行作業(8)
+  
+[内容]
+  作業指示3のブランチ「work03」をブランチ「master」にマージ
+  
+[確認]
+  $ https://github.com/Makoto-Araki/APP/pull/3
+  $ [Conversation] => [Merge pull request] => [▼(右隣)] => [Create a merge commit]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => コミット履歴とマージ履歴の持ち方を選択
+  --------------------------------------------------
+  
+  $ https://github.com/Makoto-Araki/APP/pull/3
+  $ [Conversation] => [Merge pull request] => [Confirm merge]
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 画面上に「Pull request successfully merged and closed」が出力
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X31]
+  [Git] 並行作業(9)
+  
+[内容]
+  リモートリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「master」にマージ
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+    master
+    work01
+    work02
+  * work03 => ブランチ「work03」にいる
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git checkout master (ブランチ切替)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Switched to branch 'master'
+  Your branch is ahead of 'origin/master' by 4 commits.
+    (use "git push" to publish your local commits)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master => ブランチ「master」に切替完了
+    work01
+    work02
+    work03
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1603年 江戸幕府開府
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git remote -v (リモートリポジトリ設定) => 自分で設定した「APP」が「origin」に置換されている
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  origin https://github.com/Makoto-Araki/APP.git (fetch)
+  origin https://github.com/Makoto-Araki/APP.git (push)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git pull origin master (リモートリポジトリのブランチ「master」の内容をローカルリポジトリのブランチ「master」にマージ)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  remote: Enumerating objects: 1, done.
+  remote: Counting objects: 100% (1/1), done.
+  remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0
+  Unpacking objects: 100% (1/1), done.
+  From https://github.com/Makoto-Araki/APP
+   * branch            master     -> FETCH_HEAD
+  Updating a1ea74a..26d7ef4
+  Fast-forward
+   sample.md | 1 +
+   1 file changed, 1 insertion(+)
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ vi sample.md (ファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  # 日本史重要年表
+  ## 年表一覧
+  ### 1582年 本能寺の変
+  ### 1600年 関ヶ原の戦い
+  ### 1603年 江戸幕府開府
+  ### 1614年 大坂冬の陣  // ブランチ「work03」の修正内容
+  ### 1615年 大坂夏の陣
+  ### 1637年 島原の乱
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X32]
+  [Git] ブランチ削除
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master
+    work01
+    work02
+    work03
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch --delete work01 (ブランチ削除)
+  $ git branch --delete work02 (ブランチ削除)
+  $ git branch --delete work03 (ブランチ削除)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Deleted branch work01 (was cbda0d3).
+  Deleted branch work02 (was 9e89df4).
+  Deleted branch work03 (was 003cd57).
+  --------------------------------------------------
+  
+  $ cd $HOME/APP
+  $ git branch (ブランチ確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * master
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y01]
+  [Npm] パッケージ管理「npm」のインストール
+  
+[内容]
+  JS実行環境「Node」と付属パッケージ管理「npm」のインストールとバージョン調査
   
 [確認]
   $ cd $HOME
@@ -505,7 +2079,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> 実行環境「Node」とパッケージ管理「npm」を導入
+  (省略) => 実行環境「Node」とパッケージ管理「npm」を導入
   --------------------------------------------------
   
   $ cd $HOME
@@ -513,7 +2087,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  v6.17.1 -> 実行環境「Node」のバージョンが古い
+  v16.15.00 => 問題なし
   --------------------------------------------------
   
   $ cd $HOME
@@ -521,244 +2095,377 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  3.10.10 -> パッケージ管理「npm」のバージョンが古い
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ sudo yum -y remove nodejs npm
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> リポジトリ内のものはバージョンが古いので削除
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ sudo yum -y install https://rpm.nodesource.com/pub_11.x/el/7/x86_64/nodesource-release-el7-1.noarch.rpm
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 専用リポジトリをインストール
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ ls -ltrA /etc/yum.repos.d
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  -rw-r--r--. 1 root root  183  4月  2  2011 adobe-linux-x86_64.repo
-  -rw-r--r--. 1 root root  477  7月 31  2014 nux-dextop.repo
-  -rw-r--r--. 1 root root  474 10月 26  2018 nodesource-el7.repo  // 追加
-  -rw-r--r--. 1 root root  591  5月  2  2019 ius.repo
-  -rw-r--r--. 1 root root  669  5月  2  2019 ius-testing.repo
-  -rw-r--r--. 1 root root  669  5月  2  2019 ius-archive.repo
-  -rw-r--r--. 1 root root  173 10月  5  2019 google-chrome.repo
-  -rw-r--r--. 1 root root 1919  9月 24  2020 docker-ce.repo
-  -rw-r--r--. 1 root root 1050 11月  1  2020 epel.repo
-  -rw-r--r--. 1 root root 1149 11月  1  2020 epel-testing.repo
-  -rw-r--r--. 1 root root  616 11月 24  2020 CentOS-x86_64-kernel.repo
-  -rw-r--r--. 1 root root  314 11月 24  2020 CentOS-fasttrack.repo
-  -rw-r--r--. 1 root root 8515 11月 24  2020 CentOS-Vault.repo
-  -rw-r--r--. 1 root root 1331 11月 24  2020 CentOS-Sources.repo
-  -rw-r--r--. 1 root root  630 11月 24  2020 CentOS-Media.repo
-  -rw-r--r--. 1 root root  649 11月 24  2020 CentOS-Debuginfo.repo
-  -rw-r--r--. 1 root root 1309 11月 24  2020 CentOS-CR.repo
-  -rw-r--r--. 1 root root 1664 11月 24  2020 CentOS-Base.repo
-  -rw-r--r--. 1 root root  200  7月  6 12:34 mongodb-org-4.0.repo
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ sudo yum -y install nodejs
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 実行環境「Node」を導入
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ sudo npm update -g npm
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> パッケージ管理「npm」を更新
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ node --version
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  v11.15.0 -> 実行環境「Node」が「v6.17.1」から「v11.15.0」にアップ
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ npm --version
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  6.14.13 -> パッケージ管理「npm」が「3.10.10」から「6.14.13」にアップ
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ command -v nvm
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  nvm -> 実行環境「Node」のバージョン管理「nvm」もインストール済み
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ nvm install stable --latest-npm
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Creating default alias: default -> stable (-> v16.5.0)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ node --version
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  v16.5.0 -> 実行環境「Node」が「v11.15.0」から「v16.5.0」にアップ
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ npm --version
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  7.19.1 -> パッケージ管理「npm」が「6.14.13」から「7.19.1」にアップ
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ nvm --version
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  0.33.11 -> 実行環境「Node」のバージョン管理「nvm」のバージョン確認
+  8.5.5 => 問題なし
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[01]
-  How to Use package.json, the Core of Any Node.js Project or npm Package
+[Y02]
+  [Npm] グローバルインストール
   
 [内容]
-  設定ファイル「pakage.json」の編集
-  
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-01
-    URL  : https://FCC1-01.makotoaraki.repl.co
+  システム全体にインストールしたパッケージを表示
   
 [確認]
   $ cd $HOME
-  $ mkdir app12
+  $ npm ls -g (システム全体にインストールしたパッケージが表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /usr/local/lib
+    (empty) => 本ドキュメントではグローバルインストールは行わない予定
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ npm list -g (システム全体にインストールしたパッケージが表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /usr/local/lib
+    (empty) => 本ドキュメントではグローバルインストールは行わない予定
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y03]
+  [Npm] ローカルインストール
+  
+[内容]
+  カレントディレクトリにインストールしたパッケージを表示
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm ls (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /home/makoto/app01
+    (empty)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /home/makoto/app01
+    (empty)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y04]
+  [Npm] パッケージのインストール
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm install express (パッケージのインストール)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ npm init
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
   
   コマンドの実行結果
   --------------------------------------------------
-  This utility will walk you through creating a package.json file.
-  It only covers the most common items, and tries to guess sensible defaults.
+  app01@ /home/makoto/app01
+    express@4.18.1
+  --------------------------------------------------
   
-  See `npm help init` for definitive documentation on these fields
-  and exactly what they do.
+  以下の記録に続く
   
-  Use `npm install <pkg>` afterwards to install a package and
-  save it as a dependency in the package.json file.
+================================================================================
+[Y05]
+  [Npm] パッケージのアンインストール
   
-  Press ^C at any time to quit.  // 中断は「Ctrl + C」で行う
-  package name: (app12)          // そのまま「Enter」
-  version: (1.0.0) 0.0.1         // 入力欄に「0.0.1」と入力
-  description: npm-test          // 入力欄に「npm-test」と入力
-  entry point: (index.js)        // そのまま「Enter」
-  test command:                  // そのまま「Enter」
-  git repository:                // そのまま「Enter」
-  keywords: app12                // 入力欄に「app12」と入力
-  author: Makoto-Araki           // 入力欄に「Makoto-Araki」と入力
-  license: (ISC)                 // そのまま「Enter」
-  About to write to /home/makoto/app12/package.json:
+[内容]
+  同上
   
+[確認]
+  $ cd $HOME/app01
+  $ npm uninstall express (パッケージのアンインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  /home/makoto/app01
+    (empty)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y06]
+  [Npm] パッケージの情報を表示
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm search express (指定したパッケージ名を含むパッケージ一覧を検索)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm info express (指定したパッケージ名の情報を表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  // パッケージ名とライセンスとリリース数
+  express@4.18.1 | MIT | deps: 31 | versions: 269
+  
+  // パッケージ説明
+  Fast, unopinionated, minimalist web framework
+  
+  // ホームページ
+  http://expressjs.com/
+  
+  // キーワード
+  keywords: express, framework, sinatra, web, http, rest, restful, router, app, api
+  
+  // リリース形態
+  dist
+    .tarball: https://registry.npmjs.org/express/-/express-4.18.1.tgz
+    .shasum: 7797de8b9c72c857b9cd0e14a5eea80666267caf
+    .integrity: sha512-zZBcOX9TfehHQhtupq57OF8lFZ3UZi08Y97dwFCkD8p9d/d2Y3M+ykKcwaMDEL+4qyUolgBDX6AblpR3fL212Q==
+    .unpackedSize: 213.6 kB
+  
+  // 依存関係
+  dependencies:
+    finalhandler: 1.2.0  // 1(MAJOR).2(MINOR).0(PATCH)
+    accepts: ~1.3.8      // PATCH(1.3.X) => パッチ「X」のバージョンアップ時に更新対象
+    ...
+  
+  // メンテナンス担当者
+  maintainers:
+    - mikeal <mikeal.rogers@gmail.com>
+    - dougwilson <doug@somethingdoug.com>
+    - jasnell <jasnell@gmail.com>
+  
+  // タグのエイリアス
+  dist-tags:
+    latest: 4.18.1
+    next: 5.0.0-beta.1  
+  
+  // メッセージ
+  published a month ago by dougwilson <doug@somethingdoug.com>
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y07]
+  [Npm] パッケージをバージョン指定でインストール
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm install express@4.17.1 (パッケージをバージョン指定でインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app01@ /home/makoto/app01
+    express@4.17.1 => 指定バージョンのパッケージ
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y08]
+  [Npm] パッケージのアップデート
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm update express (パッケージのアップデート)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app01@ /home/makoto/app01
+    express@4.18.1 => バージョンが「4.17.1」から「4.18.1」にアップデート
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y09]
+  [Npm] 設定ファイル「package.json」を確認
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ ls -lh (カレントディレクトリ内のファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  drwxrwxr-x. 59 makoto makoto 4.0K  6月 26 08:45 node_modules  // パッケージ本体のインストール先
+  -rw-rw-r--.  1 makoto makoto   53  6月 26 08:40 package.json  // 設定ファイル
+  -rw-rw-r--.  1 makoto makoto  39K  6月 26 08:45 package-lock.json
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ cat package.json (設定ファイルを確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
   {
-    "name": "app12",
-    "version": "0.0.1",
-    "description": "npm-test",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "keywords": [
-      "app12"
-    ],
-    "author": "Makoto-Araki",
-    "license": "ISC"
+    "dependencies": {
+      "express": "^4.17.1"  => バージョン「4.X.Y」のうちマイナーバージョン「X」のバージョンアップ時に更新対象
+    }
   }
-  
-  Is this OK? (yes)              // そのまま「Enter」
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ npm install express --save
+  $ cd $HOME/app01
+  $ npm uninstall express (パッケージのアンインストール)
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> オプション「--save」でファイル「package.json」に記録
+  (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ npm install -g express-generator
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> オプション「-g」でシステム全体にインストール
-  --------------------------------------------------
-  
-  $ cd $HOME/app12
-  $ npm ls
+  $ cd $HOME/app01
+  $ cat package.json (設定ファイルを確認)
   
   コマンドの実行結果
   --------------------------------------------------
-  app12@0.0.1 /home/makoto/app12  // カレントディレクトリのパッケージ情報を表示
-  └── express@4.17.1              // パッケージはツリー構成で表示される
+  {} => パッケージ管理の記述が消えている
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ npm ls -g
+  以下の記録に続く
+  
+================================================================================
+[Y10]
+  [Npm] 設定ファイル「package.json」でプロジェクト作成
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm -y init (プロジェクト作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  /home/makoto/.nvm/versions/node/v16.5.0/lib  // システム全体のパッケージ情報を表示
-  ├── express-generator@4.16.1                 // システム全体にインストールしたパッケージが表示
-  └── npm@7.19.1
+  Wrote to /home/makoto/app01/package.json:
+  
+  // プロジェクトのテンプレートが作成される
+  {
+    "name": "app01",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": ""
+  }
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ cat package.json
+  以下の記録に続く
+  
+================================================================================
+[Y11]
+  [Npm] 設定ファイル「package.json」の編集(1)
+  
+[内容]
+  パッケージの記述追加
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi package.json (パッケージの記述追加)
   
   コマンドの実行結果
   --------------------------------------------------
   {
-    "name": "app12",
-    "version": "0.0.1",
-    "description": "npm-test",
+    "name": "app01",
+    "version": "1.0.0",
     "main": "index.js",
+    "devDependencies": {},
     "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": [
-      "app12"
-    ],
-    "author": "Makoto-Araki",
+    "keywords": [],
+    "author": "",
     "license": "ISC",
+    "description": "",
+    "dependencies": {       // パッケージの記述追加
+      "express": "^4.17.1"  // パッケージの記述追加
+    }                       // パッケージの記述追加
+  }
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y12]
+  [Npm] 設定ファイル「package.json」の編集(2)
+  
+[内容]
+  デスクリプション(説明)の記述追加
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi package.json (デスクリプションの記述追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app01",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "description": "Express Testing",  // デスクリプションの記述追加
     "dependencies": {
       "express": "^4.17.1"
     }
@@ -768,147 +2475,410 @@
   以下の記録に続く
   
 ================================================================================
-[02]
+[Y13]
+  [Npm] 設定ファイル「package.json」の編集(3)
+  
+[内容]
+  キーワードの記述追加
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi package.json (キーワードの記述追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app01",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [ "express", "app01" ],  // キーワードの記述追加
+    "author": "",
+    "license": "ISC",
+    "description": "Express Testing",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y14]
+  [Npm] 設定ファイル「package.json」の編集(4)
+  
+[内容]
+  ライセンスの記述修正
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi package.json (ライセンスの記述修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app01",
+    "version": "1.0.0",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [ "express", "app01" ],
+    "author": "",
+    "license": "MIT",  // ライセンスの記述修正
+    "description": "Express Testing",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y15]
+  [Npm] 設定ファイル「package.json」の編集(5)
+  
+[内容]
+  バージョンの修正
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi package.json (バージョンの修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app01",
+    "version": "1.0.1",  // バージョンの修正
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [ "express", "app01" ],
+    "author": "",
+    "license": "MIT",
+    "description": "Express Testing",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y16]
+  [Npm] 設定ファイル「package.json」の設定でプロジェクト構成
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ npm install (設定ファイルの設定でプロジェクト構成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app01@1.0.1 /home/makoto/app01
+    express@4.18.1
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y17]
+  [Npm] 設定ファイル「package.json」の設定で他プロジェクト構成
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ cp -p package.json ../app02 (ファイルのコピー)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ npm install (設定ファイルの設定でプロジェクト構成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ npm list (カレントディレクトリにインストールしたパッケージを表示)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app01@1.0.1 /home/makoto/app02
+    express@4.18.1
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[Y18]
+  [Npm] プロジェクトでアプリケーション作成
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app01
+  $ cat package.json (設定ファイルを確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app01",
+    "version": "1.0.1",
+    "main": "index.js",
+    "devDependencies": {},
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["express", "app01"],
+    "author": "",
+    "license": "MIT",
+    "description": "Express Testing",
+    "dependencies": {
+      "express": "^4.17.1"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi index.js (アプリケーション作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let express = require('express');
+  let app = express();
+  
+  app.get('/', function(req, res) {
+    res.send('GET');
+  });
+  
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ node index.js (アプリケーション起動)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  APP started on port 3000
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/ (アプリケーション確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => 画面上に「GET」と表示
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[001]
+  How to Use package.json, the Core of Any Node.js Project or npm Package
+  
+[内容]
+  設定ファイル「pakage.json」の編集
+  
+[確認]
+  $ firefox
+  $ https://FCC1-01.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
+  
+================================================================================
+[002]
   Add a Description to Your package.json
   
 [内容]
   キー「description」でパッケージ説明
   
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-02
-    URL  : https://FCC1-02.makotoaraki.repl.co
-  
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-02.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[03]
+[003]
   Add Keywords to Your package.json
   
 [内容]
   キー「keywords」で関連用語を登録
   
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-03
-    URL  : https://FCC1-03.makotoaraki.repl.co
-  
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-03.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[04]
+[004]
   Add a License to Your package.json
   
 [内容]
   キー「license」でユーザーにライセンス通知
   
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-04
-    URL  : https://FCC1-04.makotoaraki.repl.co
-  
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-04.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[05]
+[005]
   Add a Version to Your package.json
   
 [内容]
   キー「version」でバージョンを表示する
   
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-05
-    URL  : https://FCC1-05.makotoaraki.repl.co
-  
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-05.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[06]
+[006]
   Expand Your Project with External Packages from npm
   
 [内容]
   キー「dependencies」でパッケージ間の依存関係を指示
   
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-06
-    URL  : https://FCC1-06.makotoaraki.repl.co
-  
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-06.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[07]
+[007]
   Manage npm Dependencies By Understanding Semantic Versioning
   
 [内容]
-  バージョン表記を「2.10.2」に修正 -> 2(MAJOR).10(MINOR).2(PATCH)
-  
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-07
-    URL  : https://FCC1-07.makotoaraki.repl.co
+  バージョン表記を「2.10.2」に修正 => 2(MAJOR).10(MINOR).2(PATCH)
   
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-07.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[08]
+[008]
   Use the Tilde-Character to Always Use the Latest Patch Version of a Dependency
   
 [内容]
-  バージョン表記を「~2.10.2」に修正 -> パッチレベル「2.10.x」で自動更新
-  
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-08
-    URL  : https://FCC1-08.makotoaraki.repl.co
+  バージョン表記を「~2.10.2」に修正 => パッチレベル「2.10.x」で自動更新
   
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-08.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[09]
+[009]
   Use the Caret-Character to Use the Latest Minor Version of a Dependency
   
 [内容]
-  バージョン表記を「^2.10.2」に修正 -> マイナーレベル「2.x.x」で自動更新
-  
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-09
-    URL  : https://FCC1-09.makotoaraki.repl.co
+  バージョン表記を「^2.10.2」に修正 => マイナーレベル「2.x.x」で自動更新
   
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-09.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================
-[10]
+[010]
   Remove a Package from Your Dependencies
   
 [内容]
-  依存関係リストからパッケージ削除 -> パッケージをリストから単に削除すれば良い
-  
-  Replit
-    User : MakotoAraki
-    Pass : (秘密)
-    Name : FCC1-10
-    URL  : https://FCC1-10.makotoaraki.repl.co
+  依存関係リストからパッケージ削除 => パッケージをリストから単に削除すれば良い
   
 [確認]
-  // 上記「01」を参照
+  $ firefox
+  $ https://FCC1-10.makotoaraki.repl.co
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  上記の「Y09」から「Y17」も参照
   
 ================================================================================

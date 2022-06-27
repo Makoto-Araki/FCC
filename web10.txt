@@ -48,9 +48,9 @@
   Explore Differences Between the var and let Keywords
   
 [内容]
-  キーワード「var」と「let」の違い
-    キーワード「var」-> 変数の再定義で上書き可能
-    キーワード「let」-> 変数の再定義で構文エラー
+  変数定義
+    キーワード「var」=> 変数の再定義で上書き可能
+    キーワード「let」=> 変数の再定義で構文エラー
   
 [確認]
   # cd /var/www/html
@@ -63,20 +63,20 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // キーワード「var」=> 再定義で上書き可能
+    // キーワード「var」=> 再定義扱いになり上書き可能
     var myVar1 = '東京';  // エラー無し
     var myVar1 = '埼玉';  // エラー無し
     
@@ -106,8 +106,8 @@
   
 [内容]
   構文「for」の制御変数
-    キーワード「var」-> グローバル変数
-    キーワード「let」-> ローカル変数
+    キーワード「var」=> グローバル変数
+    キーワード「let」=> ローカル変数
   
 [確認]
   # cd /var/www/html
@@ -120,17 +120,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -166,7 +166,7 @@
   Declare a Read-Only Variable with the const Keyword
   
 [内容]
-  キーワード「const」-> 変数を定数(読取専用)化
+  キーワード「const」=> 変数を定数(読取専用)化
   
 [確認]
   # cd /var/www/html
@@ -179,17 +179,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // キーワード「const」
@@ -221,7 +221,7 @@
   Mutate an Array Declared with const
   
 [内容]
-  キーワード「const」-> 配列を定数(読取専用)化
+  キーワード「const」=> 配列を定数(読取専用)化
   
 [確認]
   # cd /var/www/html
@@ -234,17 +234,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // キーワード「const」
@@ -285,8 +285,8 @@
   
 [内容]
   オブジェクト保護「Object.freeze」
-    プロパティの更新 -> 不可
-    プロパティの削除 -> 不可
+    プロパティの更新 => 不可
+    プロパティの削除 => 不可
   
 [確認]
   # cd /var/www/html
@@ -299,17 +299,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -322,10 +322,10 @@
     // オブジェクトの保護
     Object.freeze(OBJ);
     
-    // オブジェクトの保護で失敗
+    // オブジェクトの保護でプロパティの更新は不可
     OBJ.key1 = 101;
     
-    // オブジェクトの保護で失敗
+    // オブジェクトの保護でプロパティの削除は不可
     delete OBJ.key1;
     
   </script>
@@ -363,17 +363,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 通常の関数
@@ -429,17 +429,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -490,17 +490,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -544,17 +544,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -603,17 +603,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -659,17 +659,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -733,17 +733,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -755,7 +755,7 @@
       arr2: [ { key6: 'A', key7: 'B' }, { key6: 'C', key7: 'D' }, { key6: 'E', key7: 'F' } ]
     }
     
-    // オブジェクト内部のオブジェクト群を変数に保存
+    // オブジェクト内のオブジェクト群を変数に保存
     let { arr1: ARR1, arr2: ARR2 } = OBJ;
     
     // 出力
@@ -797,17 +797,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -856,17 +856,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -916,17 +916,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -976,17 +976,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -1036,17 +1036,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクトのプロパティ
@@ -1100,17 +1100,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // ES5 オブジェクト内の関数の記述
@@ -1168,17 +1168,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // クラス定義(ES6) => クラス名の頭文字は大文字が慣例
@@ -1249,17 +1249,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // クラス定義(ES6) => クラス名の頭文字は大文字が慣例
@@ -1312,8 +1312,8 @@
   Create a Module Script
   
 [内容]
-  モジュール化
-    内部でモジュールを呼び出す「JSスクリプト」を呼び出す「HTMLファイル」を編集
+  モジュール化(1)
+    最初に「HTMLファイル」を作成
   
 [確認]
   # cd $HOME
@@ -1334,17 +1334,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script type='module' src='sample.js'></script>
   
   </body>
@@ -1358,8 +1358,8 @@
   Use export to Share a Code Block
   
 [内容]
-  モジュール化
-    モジュール作成 -> 「JSスクリプト」の内部で呼び出される
+  モジュール化(2)
+    モジュール作成 => 後に作成する「JSスクリプト」から呼び出される
   
 [確認]
   # cd /var/www/html/mod
@@ -1396,8 +1396,8 @@
   Reuse JavaScript Code Using import
   
 [内容]
-  モジュール化
-    内部でモジュールを呼び出す「JSスクリプト」を作成
+  モジュール化(3)
+    各モジュールを呼び出す「JSスクリプト」を作成
   
 [確認]
   # cd /var/www/html
@@ -1435,7 +1435,7 @@
   Use * to Import Everything from a File
   
 [内容]
-  モジュール化
+  モジュール化(4)
     全関数をインポート
   
 [確認]
@@ -1491,7 +1491,7 @@
   Create an Export Fallback with export default
   
 [内容]
-  モジュール化
+  モジュール化(5)
     モジュール内のクラスをデフォルトエクスポート指定
   
 [確認]
@@ -1546,7 +1546,7 @@
   Import a Default Export
   
 [内容]
-  モジュール化
+  モジュール化(6)
     モジュール内のデフォルトエクスポート指定された関数をインポート
   
 [確認]
@@ -1766,7 +1766,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  // 非同期処理1-3間でも処理順番は不安定
+  // 処理順番は不安定
   
   1853年 ペリー来航
   1860年 桜田門外の変
@@ -1788,7 +1788,7 @@
   [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す
   
 [内容]
-  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す -> 処理順番をコントロール(コールバック地獄)
+  [Promise] 非同期処理のコールバック内で次の非同期処理を呼び出す => 処理順番をコントロール(コールバック地獄)
   
 [確認]
   $ cd $HOME/sample05
@@ -1831,7 +1831,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  // 非同期処理の処理順番をコントロール可能 -> ネストが深くなるとコールバック地獄
+  // 非同期処理の処理順番をコントロール可能 => ネストが深くなるとコールバック地獄
   
   1274年 文永の役
   1281年 弘安の役
@@ -1860,11 +1860,6 @@
     ・初期状態は「保留」、一度でも「成功」または「失敗」になると以降の状態は変わらない
     ・コンストラクタ引数に関数オブジェクトを取る
   
-  コンストラクタ引数の関数オブジェクト
-    ・関数オブジェクトは引数に二個(resolve, reject)のコールバック関数を持つ
-    ・コールバック関数「resolve」に引数を渡して実行すると状態が「成功」になる
-    ・コールバック関数「reject」に引数を渡して実行すると状態が「失敗」になる
-  
 [確認]
   $ cd $HOME/sample05
   $ vi sample.js
@@ -1879,9 +1874,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -1921,11 +1916,6 @@
     ・初期状態は「保留」、一度でも「成功」または「失敗」になると以降の状態は変わらない
     ・コンストラクタ引数に関数オブジェクトを取る
   
-  コンストラクタ引数の関数オブジェクト
-    ・関数オブジェクトは引数に二個(resolve, reject)のコールバック関数を持つ
-    ・コールバック関数「resolve」に引数を渡して実行すると状態が「成功」になる
-    ・コールバック関数「reject」に引数を渡して実行すると状態が「失敗」になる
-  
 [確認]
   $ cd $HOME/sample05
   $ vi sample.js
@@ -1940,9 +1930,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -1994,9 +1984,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2047,9 +2037,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2103,9 +2093,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2182,9 +2172,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2201,13 +2191,13 @@
   .then(
     (doc) => {
       console.log(doc);
-      return Func('test03.txt');  // この処理はスキップ
+      return Func('test03.txt');  // この処理はスキップされる
     }
   )
   .then(
     (doc) => {
       console.log(doc);
-      // この処理はスキップ
+      // この処理はスキップされる
     }
   )
   .catch(
@@ -2260,9 +2250,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2279,13 +2269,13 @@
   .then(
     (doc) => {
       console.log(doc);
-      return Func('test03.txt');  // 次ファイル読込
+      return Func('test03.txt');  // この処理はスキップされる
     }
   )
   .then(
     (doc) => {
       console.log(doc);
-      // ファイル読込終了
+      // この処理はスキップされる
     }
   )
   .catch(
@@ -2344,15 +2334,15 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
   }
   
-  // 非同期処理を並列実行 -> 最初の応答を使用 -> 最初に「失敗」が返ると全体で「失敗」となる
+  // 非同期処理を並列実行 => 最初の応答を使用する、最初に「失敗」が返ると全体で「失敗」となる
   Promise.race([Func('file1.txt'), Func('file2.txt'), Func('file3.txt')])
   .then(
     (doc) => console.log(doc)
@@ -2397,9 +2387,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })
@@ -2409,9 +2399,9 @@
   Promise.all([Func('test01.txt'), Func('test02.txt'), Func('test03.txt')])
   .then(
     ([doc1, doc2, doc3]) => {
-      console.log(doc1);
-      console.log(doc2);
-      console.log(doc3);
+      console.log(doc1);  // test01.txt => doc1
+      console.log(doc2);  // test02.txt => doc2
+      console.log(doc3);  // test03.txt => doc3
     }
   )
   .catch(
@@ -2462,9 +2452,9 @@
     return new Promise((res, rej) => {
       fs.readFile(FILE, { encoding: "utf8" }, (err, doc) => {
         if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
         } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
         }
       });
     })

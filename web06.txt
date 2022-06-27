@@ -44,24 +44,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
       #Parent {
         height: 100vh;
         width: 100vw;
-        display: block;  // 要素をブロック表示
+        display: block;  /* 要素をブロック表示 */
       }
       
       #Child1 {
@@ -81,7 +81,7 @@
       #Parent {
         height: 100vh;
         width: 100vw;
-        display: flex;  // 内部要素を縦横自在に配置
+        display: flex;  /* 内部要素を縦横自在に配置 */
       }
       
       #Child1 {
@@ -99,7 +99,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -154,17 +154,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
@@ -192,7 +192,7 @@
         height: 100vh;
         width: 100vw;
         display: flex;
-        flex-direction: row-reverse;  // 内部要素を横に右から左へと並べる
+        flex-direction: row-reverse;  /* 内部要素を横に右から左へと並べる */
       }
       
       #Child1 {
@@ -210,7 +210,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -255,17 +255,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
@@ -293,7 +293,7 @@
         height: 100vh;
         width: 100vw;
         display: flex;
-        flex-direction: column;  // 内部要素を縦に上から下へと並べる
+        flex-direction: column;  /* 内部要素を縦に上から下へと並べる */
       }
       
       #Child1 {
@@ -311,7 +311,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -368,18 +368,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
@@ -415,7 +415,7 @@
         width: 100vw;
         background-color: gray;
         display: flex;
-        justify-content: space-between;  // 余白付きで等間隔に配置するが、始点と終点は内部要素
+        justify-content: space-between;  /* 余白付きで等間隔に配置するが、始点と終点は内部要素 */
       }
       
       #Child1 {
@@ -439,7 +439,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -495,18 +495,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
@@ -542,7 +542,7 @@
         width: 100vw;
         background-color: gray;
         display: flex;
-        align-items: flex-end;  // 内部要素が表示領域の下部に横一列で配置
+        align-items: flex-end;  /* 内部要素が表示領域の下部に横一列で配置 */
       }
       
       #Child1 {
@@ -566,7 +566,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -620,11 +620,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
@@ -634,7 +634,7 @@
     <div id="Child6"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 600px) {
@@ -688,7 +688,7 @@
         width: 100vw;
         background-color: gray;
         display: flex;
-        flex-wrap: nowrap;  // 折り返さない(デフォルト)
+        flex-wrap: nowrap;  /* 折り返さない(デフォルト) */
       }
       
       #Child1 {
@@ -730,7 +730,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -789,18 +789,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -833,7 +833,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -878,18 +878,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -919,7 +919,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -959,18 +959,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -983,30 +983,30 @@
     #Child1 {
       height: 100px;
       background-color: dodgerblue;
-      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
-      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
-      flex-basis: 100px;  // 初期値100px
+      flex-grow: 0;       /* 初期値に対する伸び率をゼロ(無効) */
+      flex-shrink: 0;     /* 初期値に対する縮小率をゼロ(無効) */
+      flex-basis: 100px;  /* 初期値100px */
     }
     
     #Child2 {
       height: 100px;
       background-color: orangered;
-      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
-      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
-      flex-basis: 100px;  // 初期値100px
+      flex-grow: 0;       /* 初期値に対する伸び率をゼロ(無効) */
+      flex-shrink: 0;     /* 初期値に対する縮小率をゼロ(無効) */
+      flex-basis: 100px;  /* 初期値100px */
     }
     
     #Child3 {
       height: 100px;
       background-color: greenyellow;
-      flex-grow: 0;       // 初期値に対する伸び率をゼロ(無効)
-      flex-shrink: 0;     // 初期値に対する縮小率をゼロ(無効)
-      flex-basis: 100px;  // 初期値100px
+      flex-grow: 0;       /* 初期値に対する伸び率をゼロ(無効) */
+      flex-shrink: 0;     /* 初期値に対する縮小率をゼロ(無効) */
+      flex-basis: 100px;  /* 初期値100px */
     }
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1032,7 +1032,7 @@
     プロパティ「flex-grow」と「flex-shrink」と「flex-basis」のショートハンド
   
   flex: [grow] [shrink] [basis]
-  flex: initial  // flex: 0 1 auto = デフォルト値
+  flex: initial  // flex: 0 1 auto => デフォルト値
   flex: auto     // flex: 1 1 auto
   flex: none     // flex: 0 0 auto
   
@@ -1052,18 +1052,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
     <div id="Child3"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -1076,24 +1076,24 @@
     #Child1 {
       height: 100px;
       background-color: dodgerblue;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
     }
     
     #Child2 {
       height: 100px;
       background-color: orangered;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
     }
     
     #Child3 {
       height: 100px;
       background-color: greenyellow;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
     }
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1134,18 +1134,18 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1">2</div>
     <div id="Child2">3</div>
     <div id="Child3">1</div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -1158,27 +1158,27 @@
     #Child1 {
       height: 100px;
       background-color: dodgerblue;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
       order: 2;
     }
     
     #Child2 {
       height: 100px;
       background-color: orangered;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
       order: 3;
     }
     
     #Child3 {
       height: 100px;
       background-color: greenyellow;
-      flex: 0 0 100px;  // 上記「14」の設定と同じ
+      flex: 0 0 100px;  /* 上記「14」の設定と同じ */
       order: 1;
     }
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1229,11 +1229,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div id="Parent">
     <div id="Child1"></div>
     <div id="Child2"></div>
@@ -1243,7 +1243,7 @@
     <div id="Child6"></div>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     #Parent {
@@ -1297,7 +1297,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>

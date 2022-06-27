@@ -146,17 +146,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -169,7 +169,7 @@
     console.log(typeof myVar1);  // boolean
     console.log(typeof myVar2);  // string
     console.log(typeof myVar3);  // number
-    console.log(typeof myVar4);  // undefined -> 初期化忘れ
+    console.log(typeof myVar4);  // undefined => 初期化忘れ
     
   </script>
   
@@ -215,17 +215,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -269,7 +269,7 @@
   Understanding Uninitialized Variables
   
 [内容]
-  初期化なし -> データ型「undefined」で初期化
+  初期化なし => データ型「undefined」で初期化
   
 [確認]
   # cd /var/www/html
@@ -282,17 +282,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -347,17 +347,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 加算処理
@@ -464,17 +464,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -482,16 +482,16 @@
     var myVar2 = 12;
     
     // 出力
-    console.log(myVar1++);  // 12 -> 出力後にインクリメント
-    console.log(++myVar2);  // 13 -> インクリメント後に出力
+    console.log(myVar1++);  // 12 => 出力後にインクリメント
+    console.log(++myVar2);  // 13 => インクリメント後に出力
     
     // 変数定義と初期化
     var myVar3 = 12;
     var myVar4 = 12;
     
     // 出力
-    console.log(myVar3--);  // 12 -> 出力後にデクリメント
-    console.log(--myVar4);  // 11 -> デクリメント後に出力
+    console.log(myVar3--);  // 12 => 出力後にデクリメント
+    console.log(--myVar4);  // 11 => デクリメント後に出力
     
   </script>
   
@@ -537,17 +537,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 小数の定義と初期化
@@ -638,17 +638,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -659,19 +659,19 @@
     
     // 代入演算子(加算)
     Var01 += 2;
-    console.log(Var01);  // 24 -> 26
+    console.log(Var01);  // 24 => 26
     
     // 代入演算子(減算)
     Var02 -= 2;
-    console.log(Var02);  // 24 -> 22
+    console.log(Var02);  // 24 => 22
     
     // 代入演算子(乗算)
     Var03 *= 2;
-    console.log(Var03);  // 24 -> 48
+    console.log(Var03);  // 24 => 48
     
     // 代入演算子(除算)
     Var04 /= 2;
-    console.log(Var04);  // 24 -> 12
+    console.log(Var04);  // 24 => 12
     
   </script>
   
@@ -737,17 +737,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -792,17 +792,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -847,17 +847,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -910,17 +910,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -965,17 +965,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1020,17 +1020,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1075,17 +1075,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1140,17 +1140,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1195,17 +1195,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1250,17 +1250,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1272,8 +1272,8 @@
     myVar2[0] = 'B';
     
     // 出力
-    console.log(myVar1);  // 埼玉県 -> 文字列の一部変更は不可 -> 不変性
-    console.log(myVar2);  // Hello -> 文字列の一部変更は不可 -> 不変性
+    console.log(myVar1);  // 埼玉県 => 文字列の一部変更は不可
+    console.log(myVar2);  // Hello => 文字列の一部変更は不可
     
   </script>
   
@@ -1309,17 +1309,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1364,17 +1364,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1419,17 +1419,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1484,17 +1484,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1539,17 +1539,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1594,17 +1594,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1649,17 +1649,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1708,17 +1708,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1764,17 +1764,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1824,17 +1824,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1888,17 +1888,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1952,17 +1952,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -2021,17 +2021,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義(1)
@@ -2082,17 +2082,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義(1)
@@ -2144,32 +2144,32 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化(1)
-    myVar1 = '柊';
+    myVar1 = 'AAA';
     
     // 変数定義と初期化(2)
-    var myVar2 = '楓';
+    var myVar2 = 'BBB';
     
     // 関数定義
     const myFunc1 = () => 'Hello ' + myVar1;
     const myFunc2 = () => 'Hello ' + myVar2;
     
     // 出力
-    console.log(myFunc1());  // Hello 柊
-    console.log(myFunc2());  // Hello 楓
+    console.log(myFunc1());  // Hello AAA
+    console.log(myFunc2());  // Hello BBB
     
   </script>
   
@@ -2206,17 +2206,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2262,17 +2262,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -2321,17 +2321,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -2378,17 +2378,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -2437,24 +2437,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc1 = (p1) => p1 * 2;
     const myFunc2 = (p1) => p1 * 3;
     
-    // 変数定義と初期化
+    // 関数の戻り値を変数にセット
     var myVar1 = myFunc1(11);
     var myVar2 = myFunc2(11);
     
@@ -2506,17 +2506,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2548,7 +2548,7 @@
   Use Conditional Logic with If Statements
   
 [内容]
-  関数内で構文「if」
+  構文「if」で条件制御
   
 [確認]
   # cd /var/www/html
@@ -2561,17 +2561,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2621,17 +2621,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2675,17 +2675,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2739,17 +2739,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2793,17 +2793,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2847,17 +2847,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2901,17 +2901,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2955,17 +2955,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3009,17 +3009,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3063,17 +3063,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3117,17 +3117,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3171,17 +3171,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3231,17 +3231,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3324,17 +3324,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3396,28 +3396,28 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc = (P1) => {
       switch (P1) {
-        case 'A':
-        case 'B':
+        case 'A':  // オプション省略
+        case 'B':  // オプション省略
         case 'C':
           return 'It is A or B or C';
-        case 'D':
-        case 'E':
+        case 'D':  // オプション省略
+        case 'E':  // オプション省略
         case 'F':
           return 'It is D or E or F';
         default:
@@ -3474,17 +3474,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3534,17 +3534,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3604,17 +3604,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -3707,17 +3707,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -3796,7 +3796,7 @@
   Using Objects for Lookups
   
 [内容]
-  構文「switch」とオブジェクトを比較 => オブジェクトの方がコード量が少ない
+  構文「switch」とオブジェクトを比較
   
 [確認]
   # cd /var/www/html
@@ -3809,17 +3809,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -3887,17 +3887,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -3948,17 +3948,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト配列
@@ -4007,17 +4007,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト配列
@@ -4086,17 +4086,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -4104,10 +4104,10 @@
     var cnt = 1;
     
     // ループ処理
-    while (cnt <= 10) ARR.push(cnt++);
+    while (cnt < 10) ARR.push(cnt++);
     
     // 出力
-    console.log(ARR);
+    console.log(ARR);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
   </script>
   
@@ -4143,27 +4143,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
     var ARR = [];
     
     // ループ処理
-    for (let i = 1; i <= 10; i++) ARR.push(i);
+    for (let i = 1; i < 10; i++) ARR.push(i);
     
     // 出力
-    console.log(ARR);
+    console.log(ARR);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
   </script>
   
@@ -4199,27 +4199,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
     var ARR = [];
     
     // ループ処理
-    for (let i = 1; i <= 10; i += 2) ARR.push(i);
+    for (let i = 1; i < 10; i += 2) ARR.push(i);
     
     // 出力
-    console.log(ARR);
+    console.log(ARR);  // [1, 3, 5, 7, 9]
     
   </script>
   
@@ -4255,27 +4255,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
     var ARR = [];
     
     // ループ処理
-    for (let i = 10; i > 0; i--) ARR.push(i);
+    for (let i = 9; i > 0; i--) ARR.push(i);
     
     // 出力
-    console.log(ARR);
+    console.log(ARR);  // [9, 8, 7, 6, 5, 4, 3, 2, 1]
     
   </script>
   
@@ -4311,17 +4311,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -4368,17 +4368,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -4429,17 +4429,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -4448,11 +4448,12 @@
     
     // ループ処理
     do {
-      ARR.push(idx++);
-    } while(IDX <= 10);
+      ARR.push(IDX);
+      IDX += 1;
+    } while(IDX < 10);
     
     // 出力
-    console.log(ARR);
+    console.log(ARR);  // [1, 2, 3, 4, 5, 6, 7, 8, 9]
     
   </script>
   
@@ -4491,17 +4492,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義(ループ)
@@ -4560,17 +4561,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -4615,7 +4616,7 @@
   Generate Random Fractions with JavaScript
   
 [内容]
-  乱数(「0」以上 - 「1」未満の小数)
+  乱数(戻り値が「0」以上 - 「1」未満の小数)
   
 [確認]
   # cd /var/www/html
@@ -4628,26 +4629,26 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc = () => Math.random();
     
     // 出力
-    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
-    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
-    console.log(myFunc());  // 「0」以上 - 「1」未満の小数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「1」未満の小数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「1」未満の小数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「1」未満の小数
     
   </script>
   
@@ -4670,7 +4671,7 @@
   Generate Random Whole Numbers with JavaScript
   
 [内容]
-  乱数(「0」以上 - 「10」未満の整数)
+  乱数(戻り値が「0」以上 - 「10」未満の整数)
   
 [確認]
   # cd /var/www/html
@@ -4683,26 +4684,26 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc = () => Math.floor(Math.random() * 10);
     
     // 出力
-    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
-    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
-    console.log(myFunc());  // 「0」以上 - 「10」未満の整数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「10」未満の整数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「10」未満の整数
+    console.log(myFunc());  // 戻り値が「0」以上 - 「10」未満の整数
     
   </script>
   
@@ -4725,7 +4726,7 @@
   Generate Random Whole Numbers within a Range
   
 [内容]
-  乱数(「p1」以上 - 「p2」以下の整数)
+  乱数(戻り値が「p1」以上 - 「p2」以下の整数)
   
 [確認]
   # cd /var/www/html
@@ -4738,26 +4739,26 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc = (p1, p2) => Math.floor(Math.floor(Math.random() * (p2 - p1 + 1)) + p1);
     
     // 出力
-    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
-    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
-    console.log(myFunc(3, 5));  // 「3」以上 - 「5」以下の整数
+    console.log(myFunc(3, 5));  // 戻り値が「3」以上 - 「5」以下の整数
+    console.log(myFunc(3, 5));  // 戻り値が「3」以上 - 「5」以下の整数
+    console.log(myFunc(3, 5));  // 戻り値が「3」以上 - 「5」以下の整数
     
   </script>
   
@@ -4793,17 +4794,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -4852,27 +4853,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // 文字列「0011」を十進数と指定 => 十進数に型変換
-    console.log(parseInt('0011', 10));  // 11
+    // 文字列「0011」を10進数と指定
+    console.log(parseInt('0011', 10));  // 0011 => 11
     
-    // 文字列「0011」を二進数と指定 => 十進数に型変換
-    console.log(parseInt('0011', 2));   // 3
+    // 文字列「0011」を2進数と指定
+    console.log(parseInt('0011', 2));   // 0011 => 3
     
-    // 文字列「00AA」を十六進数と指定 => 十進数に型変換
-    console.log(parseInt('00AA', 16));  // 170
+    // 文字列「00AA」を16進数と指定
+    console.log(parseInt('00AA', 16));  // 00AA => 170
     
   </script>
   
@@ -4908,17 +4909,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -4969,17 +4970,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義

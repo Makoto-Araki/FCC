@@ -9,19 +9,12 @@
   Build a Random Quote Machine
   
 [内容]
-  偉人の名言のランダム引用
+  課題(1)
+    偉人の名言のランダム引用
 
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/dyNVYZY
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/dyNVYZY
   
   コマンドの実行結果
   --------------------------------------------------
@@ -35,19 +28,12 @@
   Build a Markdown Previewer
   
 [内容]
-  マークダウン記法のプレビュー画面
+  課題(2)
+    マークダウン記法のプレビュー画面
 
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/XWpZLYz
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/XWpZLYz
   
   コマンドの実行結果
   --------------------------------------------------
@@ -61,19 +47,12 @@
   Build a Drum Machine
   
 [内容]
-  ドラムアプリの作成
+  課題(3)
+    ドラムアプリの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/NWdzNWj
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/NWdzNWj
   
   コマンドの実行結果
   --------------------------------------------------
@@ -87,19 +66,12 @@
   Build a JavaScript Calculator
   
 [内容]
-  電卓アプリの作成
+  課題(4)
+    電卓アプリの作成
 
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/OJWwGBK
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/OJWwGBK
   
   コマンドの実行結果
   --------------------------------------------------
@@ -110,22 +82,14 @@
   
 ================================================================================
 [05]
-  Build a 25 + 5 Clock
+  Build 25 + 5 Clock
   
 [内容]
   25分(労働) - 5分(休憩)のタイマー作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/JjEmzvg
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/JjEmzvg
   
   コマンドの実行結果
   --------------------------------------------------

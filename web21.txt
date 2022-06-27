@@ -30,7 +30,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (出力なし)
+  (インストールされていない)
   --------------------------------------------------
   
   # cd $HOME
@@ -38,7 +38,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (出力なし)
+  (インストールされていない)
   --------------------------------------------------
   
   # cd $HOME
@@ -46,53 +46,45 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (出力なし)
+  (インストールされていない)
   --------------------------------------------------
   
   # cd $HOME
-  # yum list installed | grep gcc
+  # which gcc
   
   コマンドの動作結果
   --------------------------------------------------
-  gcc.x86_64
+  /bin/gcc
   --------------------------------------------------
   
   # cd $HOME
-  # yum list installed | grep git
+  # which git
   
   コマンドの動作結果
   --------------------------------------------------
-  git.x86_64
+  /bin/git
   --------------------------------------------------
   
   # cd $HOME
-  # git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  # git clone https://github.com/rbenv/rbenv.git .rbenv
   
   コマンドの動作結果
   --------------------------------------------------
-  Cloning into '/root/.rbenv'...
-  remote: Enumerating objects: 10, done.
-  remote: Counting objects: 100% (10/10), done.
-  remote: Compressing objects: 100% (10/10), done.
-  remote: Total 2878 (delta 3), reused 2 (delta 0), pack-reused 2868
-  Receiving objects: 100% (2878/2878), 562.74 KiB | 433.00 KiB/s, done.
-  Resolving deltas: 100% (1795/1795), done.
+  Cloning into '.rbenv'...  // 隠しディレクトリ
+  remote: Enumerating objects: 3013, done.
+  remote: Counting objects: 100% (117/117), done.
+  remote: Compressing objects: 100% (66/66), done.
+  remote: Total 3013 (delta 62), reused 91 (delta 51), pack-reused 2896
+  Receiving objects: 100% (3013/3013), 606.48 KiB | 0 bytes/s, done.
+  Resolving deltas: 100% (1871/1871), done.
   --------------------------------------------------
   
   # cd $HOME
-  # ls -la | grep rbenv
+  # echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> .bash_profile
   
   コマンドの動作結果
   --------------------------------------------------
-  drwxr-xr-x. 10 root root     206 12月 19 08:30 .rbenv
-  --------------------------------------------------
-  
-  # cd $HOME
-  # echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (プログラム「rbenv」のパス開通)
+  (出力なし) => プログラム「rbenv」のパス開通
   --------------------------------------------------
   
   # cd $HOME
@@ -100,7 +92,8 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (プログラム「rbenv」のパス開通)
+  # Load rbenv automatically by appending
+  # the following to ~/.bash_profile:
   --------------------------------------------------
   
   # cd $HOME
@@ -108,7 +101,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (設定を反映)
+  (出力なし) => 設定を反映
   --------------------------------------------------
   
   # cd $HOME
@@ -116,23 +109,21 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  rbenv 1.1.2-40-g62d7798
+  rbenv 1.2.0-14-gc6cc0a1
   --------------------------------------------------
   
   # cd $HOME
-  # git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+  # git clone https://github.com/rbenv/ruby-build.git .rbenv/plugins/ruby-build
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby-build」の取得
-  
-  Cloning into '/root/.rbenv/plugins/ruby-build'...
-  remote: Enumerating objects: 93, done.
-  remote: Counting objects: 100% (93/93), done.
-  remote: Compressing objects: 100% (76/76), done.
-  remote: Total 11282 (delta 64), reused 31 (delta 12), pack-reused 11189
-  Receiving objects: 100% (11282/11282), 2.39 MiB | 1.90 MiB/s, done.
-  Resolving deltas: 100% (7448/7448), done.
+  Cloning into '.rbenv/plugins/ruby-build'...
+  remote: Enumerating objects: 12227, done.
+  remote: Counting objects: 100% (920/920), done.
+  remote: Compressing objects: 100% (317/317), done.
+  remote: Total 12227 (delta 624), reused 801 (delta 543), pack-reused 11307
+  Receiving objects: 100% (12227/12227), 2.55 MiB | 0 bytes/s, done.
+  Resolving deltas: 100% (8091/8091), done.
   --------------------------------------------------
   
   # cd $HOME
@@ -140,7 +131,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  (プログラム「ruby-build」のインストール)
+  (省略) => プログラム「ruby-build」のインストール
   --------------------------------------------------
   
   # cd $HOME
@@ -148,32 +139,32 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // インストール可能な「ruby」のバージョン表示
-  
-  ...
-  2.5.8
-  2.6.6
-  2.7.2
+  (省略) => インストール可能な「ruby」のバージョン表示
   --------------------------------------------------
   
   # cd $HOME
-  # rbenv install 2.7.2
+  # yum -y install openssl-devel zlib-devel
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby 2.7.2」のインストール
-  
-  Installed ruby-2.7.2 to /root/.rbenv/versions/2.7.2
+  (省略) => この手順がないと次の手順でエラー
   --------------------------------------------------
   
   # cd $HOME
-  # echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  # rbenv install 3.1.2
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby 2.7.2」のパス開通
+  Installing ruby-3.1.2...
+  Installed ruby-3.1.2 to /root/.rbenv/versions/3.1.2
+  --------------------------------------------------
   
-  (出力なし)
+  # cd $HOME
+  # echo 'eval "$(rbenv init -)"' >> .bash_profile
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし) => プログラム「ruby 3.1.2」のパス開通
   --------------------------------------------------
   
   # cd $HOME
@@ -181,19 +172,15 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby 2.7.2」のパス開通
-  
-  (出力なし)
+  (出力なし) => プログラム「ruby 3.1.2」のパス開通
   --------------------------------------------------
   
   # cd $HOME
-  # rbenv global 2.7.2
+  # rbenv global 3.1.2
   
   コマンドの動作結果
   --------------------------------------------------
-  // デフォルト使用を「ruby 2.7.2」に設定
-  
-  (出力なし)
+  (出力なし) => プログラム「ruby 3.1.2」をデフォルト
   --------------------------------------------------
   
   # cd $HOME
@@ -201,9 +188,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby 2.7.2」の状態確認
-  
-  ruby 2.7.2p137 (2020-10-01 revision 5445e04352) [x86_64-linux]
+  ruby 3.1.2p20 (2022-04-12 revision 4491bb740a) [x86_64-linux]
   --------------------------------------------------
   
   # cd $HOME
@@ -211,8 +196,6 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「ruby-devel」のインストール
-  
   (省略)
   --------------------------------------------------
   
@@ -221,8 +204,6 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「rubygems」のインストール
-  
   (省略)
   --------------------------------------------------
   
@@ -231,9 +212,7 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「rubygems」の更新
-  
-  (省略)
+  RubyGems system software updated
   --------------------------------------------------
   
   # cd $HOME
@@ -241,8 +220,14 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「compass」のインストール
+  (省略)
+  --------------------------------------------------
   
+  # cd $HOME
+  # gem install sass
+  
+  コマンドの動作結果
+  --------------------------------------------------
   (省略)
   --------------------------------------------------
   
@@ -251,23 +236,11 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「compass」の状態確認
-  
   Compass 1.0.3 (Polaris)
-  Copyright (c) 2008-2020 Chris Eppstein
+  Copyright (c) 2008-2022 Chris Eppstein
   Released under the MIT License.
   Compass is charityware.
   Please make a tax deductable donation for a worthy cause: http://umdf.org/compass
-  --------------------------------------------------
-  
-  # cd $HOME
-  # gem install sass
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // プログラム「sass」のインストール
-  
-  (省略)
   --------------------------------------------------
   
   # cd $HOME
@@ -275,8 +248,6 @@
   
   コマンドの動作結果
   --------------------------------------------------
-  // プログラム「sass」の状態確認
-  
   Ruby Sass 3.7.4
   --------------------------------------------------
   
@@ -290,58 +261,6 @@
   Sass変数
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas01
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas01
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略) -> プロジェクトが作成された旨のメッセージ出力
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas01
-  # vi scss/sas01.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // SASS変数
-  $P1: red;
-  $P2: 15px;
-  
-  // クラス属性
-  .SAM {
-    color: $P1;
-    font-size: $P2;
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas01
-  # sass scss/sas01.scss:css/sas01.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas01
-  # cat css/sas01.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  .SAM {
-    color: red;
-    font-size: 15px; }
-  
-  /*# sourceMappingURL=sas01.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -353,60 +272,85 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas01/css/sas01.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas01.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // SASS変数
+  $P1: red;
+  $P2: 1.2em;
+  $P3: normal;
+  
+  // クラス
+  .SAM {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas01.scss:css/sas01.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas01.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  .SAM {
+    color: red;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -419,74 +363,6 @@
   HTMLと同じ構造で「Sass」を記述
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas02
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas02
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas02
-  # vi scss/sas02.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // SASS変数
-  $P1: red;
-  $P2: 15px;
-  $P3: green;
-  $P4: 15px;
-  
-  // HTMLと同じ構造で記述
-  #DS1 {
-    .SAM {
-      color: $P1;
-      font-size: $P2;
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS2 {
-    .SAM {
-      color: $P3;
-      font-size: $P4;
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas02
-  # sass scss/sas02.scss:css/sas02.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas02
-  # cat css/sas02.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    color: red;
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    color: green;
-    font-size: 15px; }
-  
-  /*# sourceMappingURL=sas02.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -498,60 +374,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas02.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas02/css/sas02.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas02.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // SASS変数
+  $P1: red;
+  $P2: 1.2em;
+  $P3: normal;
+  
+  // HTMLと同じ構造で記述
+  div {
+    .SAM {
+      color: $P1;
+      font-size: $P2;
+      font-weight: $P3;
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas02.scss:css/sas02.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas02.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div .SAM {
+    color: red;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -564,72 +467,6 @@
   関数を使用して「Sass」を記述
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas03
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas03
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas03
-  # vi scss/sas03.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // 関数記述
-  @mixin myFunc($P1: red, $P2: 15px) {
-    color: $P1;
-    font-size: $P2;
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS1 {
-    .SAM {
-      @include myFunc();
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS2 {
-    .SAM {
-      @include myFunc(green, 15px);
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas03
-  # sass scss/sas03.scss:css/sas03.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas03
-  # cat css/sas03.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    color: red;
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    color: green;
-    font-size: 15px; }
-  
-  /*# sourceMappingURL=sas03.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -641,60 +478,87 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas03.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas03/css/sas03.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas03.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述
+  @mixin myFunc($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  
+  // HTMLと同じ構造で記述
+  div {
+    .SAM {
+      @include myFunc(blue, 1.2em, normal);
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas03.scss:css/sas03.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas03.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div .SAM {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -707,87 +571,6 @@
   関数内で構文「if」を使用
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas04
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas04
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas04
-  # vi scss/sas04.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // 関数記述
-  @mixin myFunc1($P1: red, $P2: 15px) {
-    color: $P1;
-    font-size: $P2;
-  }
-  
-  // 関数記述
-  @mixin myFunc2($P1:1) {
-    @if $P1 == 1 {
-      @include myFunc1();
-    }
-    
-    @else if $P1 == 2 {
-      @include myFunc1(green, 15px);
-    }
-    
-    @else {
-      @include myFunc1();
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS1 {
-    .SAM {
-      @include myFunc2(1);
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS2 {
-    .SAM {
-      @include myFunc2(2);
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas04
-  # sass scss/sas04.scss:css/sas04.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas04
-  # cat css/sas04.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    color: red;
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    color: green;
-    font-size: 15px; }
-  
-  /*# sourceMappingURL=sas04.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -799,60 +582,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas04.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas04/css/sas04.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas04.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述1
+  @mixin myFunc1($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  
+  // 関数記述2
+  @mixin myFunc2($P1: 1) {
+    @if $P1 == 1 {
+      @include myFunc1(blue, 1.2em, normal);
+    }
+    @else if $P1 == 2 {
+      @include myFunc1(lime, 1.2em, normal);
+    }
+    @else {
+      @include myFunc();
+    }
+  }
+
+  // HTMLと同じ構造で記述
+  div {
+    .SAM {
+      @include myFunc2(2);
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas04.scss:css/sas04.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas04.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div .SAM {
+    color: lime;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -865,97 +688,6 @@
   構文「for」を使用
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas05
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas05
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas05
-  # vi scss/sas05.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // プロパティ「font-size」のみ構文「for」を使用
-  @for $i from 1 through 2 {
-    #DS#{$i} .SAM {
-      font-size: 15px;
-    }
-  }
-  
-  // 関数記述
-  @mixin myFunc1($P1: red) {
-    color: $P1;
-  }
-  
-  // 関数記述
-  @mixin myFunc2($P1:1) {
-    @if $P1 == 1 {
-      @include myFunc1();
-    }
-    
-    @else if $P1 == 2 {
-      @include myFunc1(green);
-    }
-    
-    @else {
-      @include myFunc1();
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS1 {
-    .SAM {
-      @include myFunc2(1);
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS2 {
-    .SAM {
-      @include myFunc2(2);
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas05
-  # sass scss/sas05.scss:css/sas05.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas05
-  # cat css/sas05.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    font-size: 15px; }
-  
-  #DS1 .SAM {
-    color: red; }
-  
-  #DS2 .SAM {
-    color: green; }
-  
-  /*# sourceMappingURL=sas05.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -967,60 +699,111 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas05.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas05/css/sas05.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas05.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述1
+  @mixin myFunc1($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  
+  // 関数記述2
+  @mixin myFunc2() {
+    @for $i from 1 through 2 {
+      #P#{$i} {
+        @include myFunc1(blue, 1.2em, normal);
+      }
+    }
+    @for $i from 3 through 4 {
+      #P#{$i} {
+        @include myFunc1(lime, 1.2em, normal);
+      }
+    }
+  }
+
+  // HTMLと同じ構造で記述
+  div {
+    @include myFunc2();
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas05.scss:css/sas05.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas05.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div #P1 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  div #P2 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  div #P3 {
+    color: lime;
+    font-size: 1.2em;
+    font-weight: normal; }
+  div #P4 {
+    color: lime;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -1033,70 +816,6 @@
   構文「each」を使用
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas06
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas06
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas06
-  # vi scss/sas06.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // プロパティ「font-size」に構文「for」を使用
-  @for $i from 1 through 2 {
-    #DS#{$i} .SAM {
-      font-size: 15px;
-    }
-  }
-  
-  // プロパティ「color」に構文「each」を使用
-  @each $key, $val in ('#DS1 .SAM': red, '#DS2 .SAM': green) {
-    #{$key} {
-      color: $val;
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas06
-  # sass scss/sas06.scss:css/sas06.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas06
-  # cat css/sas06.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    font-size: 15px; }
-  
-  #DS1 .SAM {
-    color: red; }
-  
-  #DS2 .SAM {
-    color: green; }
-  
-  /*# sourceMappingURL=sas06.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -1108,60 +827,100 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas06.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas06/css/sas06.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas06.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述
+  @mixin myFunc() {
+    @each $key, $val in ('color': blue, 'font-size': 1.2em, 'font-weight': normal) {
+      #P1, #P2 {
+        #{$key}: $val;
+      }
+    }
+    @each $key, $val in ('color': lime, 'font-size': 1.2em, 'font-weight': normal) {
+      #P3, #P4 {
+        #{$key}: $val;
+      }
+    }
+  }
+  
+  // HTMLと同じ構造で記述
+  div {
+    @include myFunc();
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas06.scss:css/sas06.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas06.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div #P1, div #P2 {
+    color: blue; }
+  div #P1, div #P2 {
+    font-size: 1.2em; }
+  div #P1, div #P2 {
+    font-weight: normal; }
+  div #P3, div #P4 {
+    color: lime; }
+  div #P3, div #P4 {
+    font-size: 1.2em; }
+  div #P3, div #P4 {
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -1174,74 +933,6 @@
   構文「while」を使用
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas07
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas07
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas07
-  # vi scss/sas07.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // 変数定義と初期化
-  $i: 1;
-  
-  // プロパティ「font-size」に構文「while」を使用
-  @while $i < 3 {
-    #DS#{$i} .SAM {
-      font-size: 15px;
-    }
-    $i: $i + 1;
-  }
-  
-  // プロパティ「color」に構文「each」を使用
-  @each $key, $val in ('#DS1 .SAM': red, '#DS2 .SAM': green) {
-    #{$key} {
-      color: $val;
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas07
-  # sass scss/sas07.scss:css/sas07.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas07
-  # cat css/sas07.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    font-size: 15px; }
-  
-  #DS1 .SAM {
-    color: red; }
-  
-  #DS2 .SAM {
-    color: green; }
-  
-  /*# sourceMappingURL=sas07.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -1253,60 +944,101 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas07.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas07/css/sas07.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas07.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 変数定義と初期化
+  $idx: 1;
+  
+  // 構文「while」を使用
+  @while $idx <= 4 {
+    div #P#{$idx} {
+      color: blue;
+      font-size: 1.2em;
+      font-weight: normal;
+    }
+    $idx: $idx + 1;
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas07.scss:css/sas07.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas07.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div #P1 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  
+  div #P2 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  
+  div #P3 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  
+  div #P4 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -1319,81 +1051,6 @@
   ファイル分割
   
 [確認]
-  # cd /var/www/html
-  # mkdir sas08
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas08
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas08
-  # vi scss/_sas08-01.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // 関数記述
-  @mixin myFunc($P1: red, $P2: 15px) {
-    color: $P1;
-    font-size: $P2;
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas08
-  # vi scss/sas08.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // インポート
-  @import 'sas08-01';
-  
-  // HTMLと同じ構造で記述
-  #DS1 {
-    .SAM {
-      @include myFunc();
-    }
-  }
-  
-  // HTMLと同じ構造で記述
-  #DS2 {
-    .SAM {
-      @include myFunc(green, 15px);
-    }
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas08
-  # sass scss/sas08.scss:css/sas08.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas08
-  # cat css/sas08.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  #DS1 .SAM {
-    color: red;
-    font-size: 15px; }
-  
-  #DS2 .SAM {
-    color: green;
-    font-size: 15px; }
-  
-  /*# sourceMappingURL=sas08.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -1405,60 +1062,103 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas08.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas08/css/sas08.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('#DS1 > .SAM:last').appendTo('#DS2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('#DS2 > .SAM:last').appendTo('#DS1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas/mod01.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述
+  @mixin myFunc($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas08.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // インポート
+  @import 'mod01';
+
+  // HTMLと同じ構造で記述
+  div {
+    #P1, #P2 {
+      @include myFunc(blue, 1em, normal);
+    }
+    #P3, #P4 {
+      @include myFunc(lime, 1em, normal);
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas08.scss:css/sas08.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas08.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  div #P1, div #P2 {
+    color: blue;
+    font-size: 1em;
+    font-weight: normal; }
+  div #P3, div #P4 {
+    color: lime;
+    font-size: 1em;
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！
@@ -1470,87 +1170,7 @@
 [内容]
   構文「extend」で継承・拡張
   
-  // 複製元
-  .myGreet1 {
-    color: green;
-  }
-  
-  // 複製先
-  .myGreet2 {
-    @extend .myGreet1;
-    text-align: center;
-  }
-  
 [確認]
-  # cd /var/www/html
-  # mkdir sas09
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas09
-  # compass create --sass-dir scss --css-dir css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas09
-  # vi scss/sas09.scss
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  // 継承・拡張元
-  #DS1 .SAM {
-    color: red;
-    font-size: 15px;
-  }
-  
-  // 構文「extend」でセレクタ「#DS1 .SAM」を継承・拡張 -> ネストしたセレクタのためコンパイル時にエラー
-  #DS2 .SAM {
-    @extend #DS1 .SAM;
-    color: green;
-  }
-  
-  // 継承・拡張元
-  .SAM1 {
-    color: red;
-    font-size: 15px;
-  }
-  
-  // 構文「extend」でセレクタ「.SAM1」を継承・拡張 -> コンパイル成功
-  .SAM2 {
-    @extend .SAM1;
-    color: green;
-  }
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas09
-  # sass scss/sas09.scss:css/sas09.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  # cd /var/www/html/sas09
-  # cat css/sas09.css
-  
-  コマンドの動作結果
-  --------------------------------------------------
-  .SAM1, .SAM2 {
-    color: red;
-    font-size: 15px; }
-  
-  .SAM2 {
-    color: green; }
-  
-  /*# sourceMappingURL=sas09.css.map */
-  --------------------------------------------------
-  
   # cd /var/www/html/www
   # vi sample.html
   
@@ -1562,60 +1182,122 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas09.css">
   
-  // SASS - CSS
-  <link rel="stylesheet" href="/var/www/html/sas09/css/sas09.css">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <div class='d-flex justify-content-center'>
-    <button class='btn-default' id='MV1'>移動1</button>
-    <button class='btn-default' id='MV2'>移動2</button>
+  <!-- HTML --->
+  <div>
+    <p class='SAM' id='P1'>Hello World</p>
+    <p class='SAM' id='P2'>Hello World</p>
   </div>
   <hr>
-  <div id='DS1'>
-    <p class='SAM1'>Hello!</p>
-    <p class='SAM1'>Hello!</p>
-  </div>
-  <hr>
-  <div id='DS2'>
-    <p class='SAM2'>Hello!</p>
-    <p class='SAM2'>Hello!</p>
+  <div>
+    <p class='SAM' id='P3'>Hello World</p>
+    <p class='SAM' id='P4'>Hello World</p>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => {
-      $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-    });
-    
-    // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => {
-      $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-    });
-    
-  </script>
+  <!-- JS --->
+  <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas/mod01.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述
+  @mixin myFunc($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas09.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // インポート
+  @import 'mod01';
+  
+  // 複製元のID => HTML上では該当要素なし
+  #AAA {
+    @include myFunc(blue, 1.2em, bold);
+  }
+  
+  // 複製元のID => HTML上では該当要素なし
+  #BBB {
+    @include myFunc(blue, 1.2em, bold);
+  }
+  
+  // HTMLと同じ構造で記述
+  div {
+    #P1, #P2 {
+      @extend #AAA;
+      font-weight: normal;  // オーバーライド
+    }
+    #P3, #P4 {
+      @extend #BBB;
+      font-weight: normal;  // オーバーライド
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas09.scss:css/sas09.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # cat css/sas09.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  #AAA, div #P1, div #P2 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: bold; }
+  
+  #BBB, div #P3, div #P4 {
+    color: blue;
+    font-size: 1.2em;
+    font-weight: bold; }
+  
+  div #P1, div #P2 {
+    font-weight: normal; }
+  
+  div #P3, div #P4 {
+    font-weight: normal; }
+  --------------------------------------------------
+  
+  # firefox
+  # http://localhost/sample.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   確認完了！

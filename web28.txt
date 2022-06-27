@@ -12,16 +12,8 @@
   棒グラフの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/yLgrjLV
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/yLgrjLV
   
   コマンドの実行結果
   --------------------------------------------------
@@ -38,16 +30,8 @@
   散布図の作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/OJWKKxa
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/OJWKKxa
   
   コマンドの実行結果
   --------------------------------------------------
@@ -64,16 +48,8 @@
   ヒートマップの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/bGqdwVW
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/bGqdwVW
   
   コマンドの実行結果
   --------------------------------------------------
@@ -90,16 +66,8 @@
   コロプレス図の作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/LYWpwKY
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/LYWpwKY
   
   コマンドの実行結果
   --------------------------------------------------
@@ -116,16 +84,8 @@
   ツリーマップの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/QWpVRja
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/QWpVRja
   
   コマンドの実行結果
   --------------------------------------------------
@@ -135,4 +95,3 @@
   確認完了!
   
 ================================================================================
-

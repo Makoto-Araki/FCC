@@ -27,17 +27,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -127,17 +127,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -217,14 +217,14 @@
     入力文字列は全て英字(大文字)、空白ありで小文字への変換等は不要
   
   暗号化
-    A -> N  // アルファベットを13進める
-    B -> O  // アルファベットを13進める
-    C -> P  // アルファベットを13進める
+    A => N  // アルファベットを13進める
+    B => O  // アルファベットを13進める
+    C => P  // アルファベットを13進める
   
   復号化
-    N -> A  // アルファベットを13戻す
-    O -> B  // アルファベットを13戻す
-    P -> C  // アルファベットを13戻す
+    N => A  // アルファベットを13戻す
+    O => B  // アルファベットを13戻す
+    P => C  // アルファベットを13戻す
   
 [確認]
   # cd /var/www/html
@@ -237,17 +237,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -334,17 +334,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 電話番号一覧
@@ -431,17 +431,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義

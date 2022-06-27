@@ -51,17 +51,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -117,17 +117,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -183,17 +183,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -249,17 +249,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -315,17 +315,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -381,17 +381,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -447,17 +447,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -513,17 +513,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -579,17 +579,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -645,17 +645,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -711,17 +711,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -777,17 +777,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -845,17 +845,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -913,17 +913,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -981,17 +981,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1047,17 +1047,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1114,17 +1114,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1180,17 +1180,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1246,17 +1246,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1312,17 +1312,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1378,17 +1378,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1449,17 +1449,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1524,17 +1524,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1590,17 +1590,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1656,17 +1656,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1724,17 +1724,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1792,17 +1792,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1860,17 +1860,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -1939,17 +1939,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2007,17 +2007,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2081,17 +2081,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2152,17 +2152,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -2218,17 +2218,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義

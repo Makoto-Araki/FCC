@@ -28,46 +28,52 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
-  // CSS
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // HTML読込と解析が完了時に一度だけ実行
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        console.log('Hello');
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
+          console.log('Hello World');
+        }
       }
-    });
+    );
     
   </script>
   
@@ -104,46 +110,55 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
-  // CSS
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // ボタンクリック後にメッセージ修正
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        document.getElementById('MSG').textContent = 'ボタンクリックでメッセージ変更';
+    // クリック数
+    let CNT = 0;
+    
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
+          document.getElementById('MSG').textContent = `Hello ${CNT++}`;
+        }
       }
-    });
+    );
     
   </script>
   
@@ -166,21 +181,13 @@
   Get JSON with the JavaScript XMLHttpRequest Method
   
 [内容]
-  JSONファイルから全データ取得(1)
-    メソッド「XMLHttpRequest」を使用
+  JSONファイルからデータ取得(1)
+    クラス「XMLHttpRequest」からインスタンス生成
   
-  JSON.parse(JSON文字列) -> JSオブジェクト
-  JSON.stringfy(JSオブジェクト) -> JSON文字列
+  JSON.parse(JSON文字列) => JSオブジェクト
+  JSON.stringfy(JSオブジェクト) => JSON文字列
   
 [確認]
-  # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
   # cd /var/www/html/Json
   # vi sample.json
   
@@ -189,91 +196,99 @@
   // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
   
   [
-    { "番号": 0, "名前": "織田信長", "居城": "安土城" },
-    { "番号": 1, "名前": "豊臣秀吉", "居城": "大坂城" },
-    { "番号": 2, "名前": "徳川家康", "居城": "江戸城" }
+    { "key1": "01", "key2": "AAA" },
+    { "key1": "02", "key2": "BBB" },
+    { "key1": "03", "key2": "CCC" }
   ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
   ----------------------------------------
   
   # cd /var/www/html
   # vi sample.html
   
   コマンドの実行結果
-  ----------------------------------------
+  --------------------------------------------------
   <!doctype html>
   <html lang="ja">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
-  // CSS
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // JSONファイルから全データ取得
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // メソッド「XMLHttpRequest」を使用
-        const REQ = new XMLHttpRequest();
-        REQ.open('GET', 'Json/sample.json', true);
-        
-        // リクエスト送信
-        REQ.send();
-        
-        // レスポンス受信
-        REQ.onload = () => {
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
           
-          // JSON文字列からJSオブジェクトに変換
-          const RCV = JSON.parse(REQ.responseText);
-          document.getElementById('MSG').innerHTML = RCV;
+          // クラス「XMLHttpRequest」からインスタンス生成
+          const REQ = new XMLHttpRequest();
           
-        };
+          // リクエスト作成
+          REQ.open('GET', 'Json/sample.json', true);
+          
+          // リクエスト送信
+          REQ.send();
+          
+          // レスポンス受信
+          REQ.onload = function() {
+            
+            // 戻り値の初期化
+            let RET = '';
+
+            // JSON文字列からJSオブジェクトに変換
+            let RCV = JSON.parse(REQ.responseText);
+            
+            // 各オブジェクト対象のループ処理
+            RCV.forEach(OBJ => { RET += `<p>key1: ${OBJ.key1}  key2: ${OBJ.key2}</p>`; });
+            
+            // JSオブジェクトの一部をHTMLに描画
+            document.getElementById('MSG').innerHTML = RET;
+            
+          };
+        }
       }
-    });
+    );
     
   </script>
   
   </body>
   </html>
-  ----------------------------------------
+  --------------------------------------------------
   
   # firefox
   # localhost/sample.html
@@ -290,98 +305,81 @@
   Get JSON with the JavaScript fetch method
   
 [内容]
-  JSONファイルから全データ取得(2)
+  JSONファイルからデータ取得(2)
     メソッド「fetch」を使用
   
 [確認]
   # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html/Json
-  # vi sample.json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
-  
-  [
-    { "番号": 0, "名前": "織田信長", "居城": "安土城" },
-    { "番号": 1, "名前": "豊臣秀吉", "居城": "大坂城" },
-    { "番号": 2, "名前": "徳川家康", "居城": "江戸城" }
-  ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html
   # vi sample.html
   
   コマンドの実行結果
-  ----------------------------------------
+  --------------------------------------------------
   <!doctype html>
   <html lang="ja">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
+  <!-- JS --->
   <script>
     
-    // JSONファイルから全データ取得
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // メソッド「fetch」を使用
-        fetch('Json/sample.json')
-        .then(data => data.json())
-        .then(data => { document.getElementById('MSG').innerHTML = data; });
-        
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
+          
+          // メソッド「fetch」を使用してJSオブジェクトの一部を描画
+          fetch('Json/sample.json')
+          .then(data => data.json())
+          .then(data => {
+            let RET = '';
+            data.forEach(OBJ => { RET += `<p>key1: ${OBJ.key1}  key2: ${OBJ.key2}</p>`; });
+            document.getElementById('MSG').innerHTML = RET;
+          });
+          
+        }
       }
-    });
+    );
     
   </script>
   
   </body>
   </html>
-  ----------------------------------------
+  --------------------------------------------------
   
   # firefox
   # localhost/sample.html
@@ -399,117 +397,9 @@
   
 [内容]
   JSONファイルから一部データ抽出(1)
-    二番目のオブジェクトからキー「名前」の値「豊臣秀吉」を出力
   
 [確認]
-  # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html/Json
-  # vi sample.json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
-  
-  [
-    { "番号": 0, "名前": "織田信長", "居城": "安土城" },
-    { "番号": 1, "名前": "豊臣秀吉", "居城": "大坂城" },
-    { "番号": 2, "名前": "徳川家康", "居城": "江戸城" }
-  ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
-  
-  // CSS
-  <style>
-    h1 {
-      font-size: 2em;
-      font-weight: bold;
-      text-align: center;
-    }
-    #MSG {
-      background-color: #eeeeee;
-      border-radius: 5px;
-      padding: 20px 5px 20px 5px;
-      text-align: center;
-    }
-    #GET {
-      display: block;
-      padding: 10px 10px;
-      color: white;
-      background-color: CornFlowerBlue;
-      margin: 10px auto;
-    }
-  </style>
-  
-  // JS
-  <script>
-    
-    // JSONファイルから一部データ抽出
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // オブジェクト作成と初期化
-        const REQ = new XMLHttpRequest();
-        REQ.open('GET', 'Json/sample.json', true);
-        
-        // リクエスト送信
-        REQ.send();
-        
-        // 二番目のオブジェクトからキー「名前」の値「豊臣秀吉」を出力
-        REQ.onload = () => {
-          const RCV = JSON.parse(REQ.responseText);
-          document.getElementById('MSG').innerHTML = RCV[1]['名前'];
-        };
-      }
-    });
-    
-  </script>
-  
-  </body>
-  </html>
-  ----------------------------------------
-  
-  # firefox
-  # localhost/sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (メッセージ取得ボタンを押下)
-  ----------------------------------------
-  
-  以後の動作確認に続く
+  // 上記「03」を参照
   
 ================================================================================
 [06]
@@ -517,135 +407,9 @@
   
 [内容]
   JSONファイルから一部データ抽出(2)
-    各オブジェクトのキー項目「名前」とそのデータを抽出
   
 [確認]
-  # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html/Json
-  # vi sample.json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
-  
-  [
-    { "番号": 0, "名前": "織田信長", "居城": "安土城" },
-    { "番号": 1, "名前": "豊臣秀吉", "居城": "大坂城" },
-    { "番号": 2, "名前": "徳川家康", "居城": "江戸城" }
-  ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
-  
-  // CSS
-  <style>
-    h1 {
-      font-size: 2em;
-      font-weight: bold;
-      text-align: center;
-    }
-    #MSG {
-      background-color: #eeeeee;
-      border-radius: 5px;
-      padding: 20px 5px 20px 5px;
-      text-align: center;
-    }
-    #GET {
-      display: block;
-      padding: 10px 10px;
-      color: white;
-      background-color: CornFlowerBlue;
-      margin: 10px auto;
-    }
-  </style>
-  
-  // JS
-  <script>
-    
-    // JSONファイルから一部データ抽出
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // オブジェクト作成と初期化
-        const REQ = new XMLHttpRequest();
-        REQ.open('GET', 'Json/sample.json', true);
-        
-        // リクエスト送信
-        REQ.send();
-        
-        // レスポンス受信
-        REQ.onload = () => {
-          const RCV = JSON.parse(REQ.responseText);
-          let RET = '';
-          
-          // 各オブジェクト対象のループ処理
-          RCV.forEach(OBJ => {
-            const KEY = Object.keys(OBJ);
-            
-            // 各オブジェクトのキー項目「名前」とそのデータを抽出
-            KEY.forEach(key => {
-              if (key === '名前') {
-                RET += '<div>';
-                RET += key + ' : ' + OBJ[key] + '<br>';
-                RET += '</div>';
-              }
-            });
-            
-          });
-          
-          // HTML上の要素を書き替え
-          document.getElementById('MSG').innerHTML = RET;
-        };
-      }
-    });
-    
-  </script>
-  
-  </body>
-  </html>
-  ----------------------------------------
-  
-  # firefox
-  # localhost/sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (メッセージ取得ボタンを押下)
-  ----------------------------------------
-  
-  以後の動作確認に続く
+  // 上記「04」を参照
   
 ================================================================================
 [07]
@@ -656,12 +420,13 @@
     全画像を表示
   
 [確認]
-  # cd /var/www/html
-  # mkdir Json
+  # cd /var/www/html/images
+  # ls -lh *.png
   
   コマンドの実行結果
   ----------------------------------------
-  (省略)
+  -rw-r--r--. 1 root root 2.5K  6月 22 05:44 android-256.png
+  -rw-r--r--. 1 root root  76K  6月 22 05:44 firefox-256.png
   ----------------------------------------
   
   # cd /var/www/html/Json
@@ -672,96 +437,98 @@
   // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
   
   [
-    { "id": 0, "link": "images/android-icon.png", "text": "Android" }, 
-    { "id": 1, "link": "images/firefox-icon.png", "text": "Firefox" }
+    { "id": 0, "link": "images/android-256.png", "text": "Android" }, 
+    { "id": 1, "link": "images/firefox-256.png", "text": "Firefox" }
   ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
   ----------------------------------------
   
   # cd /var/www/html
   # vi sample.html
   
   コマンドの実行結果
-  ----------------------------------------
+  --------------------------------------------------
   <!doctype html>
   <html lang="ja">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
-  // CSS
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // JSONファイルから一部データ抽出
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // オブジェクト作成と初期化
-        const REQ = new XMLHttpRequest();
-        REQ.open('GET', 'Json/sample.json', true);
-        
-        // リクエスト送信
-        REQ.send();
-        
-        // レスポンス受信
-        REQ.onload = () => {
-          const RCV = JSON.parse(REQ.responseText);
-          let RET = '';
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
           
-          // 各オブジェクト対象のループ処理
-          RCV.forEach(OBJ => {
-            RET += `<img style='width: 20%' src='${OBJ.link}' alt='${OBJ.text}'>`;
-            RET += '<br>';
-          });
+          // クラス「XMLHttpRequest」からインスタンス生成
+          const REQ = new XMLHttpRequest();
           
-          // HTML上の要素を書き替え
-          document.getElementById('MSG').innerHTML = RET;
-        };
+          // リクエスト作成
+          REQ.open('GET', 'Json/sample.json', true);
+          
+          // リクエスト送信
+          REQ.send();
+          
+          // レスポンス受信
+          REQ.onload = function() {
+            
+            // 戻り値の初期化
+            let RET = '';
+            
+            // JSON文字列からJSオブジェクトに変換
+            let RCV = JSON.parse(REQ.responseText);
+            
+            // 各オブジェクト対象のループ処理
+            RCV.forEach(OBJ => { RET += `<img style='width: 20%' src='${OBJ.link}' alt='${OBJ.text}'><br>`; });
+            
+            // JSオブジェクトの一部をHTMLに描画
+            document.getElementById('MSG').innerHTML = RET;
+            
+          };
+        }
       }
-    });
+    );
     
   </script>
   
   </body>
   </html>
-  ----------------------------------------
+  --------------------------------------------------
   
   # firefox
   # localhost/sample.html
@@ -781,126 +548,20 @@
   JSONファイルから画像表示(2)
     表示画像にフィルター適用
   
+    (例)
+    REQ.onload = function() {
+      let RET = '';
+      let RCV = JSON.parse(REQ.responseText);
+      
+      // 表示画像にフィルター適用
+      RCV = RCV.filter(val => val.text === 'Firefox');
+      
+      RCV.forEach(OBJ => { RET += `<img style='width: 20%' src='${OBJ.link}' alt='${OBJ.text}'><br>`; });
+      document.getElementById('MSG').innerHTML = RET;
+    };
+
 [確認]
-  # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html/Json
-  # vi sample.json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
-  
-  [
-    { "id": 0, "link": "images/android-icon.png", "text": "Android" }, 
-    { "id": 1, "link": "images/firefox-icon.png", "text": "Firefox" }
-  ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
-  
-  // CSS
-  <style>
-    h1 {
-      font-size: 2em;
-      font-weight: bold;
-      text-align: center;
-    }
-    #MSG {
-      background-color: #eeeeee;
-      border-radius: 5px;
-      padding: 20px 5px 20px 5px;
-      text-align: center;
-    }
-    #GET {
-      display: block;
-      padding: 10px 10px;
-      color: white;
-      background-color: CornFlowerBlue;
-      margin: 10px auto;
-    }
-  </style>
-  
-  // JS
-  <script>
-    
-    // JSONファイルから一部データ抽出
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // オブジェクト作成と初期化
-        const REQ = new XMLHttpRequest();
-        REQ.open('GET', 'Json/sample.json', true);
-        
-        // リクエスト送信
-        REQ.send();
-        
-        // レスポンス受信
-        REQ.onload = () => {
-          let RCV = JSON.parse(REQ.responseText);
-          let RET = '';
-          
-          // 表示画像にフィルター適用
-          RCV = RCV.filter(val => val.text === 'Firefox');
-          
-          // 各オブジェクト対象のループ処理
-          RCV.forEach(OBJ => {
-            RET += `<img style='width: 20%' src='${OBJ.link}' alt='${OBJ.text}'>`;
-            RET += '<br>';
-          });
-          
-          // HTML上の要素を書き替え
-          document.getElementById('MSG').innerHTML = RET;
-        };
-      }
-    });
-    
-  </script>
-  
-  </body>
-  </html>
-  ----------------------------------------
-  
-  # firefox
-  # localhost/sample.html
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (メッセージ取得ボタンを押下)
-  ----------------------------------------
-  
-  以後の動作確認に続く
+  // 上記「07」を参照
   
 ================================================================================
 [09]
@@ -908,100 +569,115 @@
   
 [内容]
   自分の位置情報の取得
-    何度、試みても位置情報の取得が不可の結果に終わる -> 理由は不明
+    ブラウザは「navigator.geolocation」に対応、おそらく「https」未対応で位置情報の取得が失敗
   
 [確認]
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
   # cd /var/www/html
   # vi sample.html
   
   コマンドの実行結果
-  ----------------------------------------
+  --------------------------------------------------
   <!doctype html>
   <html lang="ja">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
+  <!-- JS --->
   <script>
     
-    // JSONファイルから一部データ抽出
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // 画面表示用の文字列
-        let RET = '';
-        
-        // 成功時の関数
-        const SUC = (pos) => {
-          RET += '<div>';
-          RET += '<p>緯度：' + pos.coords.latitude + '</p>';
-          RET += '<p>経度：' + pos.coords.longitude + '</p>';
-          RET += '</div>';
-        }
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
           
-        // 失敗時の関数
-        const ERR = () => {
-          alert('位置情報の取得に失敗');
-        }
-        
-        // 位置情報の取得が可能なら取得
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(SUC, ERR);
-        } else {
-          alert('位置情報の取得は不可能');
-        }
-        
-        // HTML上の要素を書き替え
-        if (RET !== '') {
-          document.getElementById('MSG').innerHTML = RET;
+          // クラス「XMLHttpRequest」からインスタンス生成
+          const REQ = new XMLHttpRequest();
+          
+          // リクエスト作成
+          REQ.open('GET', 'Json/sample.json', true);
+          
+          // リクエスト送信
+          REQ.send();
+          
+          // レスポンス受信
+          REQ.onload = function() {
+            
+            // 画面表示用の文字列
+            let RET = '';
+            
+            // 成功時の関数
+            const SUC = (pos) => {
+              RET += '<div>';
+              RET += '<p>緯度：' + pos.coords.latitude + '</p>';
+              RET += '<p>経度：' + pos.coords.longitude + '</p>';
+              RET += '</div>';
+            }
+            
+            // 失敗時の関数
+            const ERR = () => {
+              alert('位置情報の取得に失敗');
+            }
+            
+            // 位置情報の取得が可能なら取得
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(SUC, ERR);
+            } else {
+              alert('ブラウザ未対応');
+            }
+            
+            // 要素を書き替え
+            if (RET !== '') {
+              document.getElementById('MSG').innerHTML = RET;
+            }
+            
+          };
         }
       }
-    });
+    );
     
   </script>
   
   </body>
   </html>
-  ----------------------------------------
+  --------------------------------------------------
   
   # firefox
-  # localhost/sample.html
+  # https://localhost/sample.html => きちんと「https」を指定しなければならない
   
   コマンドの実行結果
   ----------------------------------------
@@ -1016,17 +692,9 @@
   
 [内容]
   JSONファイルへデータをPOST送信
-    メソッド「XMLHttpRequest」を使用 -> あくまで送信のみで登録にはサーバー側の処理が必要
+    メソッド「XMLHttpRequest」を使用 => あくまで送信のみで登録等はサーバー側の処理が必要
   
 [確認]
-  # cd /var/www/html
-  # mkdir Json
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
-  ----------------------------------------
-  
   # cd /var/www/html/Json
   # vi sample.json
   
@@ -1035,106 +703,104 @@
   // シングルクォート「'」はエラーになるのでダブルクォート「"」を使用
   
   [
-    { "番号": 0, "名前": "織田信長", "居城": "安土城" },
-    { "番号": 1, "名前": "豊臣秀吉", "居城": "大坂城" },
-    { "番号": 2, "名前": "徳川家康", "居城": "江戸城" }
+    { "key1": "01", "key2": "AAA" },
+    { "key1": "02", "key2": "BBB" },
+    { "key1": "03", "key2": "CCC" }
   ]
-  ----------------------------------------
-  
-  # cd $HOME
-  # systemctl start httpd
-  
-  コマンドの実行結果
-  ----------------------------------------
-  (省略)
   ----------------------------------------
   
   # cd /var/www/html
   # vi sample.html
   
   コマンドの実行結果
-  ----------------------------------------
+  --------------------------------------------------
   <!doctype html>
   <html lang="ja">
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
+  <!-- HTML --->
   <h1>MY SAMPLE</h1>
-  <p id='MSG'>メッセージ出力</p>
-  <input type="button" id='GET' value="メッセージ取得" />
+  <p id='MSG'>Hello World</p>
+  <input type="button" id='GET' value="GET" />
   
+  <!-- CSS --->
   <style>
+    
     h1 {
+      color: black;
       font-size: 2em;
       font-weight: bold;
       text-align: center;
     }
+
     #MSG {
       background-color: #eeeeee;
       border-radius: 5px;
       padding: 20px 5px 20px 5px;
       text-align: center;
     }
+
     #GET {
       display: block;
       padding: 10px 10px;
-      color: white;
       background-color: CornFlowerBlue;
       margin: 10px auto;
     }
+    
   </style>
   
+  <!-- JS --->
   <script>
     
-    // JSONファイルへデータをPOST送信
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('GET').onclick = () => {
-        
-        // 送信データをJSON文字列に変換
-        const DATA = { "番号": 3, "名前": "真田昌幸", "居城": "上田城" };
-        const BODY = JSON.stringify(DATA);
-        
-        // オブジェクト作成と初期化
-        const REQ = new XMLHttpRequest();
-        REQ.open('POST', 'Json/sample.json', true);
-        
-        // リクエストヘッダ設定
-        REQ.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-        
-        // リクエスト送信
-        REQ.send(BODY);
-        
-        // レスポンス受信(正常)
-        REQ.onload = () => {
-          const RCV = JSON.parse(REQ.responseText);
-          if (RCV.length > 0) {
-            alert(RCV);
-          }
-        };
-        
-        // レスポンス受信(エラー)
-        REQ.onerror = () => {
-          alert('エラー発生');
-        };
+    // コンテンツロード時に一度だけ実行
+    document.addEventListener('DOMContentLoaded',
+      function() {
+        document.getElementById('GET').onclick = function() {
+          
+          // 送信データをJSON文字列に変換
+          const DATA = { "key1": "04", "key2": "DDD" };
+          const BODY = JSON.stringify(DATA);
+          
+          // オブジェクト作成と初期化
+          const REQ = new XMLHttpRequest();
+          REQ.open('POST', 'Json/sample.json', true);
+          
+          // リクエストヘッダ設定
+          REQ.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+          
+          // リクエスト送信
+          REQ.send(BODY);
+          
+          // レスポンス受信(正常)
+          REQ.onload = () => {
+            const RCV = JSON.parse(REQ.responseText);
+            if (RCV.length > 0) alert(RCV);  // 出力結果「[object Object],[object Object]」
+          };
+          
+          // レスポンス受信(エラー)
+          REQ.onerror = () => alert('エラー発生');
+          
+        }
       }
-    });
+    );
     
   </script>
   
   </body>
   </html>
-  ----------------------------------------
+  --------------------------------------------------
   
   # firefox
   # localhost/sample.html
   
   コマンドの実行結果
   ----------------------------------------
-  (メッセージ取得ボタンを押下) -> 結果「[object Object],[object Object],[object Object]」
+  (メッセージ取得ボタンを押下)
   ----------------------------------------
   
   動作確認はひとまず終了する

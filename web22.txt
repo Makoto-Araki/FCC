@@ -65,51 +65,41 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 要素「JSX」
+    {/* 要素「JSX」*/} 
     const JSX = (
-      <div>
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+      <div id='ROOT'>
+        <div>
+          <p className='SAM' id='P1'>Hello World</p>
+          <p className='SAM' id='P2'>Hello World</p>
         </div>
         <hr />
-        <div id='DS1'>
-          <p className='SAM1'>Hello!</p>
-          <p className='SAM1'>Hello!</p>
-        </div>
-        <hr />
-        <div id='DS2'>
-          <p className='SAM2'>Hello!</p>
-          <p className='SAM2'>Hello!</p>
+        <div>
+          <p className='SAM' id='P3'>Hello World</p>
+          <p className='SAM' id='P4'>Hello World</p>
         </div>
       </div>
     );
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       JSX,
       document.getElementById('APP')
@@ -117,33 +107,61 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
   </html>
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # compass create --sass-dir scss --css-dir css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (省略) => プロジェクトが作成された旨のメッセージ出力
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/mod01.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // 関数記述
+  @mixin myFunc($P1: black, $P2: 1em, $P3: normal) {
+    color: $P1;
+    font-size: $P2;
+    font-weight: $P3;
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # vi scss/sas01.scss
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  // インポート
+  @import 'mod01';
+  
+  // HTMLと同じ構造で記述
+  #ROOT {
+    div {
+      .SAM {
+        @include myFunc(blue, 1em, normal);
+      }
+    }
+  }
+  --------------------------------------------------
+  
+  # cd /var/www/html/sas
+  # sass scss/sas01.scss:css/sas01.css
+  
+  コマンドの動作結果
+  --------------------------------------------------
+  (出力なし)
   --------------------------------------------------
   
   # firefox
@@ -187,13 +205,13 @@
   Add Comments in JSX
   
 [内容]
-  コメント -> 本来は「{/* コメント */}」だが、このファイル内では「// コメント」で記述
+  コメントは「{/* コメント */}」で記述
   
   {/* 要素「JSX」 */}
   const JSX = <h1>Hello</h1>;
   
 [確認]
-  // 省略
+  // 上記「01」を参照
   
 ================================================================================
 [04]
@@ -209,7 +227,7 @@
   );
   
 [確認]
-  // 省略
+  // 上記「01」を参照
   
 ================================================================================
 [05]
@@ -257,77 +275,60 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
-      return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DS1 = () => {
-      return (
-        <div id='DS1'>
-          <p className='SAM1'>Hello!</p>
-          <p className='SAM1'>Hello!</p>
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const DS2 = () => {
-      return (
-        <div id='DS2'>
-          <p className='SAM2'>Hello!</p>
-          <p className='SAM2'>Hello!</p>
-        </div>
-      );
-    }
-    
-    // メイン関数コンポーネント
-    const MAIN = () => {
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
       return (
         <div>
-          <BTN />  // ボタン配置
-          <HRZ />  // 水平線タグ
-          <DS1 />  // 文字列(赤色)
-          <HRZ />  // 水平線タグ
-          <DS2 />  // 文字列(緑色)
+          <p className='SAM' id='P1'>Hello World</p>
+          <p className='SAM' id='P2'>Hello World</p>
         </div>
       );
     }
     
-    // 要素「JSX」を描画指示
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      return (
+        <div>
+          <p className='SAM' id='P3'>Hello World</p>
+          <p className='SAM' id='P4'>Hello World</p>
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メイン関数コンポーネント */}
+    const MAIN = () => {
+      return (
+        <div id='ROOT'>
+          <DSP1 />
+          <HRZN />
+          <DSP2 />
+        </div>
+      );
+    }
+    
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -335,29 +336,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -393,106 +375,82 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // クラスコンポーネント
-    class BTN extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-      render() {
-        return (
-          <div className='d-flex justify-content-center'>
-            <button className='btn-default' id='MV1'>移動1</button>
-            <button className='btn-default' id='MV2'>移動2</button>
-          </div>
-        );
-      }
-    }
-    
-    // クラスコンポーネント
-    class HRZ extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-      render() {
-        return (
-          <hr />
-        );
-      }
-    }
-    
-    // クラスコンポーネント
-    class DS1 extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-      render() {
-        return (
-          <div id='DS1'>
-            <p className='SAM1'>Hello!</p>
-            <p className='SAM1'>Hello!</p>
-          </div>
-        );
-      }
-    }
-    
-    // クラスコンポーネント
-    class DS2 extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-      render() {
-        return (
-          <div id='DS2'>
-            <p className='SAM2'>Hello!</p>
-            <p className='SAM2'>Hello!</p>
-          </div>
-        );
-      }
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
+    {/* クラスコンポーネント */}
+    class DSP1 extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
         return (
           <div>
-            <BTN />  // ボタン配置
-            <HRZ />  // 水平線タグ
-            <DS1 />  // 文字列(赤色)
-            <HRZ />  // 水平線タグ
-            <DS2 />  // 文字列(緑色)
+            <p className='SAM' id='P1'>Hello World</p>
+            <p className='SAM' id='P2'>Hello World</p>
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* クラスコンポーネント */}
+    class DSP2 extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return (
+          <div>
+            <p className='SAM' id='P3'>Hello World</p>
+            <p className='SAM' id='P4'>Hello World</p>
+          </div>
+        );
+      }
+    }
+    
+    {/* クラスコンポーネント */}
+    class HRZN extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return (<hr />);
+      }
+    }
+    
+    {/* メインクラスコンポーネント */}
+    class MAIN extends React.Component {
+      constructor(props) {
+        super(props);
+      }
+      render() {
+        return (
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
+          </div>
+        );
+      }
+    }
+    
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -500,29 +458,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -544,7 +483,7 @@
   Create a Component with Composition
   
 [内容]
-  クラスコンポーネント内で関数コンポーネントを呼び出す -> これが一般的な形らしい
+  クラスコンポーネント内で関数コンポーネントを呼び出す => これが一般的な形らしい
   
 [確認]
   # cd /var/www/html
@@ -558,82 +497,65 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
       return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+        <div>
+          <p className='SAM' id='P1'>Hello World</p>
+          <p className='SAM' id='P2'>Hello World</p>
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DS1 = () => {
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
       return (
-        <div id='DS1'>
-          <p className='SAM1'>Hello!</p>
-          <p className='SAM1'>Hello!</p>
+        <div>
+          <p className='SAM' id='P3'>Hello World</p>
+          <p className='SAM' id='P4'>Hello World</p>
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const DS2 = () => {
-      return (
-        <div id='DS2'>
-          <p className='SAM2'>Hello!</p>
-          <p className='SAM2'>Hello!</p>
-        </div>
-      );
-    }
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
     
-    // メインクラスコンポーネント
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
         return (
-          <div>
-            <BTN />  // ボタン配置
-            <HRZ />  // 水平線タグ
-            <DS1 />  // 文字列(赤色)
-            <HRZ />  // 水平線タグ
-            <DS2 />  // 文字列(緑色)
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -641,29 +563,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -685,7 +588,7 @@
   Use React to Render Nested Components
   
 [内容]
-  関数コンポーネントから別の関数コンポーネントを呼ぶ -> コンポーネントのネスト化
+  関数コンポーネントから別の関数コンポーネントを呼ぶ => コンポーネントのネスト化
   
 [確認]
   # cd /var/www/html
@@ -699,100 +602,71 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
-      return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
-        </div>
-      );
-    }
+    {/* 関数コンポーネント */}
+    const SAM1 = () => { return (<p className='SAM' id='P1'>Hello World</p>); }
+    const SAM2 = () => { return (<p className='SAM' id='P2'>Hello World</p>); }
+    const SAM3 = () => { return (<p className='SAM' id='P3'>Hello World</p>); }
+    const SAM4 = () => { return (<p className='SAM' id='P4'>Hello World</p>); }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const SAM1 = () => {
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
       return (
         <div>
-          <p className='SAM1'>Hello!</p>
-          <p className='SAM1'>Hello!</p>
-        </div>
-      )
-    }
-    
-    // 関数コンポーネント
-    const SAM2 = () => {
-      return (
-        <div>
-          <p className='SAM2'>Hello!</p>
-          <p className='SAM2'>Hello!</p>
-        </div>
-      )
-    }
-    
-    // 関数コンポーネント
-    const DS1 = () => {
-      return (
-        <div id='DS1'>
           <SAM1 />
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const DS2 = () => {
-      return (
-        <div id='DS2'>
           <SAM2 />
         </div>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      return (
+        <div>
+          <SAM3 />
+          <SAM4 />
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
         return (
-          <div>
-            <BTN />  // ボタン配置
-            <HRZ />  // 水平線タグ
-            <DS1 />  // 文字列(赤色)
-            <HRZ />  // 水平線タグ
-            <DS2 />  // 文字列(緑色)
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -800,29 +674,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -854,7 +709,7 @@
   Render a Class Component to the DOM
   
 [内容]
-  クラスコンポーネントをReactDOMに描画指示
+  クラスコンポーネントを「ReactDOM」に描画指示
   
 [確認]
   // 省略
@@ -864,7 +719,7 @@
   Write a React Component from Scratch
   
 [内容]
-  クラスコンポーネントをReactDOMに描画指示 -> 全て一から自作の演習
+  クラスコンポーネントを「ReactDOM」に描画指示 => 全て一から自作の演習
   
 [確認]
   // 省略
@@ -874,7 +729,7 @@
   Pass Props to a Stateless Functional Component
   
 [内容]
-  関数コンポーネントをパラメータ指定可能 -> 関数コンポーネント「DSP」に注目
+  関数コンポーネントをパラメータ指定可能にする
   
 [確認]
   # cd /var/www/html
@@ -888,72 +743,68 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
+    {/* 関数コンポーネント */}
+    const SAMS = (props) => { return (<p className={props.P1} id={props.P2}>Hello World</p>); }
+    
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
       return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+        <div>
+          <SAMS P1='SAM' P2='P1' />
+          <SAMS P1='SAM' P2='P2' />
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
       return (
-        <div id={props.P1}>
-          <p className={props.P2}>Hello!</p>
-          <p className={props.P2}>Hello!</p>
+        <div>
+          <SAMS P1='SAM' P2='P3' />
+          <SAMS P1='SAM' P2='P4' />
         </div>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
         return (
-          <div>
-            <BTN />
-            <HRZ />
-            <DSP P1='DS1' P2='SAM1'/>
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2'/>
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -961,29 +812,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1005,7 +837,7 @@
   Pass an Array as Props
 
 [内容]
-  関数コンポーネントに配列のパラメータを渡す -> 関数コンポーネント「DSP」に注目
+  関数コンポーネントに配列のパラメータを渡す
   
 [確認]
   # cd /var/www/html
@@ -1019,75 +851,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
+    {/* 関数コンポーネント */}
+    const SAMS = (props) => {
       return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+        <div>
+          <p className={props.ARR[0]} id={props.ARR[1]}>Hello World</p>
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
+      const ARR1 = ['SAM', 'P1'];
+      const ARR2 = ['SAM', 'P2'];
       return (
-        <div id={props.P1}>
-          {ret}
+        <div>
+          <SAMS ARR={ARR1} />
+          <SAMS ARR={ARR2} />
         </div>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      const ARR3 = ['SAM', 'P3'];
+      const ARR4 = ['SAM', 'P4'];
+      return (
+        <div>
+          <SAMS ARR={ARR3} />
+          <SAMS ARR={ARR4} />
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <BTN />
-            <HRZ />
-            <DSP P1='DS1' P2='SAM1' ARR={WRD} />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1095,29 +930,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1139,7 +955,7 @@
   Use Default Props
   
 [内容]
-  関数コンポーネントへ渡されるパラメータのデフォルト値 -> 関数コンポーネント「DSP」に注目
+  関数コンポーネントのパラメータデフォルト値
   
 [確認]
   # cd /var/www/html
@@ -1153,82 +969,83 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
+    {/* 関数コンポーネント */}
+    const SAMS = (props) => {
       return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+        <div>
+          <p className={props.ARR[0]} id={props.ARR[1]}>Hello World</p>
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
+    {/* 関数コンポーネントのパラメータデフォルト値 */}
+    SAMS.defaultProps = {
+      ARR: ['SAM', 'P1']
+    }
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
+      const ARR1 = ['SAM', 'P1'];
+      const ARR2 = ['SAM', 'P2'];
       return (
-        <div id={props.P1}>
-          {ret}
+        <div>
+          <SAMS />             {/* パラメータデフォルト値 */}
+          <SAMS ARR={ARR2} />  {/* 明確にパラメータ値指定 */}
         </div>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      const ARR3 = ['SAM', 'P3'];
+      const ARR4 = ['SAM', 'P4'];
+      return (
+        <div>
+          <SAMS ARR={ARR3} />
+          <SAMS ARR={ARR4} />
+        </div>
+      );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <BTN />
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1236,29 +1053,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1290,7 +1088,7 @@
   Use PropTypes to Define the Props You Expect
   
 [内容]
-  プロトタイプで関数コンポーネントのパラメータのデータ型チェック -> 関数コンポーネント「DSP」に注目
+  関数コンポーネントのパラメータチェック
   
 [確認]
   # cd /var/www/html
@@ -1304,89 +1102,88 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
+    {/* 関数コンポーネント */}
+    const SAMS = (props) => {
       return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
+        <div>
+          <p className={props.ARR[0]} id={props.ARR[1]}>Hello World</p>
         </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
+    {/* 関数コンポーネントのパラメータデフォルト値 */}
+    SAMS.defaultProps = {
+      ARR: ['SAM', 'P1']
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
+    {/* 関数コンポーネントのパラメータチェック */}
+    SAMS.propTypes = {
       ARR: React.PropTypes.array
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
+      const ARR1 = ['SAM', 'P1'];
+      const ARR2 = ['SAM', 'P2'];
+      return (
+        <div>
+          <SAMS />             {/* パラメータデフォルト値 */}
+          <SAMS ARR={ARR2} />  {/* 明確にパラメータ値指定 */}
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      const ARR3 = ['SAM', 'P3'];
+      const ARR4 = ['SAM', 'P4'];
+      return (
+        <div>
+          <SAMS ARR={ARR3} />
+          <SAMS ARR={ARR4} />
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <BTN />
-            <HRZ />
-            <DSP P1='DS1' P2='SAM1' ARR='AAA' />  // 実行時に警告 -> 後の処理でエラー
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1394,29 +1191,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1438,11 +1216,11 @@
   Access Props Using this.props
   
 [内容]
-  関数コンポーネントをクラスコンポーネントに書き換え -> 関数コンポーネント「DSP」に注目
+  関数コンポーネントからクラスコンポーネントに書き換え
   
   主な注意点としてパラメータ記述が異なる(例. ARR)
-    props.ARR       -> 関数コンポーネント
-    this.props.ARR  -> クラスコンポーネント
+    props.ARR      => 関数コンポーネント
+    this.props.ARR => クラスコンポーネント
   
 [確認]
   # cd /var/www/html
@@ -1456,94 +1234,93 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const BTN = () => {
-      return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // クラスコンポーネント
-    class DSP extends React.Component {
+    {/* 関数コンポーネントからクラスコンポーネントに書き換え */}
+    class SAMS extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
-        const arr = this.props.ARR;
-        const ret = arr.map((val, idx) => <p key={idx} className={this.props.P2}>{val}</p>);
-        
         return (
-          <div id={this.props.P1}>
-            {ret}
+          <div>
+            <p className={this.props.ARR[0]} id={this.props.ARR[1]}>Hello World</p>
           </div>
         );
       }
     }
-    
-    // クラスコンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
+
+    {/* 関数コンポーネントのパラメータデフォルト値 */}
+    SAMS.defaultProps = {
+      ARR: ['SAM', 'P1']
     }
     
-    // クラスコンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
+    {/* 関数コンポーネントのパラメータチェック */}
+    SAMS.propTypes = {
       ARR: React.PropTypes.array
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const DSP1 = () => {
+      const ARR1 = ['SAM', 'P1'];
+      const ARR2 = ['SAM', 'P2'];
+      return (
+        <div>
+          <SAMS />             {/* パラメータデフォルト値 */}
+          <SAMS ARR={ARR2} />  {/* 明確にパラメータ値指定 */}
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const DSP2 = () => {
+      const ARR3 = ['SAM', 'P3'];
+      const ARR4 = ['SAM', 'P4'];
+      return (
+        <div>
+          <SAMS ARR={ARR3} />
+          <SAMS ARR={ARR4} />
+        </div>
+      );
+    }
+    
+    {/* 関数コンポーネント */}
+    const HRZN = () => { return (<hr />); }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       constructor(props) {
         super(props);
       }
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <BTN />
-            <HRZ />
-            <DSP P1='DS1' P2='SAM1' ARR='AAA' />  // 実行時に警告 -> 後の処理でエラー
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
+          <div id='ROOT'>
+            <DSP1 />
+            <HRZN />
+            <DSP2 />
           </div>
         );
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1551,29 +1328,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1605,17 +1363,7 @@
   Create a Stateful Component
   
 [内容]
-  内部情報「state」を保有するコンポーネント
-  クラスコンポーネント「MAIN」に注目
-  
-  内部情報「state」
-  内部パラメータ「Count(クリック数)」を保持して「0」で初期化
-  
-  内部パラメータ「Count」
-  画面下部に現在のクリック数を表示
-  
-  イベントハンドラ
-  クラスコンポーネント内に「JQuery」のコードで実装可能
+  内部パラメータ「Key1」と「Key2」をクラスコンポーネントの内部情報「state」に保有する
   
 [確認]
   # cd /var/www/html
@@ -1629,104 +1377,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // メインクラスコンポーネント
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */ => クラスコンポーネント内ではコメントの「{}」を外さないとエラー出力…原因不明
       constructor(props) {
         super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
+        this.state = {
+          Key1: 0,  /* 内部パラメータ */
+          Key2: 0   /* 内部パラメータ */
+        };
+        this.Key1 = this.Key1Up.bind(this);  /* 内部関数をクラス外部に公開 */
+        this.Key2 = this.Key2Up.bind(this);  /* 内部関数をクラス外部に公開 */
       }
       
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
+      /* 内部関数 */
+      Key1Up() {
+        this.setState(state => ({ Key1: this.state.Key1 + 1 }));
       }
       
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
+      /* 内部関数 */
+      Key2Up() {
+        this.setState(state => ({ Key2: this.state.Key2 + 1 }));
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1' onClick={this.MV1Click}>移動1</button>
-              <button className='btn-default' id='MV2' onClick={this.MV2Click}>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <p id='CNT'>Click : {this.state.Count}</p>
+          <div id='ROOT'>
+            <button className='BTNS' onClick={this.Key1}>Key1</button>
+            <button className='BTNS' onClick={this.Key2}>Key2</button>
+            <hr />
+            <p className='DISP'>Key1 : {this.state.Key1}</p>
+            <p className='DISP'>Key2 : {this.state.Key2}</p>
           </div>
         );
       }
-      
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1734,35 +1442,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1814,11 +1497,9 @@
   Bind 'this' to a Class Method
   
 [内容]
-  画面に描画された要素に「MV1Click」や「MV2Click」のような内部メソッドへのアクセス権を与える
-  
-  // コンストラクタ内に記述
-  this.MV1Click = this.MV1Click.bind(this);
-  this.MV2Click = this.MV2Click.bind(this);
+  内部関数をクラス外部に公開 => コンストラクタに記述
+    this.Key1 = this.Key1Up.bind(this);
+    this.Key2 = this.Key2Up.bind(this);
   
 [確認]
   // 上記「21」を参照
@@ -1829,13 +1510,8 @@
   
 [内容]
   内部情報「state」の内部パラメータ値の更新時に注意
-    メソッド「setState」の従来の記述では、リアルタイムで更新されない場合がある
-  
-  // 従来の記述
-  this.setState({ Count: this.state.Count + 1 });
-  
-  // 正しい記述
-  this.setState(state => ({ Count: this.state.Count + 1 }));
+    this.setState({ Count: this.state.Count + 1 }); => 従来の記述では、リアルタイムで更新されない場合がある
+    this.setState(state => ({ Count: this.state.Count + 1 })); => 正しい記述
   
 [確認]
   // 上記「21」を参照
@@ -1856,7 +1532,7 @@
   
 [内容]
   フォームのテキストボックス作成
-    一文字入力のたびに内部情報「state」の内部パラメータ値に保存 -> イベント「onChange」を使用
+    一文字入力のたびに内部情報「state」の内部パラメータ値に保存 => イベント「onChange」を使用
   
 [確認]
   # cd /var/www/html
@@ -1870,70 +1546,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // メインクラスコンポーネント
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */
       constructor(props) {
         super(props);
         this.state = { STR: '' }
-        this.EDTChange = this.EDTChange.bind(this);
-        this.BTNSubmit = this.BTNSubmit.bind(this);
+        this.EDT = this.EDTChange.bind(this);
+        this.BTN = this.BTNSubmit.bind(this);
       }
       
-      // テキストボックス入力
+      /* テキストボックス入力 */
       EDTChange(event) {
-        event.persist();  // これが無いとeventがクリアされてエラー
+        event.persist();  /* これが無いとeventがクリアされてエラー */
         this.setState(state => ({STR: event.target.value}));
       }
       
-      // 出力ボタン押下
+      /* 出力ボタン押下 */
       BTNSubmit(event) {
-        console.log(`内部パラメータ値 : ${this.state.STR}`);
+        console.log(`STR : ${this.state.STR}`);
         event.preventDefault();
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
         return (
-          <div>
-            <form id='FRM' onSubmit={this.BTNSubmit.bind(this)}>
-              <input id='EDT' type='text' onChange={this.EDTChange.bind(this)}></input>
-              <input id='BTN' type='submit' value='出力'></input>
+          <div id='ROOT'>
+            <form id='FRM' onSubmit={this.BTN}>
+              <input id='EDT' type='text' onChange={this.EDT}></input>
+              <input id='BTN' type='submit' value='Output'></input>
             </form>
             <hr />
-            <p id='STR'>内部パラメータ値 : {this.state.STR}</p>
+            <p id='STR'>STR : {this.state.STR}</p>
           </div>
         );
       }
-      
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -1941,29 +1611,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 入力フォームのデザイン
-    #FRM {
-      margin: 5px;
-      padding: 5px;
-    }
-    
-    // 内部パラメータ値テキストのデザイン
-    #STR {
-      margin: 5px;
-      padding: 5px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -1986,7 +1637,7 @@
   
 [内容]
   フォームのボタン作成
-    内部情報「state」の内部パラメータ値をコンソール出力
+    内部情報「state」の内部パラメータ値をコンソール出力 => イベント「onSubmit」を使用
   
 [確認]
   // 上記「28」を参照
@@ -1996,8 +1647,7 @@
   Pass State as Props to Child Components
   
 [内容]
-  内部情報「state」の内部パラメータ値を別の関数コンポーネントのパラメータ「props」として渡す
-    関数コンポーネント「CNT」に注目
+  内部情報「state」の内部パラメータ値を関数コンポーネントのパラメータ「props」として渡す
   
 [確認]
   # cd /var/www/html
@@ -2011,111 +1661,78 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    {/* 関数コンポーネント */}
+    const KEY1 = (props) => {
       return (
-        <div id={props.P1}>
-          {ret}
-        </div>
+        <p className='DISP'>Key1 : {props.P1}</p>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
+    {/* 関数コンポーネント */}
+    const KEY2 = (props) => {
       return (
-        <p id='CNT'>Click : {props.P1}</p>
+        <p className='DISP'>Key2 : {props.P1}</p>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */
       constructor(props) {
         super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
+        this.state = {
+          Key1: 0,  /* 内部パラメータ */
+          Key2: 0   /* 内部パラメータ */
+        };
+        this.Key1 = this.Key1Up.bind(this);  /* 内部関数をクラス外部に公開 */
+        this.Key2 = this.Key2Up.bind(this);  /* 内部関数をクラス外部に公開 */
       }
       
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
+      /* 内部関数 */
+      Key1Up() {
+        this.setState(state => ({ Key1: this.state.Key1 + 1 }));
       }
       
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
+      /* 内部関数 */
+      Key2Up() {
+        this.setState(state => ({ Key2: this.state.Key2 + 1 }));
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1' onClick={this.MV1Click}>移動1</button>
-              <button className='btn-default' id='MV2' onClick={this.MV2Click}>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
+          <div id='ROOT'>
+            <button className='BTNS' onClick={this.Key1}>Key1</button>
+            <button className='BTNS' onClick={this.Key2}>Key2</button>
+            <hr />
+            <KEY1 P1={this.state.Key1} />
+            <KEY2 P1={this.state.Key2} />
           </div>
         );
       }
-      
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -2123,35 +1740,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -2173,8 +1765,7 @@
   Pass a Callback as Props
   
 [内容]
-  クラスコンポーネントの内部メソッドを別の関数コンポーネントのパラメータ「props」として渡す
-    関数コンポーネント「MVB」に注目
+  クラスコンポーネントの内部関数を関数コンポーネントのパラメータ「props」として渡す
   
 [確認]
   # cd /var/www/html
@@ -2188,118 +1779,92 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const MVB = (props) => {
+    {/* 関数コンポーネント */}
+    const BTN1 = (props) => {
       return (
-        <button className='btn-default' id={props.P1} onClick={props.P2}>{props.P3}</button>
+        <button className='BTNS' onClick={props.P1}>Key1</button>
       );
     }
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    {/* 関数コンポーネント */}
+    const BTN2 = (props) => {
       return (
-        <div id={props.P1}>
-          {ret}
-        </div>
+        <button className='BTNS' onClick={props.P1}>Key2</button>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
+    {/* 関数コンポーネント */}
+    const KEY1 = (props) => {
       return (
-        <p id='CNT'>Click : {props.P1}</p>
+        <p className='DISP'>Key1 : {props.P1}</p>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const KEY2 = (props) => {
+      return (
+        <p className='DISP'>Key2 : {props.P1}</p>
+      );
+    }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */
       constructor(props) {
         super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
+        this.state = {
+          Key1: 0,  /* 内部パラメータ */
+          Key2: 0   /* 内部パラメータ */
+        };
+        this.Key1 = this.Key1Up.bind(this);  /* 内部関数をクラス外部に公開 */
+        this.Key2 = this.Key2Up.bind(this);  /* 内部関数をクラス外部に公開 */
       }
       
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
+      /* 内部関数 */
+      Key1Up() {
+        this.setState(state => ({ Key1: this.state.Key1 + 1 }));
       }
       
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
+      /* 内部関数 */
+      Key2Up() {
+        this.setState(state => ({ Key2: this.state.Key2 + 1 }));
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
-        const WRD = ['Hello!', 'Hello!'];
         return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <MVB P1='MV1' P2={this.MV1Click} P3='移動1' />
-              <MVB P1='MV2' P2={this.MV2Click} P3='移動2' />
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
+          <div id='ROOT'>
+            <BTN1 P1={this.Key1} />
+            <BTN2 P1={this.Key2} />
+            <hr />
+            <KEY1 P1={this.state.Key1} />
+            <KEY2 P1={this.state.Key2} />
           </div>
         );
       }
-      
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -2307,35 +1872,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -2372,128 +1912,139 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const MVB = (props) => {
+    {/* インラインCSS用オブジェクト */}
+    const OBJ1 = {
+      width: 100,
+      height: 40
+    }
+    
+    {/* 関数コンポーネント */}
+    const BTN1 = (props) => {
       return (
-        <button className='btn-default' id={props.P1} onClick={props.P2}>{props.P3}</button>
+        <button className='BTNS' style={OBJ1} onClick={props.P1}>Key1</button>
       );
     }
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    {/* 関数コンポーネント */}
+    const BTN2 = (props) => {
       return (
-        <div id={props.P1}>
-          {ret}
-        </div>
+        <button className='BTNS' style={OBJ1} onClick={props.P1}>Key2</button>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
+    {/* インラインCSS用オブジェクト */}
+    const OBJ2 = {
+      color: 'red',
+      fontSize: 20
+    };
     
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
+    {/* 関数コンポーネント */}
+    const KEY1 = (props) => {
       return (
-        <p id='CNT'>Click : {props.P1}</p>
+        <p className='DISP' style={OBJ2}>Key1 : {props.P1}</p>
       );
     }
     
-    // メインクラスコンポーネント
+    {/* 関数コンポーネント */}
+    const KEY2 = (props) => {
+      return (
+        <p className='DISP' style={OBJ2}>Key2 : {props.P1}</p>
+      );
+    }
+    
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */
       constructor(props) {
         super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
+        this.state = {
+          Key1: 0,  /* 内部パラメータ */
+          Key2: 0   /* 内部パラメータ */
+        };
+        this.Key1 = this.Key1Up.bind(this);  /* 内部関数をクラス外部に公開 */
+        this.Key2 = this.Key2Up.bind(this);  /* 内部関数をクラス外部に公開 */
       }
       
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
+      /* 内部関数 */
+      Key1Up() {
+        this.setState(state => ({ Key1: this.state.Key1 + 1 }));
       }
       
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
+      /* 内部関数 */
+      Key2Up() {
+        this.setState(state => ({ Key2: this.state.Key2 + 1 }));
       }
       
-      // コンポーネントのマウント前
+      /* メインクラスコンポーネントのマウント前 */
       componentWillMount() {
-        console.log('コンポーネントのマウント前');
+        console.log('マウント前');
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
-        const WRD = ['Hello!', 'Hello!'];
+        
+        /* 内部変数 */
+        let WRK1 = 'XX';
+        let WRK2 = 'XX';
+        
+        /* 内部パラメータ「Key1」が「10」の倍数の時のみ描画、それ以外は「XX」を表示 */
+        if (this.state.Key1 % 10 === 0) {
+          WRK1 = this.state.Key1;
+        }
+        
+        /* 内部パラメータ「Key2」が「10」の倍数の時のみ描画、それ以外は「XX」を表示 */
+        if (this.state.Key2 % 10 === 0) {
+          WRK2 = this.state.Key2;
+        }
+        
         return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <MVB P1='MV1' P2={this.MV1Click} P3='移動1' />
-              <MVB P1='MV2' P2={this.MV2Click} P3='移動2' />
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
+          <div id='ROOT'>
+            <BTN1 P1={this.Key1} />
+            <BTN2 P1={this.Key2} />
+            <hr />
+            <KEY1 P1={WRK1} />
+            <KEY2 P1={WRK2} />
           </div>
         );
       }
-      
-      // コンポーネントのマウント後
+
+      /* メインクラスコンポーネントのマウント後 */
       componentDidMount() {
-        console.log('コンポーネントのマウント後');
+        console.log('マウント後');
       }
       
+      /* メインクラスコンポーネントのアンマウント前 */
+      componentWillUnmount() {
+        console.log('アンマウント前');
+      }
+
+      /* 内部パラメータ「Key1」と「Key2」のどちらかが500超なら描画更新しない */
+      shouldComponentUpdate(nextProps, nextState) {
+        return (nextState.Key1 > 500 || nextState.Key2 > 500) ? false : true ;
+      }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -2501,35 +2052,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -2562,196 +2088,11 @@
   Add Event Listeners
   
 [内容]
-  ライフサイクルメソッド「componentDidMount」
-    コンポーネントのマウント後
-  
   ライフサイクルメソッド「componentWillUnmount」
-    コンポーネントのアンマウント前
+    コンポーネントがDOMからアンマウント前に実行
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT'>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        const WRD = ['Hello!', 'Hello!'];
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「32」を参照
   
 ================================================================================
 [35]
@@ -2759,197 +2100,10 @@
   
 [内容]
   ライフサイクルメソッド「shouldComponentUpdate」
-    コンポーネントが再描画される際のチェック処理に使用 -> 戻り値が「true」で再描画
+    コンポーネントの再描画時のチェック処理に使用 => 戻り値が「true」で再描画
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT'>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        const WRD = ['Hello!', 'Hello!'];
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }      
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「32」を参照
   
 ================================================================================
 [36]
@@ -2968,206 +2122,15 @@
     例. <p style={OBJ2}>Hello!</p>
   
   プロパティ名が通常と異なる
-    例. font-size   -> fontSize
-    例. font-weight -> fontWeight
+    例. font-size   => fontSize
+    例. font-weight => fontWeight
   
   長さの単位はデフォルトでピクセル、それ以外の単位は引用符が必要
-    例. 40px → 40でOK
-    例. 20em → '20em'
+    例. 40px => 40でOK
+    例. 20em => '20em'
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
-    
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // オブジェクト
-    const OBJ1 = {color: 'aqua', fontSize: 15};
-    const OBJ2 = {color: 'pink', fontSize: 15};
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT' style={OBJ2}>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        const WRD = ['Hello!', 'Hello!'];
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={this.state.Count} />
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }      
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-    // クリック数の文字デザイン
-    #CNT {
-      color: black;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「32」を参照
   
 ================================================================================
 [37]
@@ -3177,7 +2140,7 @@
   インラインCSSの復習
   
 [確認]
-  // 上記「36」を参照
+  // 上記「32」を参照
   
 ================================================================================
 [38]
@@ -3186,207 +2149,22 @@
 [内容]
   JSX内でJSコード記述
     メソッド「render」内の「return」より前の部分で記述可能
-  
-[確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // CSSオブジェクト
-    const CUNT = {
-      color: 'black',
-      fontSize: 15
-    };
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT' style={CUNT}>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
+    (例)
       render() {
         
-        // JS コード
-        const WRD = ['Hello!', 'Hello!'];
-        
-        // JS コード - 構文「if」を使用して描画内容を決定
-        let WRK = 'XX';
-        
-        // クリック数が「10」の倍数の時のみ「XX」からクリック数を表示
-        if (this.state.Count % 10 === 0) {
-          WRK = this.state.Count;
-        }
+        /* JS コード */
         
         return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={WRK} />
+          <div id='ROOT'>
+            <KEY1 P1={WRK1} />
+            <KEY2 P1={WRK2} />
           </div>
         );
       }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
   
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+[確認]
+  // 上記「32」を参照
   
 ================================================================================
 [39]
@@ -3395,9 +2173,26 @@
 [内容]
   構文「if」を使用して描画内容を決定
     メソッド「render」内の「return」より前の部分で記述可能
-  
+    
+    (例)
+      render() {
+        let WRK1 = 'XX';
+        let WRK2 = 'XX';
+        
+        /* 内部パラメータが「10」の倍数の時のみ描画、それ以外は「XX」を表示 */
+        if (this.state.Key1 % 10 === 0) WRK1 = this.state.Key1;
+        if (this.state.Key2 % 10 === 0) WRK2 = this.state.Key2;
+        
+        return (
+          <div id='ROOT'>
+            <KEY1 P1={WRK1} />
+            <KEY2 P1={WRK2} />
+          </div>
+        );
+      }
+    
 [確認]
-  // 上記「38」を参照
+  // 上記「32」を参照
   
 ================================================================================
 [40]
@@ -3406,204 +2201,20 @@
 [内容]
   条件文「{(条件) && HTML要素}」で描画の可否を決定
     メソッド「render」内の「return」内で記述可能
-  
-[確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    (例)
+    render() {
       return (
-        <div id={props.P1}>
-          {ret}
+        <div id='ROOT'>
+          {this.state.Key1 % 10 === 0 && <KEY1 P1={this.state.Key1} />}
+          {this.state.Key2 % 10 === 0 && <KEY2 P1={this.state.Key2} />}
         </div>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // CSSオブジェクト
-    const CUNT = {
-      color: 'black',
-      fontSize: 15
-    };
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT' style={CUNT}>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        
-        // JS コード
-        const WRD = ['Hello!', 'Hello!'];
-        
-        // JS コード
-        let WRK = this.state.Count;
-        
-        // クリック数が「10」の倍数の時のみ関数コンポーネント「CNT」を実行
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            {this.state.Count % 10 === 0 && <CNT P1={WRK} />}
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
-  
+[確認]
+  // 省略
+
 ================================================================================
 [41]
   Use a Ternary Expression for Conditional Rendering
@@ -3611,413 +2222,34 @@
 [内容]
   三項演算子「(条件) ? (true) : (false)」で描画の可否を決定
     メソッド「render」内の「return」内で記述可能
-  
-[確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
+    (例)
+    render() {
       return (
-        <div id={props.P1}>
-          {ret}
+        <div id='ROOT'>
+          {this.state.Key1 % 10 === 0 ? <KEY1 P1={this.state.Key1} /> : ''}
+          {this.state.Key2 % 10 === 0 ? <KEY2 P1={this.state.Key2} /> : ''}
         </div>
       );
     }
     
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // CSSオブジェクト
-    const CUNT = {
-      color: 'black',
-      fontSize: 15
-    };
-    
-    // 関数コンポーネント
-    const CNT = (props) => {
-      return (
-        <p id='CNT' style={CUNT}>Click : {props.P1}</p>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        
-        // JS コード
-        const WRD = ['Hello!', 'Hello!'];
-        
-        // JS コード
-        let WRK = this.state.Count;
-        
-        // クリック数が「10」の倍数の時のみ関数コンポーネント「CNT」を実行
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            {this.state.Count % 10 === 0 ? <CNT P1={WRK} /> : ''}
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
-  
+[確認]
+  // 省略
+
 ================================================================================
 [42]
   Render Conditionally from Props
   
 [内容]
-  パラメータ「props」または「this.props」で描画の可否を決定
-    関数コンポーネント「CNT」に注目
-  
-[確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
+  関数コンポーネントのパラメータ「props」または「this.props」で描画の可否を決定
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const ret = arr.map((val, idx) => <p key={idx} className={props.P2}>{val}</p>);
-      
-      return (
-        <div id={props.P1}>
-          {ret}
-        </div>
-      );
-    }
-    
-    // 関数コンポーネントのデフォルト値
-    DSP.defaultProps = {
-      P1: 'DS1',
-      P2: 'SAM1',
-      ARR: ['Hello!', 'Hello!']
-    }
-    
-    // 関数コンポーネントのデータ型チェック
-    DSP.propTypes = {
-      PS1: React.PropTypes.string,
-      PS2: React.PropTypes.string,
-      ARR: React.PropTypes.array
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // CSSオブジェクト
-    const OBJ = {
-      color: 'black',
-      fontSize: 15
-    };
-    
-    // 関数コンポーネント
+    (例)
     const CNT = (props) => {
-      let ret = <p></p>;
-      
-      // クリック数が「10」の倍数の時のみ表示
-      if (props.P1 % 10 === 0) {
-        ret = <p id='CNT' style={OBJ}>Click : {props.P1}</p>
-      }
-      
-      return ret;
+      return (props.P1 % 10 === 0) ? <p>Click : {props.P1}</p> : <p></p> ;
     }
     
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      
-      // コンストラクタ
-      constructor(props) {
-        super(props);
-        this.state = { Count: 0 }
-        this.MV1Click = this.MV1Click.bind(this);
-        this.MV2Click = this.MV2Click.bind(this);
-      }
-      
-      // ボタン「移動1」をクリック
-      MV1Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM1:last').appendTo('#DS2').removeClass('SAM1').addClass('SAM2');
-      }
-      
-      // ボタン「移動2」をクリック
-      MV2Click() {
-        this.setState(state => ({ Count: this.state.Count + 1 }));
-        $('.SAM2:last').appendTo('#DS1').removeClass('SAM2').addClass('SAM1');
-      }
-      
-      // 描画処理
-      render() {
-        
-        // JS コード
-        const WRD = ['Hello!', 'Hello!'];
-        
-        // JS コード
-        let WRK = this.state.Count;
-        
-        // クリック数が「10」の倍数の時のみ表示
-        return (
-          <div>
-            <div className='d-flex justify-content-center'>
-              <button className='btn-default' id='MV1'>移動1</button>
-              <button className='btn-default' id='MV2'>移動2</button>
-            </div>
-            <HRZ />
-            <DSP />
-            <HRZ />
-            <DSP P1='DS2' P2='SAM2' ARR={WRD} />
-            <HRZ />
-            <CNT P1={WRK} />
-          </div>
-        );
-      }
-      
-      // コンポーネントのマウント後にイベント登録
-      componentDidMount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.addEventListener('click', this.MV1Click);
-        mv2.addEventListener('click', this.MV2Click);
-      }
-      
-      // コンポーネントのアンマウント前にイベント削除
-      componentWillUnmount() {
-        const mv1 = document.getElementById('MV1');
-        const mv2 = document.getElementById('MV2');
-        mv1.removeEventListener('click', this.MV1Click);
-        mv2.removeEventListener('click', this.MV2Click);
-      }
-      
-      // クリック数が100回以内ならクリック数を更新する
-      shouldComponentUpdate(nextProps, nextState) {
-        return (nextState.Count <= 100) ? true : false ;
-      }
-      
-    }
-    
-    // 要素「JSX」を描画指示
-    ReactDOM.render(
-      <MAIN />,
-      document.getElementById('APP')
-    );
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+[確認]
+  // 省略
   
 ================================================================================
 [43]
@@ -4026,6 +2258,21 @@
 [内容]
   内部情報「state」でインラインCSSを決定
     メソッド「render」内の「return」内で記述可能
+  
+    (例)
+    render() {
+      const OBJ1 = {
+        width: 100,
+        height: 40
+      }
+        
+      return (
+        <div id='ROOT'>
+          <button className='BTNS' style={OBJ1} onClick={props.P1}>Key1</button>
+          <button className='BTNS' style={OBJ1} onClick={props.P1}>Key1</button>
+        </div>
+      );
+    }
   
 [確認]
   // 省略
@@ -4039,27 +2286,6 @@
     関数「map」で生成される要素に属性「key」が無いと警告
   
 [確認]
-  // 上記「42」の関数コンポーネント「DSP」を参照
-  
-================================================================================
-[45]
-  Give Sibling Elements a Unique Key Attribute
-  
-[内容]
-  HTMLリスト作成(2)
-    生成要素に属性「key」を付与する ->「<li key=変数++>リスト項目</li>」でも良いが手間がかかる
-  
-[確認]
-  // 上記「42」の関数コンポーネント「DSP」を参照
-  
-================================================================================
-[46]
-  Use Array.filter() to Dynamically Filter an Array
-  
-[内容]
-  関数「filter」の抽出要素を関数「map」で加工してHTMLリスト表示 -> 関数コンポーネント「DSP」に注目
-  
-[確認]
   # cd /var/www/html
   # vi sample.html
   
@@ -4071,74 +2297,59 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
   <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <!-- SASS --->
+  <link rel="stylesheet" href="sas/css/sas01.css">
+  
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML -> 要素「JSX」 の描画先
+  <!-- HTML --->
   <div id="APP"></div>
   
-  // JSX
+  <!-- JSX --->
   <script type="text/babel">
     
-    // 関数コンポーネント
-    const DSP = (props) => {
-      const arr = props.ARR;
-      const tmp = arr.filter(val => val % 2 === 0);
-      const ret = tmp.map((val, idx) => <li key={idx} className={props.CLASS}>項目{val}</li>);
-      
+    {/* 関数コンポーネント */}
+    const GREETING = (props) => {
+      let arr = props.ARR;
+      let ret = arr.map((val, idx) => <p key={idx}>{val}{idx}</p>);
       return (
-        <ul className='list-group'>
+        <div>
           {ret}
-        </ul>
+        </div>
       );
     }
     
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // メインクラスコンポーネント
+    {/* メインクラスコンポーネント */}
     class MAIN extends React.Component {
       
-      // コンストラクタ
+      /* コンストラクタ */
       constructor(props) {
         super(props);
       }
       
-      // 描画処理
+      /* 描画処理 */
       render() {
-        
-        // JS コード
-        let arr = [];
-        for (let i = 1; i < 10; i++) arr.push(i);
-        
-        // 偶数のリスト項目のみ出力
+        let TMP1 = ['AAA', 'AAA', 'AAA', 'AAA'];
+        let TMP2 = ['BBB', 'BBB', 'BBB', 'BBB'];
         return (
-          <div>
-            <DSP ARR={arr} CLASS='list-group-item-success' />
-            <DSP ARR={arr} CLASS='list-group-item-info' />
-            <DSP ARR={arr} CLASS='list-group-item-warning' />
+          <div id='ROOT'>
+            <GREETING ARR={TMP1} />
+            <hr />
+            <GREETING ARR={TMP2} />
           </div>
         );
-        
       }
     }
     
-    // 要素「JSX」を描画指示
+    {/* 要素「JSX」を描画指示 */}
     ReactDOM.render(
       <MAIN />,
       document.getElementById('APP')
@@ -4146,21 +2357,10 @@
     
   </script>
   
-  // CSS
-  <style>
-    ul li {
-      text-align: center;
-      line-height: 3em;
-      list-style: none;
-    }
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -4178,147 +2378,72 @@
   確認完了!
   
 ================================================================================
+[45]
+  Give Sibling Elements a Unique Key Attribute
+  
+[内容]
+  HTMLリスト作成(2)
+    生成要素に属性「key」を付与
+  
+[確認]
+  // 上記「44」を参照
+  
+================================================================================
+[46]
+  Use Array.filter() to Dynamically Filter an Array
+  
+[内容]
+  HTMLリスト作成(3)
+    関数「filter」の抽出要素を関数「map」で加工してHTMLリスト表示
+  
+    (例)
+    const GREETING = (props) => {
+      let arr = props.ARR;
+
+      /* 関数「filter」の抽出要素を関数「map」で加工してHTMLリスト表示 */
+      let tmp = arr.filter(val => val % 2 === 0);
+      let ret = tmp.map((val, idx) => <p key={idx}>{val}</p>);
+
+      return (
+        <div>
+          {ret}
+        </div>
+      );
+    }
+
+    render() {
+      let TMP1 = [10000, 10001, 10002, 10003];
+      let TMP2 = [20000, 20001, 20002, 20003];
+      return (
+        <div id='ROOT'>
+          <GREETING ARR={TMP1} />
+          <hr />
+          <GREETING ARR={TMP2} />
+        </div>
+      );
+    }
+  
+[確認]
+  // 省略
+  
+================================================================================
 [47]
   Render React on the Server with renderToString
   
 [内容]
   サーバー側で描画(HTML化)したものを返す
+    
+    (例)
+    {/* 要素「JSX」を描画指示 */}
+    ReactDOM.render(
+      <MAIN />,
+      document.getElementById('APP')
+    );
+    
+    {/* サーバー側で要素「JSX」を描画指示 */}
+    ReactDOMServer.renderToString(<MAIN />);
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // Bootstrap - CSS
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  // React
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.1/react-dom.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.3.2/react-dom-server.js"></script>
-  
-  // Babel
-  <script src="https://unpkg.com/babel-core@5.8.38/browser.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML -> 要素「JSX」 の描画先
-  <div id="APP"></div>
-  
-  // JSX
-  <script type="text/babel">
-    
-    // 関数コンポーネント
-    const BTN = () => {
-      return (
-        <div className='d-flex justify-content-center'>
-          <button className='btn-default' id='MV1'>移動1</button>
-          <button className='btn-default' id='MV2'>移動2</button>
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const HRZ = () => { return (<hr />); }
-    
-    // 関数コンポーネント
-    const DS1 = () => {
-      return (
-        <div id='DS1'>
-          <p className='SAM1'>Hello!</p>
-          <p className='SAM1'>Hello!</p>
-        </div>
-      );
-    }
-    
-    // 関数コンポーネント
-    const DS2 = () => {
-      return (
-        <div id='DS2'>
-          <p className='SAM2'>Hello!</p>
-          <p className='SAM2'>Hello!</p>
-        </div>
-      );
-    }
-    
-    // メインクラスコンポーネント
-    class MAIN extends React.Component {
-      constructor(props) {
-        super(props);
-      }
-      render() {
-        return (
-          <div>
-            <BTN />  // ボタン配置
-            <HRZ />  // 水平線タグ
-            <DS1 />  // 文字列(赤色)
-            <HRZ />  // 水平線タグ
-            <DS2 />  // 文字列(緑色)
-          </div>
-        );
-      }
-    }
-    
-    // 要素「JSX」を描画指示
-    //ReactDOM.render(
-    //  <MAIN />,
-    //  document.getElementById('APP')
-    //);
-    
-    // サーバー側で要素「JSX」を描画指示
-    ReactDOMServer.renderToString(<MAIN />);
-    
-  </script>
-  
-  // CSS
-  <style>
-    
-    // 上部分の文字デザイン
-    .SAM1 {
-      color: red;
-      font-size: 15px;
-    }
-    
-    // 下部分の文字デザイン
-    .SAM2 {
-      color: green;
-      font-size: 15px;
-    }
-    
-  </style>
-  
-  // Bootstrap - JS
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  
-  // JS -> JQuery
-  <script></script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 省略
   
 ================================================================================

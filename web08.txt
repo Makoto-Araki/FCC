@@ -4,27 +4,20 @@
 [03] Build a Product Landing Page
 [04] Build a Technical Documentation Page
 [05] Build a Personal Portfolio Webpage
-[06] Template #1
-[07] Template #2
-[08] Template #3
+[X1] Template #1
+[X2] Template #2
+[X3] Template #3
 ================================================================================
 [01]
   Build a Tribute Page
 
 [内容]
-  賛辞ページの作成
+  課題(1)
+    シンプルページの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/zYoWKww
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/zYoWKww
   
   コマンドの実行結果
   --------------------------------------------------
@@ -38,19 +31,12 @@
   Build a Survey Form
   
 [内容]
-  調査フォームの作成
+  課題(2)
+    入力画面の作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/MWbVpbK
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/MWbVpbK
   
   コマンドの実行結果
   --------------------------------------------------
@@ -64,19 +50,12 @@
   Build a Product Landing Page
   
 [内容]
-  ランディングページの作成
+  課題(3)
+    ランディングページの作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/vYyRwzE
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/vYyRwzE
   
   コマンドの実行結果
   --------------------------------------------------
@@ -90,19 +69,12 @@
   Build a Technical Documentation Page
   
 [内容]
-  技術文書の作成
+  課題(4)
+    技術文書の作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/ZEBRXvK
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/ZEBRXvK
   
   コマンドの実行結果
   --------------------------------------------------
@@ -116,19 +88,12 @@
   Build a Personal Portfolio Webpage
   
 [内容]
-  ポートフォリオの作成
+  課題(5)
+    ポートフォリオ作成
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (CodePen) -> https://codepen.io/Makoto-Araki/pen/RwoXBbE
-  --------------------------------------------------
-  
   # firefox
-  # http://localhost/sample.html
+  # https://codepen.io/Makoto-Araki/pen/RwoXBbE
   
   コマンドの実行結果
   --------------------------------------------------
@@ -138,11 +103,12 @@
   確認完了!
   
 ================================================================================
-[06]
+[X1]
   Template #1
   
 [内容]
-  テンプレート1 -> プロパティ「display: flex」
+  テンプレート(1)
+    プロパティ「display: flex」
   
 [確認]
   # cd /var/www/html
@@ -155,11 +121,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // ヘッダー
+  <!-- ヘッダ --->
   <header>
     
     <!--ロゴ画像 -->
@@ -177,13 +143,13 @@
     
   </header>
   
-  // メインコンテンツ
+  <!-- メインコンテンツ --->
   <main>MAIN</main>
   
-  // フッター
+  <!-- フッタ --->
   <footer>FOOTER</footer>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     body {
@@ -194,7 +160,7 @@
       font-size: 20px;
     }
     
-    // メディアクエリ(横幅が500px未満)
+    /* メディアクエリ(横幅が500px未満) */
     @media (max-width: 500px) {
       header { width: 100%; }
       #header-img { display: none; }
@@ -239,7 +205,7 @@
       }
     }
     
-    // メディアクエリ(横幅が500px以上)
+    /* メディアクエリ(横幅が500px以上) */
     @media (min-width: 500px) {
       header {
         width: 100%;
@@ -308,7 +274,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -326,11 +292,12 @@
   確認完了!
   
 ================================================================================
-[07]
+[X2]
   Template #2
   
 [内容]
-  テンプレート2 -> プロパティ「display: grid(1)」
+  テンプレート(2)
+    プロパティ「display: grid(1)」
   
 [確認]
   # cd /var/www/html
@@ -343,11 +310,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // ヘッダー
+  <!-- ヘッダ --->
   <header>
     
     <!--ロゴ画像 -->
@@ -365,13 +332,13 @@
     
   </header>
   
-  // メインコンテンツ
+  <!-- メインコンテンツ --->
   <main>MAIN</main>
   
-  // フッター
+  <!-- フッタ --->
   <footer>FOOTER</footer>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     body {
@@ -382,7 +349,7 @@
       font-size: 20px;
     }
     
-    // メディアクエリ(横幅が500px未満)
+    /* メディアクエリ(横幅が500px未満) */
     @media (max-width: 500px) {
       header { width: 100%; }
       #header-img { display: none; }
@@ -427,7 +394,7 @@
       }
     }
     
-    // メディアクエリ(横幅が500px以上)
+    /* メディアクエリ(横幅が500px以上) */
     @media (min-width: 500px) {
       header {
         width: 100%;
@@ -497,7 +464,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -515,11 +482,12 @@
   確認完了!
   
 ================================================================================
-[08]
+[X3]
   Template #3
   
 [内容]
-  テンプレート3 -> プロパティ「display: grid(2)」
+  テンプレート(3)
+    プロパティ「display: grid(2)」
   
 [確認]
   # cd /var/www/html
@@ -532,11 +500,11 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // ヘッダー
+  <!-- ヘッダ --->
   <header>
     
     <!--ロゴ画像 -->
@@ -554,13 +522,13 @@
     
   </header>
   
-  // メインコンテンツ
+  <!-- メインコンテンツ --->
   <main>MAIN</main>
   
-  // フッター
+  <!-- フッタ --->
   <footer>FOOTER</footer>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     body {
@@ -571,7 +539,7 @@
       font-size: 20px;
     }
     
-    // メディアクエリ(横幅が500px未満)
+    /* メディアクエリ(横幅が500px未満) */
     @media (max-width: 500px) {
       header { width: 100%; }
       #header-img { display: none; }
@@ -616,7 +584,7 @@
       }
     }
     
-    // メディアクエリ(横幅が500px以上)
+    /* メディアクエリ(横幅が500px以上) */
     @media (min-width: 500px) {
       header {
         width: 100%;
@@ -688,7 +656,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>

@@ -1,26 +1,26 @@
 ================================================================================
-[01] Meet the Node console
-[02] Start a Working Express Server
-[03] Serve an HTML File
-[04] Serve Static Assets
-[05] Serve JSON on a Specific Route
-[06] Use the .env File
-[07] Implement a Root-Level Request Logger Middleware
-[08] Chain Middleware to Create a Time Server
-[09] Get Route Parameter Input from the Client
-[10] Get Query Parameter Input from the Client
-[11] Use body-parser to Parse POST Requests
-[12] Get Data from POST Requests
-[13] [Express] テンプレートエンジン「EJS」を使用
-[14] [Express] テンプレート上のフォームからデータ送信
-[15] [Express] 上記「14」のリクエストハンドラ部分をモジュール化
-[16] [Express] ジェネレーターで自動生成されたプログラムを起動してみる
-[17] [Express] 入力URLの適正チェック
-[18] [Express] フォームの入力データをデータベース「MongoDB」に登録
-[19] [Express] モジュール「multer」でファイルのアップロード機能を実装
-[20] [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
+[001] Meet the Node console
+[002] Start a Working Express Server
+[003] Serve an HTML File
+[004] Serve Static Assets
+[005] Serve JSON on a Specific Route
+[006] Use the .env File
+[007] Implement a Root-Level Request Logger Middleware
+[008] Chain Middleware to Create a Time Server
+[009] Get Route Parameter Input from the Client
+[010] Get Query Parameter Input from the Client
+[011] Use body-parser to Parse POST Requests
+[012] Get Data from POST Requests
+[X00] [Express] ジェネレーターでアプリケーション生成
+[X01] [Express] テンプレートエンジン「EJS」を使用
+[X02] [Express] テンプレート上のフォームからデータ送信
+[X03] [Express] 上記「14」のリクエストハンドラ部分をモジュール化
+[X05] [Express] 入力URLの適正チェック
+[X06] [Express] フォームの入力データをデータベース「MongoDB」に登録
+[X07] [Express] モジュール「multer」でファイルのアップロード機能を実装
+[X08] [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
 ================================================================================
-[01]
+[001]
   Meet the Node console
   
 [内容]
@@ -28,109 +28,87 @@
     アプリケーション起動のメッセージをコンソール出力
     
 [確認]
-  $ cd $HOME
-  $ mkdir -p app01
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
   $ cd $HOME/app01
-  $ vi main.js
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
   $ cd $HOME/app01
-  $ node main.js
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[02]
+[002]
   Start a Working Express Server
   
 [内容]
   HTTPリクエスト毎に対応メソッドで処理
-    リクエスト「GET」と「POST」毎に処理を記述してみる
+    リクエスト「GET」と「POST」毎に処理を記述
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app02
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app02
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res) => res.send('REQUEST GET\n'));
+  app.get('/', function(req, res) {
+    res.send('GET');
+  });
   
-  // POST - /
-  app.post('/', (req, res) => res.send('REQUEST POST\n'));
+  app.post('/', function(req, res) {
+    res.send('POST')
+  });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app02
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app02 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  REQUEST GET
+  GET
   --------------------------------------------------
   
-  $ cd $HOME/app02 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl -X POST http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  REQUEST POST
+  POST
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[03]
+[003]
   Serve an HTML File
   
 [内容]
@@ -138,62 +116,50 @@
     メソッド「sendFile」を使用する
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app03
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app03
-  $ vi index.html
+  $ cd $HOME/app01
+  $ vi sample.html
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <title>歴史年表</title>
+  <meta charset="utf-8">
+  <title>SAMPLE</title>
   </head>
   <body>
-    <p>1582年 本能寺の変</p>
-    <p>1600年 関ヶ原の戦い</p>
-    <p>1615年 大坂夏の陣</p>
+  <p>Hello World</p>
+  <p>Hello World</p>
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app03
-  $ vi main.js
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+  app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/sample.html')
+  });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app03
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app03 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
@@ -201,13 +167,12 @@
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <title>歴史年表</title>
+  <meta charset="utf-8">
+  <title>SAMPLE</title>
   </head>
   <body>
-    <p>1582年 本能寺の変</p>
-    <p>1600年 関ヶ原の戦い</p>
-    <p>1615年 大坂夏の陣</p>
+  <p>Hello World</p>
+  <p>Hello World</p>
   </body>
   </html>
   --------------------------------------------------
@@ -215,7 +180,7 @@
   以下の記録に続く
   
 ================================================================================
-[04]
+[004]
   Serve Static Assets
   
 [内容]
@@ -223,16 +188,16 @@
     メソッド「static」を使用
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app04/public/css
+  $ cd $HOME/app01
+  $ mkdir -p public/css
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  (出力なし)
   --------------------------------------------------
   
-  $ cd $HOME/app04/public/css
-  $ vi style.css
+  $ cd $HOME/app01
+  $ vi public/css/style.css
   
   コマンドの実行結果
   --------------------------------------------------
@@ -242,55 +207,51 @@
   }
   --------------------------------------------------
   
-  $ cd $HOME/app04
-  $ vi index.html
+  $ cd $HOME/app01
+  $ vi sample.html
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>  // CSS参照
-    <title>歴史年表</title>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link href='css/style.css' rel='stylesheet'>
+  
+  <title>SAMPLE</title>
   </head>
   <body>
-    <p>1582年 本能寺の変</p>
-    <p>1600年 関ヶ原の戦い</p>
-    <p>1615年 大坂夏の陣</p>
+  <p>Hello World</p>
+  <p>Hello World</p>
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app04
-  $ vi main.js
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // ディレクトリ「public」配下の静的ファイル使用
-  // 現状はコード無し
+  app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/sample.html');
+  });
   
-  // GET - /
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app04
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
   $ firefox
@@ -301,35 +262,32 @@
   (CSSが反映されていない)
   --------------------------------------------------
   
-  $ cd $HOME/app04
-  $ vi main.js
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // ディレクトリ「public」配下の静的ファイル使用
+  // CSS => public/css/style.css
   app.use(express.static('public'));
   
-  // GET - /
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+  app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/sample.html');
+  });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app04
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
   $ firefox
@@ -343,479 +301,327 @@
   以下の記録に続く
   
 ================================================================================
-[05]
+[005]
   Serve JSON on a Specific Route
   
 [内容]
   JSONオブジェクトを返す
-    res.json({ message: 'Hello World' })
+    res.json({ "key1": "AAA" })
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app05
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app05
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res) => res.json({ message: 'Hello World' }));
+  app.get('/', function(req, res) {
+    res.json({
+      "key1": "AAA",
+      "key2": "BBB",
+      "key3": "CCC"
+    });
+  });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app05
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app05 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  { "message":"Hello World" }
+  {"key1":"AAA","key2":"BBB","key3":"CCC"}
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[06]
+[006]
   Use the .env File
   
 [内容]
-  隠しファイル「.env」に環境変数「MESSAGE_STYLE=uppercase」を追加
-    アプリ側から「process.env.MESSAGE_STYLE」で参照
+  隠しファイル「.env」に環境変数「UPPER_STYLE=設定値」を追加
+    アプリ側から環境変数を「process.env.UPPER_STYLE」で参照
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app06
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app06
+  $ cd $HOME/app01
   $ vi .env
   
   コマンドの実行結果
   --------------------------------------------------
-  MESSAGE_STYLE=UPPER
+  UPPER_STYLE=UPPER
   --------------------------------------------------
   
-  $ cd $HOME/app06
-  $ vi main.js
+  $ cd $HOME/app01
+  $ npm install dotenv --save (パッケージのインストールと設定ファイルへ記録)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  let dotenv = require('dotenv');
+  (省略)
+  --------------------------------------------------
   
-  // インスタンス生成
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールされているパッケージ一覧)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app01@1.0.1 /home/makoto/app01
+    dotenv@16.0.1  // 追加
+    express@4.18.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let express = require('express');
   let app = express();
   
-  // モジュール設定
+  let dotenv = require('dotenv');
   dotenv.config();
   
-  // GET - /
-  app.get('/', (req, res) => {
-    if (process.env.MESSAGE_STYLE === 'UPPER') {
-      res.json({ message: 'HELLO WORLD' });
+  app.get('/', function(req, res) {
+    if (process.env.UPPER_STYLE === 'UPPER') {
+      res.json({
+        "key1": "AAA",
+        "key2": "BBB",
+        "key3": "CCC"
+      });
     } else {
-      res.json({ message: 'hello world' });
+      res.json({
+        "key1": "aaa",
+        "key2": "bbb",
+        "key3": "ccc"
+      });
     }
   });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app06
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app06 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  { "message":"HELLO WORLD" }
+  {"key1":"AAA","key2":"BBB","key3":"CCC"}
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[07]
+[007]
   Implement a Root-Level Request Logger Middleware
   
 [内容]
   ミドルウェア
     下記のオブジェクトを持つ関数
-      ・リクエスト(req)
-      ・レスポンス(res)
-      ・次アクセス(next)
+      リクエスト(req)
+      レスポンス(res)
+      次アクセス(next)
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app07
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app07
+  $ cd $HOME/app01
   $ vi main.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // ミドルウェア関数1
   const Func1 = (req, res, next) => {
     req.key1 = req.protocol;
     next();
   }
   
-  // ミドルウェア関数2
   const Func2 = (req, res, next) => {
     req.key2 = req.method;
     next();
   }
   
-  // ミドルウェア関数3
   const Func3 = (req, res, next) => {
     req.key3 = req.path;
     next();
   }
   
-  // ミドルウェア関数4
   const Func4 = (req, res, next) => {
     req.key4 = req.hostname;
     next();
   }
   
-  // ミドルウェア関数5
   const Func5 = (req, res, next) => {
     req.key5 = req.ip;
     next();
   }
   
-  // ミドルウェア関数をロード
   app.use(Func1);
   app.use(Func2);
   app.use(Func3);
   app.use(Func4);
   app.use(Func5);
   
-  // GET - /
-  app.get('/', (req, res) => {
-    console.log('key1 : ' + req.key1);
-    console.log('key2 : ' + req.key2);
-    console.log('key3 : ' + req.key3);
-    console.log('key4 : ' + req.key4);
-    console.log('key5 : ' + req.key5);
-    res.end();
+  app.get('/', function(req, res) {
+    res.json({
+      "key1": req.key1,
+      "key2": req.key2,
+      "key3": req.key3,
+      "key4": req.key4,
+      "key5": req.key5
+    });
   });
   
-  // GET - /sub1
-  app.get('/sub1', (req, res) => {
-    console.log('key1 : ' + req.key1);
-    console.log('key2 : ' + req.key2);
-    console.log('key3 : ' + req.key3);
-    console.log('key4 : ' + req.key4);
-    console.log('key5 : ' + req.key5);
-    res.end();
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
   });
-  
-  // GET - /sub2
-  app.get('/sub2', (req, res) => {
-    console.log('key1 : ' + req.key1);
-    console.log('key2 : ' + req.key2);
-    console.log('key3 : ' + req.key3);
-    console.log('key4 : ' + req.key4);
-    console.log('key5 : ' + req.key5);
-    res.end();
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
   --------------------------------------------------
   
-  $ cd $HOME/app07
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  key1 : http
-  key2 : GET
-  key3 : /
-  key4 : localhost
-  key5 : ::1
-  
-  key1 : http
-  key2 : GET
-  key3 : /sub1
-  key4 : localhost
-  key5 : ::1
-  
-  key1 : http
-  key2 : GET
-  key3 : /sub2
-  key4 : localhost
-  key5 : ::1
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app07 <- 別の端末から実行
+  $ cd $HOME/app01 <- 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/app07 <- 別の端末から実行
-  $ curl (-X GET) http://localhost:3000/sub1
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/app07 <- 別の端末から実行
-  $ curl (-X GET) http://localhost:3000/sub2
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
+  {"key1":"http","key2":"GET","key3":"/","key4":"localhost","key5":"::1"}
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[08]
+[008]
   Chain Middleware to Create a Time Server
   
 [内容]
-  上記「07」のリクエスト受信ハンドラとミドルウェア関数をチェーン構成で統合
+  ミドルウェア関数をチェーン構成で統合
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app08
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app08
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res, next) => {
+  app.get('/', function(req, res, next) {
     req.key1 = req.protocol;
     next();
-  }, (req, res, next) => {
+  }, function(req, res, next) {
     req.key2 = req.method;
     next();
-  }, (req, res, next) => {
+  }, function(req, res, next) {
     req.key3 = req.path;
     next();
-  }, (req, res, next) => {
+  }, function(req, res, next) {
     req.key4 = req.hostname;
     next();
-  }, (req, res, next) => {
+  }, function(req, res, next) {
     req.key5 = req.ip;
     next();
-  }, (req, res, next) => {
-    console.log('key1 : ' + req.key1);
-    console.log('key2 : ' + req.key2);
-    console.log('key3 : ' + req.key3);
-    console.log('key4 : ' + req.key4);
-    console.log('key5 : ' + req.key5);
-    res.end();
+  }, function(req, res, next) {
+    res.json({
+      "key1": req.key1,
+      "key2": req.key2,
+      "key3": req.key3,
+      "key4": req.key4,
+      "key5": req.key5
+    });
   });
   
-  // GET - /sub[1-2]
-  app.get('/sub[1-2]', (req, res, next) => {
-    req.key1 = req.protocol;
-    next();
-  }, (req, res, next) => {
-    req.key2 = req.method;
-    next();
-  }, (req, res, next) => {
-    req.key3 = req.path;
-    next();
-  }, (req, res, next) => {
-    req.key4 = req.hostname;
-    next();
-  }, (req, res, next) => {
-    req.key5 = req.ip;
-    next();
-  }, (req, res, next) => {
-    console.log('key1 : ' + req.key1);
-    console.log('key2 : ' + req.key2);
-    console.log('key3 : ' + req.key3);
-    console.log('key4 : ' + req.key4);
-    console.log('key5 : ' + req.key5);
-    res.end();
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
   });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
   --------------------------------------------------
   
-  $ cd $HOME/app08
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  key1 : http
-  key2 : GET
-  key3 : /
-  key4 : localhost
-  key5 : ::1
-  
-  key1 : http
-  key2 : GET
-  key3 : /sub1
-  key4 : localhost
-  key5 : ::1
-  
-  key1 : http
-  key2 : GET
-  key3 : /sub2
-  key4 : localhost
-  key5 : ::1
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app08 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/app08 <- 別の端末から実行
-  $ curl (-X GET) http://localhost:3000/sub1
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/app08 <- 別の端末から実行
-  $ curl (-X GET) http://localhost:3000/sub2
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
+  {"key1":"http","key2":"GET","key3":"/","key4":"localhost","key5":"::1"}
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[09]
+[009]
   Get Route Parameter Input from the Client
   
 [内容]
   ルートパラメータ
     パラメータ名とパラメータ値を「/」で区切ってURL中に指定
   
-  例: http://example.com/user/AAAA/pass/BBBB
-    user: AAAA
-    pass: BBBB
+  (例)
+    http://example.com/user/AAAA/pass/BBBB => user: AAAA, pass: BBBB
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app09
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app09
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /user/:user/pass/:pass
-  app.get('/user/:user/pass/:pass', (req, res) => {
+  app.get('/user/:user/pass/:pass', function(req, res) {
     res.json({
       user: req.params.user,
       pass: req.params.pass
     });
   });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app09
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app09 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/user/AAAA/pass/BBBB
   
   コマンドの実行結果
@@ -826,127 +632,119 @@
   以下の記録に続く
   
 ================================================================================
-[10]
+[010]
   Get Query Parameter Input from the Client
   
 [内容]
   クエリパラメータ
-    ・クエリー文字列の始まりに「?」を付ける
-    ・クエリー文字列は一個以上のパラメータ名とパラメータ値のペアから構成される
-    ・パラメータ名とパラメータ値は「=」で組にまとめる
-    ・複数ペアの場合は「&」で区切る
+    クエリー文字列の始まりに「?」を付ける
+    クエリー文字列は一個以上のパラメータ名とパラメータ値のペアから構成される
+    パラメータ名とパラメータ値は「=」で組にまとめる
+    複数ペアの場合は「&」で区切る
   
-  例: http://example.com/?user=AAAA&pass=BBBB
-    user: AAAA
-    pass: BBBB
+  (例)
+    http://example.com/?user=AAAA&pass=BBBB => user: AAAA, pass: BBBB
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app10
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app10
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
-  
-  // インスタンス生成
   let app = express();
   
-  // GET - /
-  app.get('/', (req, res) => {
+  app.get('/', function(req, res) {
     res.json({
       user: req.query.user,
       pass: req.query.pass
     });
   });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app10
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app10 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl (-X GET) http://localhost:3000/?user=AAAA\&pass=BBBB
   
   コマンドの実行結果
   --------------------------------------------------
-  { "user":"AAAA", "pass":"BBBB" } -> 文字「&」の前にエスケープ「\」を忘れないこと
+  { "user":"AAAA", "pass":"BBBB" } => 文字「&」の前にエスケープ「\」を忘れないこと
   --------------------------------------------------
   
   以下の記録に続く
   
 ================================================================================
-[11]
+[011]
   Use body-parser to Parse POST Requests
   
 [内容]
-  リクエスト「POST」で送られてくるデータ解析
+  リクエスト「POST」で送付されるデータ解析
     モジュール「body-parser」を使用
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app11
+  $ cd $HOME/app01
+  $ npm install body-parser --save (パッケージのインストールと設定ファイルへ記録)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app11
-  $ vi main.js
+  $ cd $HOME/app01
+  $ npm list (カレントディレクトリにインストールされているパッケージ一覧)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
+  app01@1.0.1 /home/makoto/app01
+    body-parser@1.20.0  // 追加
+    dotenv@16.0.1
+    express@4.18.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
   let express = require('express');
   let parser = require('body-parser');
-  
-  // インスタンス生成
   let app = express();
   
   // エンコード方式
   app.use(parser.urlencoded({ extended: false }));
   
-  // POST - /
-  app.post('/', (req, res) => {
+  app.post('/', function(req, res) {
     res.json({
       user: req.body.user,
       pass: req.body.pass
     });
   });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app11
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
-  $ cd $HOME/app11 <- 別の端末から実行
+  $ cd $HOME/app01 <= 別の端末から実行
   $ curl -X POST -d 'user=AAAA&pass=BBBB' http://localhost:3000/
   
   コマンドの実行結果
@@ -957,81 +755,72 @@
   以下の記録に続く
   
 ================================================================================
-[12]
+[012]
   Get Data from POST Requests
   
 [内容]
-  フォームから送信されたリクエスト「POST」のデータ解析
+  フォーム送信リクエスト「POST」のデータ解析
     モジュール「body-parser」を使用
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app12
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app12
-  $ vi index.html
+  $ cd $HOME/app01
+  $ vi sample.html
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <title>動作確認</title>
+  <meta charset="utf-8">
+  <title>SAMPLE</title>
   </head>
   <body>
+
+  <!-- 送信フォーム --->
   <form action='/' method='POST'>
     <input type='text' name='user'>
     <input type='text' name='pass'>
-    <button type='submit'>送信</button>
+    <button type='submit'>Submit</button>
   </form>
+  
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ vi main.js
+  $ cd $HOME/app01
+  $ vi index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
   let express = require('express');
   let parser = require('body-parser');
-  
-  // インスタンス生成
   let app = express();
   
   // エンコード方式
   app.use(parser.urlencoded({ extended: false }));
   
-  // GET - /
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
+  app.get('/', function(req, res) {
+    res.sendFile(__dirname + '/sample.html');
+  });
   
-  // POST - /
-  app.post('/', (req, res) => {
+  app.post('/', function(req, res) {
     res.json({
       user: req.body.user,
       pass: req.body.pass
     });
   });
   
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  app.listen(3000, function() {
+    console.log('APP started on port 3000');
+  });
   --------------------------------------------------
   
-  $ cd $HOME/app12
-  $ node main.js
+  $ cd $HOME/app01
+  $ node index.js
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
+  APP started on port 3000
   --------------------------------------------------
   
   $ firefox
@@ -1045,15 +834,15 @@
   以下の記録に続く
   
 ================================================================================
-[13]
-  [Express] テンプレートエンジン「EJS」を使用
+[X00]
+  [Express] ジェネレーターでアプリケーション生成
   
 [内容]
-  [Express] テンプレートエンジン「EJS」を使用
+  同上
   
 [確認]
   $ cd $HOME
-  $ mkdir -p app13/views
+  $ sudo npm install express-generator -g --save (グローバルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -1061,32 +850,260 @@
   --------------------------------------------------
   
   $ cd $HOME
-  $ mkdir -p app13/public/css
+  $ express --view=ejs app02 (ジェネレーターでアプリケーション生成) => テンプレートエンジン「EJS」を使用
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  create : app02/
+  create : app02/public/
+  create : app02/public/javascripts/
+  create : app02/public/images/
+  create : app02/public/stylesheets/
+  create : app02/public/stylesheets/style.css
+  create : app02/routes/
+  create : app02/routes/index.js
+  create : app02/routes/users.js
+  create : app02/views/
+  create : app02/views/error.ejs
+  create : app02/views/index.ejs
+  create : app02/app.js
+  create : app02/package.json
+  create : app02/bin/
+  create : app02/bin/www
+  
+  change directory:
+    $ cd app02
+
+  install dependencies:
+    $ npm install
+  
+  run the app:
+    $ DEBUG=app02:* npm start
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ npm install (ローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app13
-  $ npm install ejs --save
+  $ cd $HOME/app02
+  $ npm list (パッケージ一覧)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app02@0.0.0 /home/makoto/app02
+    cookie-parser@1.4.6
+    debug@2.6.9
+    ejs@2.6.2
+    express@4.16.4
+    http-errors@1.6.3
+    morgan@1.9.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行) => アプリ「app02」の全ての内部ログ出力を指定
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > app02@0.0.0 start
+  > node ./bin/www
+  
+  app02:server Listening on port 3000 +0ms
+  
+  GET / 200 47.397 ms - 207
+  GET /stylesheets/style.css 200 15.621 ms - 111
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app13/views
-  $ vi index.ejs
+  以下の確認に続く
+  
+================================================================================
+[X01]
+  [Express] テンプレートエンジン「EJS」を使用
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME/app02
+  $ npm list (パッケージ一覧)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  app02@0.0.0 /home/makoto/app02
+    cookie-parser@1.4.6
+    debug@2.6.9
+    ejs@2.6.2  // 該当するパッケージ
+    express@4.16.4
+    http-errors@1.6.3
+    morgan@1.9.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi package.json (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "app02",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www" => コマンド「npm start」の実行時に「node ./bin/www」を呼出
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "http-errors": "~1.6.3",
+      "morgan": "~1.9.1"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi bin/www (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  #!/usr/bin/env node
+  
+  var app = require('../app');
+  var debug = require('debug')('app02:server');
+  var http = require('http');
+  
+  var port = normalizePort(process.env.PORT || '3000');
+  app.set('port', port);
+  var server = http.createServer(app);
+  
+  server.listen(port);
+  server.on('error', onError);
+  server.on('listening', onListening);
+  
+  function normalizePort(val) {
+    var port = parseInt(val, 10);
+    if (isNaN(port)) return val;
+    if (port >= 0) return port;
+    return false;
+  }
+  
+  function onError(error) {
+    if (error.syscall !== 'listen') throw error;
+    var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
+  
+    switch (error.code) {
+      case 'EACCES':
+        console.error(bind + ' requires elevated privileges');
+        process.exit(1);
+        break;
+      case 'EADDRINUSE':
+        console.error(bind + ' is already in use');
+        process.exit(1);
+        break;
+      default:
+        throw error;
+    }
+  }
+  
+  function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi app.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var indexRouter = require('./routes/index');
+  var app = express();
+  
+  // view engine
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  // handler
+  app.use('/', indexRouter);
+  
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  // error handler
+  app.use(function(err, req, res, next) {
+
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+
+  });
+  
+  // module export
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi routes/index.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      content1: 'Hello World 1',
+      content2: 'Hello World 2',
+      content3: 'Hello World 3'
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi views/index.ejs (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>
-    <title>歴史年表</title>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
   </head>
   <body>
     <p><%-content1 %></p>
@@ -1096,587 +1113,191 @@
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app13/public/css
-  $ vi style.css
+  $ cd $HOME/app02
+  $ vi public/stylesheets/style.css (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   p {
     color: Crimson;
-    font-size: 30px;
+    font-size: 25px;
   }
   --------------------------------------------------
   
-  $ cd $HOME/app13
-  $ vi main.js
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  let ejs = require('ejs');
+  > app02@0.0.0 start
+  > node ./bin/www
   
-  // インスタンス生成
-  let app = express();
+  app02:server Listening on port 3000 +0ms
   
-  // テンプレートエンジン「EJS」を使用
-  app.set('view engine', 'ejs');
-  
-  // 静的ファイルを使用
-  app.use(express.static('public'));
-  
-  // GET - /
-  app.get('/', function(req, res) {
-    res.render('index.ejs', {
-      content1: '1582年 本能寺の変',
-      content2: '1600年 関ヶ原の戦い',
-      content3: '1615年 大坂夏の陣'
-    });
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/app13
-  $ node main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 完了後に「Ctrl + C」で停止
+  GET / 200 48.906 ms - 244
+  GET /stylesheets/style.css 200 17.400 ms - 43
   --------------------------------------------------
   
   $ firefox
-  $ http://localhost:3000/
+  $ http://localhost:3000/ (ブラウザから確認)
   
   コマンドの実行結果
   --------------------------------------------------
-  (歴史年表の表示を確認 + CSS適用も確認)
+  (省略)
   --------------------------------------------------
   
   以下の確認に続く
   
 ================================================================================
-[14]
-  [Express] テンプレート上のフォームからデータ送信
+[X02]
+  [Express] フォームからデータ送信
   
 [内容]
-  [Express] テンプレート上のフォームからデータ送信
+  同上
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app14/views
+  $ cd $HOME/app02
+  $ vi routes/index.js (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
-  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
   
-  $ cd $HOME
-  $ mkdir -p app14/public/css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app14/views
-  $ vi index.ejs
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html>
-  <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>
-    <title>動作確認</title>
-  </head>
-  <body>
-  <form action='/' method='POST'>
-    <label for='user'><%-content1 %></label><input type='text' id='user' name='user'>
-    <label for='pass'><%-content2 %></label><input type='text' id='pass' name='pass'>
-    <button type='submit'>送信</button>
-  </form>
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ cd $HOME/app14/public/css
-  $ vi style.css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  form {
-    text-align: center;
-  }
-  
-  label {
-    font-size: 15px;
-  }
-  --------------------------------------------------
-  
-  $ cd $HOME/app14
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  let parser = require('body-parser');
-  let ejs = require('ejs');
-  
-  // インスタンス生成
-  let app = express();
-  
-  // テンプレートエンジン「EJS」を使用
-  app.set('view engine', 'ejs');
-  
-  // 静的ファイルを使用
-  app.use(express.static('public'));
-  
-  // エンコード方式
-  app.use(parser.urlencoded({ extended: false }));
-  
-  // GET - /
-  app.get('/', function(req, res) {
-    res.render('index.ejs', {
+  router.get('/', function(req, res, next) {
+    res.render('index', {
       content1: 'USER',
       content2: 'PASS'
     });
   });
   
-  // POST - /
-  app.post('/', (req, res) => {
-    console.log({ user: req.body.user, pass: req.body.pass });
-    res.redirect('/');
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/app14
-  $ node main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  { user: 'AAAA', pass: 'BBBB' }
-  { user: 'CCCC', pass: 'DDDD' }
-  { user: 'EEEE', pass: 'FFFF' }
-  
-  ■ <- 完了後に「Ctrl + C」で停止
-  --------------------------------------------------
-  
-  $ firefox
-  $ http://localhost:3000/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (USER「AAAA」、PASS「BBBB」と入力して送信ボタン押下)
-  (USER「CCCC」、PASS「DDDD」と入力して送信ボタン押下)
-  (USER「EEEE」、PASS「FFFF」と入力して送信ボタン押下)
-  --------------------------------------------------
-  
-  以下の確認に続く
-  
-================================================================================
-[15]
-  [Express] 上記「14」のリクエストハンドラ部分をモジュール化
-  
-[内容]
-  [Express] 上記「14」のリクエストハンドラ部分をモジュール化
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p app15/views
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p app15/public/css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p app15/routes
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app15/views
-  $ vi index.ejs
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html>
-  <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>
-    <title>動作確認</title>
-  </head>
-  <body>
-  <form action='/' method='POST'>
-    <label for='user'><%-content1 %></label><input type='text' id='user' name='user'>
-    <label for='pass'><%-content2 %></label><input type='text' id='pass' name='pass'>
-    <button type='submit'>送信</button>
-  </form>
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ cd $HOME/app15/public/css
-  $ vi style.css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  form {
-    text-align: center;
-  }
-  
-  label {
-    font-size: 15px;
-  }
-  --------------------------------------------------
-  
-  $ cd $HOME/app15/routes
-  $ vi router.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  let express = require('express');
-  let router = express.Router();
-  
-  // GET - /
-  router.get('/', function(req, res) {
-    res.render('index.ejs', {
-      content1: 'USER',
-      content2: 'PASS'
-    });
-  });
-  
-  // POST - /
-  router.post('/', (req, res) => {
-    console.log({ user: req.body.user, pass: req.body.pass });
+  router.post('/', function(req, res, next) {
+    console.log(`USER : ${req.body.user}`);
+    console.log(`PASS : ${req.body.pass}`);
     res.redirect('/');
   });
   
   module.exports = router;
   --------------------------------------------------
   
-  $ cd $HOME/app15
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  let parser = require('body-parser');
-  let router = require('./routes/router');
-  let ejs = require('ejs');
-  
-  // インスタンス生成
-  let app = express();
-  
-  // テンプレートエンジン「EJS」を使用
-  app.set('view engine', 'ejs');
-  
-  // 静的ファイルを使用
-  app.use(express.static('public'));
-  
-  // エンコード方式
-  app.use(parser.urlencoded({ extended: false }));
-  
-  // リクエストハンドラ
-  app.use('/', router);
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/app15
-  $ node main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  { user: 'AAAA', pass: 'BBBB' }
-  { user: 'CCCC', pass: 'DDDD' }
-  { user: 'EEEE', pass: 'FFFF' }
-  
-  ■ <- 完了後に「Ctrl + C」で停止
-  --------------------------------------------------
-  
-  $ firefox
-  $ http://localhost:3000/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (USER「AAAA」、PASS「BBBB」と入力して送信ボタン押下)
-  (USER「CCCC」、PASS「DDDD」と入力して送信ボタン押下)
-  (USER「EEEE」、PASS「FFFF」と入力して送信ボタン押下)
-  --------------------------------------------------
-  
-  以下の確認に続く
-  
-================================================================================
-[16]
-  [Express] ジェネレーターで自動生成されたプログラムを起動してみる
-  
-[内容]
-  [Express] ジェネレーターで自動生成されたプログラムを起動してみる
-  
-[確認]
-  $ cd $HOME
-  $ npm ls
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  makoto@ /home/makoto
-    dns@0.2.2
-    dotenv@10.0.0
-    ejs@3.1.6
-    express@4.17.1
-    mongoose@5.13.3
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ npm ls -g
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  /home/makoto/.nvm/versions/node/v16.5.0/lib
-    express-generator@4.16.1
-    npm@7.19.1
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ express --view=ejs app16  // テンプレートエンジン「EJS」を使用
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  create : app16/
-  create : app16/public/
-  create : app16/public/javascripts/
-  create : app16/public/images/
-  create : app16/public/stylesheets/
-  create : app16/public/stylesheets/style.css
-  create : app16/routes/
-  create : app16/routes/index.js
-  create : app16/routes/users.js
-  create : app16/views/
-  create : app16/views/error.ejs
-  create : app16/views/index.ejs
-  create : app16/app.js
-  create : app16/package.json
-  create : app16/bin/
-  create : app16/bin/www
-  
-  change directory:
-    $ cd app16
-  
-  install dependencies:
-    $ npm install
-  
-  run the app:
-    $ DEBUG=app15:* npm start
-  --------------------------------------------------
-  
-  $ cd $HOME/app16
-  $ npm install
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ npm ls
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> コマンド「npm install」前と変化なし
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ npm ls -g
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> コマンド「npm install」前と変化なし
-  --------------------------------------------------
-  
-  $ cd $HOME/app16
-  $ npm ls
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  app16@0.0.0 /home/makoto/app16
-    cookie-parser@1.4.5
-    debug@2.6.9
-    ejs@2.6.2
-    express@4.16.4
-    http-errors@1.6.3
-    morgan@1.9.1
-  --------------------------------------------------
-  
-  $ cd $HOME/app16
-  $ DEBUG=app16:* npm start
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  > app16@0.0.0 start
-  > node ./bin/www
-  
-  app16:server Listening on port 3000 +0ms
-  
-  GET / 200 14.099 ms - 207                      // curl
-  GET / 200 1.978 ms - 207                       // firefox
-  GET /stylesheets/style.css 200 8.913 ms - 111  // firefox
-  
-  ■ <- 完了後に「Ctrl + C」で停止
-  --------------------------------------------------
-  
-  $ cd $HOME/app16
-  $ curl http://localhost:3000/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!DOCTYPE html>
-  <html>
-  <head>
-    <title>Express</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1>Express</h1>
-    <p>Welcome to Express</p>
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ firefox
-  $ http://localhost:3000/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  以下の確認に続く
-  
-================================================================================
-[17]
-  [Express] 入力URLの適正チェック
-  
-[内容]
-  [Express] 入力URLの適正チェック
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p app17/views
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p app17/public/css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p app17/routes
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app17/views
-  $ vi index.ejs
+  $ cd $HOME/app02
+  $ vi views/index.ejs (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>
-    <title><%-title %></title>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
   </head>
   <body>
+  
+  <!-- FORM --->
   <form action='/' method='POST'>
-    <input type='text' name='url'>
-    <button type='submit'>送信</button>
+    <label for='user'><%-content1 %></label><input type='text' id='user' name='user'>
+    <label for='pass'><%-content2 %></label><input type='text' id='pass' name='pass'>
+    <button type='submit'>Submit</button>
   </form>
+  
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app17/public/css
-  $ vi style.css
+  $ cd $HOME/app02
+  $ vi stylesheets/style.css (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  form {
-    text-align: center;
+  label, input[type='text'] {
+    padding: 15px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  button {
+    padding: 20px;
+    margin-left: 15px;
+    font-size: 25px;
   }
   --------------------------------------------------
   
-  $ cd $HOME/app17/routes
-  $ vi router.js
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行)
   
   コマンドの実行結果
   --------------------------------------------------
-  let express = require('express');
-  let router = express.Router();
-  let dns = require('dns');
-  let url = require('url');
+  > app02@0.0.0 start
+  > node ./bin/www
   
-  // GET - /
-  router.get('/', function(req, res) {
+  app02:server Listening on port 3000 +0ms
+  
+  GET / 200 54.721 ms - 420
+  GET /stylesheets/style.css 200 15.036 ms - 153
+
+  USER : AAA  // 画面上で「AAA」を入力
+  PASS : BBB  // 画面上で「BBB」を入力
+
+  POST / 302 64.051 ms - 46
+  GET / 200 5.383 ms - 420
+  GET /stylesheets/style.css 304 4.186 ms - -
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/ (ブラウザから確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (USER「AAA」, PASS「BBB」を入力)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[X05]
+  [Express] URL => DNS => IP4
+  
+[内容]
+  入力した「URL」をサーバー「DNS」に問合わせて「IP4」を求める
+  
+[確認]
+  $ cd $HOME/app02
+  $ npm install dns url --save (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi routes/index.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var dns = require('dns');
+  var url = require('url');
+  
+  router.get('/', function(req, res, next) {
     res.render('index', {
-      title: 'URL確認'
+      content1: 'URL'
     });
   });
   
-  // POST - /
-  router.post('/', (req, res) => {
+  router.post('/', function(req, res, next) {
     let URL = url.parse(req.body.url);
     let OBJ = { family: 4 };
     
-    console.log('key1 : ' + URL.protocol);
-    console.log('key2 : ' + URL.hostname);
-    console.log('key3 : ' + URL.port);
-    console.log('key4 : ' + URL.pathname);
-    console.log('key5 : ' + URL.search);
-    console.log('key6 : ' + URL.hash);
-    console.log('key7 : ' + URL.Host);
-    
-    dns.lookup(URL.hostname, OBJ, (error, address, family) => {
-      if (!error) {
-        console.log('key8 : ' + address);
+    dns.lookup(URL.hostname, OBJ, (err, adr, family) => {
+      if (!err) {
+        console.log('IPv4 : ' + adr);
       } else {
-        console.log(error);
+        console.log(err);
       }
     });
     
@@ -1686,77 +1307,83 @@
   module.exports = router;
   --------------------------------------------------
   
-  $ cd $HOME/app17
-  $ vi main.js
+  $ cd $HOME/app02
+  $ vi views/index.ejs (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  let parser = require('body-parser');
-  let router = require('./routes/router');
-  let ejs = require('ejs');
+  <!doctype html>
+  <html>
+  <head>
+  <meta charset="utf-8">
   
-  // インスタンス生成
-  let app = express();
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
   
-  // テンプレートエンジン「EJS」を使用
-  app.set('view engine', 'ejs');
+  <title>SAMPLE</title>
+  </head>
+  <body>
   
-  // 静的ファイルを使用
-  app.use(express.static('public'));
+  <!-- FORM --->
+  <form action='/' method='POST'>
+    <label for='url'><%-content1 %></label><input type='text' id='url' name='url'>
+    <button type='submit'>Submit</button>
+  </form>
   
-  // エンコード方式
-  app.use(parser.urlencoded({ extended: false }));
-  
-  // リクエストハンドラ
-  app.use('/', router);
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  </body>
+  </html>
   --------------------------------------------------
   
-  $ cd $HOME/app17
-  $ node main.js
+  $ cd $HOME/app02
+  $ vi stylesheets/style.css (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
+  label, input[type='text'] {
+    padding: 15px;
+    color: Crimson;
+    font-size: 20px;
+  }
   
-  key1 : http:
-  key2 : www.yahoo.co.jp
-  key3 : null
-  key4 : /
-  key5 : null
-  key6 : null
-  key7 : undefined
-  key8 : 182.22.25.252
+  button {
+    padding: 20px;
+    margin-left: 15px;
+    font-size: 25px;
+  }
+  --------------------------------------------------
   
-  key1 : http:
-  key2 : www.google.com
-  key3 : null
-  key4 : /
-  key5 : null
-  key6 : null
-  key7 : undefined
-  key8 : 216.58.220.100
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行)
   
-  ■ <- 完了後に「Ctrl + C」で停止
+  コマンドの実行結果
+  --------------------------------------------------
+  > app02@0.0.0 start
+  > node ./bin/www
+  
+  app02:server Listening on port 3000 +0ms
+  
+  GET / 200 46.442 ms - 342
+  GET /stylesheets/style.css 200 9.733 ms - 153
+  GET /favicon.ico 404 8.209 ms - 883
+  POST / 302 62.842 ms - 46
+  GET / 200 7.826 ms - 342
+  IPv4 : 182.22.16.251  // http://www.yahoo.co.jp を入力時
+  GET /stylesheets/style.css 200 3.652 ms - 153
+  GET /favicon.ico 404 6.817 ms - 883
   --------------------------------------------------
   
   $ firefox
-  $ http://localhost:3000/
+  $ http://localhost:3000/ (ブラウザから確認)
   
   コマンドの実行結果
   --------------------------------------------------
-  (URL「http://www.yahoo.co.jp」と入力して送信ボタン押下)
-  (URL「http://www.google.com/」と入力して送信ボタン押下)
+  (URL「http://www.yahoo.co.jp」を送信)
   --------------------------------------------------
   
   以下の確認に続く
   
 ================================================================================
-[18]
+[X06]
   [Express] フォームの入力データをデータベース「MongoDB」に登録
   
 [内容]
@@ -2057,7 +1684,7 @@
   以下の確認に続く
   
 ================================================================================
-[19]
+[X07]
   [Express] モジュール「multer」でファイルのアップロード機能を実装
   
 [内容]
@@ -2191,7 +1818,7 @@
   以下の記録に続く
   
 ================================================================================
-[20]
+[X08]
   [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
   
 [内容]
@@ -2518,24 +2145,6 @@
     ✔ return values E
   
   16 passing (56ms)
-  --------------------------------------------------
-  
-  以下の確認に続く
-  
-================================================================================
-[XX]
-  //
-  
-[内容]
-  //
-  
-[確認]
-  $ cd $HOME
-  $ //
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  //
   --------------------------------------------------
   
   以下の確認に続く

@@ -43,17 +43,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -101,17 +101,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -160,17 +160,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -221,17 +221,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -268,7 +268,7 @@
   Define a Constructor Function
   
 [内容]
-  コンストラクタ関数で擬似的なクラス実装 -> オブジェクト生成
+  コンストラクタ関数で擬似的なクラス実装 => 内部でオブジェクト生成
   
 [確認]
   # cd /var/www/html
@@ -281,17 +281,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -370,17 +370,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -434,17 +434,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -459,12 +459,13 @@
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
     
-    // 各プロパティが固有プロパティか確認
-    console.log(OBJ1.hasOwnProperty('key1'));  // true
-    console.log(OBJ1.hasOwnProperty('key2'));  // true
-    console.log(OBJ1.hasOwnProperty('key3'));  // true
-    console.log(OBJ1.hasOwnProperty('sum'));   // true
-    console.log(OBJ1.hasOwnProperty('avg'));   // true
+    // 各プロパティが固有プロパティか確認(1)
+    console.log(OBJ1.hasOwnProperty('sum'));  // true
+    console.log(OBJ1.hasOwnProperty('avg'));  // true
+    
+    // 各プロパティが固有プロパティか確認(2)
+    console.log('sum' in OBJ1);  // true
+    console.log('avg' in OBJ1);  // true
     
   </script>
   
@@ -501,17 +502,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -572,17 +573,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -606,11 +607,14 @@
     const OBJ1 = new OBJ(10, 10, 10);
     
     // 各プロパティを固有プロパティかプロトタイプか確認
-    console.log(OBJ1.hasOwnProperty('key1'));  // true
-    console.log(OBJ1.hasOwnProperty('key2'));  // true
-    console.log(OBJ1.hasOwnProperty('key3'));  // true
-    console.log(OBJ1.hasOwnProperty('sum'));   // false -> プロトタイプ
-    console.log(OBJ1.hasOwnProperty('avg'));   // false -> プロトタイプ
+    for (name in OBJ1)
+      console.log(`${name} : ${OBJ1.hasOwnProperty(name)}`);
+    
+    // key1 : true
+    // key2 : true
+    // key3 : true
+    // sum : false => プロトタイプ
+    // avg : false => プロトタイプ
     
   </script>
   
@@ -647,17 +651,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -704,7 +708,7 @@
   Change the Prototype to a New Object
   
 [内容]
-  プロトタイプをオブジェクトで指定
+  プロトタイプをオブジェクトでまとめて指定
     プロパティ「constructor」まで上書き => 値が「function Object」に初期化されてしまう
   
 [確認]
@@ -718,17 +722,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -738,17 +742,17 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下をオブジェクト指定
+    // プロトタイプ配下をオブジェクトでまとめて指定
     OBJ.prototype = {
-      sum() { this.key1 + this.key2 + this.key3; },
-      avg() { this.sum() / 3; }
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
     
     // オブジェクトのコンストラクタ関数を参照
-    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3) -> function Object() に上書き
+    console.log(OBJ1.constructor);  // function OBJ(P1, P2, P3) => function Object() に上書き
     
   </script>
   
@@ -784,17 +788,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -804,11 +808,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下をオブジェクト指定
+    // プロトタイプ配下をオブジェクトでまとめて指定
     OBJ.prototype = {
       constructor: OBJ,  // 追加
-      sum() { this.key1 + this.key2 + this.key3; },
-      avg() { this.sum() / 3; }
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数からオブジェクト生成
@@ -852,17 +856,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数
@@ -872,23 +876,18 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数からオブジェクト生成
     const OBJ1 = new OBJ(10, 10, 10);
-    const OBJ2 = new OBJ(20, 20, 20);
     
-    // オブジェクトが指定プロタイプ由来かを確認
+    // オブジェクト(OBJ1)が指定プロタイプ(OBJ)由来かを確認
     console.log(OBJ.prototype.isPrototypeOf(OBJ1));  // true
-    console.log(OBJ.prototype.isPrototypeOf(OBJ2));  // true
     
   </script>
   
@@ -925,17 +924,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数(1)
@@ -945,14 +944,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数(2)
@@ -969,7 +965,7 @@
     const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) => コンストラクタは「OBJ」のまま
     console.log(OH1.sum());        // 30
     console.log(OH1.avg());        // 10
     
@@ -1019,17 +1015,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数(1)
@@ -1039,14 +1035,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数(2)
@@ -1063,7 +1056,7 @@
     const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) -> コンストラクタは「OBJ」のまま
+    console.log(OH1.constructor);  // function OBJ(P1, P2, P3) => コンストラクタは「OBJ」のまま
     console.log(OH1.sum());        // 30
     console.log(OH1.avg());        // 10
     
@@ -1111,17 +1104,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数(1)
@@ -1131,14 +1124,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数(2)
@@ -1158,7 +1148,7 @@
     const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(OH1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが「OTHER」に修正された
+    console.log(OH1.constructor);  // function OTHER(P1, P2, P3) => コンストラクタが「OTHER」に修正
     console.log(OH1.sum());        // 30
     console.log(OH1.avg());        // 10
     
@@ -1196,17 +1186,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数(1)
@@ -1216,14 +1206,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数(2)
@@ -1240,15 +1227,13 @@
     OTHER.prototype.constructor = OTHER;
     
     // プロトタイプにメソッド追加
-    OTHER.prototype.mul = function() {
-      return this.key1 * this.key2 * this.key3 ;
-    }
+    OTHER.prototype.mul = function() { return this.key1 * this.key2 * this.key3; }
     
     // コンストラクタ関数からオブジェクト生成
     const OH1 = new OTHER(10, 10, 10);
     
     // 出力
-    console.log(OH1.constructor);  // function OTHER(P1, P2, P3) -> コンストラクタが修正された
+    console.log(OH1.constructor);  // function OTHER(P1, P2, P3)
     console.log(OH1.sum());        // 30
     console.log(OH1.avg());        // 10
     console.log(OH1.mul());        // 1000
@@ -1287,17 +1272,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // コンストラクタ関数(1)
@@ -1307,14 +1292,11 @@
       this.key3 = P3;
     }
     
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.sum = function() {
-      return this.key1 + this.key2 + this.key3 ;
-    }
-    
-    // プロトタイプ配下のメソッド
-    OBJ.prototype.avg = function() {
-      return this.sum() / 3 ;
+    // プロトタイプ配下をオブジェクトでまとめて指定
+    OBJ.prototype = {
+      constructor: OBJ,
+      sum() { return this.key1 + this.key2 + this.key3; },
+      avg() { return this.sum() / 3; }
     }
     
     // コンストラクタ関数(2)
@@ -1331,22 +1313,18 @@
     OTHER.prototype.constructor = OTHER;
     
     // プロトタイプに関数追加
-    OTHER.prototype.mul = function() {
-      return this.key1 * this.key2 * this.key3 ;
-    }
+    OTHER.prototype.mul = function() { return this.key1 * this.key2 * this.key3 ; }
     
     // プロトタイプのメソッドをオーバーライド
-    OTHER.prototype.sum = function() {
-      return (this.key1 + this.key2 + this.key3) * 2 ;
-    }
+    OTHER.prototype.sum = function() { return (this.key1 + this.key2 + this.key3) * 2 ; }
     
     // コンストラクタ関数からオブジェクト生成
     const OH1 = new OTHER(10, 10, 10);
     
     // 出力
     console.log(OH1.constructor);  // function OTHER(P1, P2, P3)
-    console.log(OH1.sum());        // 60 -> オーバーライド
-    console.log(OH1.avg());        // 10
+    console.log(OH1.sum());        // 60 => オーバーライド
+    console.log(OH1.avg());        // 20 => オーバーライドにより変化
     console.log(OH1.mul());        // 1000
     
   </script>
@@ -1384,17 +1362,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 共有関数
@@ -1449,16 +1427,16 @@
     }
     
     // クロージャー作成
-    let sub1 = Add(10);  // 内部に「P1 = 10」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
-    let sub2 = Add(20);  // 内部に「P1 = 20」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
-    let sub3 = Add(30);  // 内部に「P1 = 30」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
-    let sub4 = Add(40);  // 内部に「P1 = 40」、「CN = 10」、ロジック「(P2) => P1 + P2 + CN」を持つ
+    let sub1 = Add(10);  // 内部に「P1 = 10」、「CN = 10」、ロジック「(P2) => 10 + P2 + 10」を持つ
+    let sub2 = Add(20);  // 内部に「P1 = 20」、「CN = 10」、ロジック「(P2) => 20 + P2 + 10」を持つ
+    let sub3 = Add(30);  // 内部に「P1 = 30」、「CN = 10」、ロジック「(P2) => 30 + P2 + 10」を持つ
+    let sub4 = Add(40);  // 内部に「P1 = 40」、「CN = 10」、ロジック「(P2) => 40 + P2 + 10」を持つ
     
     // クロージャー実行
-    console.log(sub1(5));  // 10 + 5 + 10 -> 25
-    console.log(sub2(5));  // 20 + 5 + 10 -> 35
-    console.log(sub3(5));  // 30 + 5 + 10 -> 45
-    console.log(sub4(5));  // 40 + 5 + 10 -> 55
+    console.log(sub1(5));  // 10 + 5 + 10 => 25
+    console.log(sub2(5));  // 20 + 5 + 10 => 35
+    console.log(sub3(5));  // 30 + 5 + 10 => 45
+    console.log(sub4(5));  // 40 + 5 + 10 => 55
     
 [確認]
   # cd /var/www/html
@@ -1471,17 +1449,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // クロージャー定義
@@ -1489,10 +1467,11 @@
       let VAL = 0;                     // クロージャー変数
       function Add(P1) { VAL += P1; }  // クロージャー関数
       function Sub(P1) { VAL -= P1; }  // クロージャー関数
+      
       return {
-        inc: function() { Add(1); },     // 戻り値オブジェクトにクロージャー関数を内包
-        dec: function() { Sub(1); },     // 戻り値オブジェクトにクロージャー関数を内包
-        val: function() { return VAL; }  // 戻り値オブジェクトにクロージャー変数を内包
+        inc: function() { Add(1); },     // クロージャー関数を内包
+        dec: function() { Sub(1); },     // クロージャー関数を内包
+        val: function() { return VAL; }  // クロージャー変数を内包
       }
     }
     
@@ -1547,17 +1526,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 通常関数
@@ -1603,17 +1582,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 即時関数(IIFE)を使用してモジュール作成

@@ -29,34 +29,30 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
-    let str1 = '上杉謙信';
-    let str2 = '武田信玄';
+    let STR = 'AAA';
     
     // 出力
-    console.log(str1);
-    console.log(str2);
+    console.log(STR);
     
     // 変数の更新
-    str1 = '上杉景勝';
-    str2 = '武田勝頼';
+    STR = 'BBB';
     
     // 出力
-    console.log(str1);
-    console.log(str2);
+    console.log(STR);
     
   </script>
   
@@ -93,37 +89,33 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
-    let str1 = '上杉謙信';
-    let str2 = '武田信玄';
+    let STR = 'AAA';
     
     // 出力
-    console.log(str1);
-    console.log(str2);
+    console.log(STR);
     
     // コンソールクリア => メッセージ「コンソールの内容が消去されました」
     console.clear();
     
     // 変数の更新
-    str1 = '上杉景勝';
-    str2 = '武田勝頼';
+    STR = 'BBB';
     
     // 出力
-    console.log(str1);
-    console.log(str2);
+    console.log(STR);
     
   </script>
   
@@ -160,17 +152,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // チェックするデータ一覧
@@ -227,24 +219,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
     const myFunc = (P1) => 'Hello ' + P1 ;
     
     // 関数名のスペルミス
-    console.log(myFun('上杉謙信'));  // ReferenceError: myFun is not defined
+    console.log(myFun('AAA'));  // ReferenceError: myFun is not defined
     
   </script>
   
@@ -281,24 +273,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 引用符「'」の閉じ忘れ
-    const str = 'Hello ;  // SyntaxError: '' string literal contains an unescaped
+    const STR = 'Hello ;  // SyntaxError: '' string literal contains an unescaped
     
     // 出力
-    console.log(str);
+    console.log(STR);
     
   </script>
   
@@ -335,24 +327,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 引用符「'」と引用符「"」のミックス
-    const str = 'She said "Hello' in the kitchen" ;  // SyntaxError: unexpected token
+    const STR = 'She said "Hello' in the kitchen" ;  // SyntaxError: unexpected token
     
     // 出力
-    console.log(str);
+    console.log(STR);
     
   </script>
   
@@ -388,17 +380,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -446,17 +438,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義
@@ -520,17 +512,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義 => 多次元配列の作成
@@ -585,17 +577,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 関数定義 => 引数「p1」の数値次第で無限ループ

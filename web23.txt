@@ -34,19 +34,19 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // ストア内部処理
-    const RDCR = (state = 5) => state;
+    const RDCR = (state = 5) => { return state };
     
     // ストア作成
     const STORE = Redux.createStore(RDCR);
@@ -97,39 +97,57 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = { AUTH: false }
+    const DEFAULT = { type: 'ZZZ' };
     
-    // アクション名
-    const C1 = 'LOGIN';
-    const C2 = 'LOGOUT';
-    
-    // アクション実体
-    const A1 = { type: C1 }
-    const A2 = { type: C2 }
+    // 定数
+    const AC1 = 'AAA';
+    const AC2 = 'BBB';
+    const AC3 = 'CCC';
+    const AC4 = 'DDD';
     
     // アクション作成プログラム
-    const LOGIN  = () => A1;
-    const LOGOUT = () => A2;
+    const AAA  = () => {
+      return { type: 'AAA' };
+    };
+    
+    // アクション作成プログラム
+    const BBB = () => {
+      return { type: 'BBB' };
+    };
+    
+    // アクション作成プログラム
+    const CCC  = () => {
+      return { type: 'CCC' };
+    };
+    
+    // アクション作成プログラム
+    const DDD  = () => {
+      return { type: 'DDD' };
+    };
     
     // ストア内部処理
     const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case 'LOGIN':
-          return { AUTH: true };
-        case 'LOGOUT':
-          return { AUTH: false };
+        case 'AAA':
+          return { type: 'AAA' };
+        case 'BBB':
+          return { type: 'BBB' };
+        case AC3:
+          return { type: 'CCC' };
+        case AC4:
+          return { type: 'DDD' };
         default:
           return state;
       }
@@ -137,15 +155,23 @@
     
     // ストア作成
     const STORE = Redux.createStore(RDCR);
-    console.log(STORE.getState());  // { AUTH: false }
+    console.log(STORE.getState());  // { type: ZZZ }
     
-    // アクション「LOGIN」をストアに送信
-    STORE.dispatch(LOGIN());
-    console.log(STORE.getState());  // { AUTH: true }
+    // ストアにアクション「AAA」を送信
+    STORE.dispatch(AAA());
+    console.log(STORE.getState());  // { type: AAA }
     
-    // アクション「LOGOUT」をストアに送信
-    STORE.dispatch(LOGOUT());
-    console.log(STORE.getState());  // { AUTH: false }
+    // ストアにアクション「BBB」を送信
+    STORE.dispatch(BBB());
+    console.log(STORE.getState());  // { type: BBB }
+    
+    // ストアにアクション「CCC」を送信
+    STORE.dispatch(CCC());
+    console.log(STORE.getState());  // { type: CCC }
+    
+    // ストアにアクション「DDD」を送信
+    STORE.dispatch(DDD());
+    console.log(STORE.getState());  // { type: DDD }
     
   </script>
   </body>
@@ -187,7 +213,7 @@
 Handle an Action in the Store
 
 [内容]
-  アクションに基づいて内部情報の更新ハンドラを追加 -> ストア内部ロジック
+  アクションに基づいて内部情報の更新ハンドラを追加 => ストア内部ロジック
   
 [確認]
   // 上記「03」を参照
@@ -197,7 +223,7 @@ Handle an Action in the Store
   Use a Switch Statement to Handle Multiple Actions
   
 [内容]
-  ハンドラ追加 -> ストア内部ロジック
+  ハンドラ追加 => ストア内部ロジック
   
 [確認]
   // 上記「03」を参照
@@ -207,83 +233,10 @@ Handle an Action in the Store
   Use const for Action Types
   
 [内容]
-  アクション名の「LOGIN」や「LOGOUT」を文字列ではなく定数参照に変更 -> 構文「switch」に注目
+  アクション名の「CCC」や「DDD」を文字列ではなく定数参照に変更
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
-  </head>
-  <body>
-  
-  // CDN
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
-  
-  // Redux
-  <script>
-    
-    // デフォルト値
-    const D1 = { AUTH: false }
-    
-    // アクション名
-    const C1 = 'LOGIN';
-    const C2 = 'LOGOUT';
-    
-    // アクション実体
-    const A1 = { type: C1 }
-    const A2 = { type: C2 }
-    
-    // アクション作成プログラム
-    const LOGIN  = () => A1;
-    const LOGOUT = () => A2;
-    
-    // ストア内部処理
-    const RDCR = (state = DEFAULT, action) => {
-      switch(action.type) {
-        case C1:
-          return { AUTH: true };
-        case C2:
-          return { AUTH: false };
-        default:
-          return state;
-      }
-    }
-    
-    // ストア作成
-    const STORE = Redux.createStore(RDCR);
-    console.log(STORE.getState());  // { AUTH: false }
-    
-    // アクション「LOGIN」をストアに送信
-    STORE.dispatch(LOGIN());
-    console.log(STORE.getState());  // { AUTH: true }
-    
-    // アクション「LOGOUT」をストアに送信
-    STORE.dispatch(LOGOUT());
-    console.log(STORE.getState());  // { AUTH: false }
-    
-  </script>
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「03」を参照
   
 ================================================================================
 [09]
@@ -303,46 +256,64 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = { AUTH: false }
+    const DEFAULT = { type: 'ZZZ' };
     
-    // アクション名
-    const C1 = 'LOGIN';
-    const C2 = 'LOGOUT';
-    
-    // アクション実体
-    const A1 = { type: C1 }
-    const A2 = { type: C2 }
+    // 定数
+    const AC1 = 'AAA';
+    const AC2 = 'BBB';
+    const AC3 = 'CCC';
+    const AC4 = 'DDD';
     
     // アクション作成プログラム
-    const LOGIN  = () => A1;
-    const LOGOUT = () => A2;
+    const AAA  = () => {
+      return { type: 'AAA' };
+    };
+    
+    // アクション作成プログラム
+    const BBB = () => {
+      return { type: 'BBB' };
+    };
+    
+    // アクション作成プログラム
+    const CCC  = () => {
+      return { type: 'CCC' };
+    };
+    
+    // アクション作成プログラム
+    const DDD  = () => {
+      return { type: 'DDD' };
+    };
     
     // ストア内部処理
-    const RDCR = (state = D1, action) => {
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return { AUTH: true };
-        case C2:
-          return { AUTH: false };
+        case 'AAA':
+          return { type: 'AAA' };
+        case 'BBB':
+          return { type: 'BBB' };
+        case AC3:
+          return { type: 'CCC' };
+        case AC4:
+          return { type: 'DDD' };
         default:
           return state;
       }
     }
     
-    // ストアのアクション受信時の処理
-    const RES = () => {
+    // アクション受信時のストア側の処理
+    const FUNC = () => {
       const TIME = new Date();
       console.log(`受信時刻 : ${TIME.toString()}`);
     }
@@ -350,28 +321,14 @@ Handle an Action in the Store
     // ストア作成
     const STORE = Redux.createStore(RDCR);
     
-    // ストアにアクション受信時の処理を登録
-    STORE.subscribe(RES);
+    // アクション受信時の処理をストア側に登録
+    STORE.subscribe(FUNC);
     
-    // タイマー制御用
-    let TID = null;
-    let CNT = 0;
+    // ストアにアクション「AAA」を送信
+    STORE.dispatch(AAA());  // 受信時刻 : Mon Jun 20 2022 09:42:04 GMT+0900 (日本標準時)
     
-    // タイマー処理
-    const TIMER = () => {
-      CNT++;
-      
-      // 処理回数が「5回」以上ならタイマー停止
-      if (CNT >= 5 && TID !== null) {
-        clearInterval(TID);
-      }
-      
-      STORE.dispatch(LOGIN());
-    }
-    
-    // タイマー開始 -> ストアにアクション「LOGIN」を「2秒に1回」で送信、「5回」送信したら終了
-    TID = setInterval(TIMER, 2000);
-    console.log('終了');
+    // ストアにアクション「BBB」を送信
+    STORE.dispatch(BBB());  // 受信時刻 : Mon Jun 20 2022 09:42:04 GMT+0900 (日本標準時)
     
   </script>
   </body>
@@ -406,57 +363,65 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = { AUTH: false }
-    const D2 = 0;
+    const DEFAULT1 = { type: 'ZZZ' };
+    const DEFAULT2 = 0;
     
-    // アクション名
-    const C1 = 'LOGIN';
-    const C2 = 'LOGOUT';
-    const C3 = 'INC';
-    const C4 = 'DEC';
-    
-    // アクション実体
-    const A1 = { type: C1 }
-    const A2 = { type: C2 }
-    const A3 = { type: C3 }
-    const A4 = { type: C4 }
+    // 定数
+    const AC1 = 'AAA';
+    const AC2 = 'BBB';
+    const AC3 = 'ADD';
+    const AC4 = 'SUB';
     
     // アクション作成プログラム
-    const LOGIN  = () => A1;
-    const LOGOUT = () => A2;
-    const INC    = () => A3;
-    const DEC    = () => A4;
+    const AAA  = () => {
+      return { type: 'AAA' };
+    };
     
-    // ストア内部処理
-    const RDR1 = (state = D1, action) => {
+    // アクション作成プログラム
+    const BBB = () => {
+      return { type: 'BBB' };
+    };
+    
+    // アクション作成プログラム
+    const ADD  = () => {
+      return { type: 'ADD' };
+    };
+    
+    // アクション作成プログラム
+    const SUB  = () => {
+      return { type: 'SUB' };
+    };
+    
+    // ストア1内部処理
+    const RDC1 = (state = DEFAULT1, action) => {
       switch(action.type) {
-        case C1:
-          return { AUTH: true };
-        case C2:
-          return { AUTH: false };
+        case AC1:
+          return { type: 'AAA' };
+        case AC2:
+          return { type: 'BBB' };
         default:
           return state;
       }
     }
     
-    // ストア内部処理
-    const RDR2 = (state = D2, action) => {
+    // ストア2内部処理
+    const RDC2 = (state = DEFAULT2, action) => {
       switch(action.type) {
-        case C3:
+        case AC3:
           return state + 1;
-        case C4:
+        case AC4:
           return state - 1;
         default:
           return state;
@@ -465,22 +430,24 @@ Handle an Action in the Store
     
     // ストア内部処理の統合
     const ROOT = Redux.combineReducers({
-      AUTH: RDR1,
-      CALC: RDR2
+      STRS: RDC1,
+      ACUM: RDC2
     });
     
     // ストア作成
     const STORE = Redux.createStore(ROOT);
     
-    // ストアにアクション送信
-    STORE.dispatch(LOGIN());
-    console.log(STORE.getState().AUTH);  // { AUTH: true }
-    console.log(STORE.getState().CALC);  // 0
+    // ストア内部情報を出力
+    console.log(STORE.getState().STRS);  // { type: ZZZ }
+    console.log(STORE.getState().ACUM);  // 0
     
     // ストアにアクション送信
-    STORE.dispatch(INC());
-    console.log(STORE.getState().AUTH);  // { AUTH: true }
-    console.log(STORE.getState().CALC);  // 1
+    STORE.dispatch(AAA());
+    STORE.dispatch(ADD());
+
+    // ストア内部情報を出力
+    console.log(STORE.getState().STRS);  // { type: AAA }
+    console.log(STORE.getState().ACUM);  // 1
     
   </script>
   </body>
@@ -502,7 +469,7 @@ Handle an Action in the Store
   Send Action Data to the Store
   
 [内容]
-  アクション内の項目に「type」以外を追加
+  アクション作成プログラム内に「type」以外の項目「key1」と「key2」を追加
   
 [確認]
   # cd /var/www/html
@@ -515,50 +482,83 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = { count: 0 }
+    const DEFAULT = {
+      type: 'ZZZ',
+      key1: 0,
+      key2: 0
+    };
     
-    // アクション名
-    const C1 = 'CNT';
-    
-    // アクション実体
-    // const A1 = { type: C1, count: val }
+    // 定数
+    const AC1 = 'ADD';
+    const AC2 = 'SUB';
     
     // アクション作成プログラム
-    const CNT = (val) => { return { type: C1, count: val }; }
+    const ADD  = (val1, val2) => {
+      return {
+        type: AC1,
+        key1: val1,
+        key2: val2
+      };
+    };
+    
+    // アクション作成プログラム
+    const SUB = (val1, val2) => {
+      return {
+        type: AC2,
+        key1: val1,
+        key2: val2
+      };
+    };
     
     // ストア内部処理
-    const RDR = (state = D1, action) => {
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return { count: action.count };
+        case AC1:
+          return {
+            type: AC1,
+            key1: action.key1 + 1,
+            key2: action.key2 + 1
+          };
+        case AC2:
+          return {
+            type: AC2,
+            key1: action.key1 - 1,
+            key2: action.key2 - 1
+          };
         default:
-          return D1;
+          return state;
       }
     }
     
     // ストア作成
-    const STORE = Redux.createStore(RDR);
+    const STORE = Redux.createStore(RDCR);
     
-    // アクション送信前
-    console.log(STORE.getState().count);  // 0
+    // ストア内部情報を出力
+    console.log(STORE.getState());  // { type: 'ZZZ', key1: 0, key2: 0 }
     
-    // アクション送信
-    STORE.dispatch(CNT(11));
+    // ストアにアクション送信
+    STORE.dispatch(ADD(3, 3));
     
-    // アクション送信後
-    console.log(STORE.getState().count);  // 11
+    // ストア内部情報を出力
+    console.log(STORE.getState());  // { type: 'ADD', key1: 4, key2: 4 }
+    
+    // ストアにアクション送信
+    STORE.dispatch(SUB(7, 7));
+    
+    // ストア内部情報を出力
+    console.log(STORE.getState());  // { type: 'SUB', key1: 6, key2: 6 }
     
   </script>
   </body>
@@ -581,7 +581,6 @@ Handle an Action in the Store
   
 [内容]
   非同期アクション対応のストア作成
-    ストア作成時にオプションでストア強化プログラム指定
   
 [確認]
   # cd /var/www/html
@@ -594,63 +593,95 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // HTML
-  <main></main>
-  
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = { count: 0 };
+    const DEFAULT = {
+      type: 'ZZZ',
+      key1: 0,
+      key2: 0
+    };
     
-    // アクション名
-    const C1 = 'CNT';
-    
-    // アクション実体
-    // const A1 = { type: C1, count: val }
+    // 定数
+    const AC1 = 'ADD';
+    const AC2 = 'SUB';
     
     // アクション作成プログラム
-    const CNT = (val) => { return { type: C1, count: val }; }
+    const ADD  = (val1, val2) => {
+      return {
+        type: AC1,
+        key1: val1,
+        key2: val2
+      };
+    };
+    
+    // アクション作成プログラム
+    const SUB = (val1, val2) => {
+      return {
+        type: AC2,
+        key1: val1,
+        key2: val2
+      };
+    };
     
     // ストア内部処理
-    const RDR = (state = D1, action) => {
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return { count: action.count };
+        case AC1:
+          return {
+            type: AC1,
+            key1: action.key1 + 1,
+            key2: action.key2 + 1
+          };
+        case AC2:
+          return {
+            type: AC2,
+            key1: action.key1 - 1,
+            key2: action.key2 - 1
+          };
         default:
-          return D1;
+          return state;
       }
     }
     
-    // 非同期アクション対応のストア作成 -> オプションでストア強化プログラム指定
-    const STORE = Redux.createStore(RDR, Redux.applyMiddleware(ReduxThunk.default));
+    // 非同期アクション対応のストア作成
+    const STORE = Redux.createStore(RDCR, Redux.applyMiddleware(ReduxThunk.default));
     
-    // Promise
-    const ASYNC = () => {
-      return new Promise((resolve, reject) => {
-        
-        // 非同期処理 -> 1秒待機後にストアにアクション送信
+    // 非同期処理関数
+    const Func = (Action, val1, val2) => {
+      return new Promise((res, rej) => {
         setTimeout(() => {
-          STORE.dispatch(CNT(11));
-          resolve();
+          if (Action === AC1) STORE.dispatch(ADD(val1, val2));
+          if (Action === AC2) STORE.dispatch(SUB(val1, val2));
+          console.log(STORE.getState());
+          res();
         }, 1000);
-        
       });
     }
     
-    // アクション送信前
-    console.log(STORE.getState().count);  // 0
+    // 非同期処理関数を順番通りに呼び出す関数
+    async function Main() {
+      try {
+        await Func(AC1, 1, 1);  // { type: 'ADD', key1: 2, key2: 2 }
+        await Func(AC1, 2, 2);  // { type: 'ADD', key1: 3, key2: 3 }
+        await Func(AC2, 3, 3);  // { type: 'SUB', key1: 2, key2: 2 }
+        await Func(AC2, 4, 4);  // { type: 'SUB', key1: 3, key2: 3 }
+      } catch (err) {
+        console.log(err);
+      }
+    }
     
-    // アクション送信と送信後
-    ASYNC().then(() => console.log(STORE.getState().count));
+    // 非同期処理を順番に実行
+    Main();
     
   </script>
   </body>
@@ -684,7 +715,7 @@ Handle an Action in the Store
   
 [内容]
   配列データの更新(1)
-    配列のコピー作成後、コピーに対して更新 -> 関数「concat」で行う
+    配列のコピー作成後、コピーに対して更新 => 関数「concat」で行う
   
 [確認]
   # cd /var/www/html
@@ -697,41 +728,43 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = [];
+    const DEFAULT = [];
     
     // アクション名
-    const C1 = 'ADD';
-    
-    // アクション実体
-    // const A1 = { type: C1, arr }
+    const AC1 = 'ADD';
     
     // アクション作成プログラム
-    const ADD = (val) => { return { type: C1, val }; }
+    const ADD = (val) => {
+      return {
+        type: AC1,
+        key1: val
+      };
+    }
     
     // ストア内部処理
-    const RDR = (state = D1, action) => {
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return state.concat(action.val);
+        case AC1:
+          return state.concat(action.key1);
         default:
-          return D1;
+          return state;
       }
     }
     
     // ストア作成
-    const STORE = Redux.createStore(RDR);
+    const STORE = Redux.createStore(RDCR);
     
     // アクション送信前
     console.log(STORE.getState());  // []
@@ -767,78 +800,18 @@ Handle an Action in the Store
   配列データの更新(2)
     スプレッド演算子を使用
   
-[確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
-  </head>
-  <body>
-  
-  // CDN
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
-  
-  // Redux
-  <script>
-    
-    // デフォルト値
-    const D1 = [];
-    
-    // アクション名
-    const C1 = 'ADD';
-    
-    // アクション実体
-    // const A1 = { type: C1, arr }
-    
-    // アクション作成プログラム
-    const ADD = (val) => { return { type: C1, val }; }
-    
-    // ストア内部処理
-    const RDR = (state = D1, action) => {
+    (例)
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return [...state, action.val];
+        case AC1:
+          return state.concat(action.key1); => return [...state, action.key1];
         default:
-          return D1;
+          return state;
       }
     }
-    
-    // ストア作成
-    const STORE = Redux.createStore(RDR);
-    
-    // アクション送信前
-    console.log(STORE.getState());  // []
-    
-    // アクション送信
-    STORE.dispatch(ADD(11));
-    STORE.dispatch(ADD(22));
-    STORE.dispatch(ADD(33));
-    
-    // アクション送信後
-    console.log(STORE.getState());  // [11, 22, 33]
-    
-  </script>
-  </body>
-  </html>
-  --------------------------------------------------
   
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+[確認]
+  // 省略
   
 ================================================================================
 [16]
@@ -859,51 +832,54 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // デフォルト値
-    const D1 = [11, 22, 33, 44, 55];
+    const DEFAULT = [11, 22, 33, 44, 55, 66];
     
     // アクション名
-    const C1 = 'RMV';
-    
-    // アクション実体
-    // const A1 = { type: C1, idx }
+    const AC1 = 'RMV';
     
     // アクション作成プログラム
-    const RMV = (idx) => { return { type: C1, idx }; }
+    const RMV = (val) => {
+      return {
+        type: AC1,
+        key1: val
+      };
+    }
     
     // ストア内部処理
-    const RDR = (state = D1, action) => {
+    const RDCR = (state = DEFAULT, action) => {
       switch(action.type) {
-        case C1:
-          return [...state.slice(0, action.idx), ...state.slice(action.idx + 1, state.length)];
+        case AC1:
+          return [...state.slice(0, action.key1), ...state.slice(action.key1 + 1, state.length)];
         default:
-          return D1;
+          return state;
       }
     }
     
     // ストア作成
-    const STORE = Redux.createStore(RDR);
+    const STORE = Redux.createStore(RDCR);
     
     // アクション送信前
-    console.log(STORE.getState());  // [11, 22, 33, 44, 55]
+    console.log(STORE.getState());  // [11, 22, 33, 44, 55, 66]
     
     // アクション送信
     STORE.dispatch(RMV(1));
-    STORE.dispatch(RMV(3));
+    STORE.dispatch(RMV(1));
+    STORE.dispatch(RMV(1));
     
     // アクション送信後
-    console.log(STORE.getState());  // [11, 33, 44]
+    console.log(STORE.getState());  // [11, 55, 66]
     
   </script>
   </body>
@@ -926,7 +902,7 @@ Handle an Action in the Store
   
 [内容]
   オブジェクト
-    プロパティを更新 -> Object.assign を使用
+    プロパティを更新 => Object.assign を使用
   
 [確認]
   # cd /var/www/html
@@ -939,51 +915,72 @@ Handle an Action in the Store
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>sample</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // CDN
+  <!-- CDN --->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.3.0/redux-thunk.min.js "></script>
   
-  // Redux
+  <!-- Redux --->
   <script>
     
     // 初期オブジェクト
-    const D1 = {
-      名前: '織田信長',
-      状態: 'offline',
-      場所: '愛知県'
+    const OBJ = {
+      key1: 'AAA',
+      key2: 'BBB'
     };
     
     // アクション名
-    const C1 = 'ONLINE';
+    const AC1 = 'key1';
+    const AC2 = 'key2';
     
     // アクション作成プログラム
-    const ACT = () => { return { type: C1 }; }
+    const KEY1 = (val) => {
+      return {
+        type: AC1,
+        key1: val
+      };
+    }
+    
+    // アクション作成プログラム
+    const KEY2 = (val) => {
+      return {
+        type: AC2,
+        key2: val
+      };
+    }
     
     // ストア内部処理
-    const RDR = (state = D1, action) => {
+    const RDCR = (state = OBJ, action) => {
       switch(action.type) {
-        case C1:
-          return Object.assign({}, state, { 状態: 'online' });
+        case AC1:
+          return Object.assign({}, state, { key1: action.key1 });
+        case AC2:
+          return Object.assign({}, state, { key2: action.key2 });
         default:
           return state;
       }
     }
     
     // ストア作成
-    const STORE = Redux.createStore(RDR);
+    const STORE = Redux.createStore(RDCR);
     
     // アクション送信前
-    console.log(STORE.getState().状態);  // offline
+    console.log(STORE.getState());  // { key1: 'AAA', key2: 'BBB' }
     
     // アクション送信
-    STORE.dispatch(ACT());
+    STORE.dispatch(KEY1('CCC'));
     
     // アクション送信後
-    console.log(STORE.getState().状態);  // online
+    console.log(STORE.getState());  // { key1: 'CCC', key2: 'BBB' }
+    
+    // アクション送信
+    STORE.dispatch(KEY2('DDD'));
+    
+    // アクション送信前
+    console.log(STORE.getState());  // { key1: 'CCC', key2: 'DDD' }
     
   </script>
   </body>

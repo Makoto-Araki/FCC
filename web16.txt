@@ -51,24 +51,33 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 高階関数
-    const myFunc = (func, num) => func(num);
+    const myFunc = (num1, num2, func) => func(num1, num2);
     
     // 高階関数を実行する
-    myFunc(P1 => console.log(P1), 1);  // 1
+    let V1 = myFunc(100, 2, (num1, num2) => num1 + num2);  // 102
+    let V2 = myFunc(100, 2, (num1, num2) => num1 - num2);  // 98
+    let V3 = myFunc(100, 2, (num1, num2) => num1 * num2);  // 200
+    let V4 = myFunc(100, 2, (num1, num2) => num1 / num2);  // 50
+    
+    // 出力
+    console.log(V1);
+    console.log(V2);
+    console.log(V3);
+    console.log(V4);
     
   </script>
   
@@ -119,30 +128,29 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
-    // 配列
-    const ARR = [11, 12, 13, 14, 15];
-    
-    // 配列の先頭から要素を二個抽出するが…抽出元の配列を壊してしまう
+    // 配列の先頭から要素を二個抽出
     const myFunc = (arr) => arr.splice(0, 2);
+
+    // 配列
+    let ARR1 = [11, 12, 13, 14, 15];
+    let ARR2 = myFunc(ARR1);
     
-    // 抽出
-    console.log(myFunc(ARR));  // [11, 12]
-    
-    // 抽出元
-    console.log(ARR);  // [13, 14, 15]
+    // 元になった配列が壊れてしまう
+    console.log(ARR1);  // [13, 14, 15]
+    console.log(ARR2);  // [11, 12]
     
   </script>
   
@@ -166,7 +174,7 @@
   
 [内容]
   問題点
-    関数内でグローバル変数を参照時に当然ながら、グローバル変数が存在しなければ関数は動かない
+    関数内でグローバル変数を参照時は当然ながら、グローバル変数が存在しなければ関数は動かない
   
   対処法
     依存関係を明確化して関数に引数を設置すればOK
@@ -182,17 +190,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // グローバル変数
@@ -226,7 +234,7 @@
 
 [内容]
   上記「03、04、05」のまとめ
-    1. 関数内でグローバル変数やオブジェクトの直接変更は禁止する
+    1. 関数内でグローバル変数やオブジェクトの直接変更は禁止
     2. グローバル変数やオブジェクトはパラメータとして関数に渡す
     3. パラメータを関数内でローカル変数にコピー後にローカル変数で処理を行う
   
@@ -241,17 +249,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -310,17 +318,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -330,7 +338,6 @@
     let ret = arr.map(val => val * 2);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15]
     console.log(ret);  // [22, 24, 26, 28, 30]
     console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
@@ -368,17 +375,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト「Array」のプロトタイプ配下に関数追加
@@ -395,7 +402,6 @@
     let ret = arr.MAP(val => val * 2);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15]
     console.log(ret);  // [22, 24, 26, 28, 30]
     console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
@@ -433,17 +439,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -453,7 +459,6 @@
     let ret = arr.filter(val => val % 2 === 0);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15]
     console.log(ret);  // [12, 14]
     console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
@@ -491,17 +496,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト「Array」のプロトタイプ配下に関数追加
@@ -518,7 +523,6 @@
     let ret = arr.FILTER(val => val % 2 === 0);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15]
     console.log(ret);  // [12, 14]
     console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
@@ -556,17 +560,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -576,7 +580,6 @@
     let ret = arr.slice(0, 2);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15]
     console.log(ret);  // [11, 12]
     console.log(arr);  // [11, 12, 13, 14, 15] => 配列は壊れていない
     
@@ -628,17 +631,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -650,8 +653,8 @@
     console.log(arr2.concat(arr1));  // [4, 5, 6, 1, 2, 3]
     
     // 結合元の確認
-    console.log(arr1);  // [1, 2, 3] -> 結合元は壊れていない
-    console.log(arr2);  // [4, 5, 6] -> 結合元は壊れていない
+    console.log(arr1);  // [1, 2, 3] => 結合元は壊れていない
+    console.log(arr2);  // [4, 5, 6] => 結合元は壊れていない
     
   </script>
   
@@ -686,12 +689,12 @@
 [内容]
   配列オブジェクトのメソッド「reduce」を使用
   
-  第一引数 -> 累積 -> acm と今回は命名
-  第二引数 -> 要素 -> val と今回は命名
-  第三引数 -> 索引 -> idx と今回は命名
-  第四引数 -> 配列 -> arr と今回は命名
+  第1引数 => 累積 => acm と今回は命名
+  第2引数 => 要素 => val と今回は命名
+  第3引数 => 索引 => idx と今回は命名
+  第4引数 => 配列 => arr と今回は命名
   
-  // 配列の各要素を合計 -> 文字の結合も可能
+  // 配列の各要素を合計 => 文字の結合も可能
   配列.reduce((acm, val) => { return acm + val; })
   
 [確認]
@@ -705,17 +708,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -727,8 +730,8 @@
     console.log(arr2.reduce((acm, val) => acm + val));  // 26
     
     // 結合元の確認
-    console.log(arr1);  // [1, 2, 3, 4] -> 配列は壊れていない
-    console.log(arr2);  // [5, 6, 7, 8] -> 配列は壊れていない
+    console.log(arr1);  // [1, 2, 3, 4] => 配列は壊れていない
+    console.log(arr2);  // [5, 6, 7, 8] => 配列は壊れていない
     
   </script>
   
@@ -765,17 +768,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -827,17 +830,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -847,7 +850,7 @@
     let ret = arr.sort((a, b) => a - b);
     
     // 出力
-    console.log(arr);  // [11, 12, 13, 14, 15] -> 配列が壊れている
+    console.log(arr);  // [11, 12, 13, 14, 15] => 配列が壊れている
     console.log(ret);  // [11, 12, 13, 14, 15]
     
   </script>
@@ -885,17 +888,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -945,17 +948,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1002,17 +1005,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1060,17 +1063,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1124,17 +1127,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1179,17 +1182,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -1234,24 +1237,24 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 通常の関数
     const add = (x, y) => x + y;
     
-    console.log(add(1, 1));  // 2 (1 + 1)
-    console.log(add(1, 2));  // 3 (1 + 2)
+    console.log(add(1, 1));  // 2
+    console.log(add(1, 2));  // 3
     
     // カリー関数
     const add1 = (x) => (y) => x + y;  // x => y => x + y

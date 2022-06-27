@@ -41,17 +41,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div></div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
-    // ブラウザの表示領域の横幅が500px未満
+    /* ブラウザの表示領域の横幅が500px未満 */
     @media (max-width: 500px) {
       div {
         width: 100px;
@@ -60,7 +60,7 @@
       }
     }
     
-    // ブラウザの表示領域の横幅が500px以上
+    /* ブラウザの表示領域の横幅が500px以上 */
     @media (min-width: 500px) {
       div {
         width: 100px;
@@ -71,7 +71,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -111,27 +111,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
-    <img src='images/android-icon.png' alt='Android'>
-    <img src='images/firefox-icon.png' alt='Firefox'>
+    <img src='images/android-icon.png' alt='Android logo'>
+    <img src='images/firefox-icon.png' alt='Firefox logo'>
   </div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
-    // 画像(256x256)のレスポンシブ対応
+    /* 画像(256x256)のレスポンシブ対応 */
     img {
       height: auto;
-      max-width: 100%;
+      max-width: 100%;  /* 親要素の100%の幅 */
       border: 2px solid crimson;
     }
     
-    // ブラウザの表示領域の横幅が500px未満
+    /* ブラウザの表示領域の横幅が500px未満 */
     @media (max-width: 500px) {
       div {
         width: 100px;
@@ -139,7 +139,7 @@
       }
     }
     
-    // ブラウザの表示領域の横幅が500px以上
+    /* ブラウザの表示領域の横幅が500px以上 */
     @media (min-width: 500px) {
       div {
         width: 200px;
@@ -149,7 +149,7 @@
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -203,21 +203,23 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // 上記の解決策2を実験
+  <!-- 上記の解決策2を実験 --->
   <img src="images/firefox-1x.png" srcset="images/firefox-1x.png 1x, images/firefox-2x.png 2x">
   
-  // CSS
+  <!-- CSS --->
   <style>
     
-    img { border: 2px solid crimson; }
+    img {
+      border: 2px solid crimson;
+    }
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>
@@ -263,22 +265,22 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div></div>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
     @media (max-width: 500px) {
       div {
         background-color: crimson;
         border: 2px solid black;
-        width: 20vw;  // ブラウザの表示領域の横20%
-        height: 20vh; // ブラウザの表示領域の縦20%
+        width: 20vw;  /* ブラウザの表示領域の横20% */
+        height: 20vh; /* ブラウザの表示領域の縦20% */
       }
     }
     
@@ -286,14 +288,14 @@
       div {
         background-color: blue;
         border: 2px solid black;
-        width: 50vw;  // ブラウザの表示領域の横50%
-        height: 50vh; // ブラウザの表示領域の縦50%
+        width: 50vw;  /* ブラウザの表示領域の横50% */
+        height: 50vh; /* ブラウザの表示領域の縦50% */
       }
     }
     
   </style>
   
-  // JS
+  <!-- JS --->
   <script></script>
   
   </body>

@@ -38,17 +38,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 多次元配列
@@ -57,7 +57,7 @@
     
     // 多次元配列の要素にアクセス
     console.log(arr1[1][2]);  // 16
-    console.log(arr2[1][2]);  // 26
+    console.log(arr2[0][0]);  // 21
     
   </script>
   
@@ -84,52 +84,7 @@
     インデックスは「0」から始まる
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <main></main>
-  
-  // CSS
-  <style></style>
-  
-  // JS
-  <script>
-    
-    // 多次元配列
-    let arr1 = [ [11, 12, 13], [14, 15, 16], [17, 18, 19] ];
-    let arr2 = [ [21, 22, 23], [24, 25, 26], [27, 28, 29] ];
-    
-    // 多次元配列の要素にアクセス
-    console.log(arr1[0][0]);  // 11
-    console.log(arr2[0][0]);  // 21
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  上記「01」を参照
   
 ================================================================================
 [03]
@@ -153,17 +108,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -220,17 +175,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -292,52 +247,35 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
-    let arr1 = [11, 12, 13, 14, 15] ;
-    let arr2 = [21, 22, 23, 24, 25] ;
+    let arr1 = [11, 12, 13, 14, 15, 16, 17, 18, 19] ;
     
     // splice
-    let val1 = arr1.splice(arr1.length - 1, 1) ;
-    let val2 = arr2.splice(arr2.length - 1, 1) ;
+    let val1 = arr1.splice(arr1.length - 1, 2) ;
     
     // 出力(1)
-    console.log(val1);  // [15]
-    console.log(val2);  // [25]
-    console.log(arr1);  // [11, 12, 13, 14]
-    console.log(arr2);  // [21, 22, 23, 24]
+    console.log(val1);  // [19, 18]
+    console.log(arr1);  // [11, 12, 13, 14, 15, 16, 17]
     
     // splice
-    val1 = arr1.splice(0, 1) ;
-    val2 = arr2.splice(0, 1) ;
+    val1 = arr1.splice(0, 2) ;
     
     // 出力(2)
-    console.log(val1);  // [11]
-    console.log(val2);  // [21]
-    console.log(arr1);  // [12, 13, 14]
-    console.log(arr2);  // [22, 23, 24]
-    
-    // splice
-    val1 = arr1.splice(0, 2);
-    val2 = arr2.splice(0, 2);
-    
-    // 出力(3)
-    console.log(val1);  // [12, 13]
-    console.log(val2);  // [22, 33]
-    console.log(arr1);  // [14]
-    console.log(arr2);  // [24]
+    console.log(val1);  // [11, 12]
+    console.log(arr1);  // [13, 14, 15, 16, 17]
     
   </script>
   
@@ -374,34 +312,30 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
     let arr1 = [11, 12, 13, 14, 15] ;
-    let arr2 = [21, 22, 23, 24, 25] ;
     
     // splice
     let val1 = arr1.splice(1, 2, 91, 92) ;
-    let val2 = arr2.splice(1, 2, 91, 92) ;
     
     // 出力(1)
     console.log(val1);  // [12, 13]
-    console.log(val2);  // [22, 23]
     
     // 出力(2)
     console.log(arr1);  // [11, 91, 92, 14, 15]
-    console.log(arr2);  // [21, 91, 92, 24, 25]
     
   </script>
   
@@ -438,34 +372,30 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
     let arr1 = [11, 12, 13, 14, 15] ;
-    let arr2 = [21, 22, 23, 24, 25] ;
     
     // slice
     let val1 = arr1.slice(2, arr1.length) ;
-    let val2 = arr2.slice(2, arr2.length) ;
     
     // 出力(1)
     console.log(val1);  // [13, 14, 15]
-    console.log(val2);  // [23, 24, 25]
     
     // 出力(2)
     console.log(arr1);  // [11, 12, 13, 14, 15]
-    console.log(arr2);  // [21, 22, 23, 24, 25]
     
   </script>
   
@@ -502,30 +432,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
     let arr1 = [11, 12, 13] ;
-    let arr2 = [21, 22, 23] ;
     
     // スプレッド演算子「...」で配列の全要素をコピー
-    let val1 = [...arr1] ;
-    let val2 = [...arr2] ;
+    let arr2 = [...arr1] ;
     
     // 出力
-    console.log(val1);  // [11, 12, 13]
-    console.log(val2);  // [21, 22, 23]
+    console.log(arr2);  // [11, 12, 13]
     
   </script>
   
@@ -561,30 +488,27 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
     let arr1 = [11, 12, 13] ;
-    let arr2 = [21, 22, 23] ;
     
     // スプレッド演算子「...」で配列の結合
-    let val1 = [81, ...arr1, 82, 83] ;
-    let val2 = [91, ...arr2, 92, 93] ;
+    let arr2 = [81, ...arr1, 82, 83] ;
     
     // 出力
-    console.log(val1);  // [81, 11, 12, 13, 82, 83]
-    console.log(val2);  // [91, 21, 22, 23, 92, 93]
+    console.log(arr2);  // [81, 11, 12, 13, 82, 83]
     
   </script>
   
@@ -621,17 +545,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 配列
@@ -676,17 +600,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 多次元配列
@@ -738,17 +662,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // 多次元配列
@@ -785,7 +709,7 @@
   
 [内容]
   オブジェクトにプロパティと値を追加
-    プロパティ名に空白が含まれるなら「オブジェクト['プロパティ名']」の形式のみ可能
+    プロパティ名に空白が含まれる場合は オブジェクト['プロパティ名'] の形式のみ可能
   
 [確認]
   # cd /var/www/html
@@ -798,17 +722,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -864,17 +788,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -923,17 +847,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -983,17 +907,17 @@
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -1044,17 +968,17 @@ Check if an Object has a Property
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -1106,17 +1030,17 @@ Check if an Object has a Property
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト
@@ -1177,17 +1101,17 @@ Check if an Object has a Property
   <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS
+  <!-- JS --->
   <script>
     
     // オブジェクト

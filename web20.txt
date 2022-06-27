@@ -36,21 +36,21 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <button id='INC'>増加</button>
   <button id='DEC'>減少</button>
   
-  // CSS
+  <!-- CSS --->
   <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 変数定義と初期化
@@ -100,36 +100,54 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <h2>サンプル文字列</h2>
+  <!-- HTML --->
+  <p    id='AAA'>Hello World</p>
+  <p class='BBB'>Hello World</p>
   <button id='GRA'>付与</button>
   <button id='DEP'>剥奪</button>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
-    .sample {
-      color: red;
+    /* 適用されるクラス */
+    .CCC {
+      color: white;
       font-weight: bold;
     }
     
+    /* 適用されるクラス */
+    .DDD {
+      border: 1px solid black;
+      background-color: CornFlowerBlue;
+    }
+
   </style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 付与ボタンのクリック時
-    $('#GRA').on('click', () => $('h2').addClass('sample'));
+    $('#GRA').on('click', () => {
+      $('#AAA').addClass('CCC');
+      $('#AAA').addClass('DDD');
+      $('.BBB').addClass('CCC');
+      $('.BBB').addClass('DDD');
+    });
     
     // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => $('h2').removeClass('sample'));
+    $('#DEP').on('click', () => {
+      $('#AAA').removeClass('CCC');
+      $('#AAA').removeClass('DDD');
+      $('.BBB').removeClass('CCC');
+      $('.BBB').removeClass('DDD');
+    });
     
   </script>
   
@@ -155,65 +173,8 @@
   要素をクラス単位でセレクト
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h2 class='myTitle'>サンプル文字列1</h2>
-  <h2 class='myTitle'>サンプル文字列2</h2>
-  <button id='GRA'>付与</button>
-  <button id='DEP'>剥奪</button>
-  
-  // CSS
-  <style>
-    
-    .sample {
-      color: red;
-      font-weight: bold;
-    }
-    
-  </style>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 付与ボタンのクリック時
-    $('#GRA').on('click', () => $('.myTitle').addClass('sample'));
-    
-    // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => $('.myTitle').removeClass('sample'));
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
-  
+  // 上記「02」を参照
+
 ================================================================================
 [04]
   Target Elements by id Using jQuery
@@ -242,68 +203,7 @@
   複数のクラス属性を適用
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h2 class='myTitle'>サンプル文字列1</h2>
-  <h2 class='myTitle'>サンプル文字列2</h2>
-  <button id='GRA'>付与</button>
-  <button id='DEP'>剥奪</button>
-  
-  // CSS
-  <style>
-    
-    .sample1 { color: white; }
-    .sample2 { background-color: black; }
-    
-  </style>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 付与ボタンのクリック時
-    $('#GRA').on('click', () => {
-      $('.myTitle').addClass('sample1');
-      $('.myTitle').addClass('sample2');
-    });
-    
-    // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => {
-      $('.myTitle').removeClass('sample1');
-      $('.myTitle').removeClass('sample2');
-    });
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
+  // 上記「02」を参照
   
 ================================================================================
 [07]
@@ -313,7 +213,7 @@
   セレクト要素からクラス属性を無効化
   
 [確認]
-  // 上記「06」を参照
+  // 上記「02」を参照
   
 ================================================================================
 [08]
@@ -334,40 +234,48 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
-  <h2 class='myTitle'>サンプル文字列1</h2>
-  <h2 class='myTitle'>サンプル文字列2</h2>
+  <!-- HTML --->
+  <p class='AAA'>Hello World</p>
   <button id='GRA'>付与</button>
   <button id='DEP'>剥奪</button>
+  <button id='DIS'>無効</button>
+  <button id='ACT'>有効</button>
   
-  // CSS
-  <style>
-    
-    .sample1 { color: white; }
-    .sample2 { background-color: black; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 付与ボタンのクリック時
     $('#GRA').on('click', () => {
-      $('.myTitle').css('color', 'white');
-      $('.myTitle').css('background-color', 'black');
+      $('.AAA').css('color', 'white');
+      $('.AAA').css('background-color', 'black');
     });
     
     // 剥奪ボタンのクリック時
     $('#DEP').on('click', () => {
-      $('.myTitle').css('color', 'black');
-      $('.myTitle').css('background-color', 'white');
+      $('.AAA').css('color', 'black');
+      $('.AAA').css('background-color', 'white');
+    });
+    
+    // 無効ボタンのクリック時 => 付与ボタンと剥奪ボタンが押下不可
+    $('#DIS').on('click', () => {
+      $('#GRA').prop('disabled', true);
+      $('#DEP').prop('disabled', true);
+    });
+    
+    // 有効ボタンのクリック時 => 付与ボタンと剥奪ボタンが押下可能
+    $('#ACT').on('click', () => {
+      $('#GRA').prop('disabled', false);
+      $('#DEP').prop('disabled', false);
     });
     
   </script>
@@ -394,83 +302,8 @@
   セレクト要素の無効化
   
 [確認]
-  # cd /var/www/html
-  # vi sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html lang="ja">
-  <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  
-  // JQuery
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  
-  <title>MY SAMPLE</title>
-  </head>
-  <body>
-  
-  // HTML
-  <h2 class='myTitle'>サンプル文字列1</h2>
-  <h2 class='myTitle'>サンプル文字列2</h2>
-  <button id='GRA'>付与</button>
-  <button id='DEP'>剥奪</button>
-  <button id='DIS'>無効</button>
-  <button id='ACT'>有効</button>
-  
-  // CSS
-  <style>
-    
-    .sample1 { color: white; }
-    .sample2 { background-color: black; }
-    
-  </style>
-  
-  // JS -> JQuery
-  <script>
-    
-    // 付与ボタンのクリック時
-    $('#GRA').on('click', () => {
-      $('.myTitle').css('color', 'white');
-      $('.myTitle').css('background-color', 'black');
-    });
-    
-    // 剥奪ボタンのクリック時
-    $('#DEP').on('click', () => {
-      $('.myTitle').css('color', 'black');
-      $('.myTitle').css('background-color', 'white');
-    });
-    
-    // 無効ボタンのクリック時
-    $('#DIS').on('click', () => {
-      $('#GRA').prop('disabled', true);
-      $('#DEP').prop('disabled', true);
-    });
-    
-    // 有効ボタンのクリック時
-    $('#ACT').on('click', () => {
-      $('#GRA').prop('disabled', false);
-      $('#DEP').prop('disabled', false);
-    });
-    
-  </script>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  # firefox
-  # http://localhost/sample.html
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  確認完了!
-  
+  // 上記「08」を参照
+
 ================================================================================
 [10]
   Change Text Inside an Element Using jQuery
@@ -490,34 +323,38 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <input id='EDT' type='text'>
   <button id='GRA'>反映</button>
   <hr>
-  <p id='RS1'>初期表示1</p>
-  <p id='RS2'>初期表示2</p>
+  <p id='RS1'>Hello World</p>
+  <p id='RS2'>Hello World</p>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
-    .sample { font-size: 26px; }
+    /* 適用されるクラス */
+    .AAA {
+      font-size: 26px;
+      font-weight: bold;
+    }
     
   </style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 初期表示
     $(document).ready(() => {
-      $('#RS1').addClass('sample');
-      $('#RS2').addClass('sample');
+      $('#RS1').addClass('AAA');
+      $('#RS2').addClass('AAA');
     });
     
     // 反映ボタンのクリック時
@@ -531,7 +368,6 @@
         $('#RS1').text(tmp);
         $('#RS2').html(`<p id='RS2'>${tmp}</p>`);
       }
-      
     });
     
   </script>
@@ -569,39 +405,35 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='ADD'>追加</button>
     <button id='REM'>削除</button>
   </div>
   <hr>
   <div id='DSP'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='AAA'>Hello World</p>
+    <p class='AAA'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 追加ボタンのクリック時
-    $('#ADD').on('click', () => $('#DSP').append('<p class="SAM">Hello!</p>'));
+    $('#ADD').on('click', () => $('#DSP').append('<p class="AAA">Hello World</p>'));
     
     // 削除ボタンのクリック時
-    $('#REM').on('click', () => $('.SAM:last').remove());
+    $('#REM').on('click', () => $('.AAA:last').remove());
     
   </script>
   
@@ -638,44 +470,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='MV1'>移動1</button>
     <button id='MV2'>移動2</button>
   </div>
   <hr>
   <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='AAA'>Hello World</p>
+    <p class='AAA'>Hello World</p>
   </div>
   <hr>
   <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='AAA'>Hello World</p>
+    <p class='AAA'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 移動1ボタンのクリック時
-    $('#MV1').on('click', () => $('#DS1 > .SAM:last').appendTo('#DS2'));
+    $('#MV1').on('click', () => $('#DS1 > .AAA:last').appendTo('#DS2'));
     
     // 移動2ボタンのクリック時
-    $('#MV2').on('click', () => $('#DS2 > .SAM:last').appendTo('#DS1'));
+    $('#MV2').on('click', () => $('#DS2 > .AAA:last').appendTo('#DS1'));
     
   </script>
   
@@ -712,44 +540,40 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='CP1'>複製1</button>
     <button id='CP2'>複製2</button>
   </div>
   <hr>
   <div id='DS1'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='AAA'>Hello World</p>
+    <p class='AAA'>Hello World</p>
   </div>
   <hr>
   <div id='DS2'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='AAA'>Hello World</p>
+    <p class='AAA'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 複製1ボタンのクリック時
-    $('#CP1').on('click', () => $('#DS1 > .SAM:last').clone().appendTo('#DS2'));
+    $('#CP1').on('click', () => $('#DS1 > .AAA:last').clone().appendTo('#DS2'));
     
     // 複製2ボタンのクリック時
-    $('#CP2').on('click', () => $('#DS2 > .SAM:last').clone().appendTo('#DS1'));
+    $('#CP2').on('click', () => $('#DS2 > .AAA:last').clone().appendTo('#DS1'));
     
   </script>
   
@@ -786,32 +610,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='PR1'>親要素1</button>
     <button id='PR2'>親要素2</button>
   </div>
   <hr>
   <div id='DSP'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 親要素1ボタンのクリック時
@@ -861,32 +681,28 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='CH1'>子要素1</button>
     <button id='CH2'>子要素2</button>
   </div>
   <hr>
   <div id='DSP'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 子要素1ボタンのクリック時
@@ -936,14 +752,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='EL1'>要素1</button>
     <button id='EL2'>要素2</button>
@@ -953,20 +769,16 @@
   </div>
   <hr>
   <div id='DSP'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 要素1ボタンのクリック時
@@ -1034,14 +846,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <div>
     <button id='ODD'>奇数</button>
     <button id='EVE'>偶数</button>
@@ -1049,29 +861,25 @@
   </div>
   <hr>
   <div id='DSP'>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
-    <p class='SAM'>Hello!</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
+    <p class='SAM'>Hello World</p>
   </div>
   
-  // CSS
-  <style>
-    
-    .SAM { font-size: 15px; }
-    
-  </style>
+  <!-- CSS --->
+  <style></style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
-    // 奇数ボタンのクリック時 -> 要素は「0」オリジンであることに注意
+    // 奇数ボタンのクリック時 => 要素は「0」オリジンであることに注意
     $('#ODD').on('click', () => {
       $('.SAM:odd').css('background-color', 'black');
       $('.SAM:odd').css('color', 'white');
     });
     
-    // 偶数ボタンのクリック時 -> 要素は「0」オリジンであることに注意
+    // 偶数ボタンのクリック時 => 要素は「0」オリジンであることに注意
     $('#EVE').on('click', () => {
       $('.SAM:even').css('background-color', 'black');
       $('.SAM:even').css('color', 'white');
@@ -1118,19 +926,20 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   
-  // JQuery
+  <!-- CDN --->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   
-  <title>MY SAMPLE</title>
+  <title>SAMPLE</title>
   </head>
   <body>
   
-  // HTML
+  <!-- HTML --->
   <main></main>
   
-  // CSS
+  <!-- CSS --->
   <style>
     
+    /* 適用されるクラス */
     .SAM {
       color: white;
       font-size: 30px;
@@ -1139,7 +948,7 @@
     
   </style>
   
-  // JS -> JQuery
+  <!-- JS --->
   <script>
     
     // 要素「body」のセレクト

@@ -1,4 +1,5 @@
 ================================================================================
+[X01] [Node] //
 [001] Meet the Node console
 [002] Start a Working Express Server
 [003] Serve an HTML File
@@ -11,14 +12,6072 @@
 [010] Get Query Parameter Input from the Client
 [011] Use body-parser to Parse POST Requests
 [012] Get Data from POST Requests
-[X00] [Express] ジェネレーターでアプリケーション生成
-[X01] [Express] テンプレートエンジン「EJS」を使用
-[X02] [Express] テンプレート上のフォームからデータ送信
-[X03] [Express] 上記「14」のリクエストハンドラ部分をモジュール化
-[X05] [Express] 入力URLの適正チェック
-[X06] [Express] フォームの入力データをデータベース「MongoDB」に登録
-[X07] [Express] モジュール「multer」でファイルのアップロード機能を実装
-[X08] [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
+[Y01] [Express] //
+[Y02] [Express] //
+[Y03] [Express] //
+[Y04] [Express] //
+[Y05] [Express] //
+================================================================================
+[X01]
+  [Node] 基本的なソースコード記述
+  
+[内容]
+  ポート「3000」で待ち受けを行い、レスポンスに「Hello World」を返す
+  
+[確認]
+  $ cd $HOME/app01
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  
+  let server = http.createServer(
+    (request, response) => {
+      response.end('Hello World');
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X02]
+  [Node] ヘッダ情報を付与してレスポンスを返す
+  
+[内容]
+  ヘッダ情報に「text/html」を指定する
+  
+[確認]
+  $ cd $HOME/app02
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  
+  let server = http.createServer(
+    (request, response) => {
+      response.setHeader('Content-Type', 'text/html');
+      response.write('<!doctype html>');
+      response.write('<html lang="ja">');
+      response.write('<head>');
+      response.write('<meta charset="utf-8">');
+      response.write('<title>Hello World</title>');
+      response.write('</head>');
+      response.write('<body>');
+      response.write('<p>Hello World</p>');
+      response.write('</body>');
+      response.write('</html>');
+      response.end();
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X03]
+  [Node] ファイルを読み込みレスポンスで返す
+  
+[内容]
+  モジュール「fs」でファイル「index.html」の内容をレスポンスで返す
+
+[確認]
+  $ cd $HOME/app03
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app03
+  $ vi index.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title>Hello World</title>
+  </head>
+  <body>
+  <p>Hello World</p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app03
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+
+  let server = http.createServer(
+    (request, response) => {
+      fs.readFile('./index.html', 'UTF-8',
+        (err, data) => {
+          response.writeHead(200, { 'Content-Type' : 'text/html' });
+          response.write(data);
+          response.end();
+        }
+      );
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app03
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X04]
+  [Node] テンプレートエンジンを使用する
+  
+[内容]
+  テンプレートエンジン「EJS」を使用する
+
+[確認]
+  $ cd $HOME/app04
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app04
+  $ npm install ejs (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app04
+  $ vi index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app04
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  
+  let index = fs.readFileSync('./index.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let content = ejs.render(index, {
+        title: 'Hello World',
+        content: 'Hello World'
+      });
+      response.writeHead(200, { 'Content-Type' : 'text/html' });
+      response.write(content);
+      response.end();
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app04
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X05]
+  [Node] ルーティングを実装する
+  
+[内容]
+  アドレス毎にルーティングを実装する
+
+[確認]
+  $ cd $HOME/app05
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app05
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app05
+  $ vi index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app05
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  
+  let index = fs.readFileSync('./index.ejs', 'UTF-8');
+
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url);
+      let content = '';
+
+      switch(parts.pathname) {
+        case '/':
+          content = ejs.render(index, {
+            title: 'Hello World',
+            content: 'Hello World'
+          });
+          break;
+        case '/other1':
+          content = ejs.render(index, {
+            title: 'Other1',
+            content: 'Other1'
+          });
+          break;
+        case '/other2':
+          content = ejs.render(index, {
+            title: 'Other2',
+            content: 'Other2'
+          });
+          break;
+        default:
+          content = ejs.render(index, {
+            title: 'None Page',
+            content: 'None Page'
+          });
+          break;
+      }
+      response.writeHead(200, { 'Content-Type' : 'text/html' });
+      response.write(content);
+      response.end();
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app05
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/other1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Other1 を確認)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/other2
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Other2 を確認)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/other3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (None Page を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X06]
+  [Node] クエリーパラメータを表示する
+  
+[内容]
+  クエリーパラメータを画面に表示する
+  
+[確認]
+  $ cd $HOME/app06
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app06
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app06
+  $ vi index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <p>key1 : <%=val1 %></p>
+  <p>key2 : <%=val2 %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app06
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  
+  let index = fs.readFileSync('./index.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url, true);
+      let content = '';
+      
+      switch(parts.pathname) {
+        case '/':
+          content = ejs.render(index, {
+            title: 'Query Params',
+            val1: parts.query.key1,
+            val2: parts.query.key2
+          });
+          break;
+        default:
+          content = ejs.render(index, {
+            title: 'Query Params',
+            val1: 'None Param',
+            val2: 'None Param'
+          });
+          break;
+      }
+      response.writeHead(200, { 'Content-Type' : 'text/html' });
+      response.write(content);
+      response.end();
+    }
+  );
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app06
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/?key1=AAA&key2=BBB
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (key1 : AAA を確認)
+  (key2 : BBB を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X07]
+  [Node] フォームからデータ送信
+  
+[内容]
+  画面「input」のフォームからデータを送信後に別画面「output」に表示する
+  
+  並行して実装
+    ルーティング処理を別関数に移動
+    スタイルシート適用
+  
+[確認]
+  $ cd $HOME/app07
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ vi input.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/output">
+    <!-- 各科目の点数を入力 --->
+    <label for="score1"><%=subject1 %></label><input type="text" id="score1" name="score1">
+    <label for="score2"><%=subject2 %></label><input type="text" id="score2" name="score2">
+    <label for="score3"><%=subject3 %></label><input type="text" id="score3" name="score3">
+    <label for="score4"><%=subject4 %></label><input type="text" id="score4" name="score4">
+    <label for="score5"><%=subject5 %></label><input type="text" id="score5" name="score5">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ vi output.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <div id="result">
+    <!-- 各科目の点数を表示 --->
+    <p><%=subject1 %> : <%=score1 %></p>
+    <p><%=subject2 %> : <%=score2 %></p>
+    <p><%=subject3 %> : <%=score3 %></p>
+    <p><%=subject4 %> : <%=score4 %></p>
+    <p><%=subject5 %> : <%=score5 %></p>
+  </div>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  #result {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  #result p {
+    font-size: 20px;
+    color: Crimson;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  let qs = require('querystring');
+  
+  let input = fs.readFileSync('./input.ejs', 'UTF-8');
+  let style = fs.readFileSync('./style.css', 'UTF-8');
+  let output = fs.readFileSync('./output.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url);
+      switch(parts.pathname) {
+        case '/':
+          response_input(request, response);
+          break;
+        case '/style.css':
+          response_style(request, response);
+          break;
+        case '/output':
+          response_output(request, response);
+          break;
+        default:
+          response_input(request, response);
+          break;
+      }
+    }
+  );
+  
+  function response_input(request, response) {
+    let content = ejs.render(input, {
+      title: '点数入力',
+      subject1: '国語',
+      subject2: '数学',
+      subject3: '英語',
+      subject4: '理科',
+      subject5: '社会',
+    });
+    response.writeHead(200, { 'Content-Type' : 'text/html' });
+    response.write(content);
+    response.end();
+  }
+  
+  function response_style(request, response) {
+    response.writeHead(200, { 'Content-Type' : 'text/css' });
+    response.write(style);
+    response.end();
+  }
+  
+  function response_output(request, response) {
+    let body = '';
+    if (request.method === 'POST') {
+      request.on('data', data => {
+        body += data;
+      });
+      request.on('end', () => {
+        let qs_str = qs.parse(body);
+        let content = ejs.render(output, {
+          title: '点数表示',
+          subject1: '国語',
+          subject2: '数学',
+          subject3: '英語',
+          subject4: '理科',
+          subject5: '社会',
+          score1: qs_str.score1,
+          score2: qs_str.score2,
+          score3: qs_str.score3,
+          score4: qs_str.score4,
+          score5: qs_str.score5,
+        });
+        response.writeHead(200, { 'Content-Type' : 'text/html' });
+        response.write(content);
+        response.end();
+      });
+    }
+  }
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app07
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (国語に 55 を入力) => 別画面「output」で同じ数値を確認
+  (数学に 65 を入力) => 別画面「output」で同じ数値を確認
+  (英語に 75 を入力) => 別画面「output」で同じ数値を確認
+  (理科に 85 を入力) => 別画面「output」で同じ数値を確認
+  (社会に 95 を入力) => 別画面「output」で同じ数値を確認
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X08]
+  [Node] データをテーブル表示
+  
+[内容]
+  オブジェクトのデータをテーブル表示する
+
+[確認]
+  $ cd $HOME/app08
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app08
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app08
+  $ vi output.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <tbody>
+      <% for(let key in OBJ) { %>
+        <tr>
+          <th><%=key %></th>
+          <td><%=OBJ[key] %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app08
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  table {
+    margin: 15px auto;
+    padding: 5px;
+    width: 50%;
+  }
+  
+  table tr {
+    padding: 5px;
+    margin: 10px;
+    color: Crimson;
+    font-size: 25px;
+  }
+  
+  table tr th {
+    padding: 10px;
+    margin: 0px;
+    border: 3px solid Crimson;
+    width: 100px;
+  }
+  
+  table tr td {
+    padding: 10px;
+    margin: 0px;
+    border: 3px solid Crimson;
+    width: 100px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app08
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  
+  let style = fs.readFileSync('./style.css', 'UTF-8');
+  let output = fs.readFileSync('./output.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url);
+      switch(parts.pathname) {
+        case '/':
+          response_output(request, response);
+          break;
+        case '/style.css':
+          response_style(request, response);
+          break;
+        default:
+          response_output(request, response);
+          break;
+      }
+    }
+  );
+  
+  function response_style(request, response) {
+    response.writeHead(200, { 'Content-Type' : 'text/css' });
+    response.write(style);
+    response.end();
+  }
+  
+  function response_output(request, response) {
+    let DATA = {
+      '国語' : '55',
+      '数学' : '65',
+      '英語' : '75',
+      '理科' : '85',
+      '社会' : '95',
+    }
+    let content = ejs.render(output, {
+      title: '点数表示',
+      OBJ: DATA,
+    });
+    response.writeHead(200, { 'Content-Type' : 'text/html' });
+    response.write(content);
+    response.end();
+  }
+
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app08
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (各科目の点数の表示を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X09]
+  [Node] パーシャル
+  
+[内容]
+  パーシャルでテンプレートの簡略化
+  
+[確認]
+  $ cd $HOME/app09
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ vi items.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <tr>
+    <th><%=key %></th>
+    <td><%=val %></td>
+  </tr>
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ vi output.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <tbody>
+      <% for(let key in OBJ) { %>
+        <%- include('items', { key: key, val: OBJ[key] }) %>
+      <% } %>
+    </tbody>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  table {
+    margin: 15px auto;
+    padding: 5px;
+    width: 50%;
+  }
+  
+  table tr {
+    padding: 5px;
+    margin: 10px;
+    color: Crimson;
+    font-size: 25px;
+  }
+  
+  table tr th {
+    padding: 10px;
+    margin: 0px;
+    border: 3px solid Crimson;
+    width: 100px;
+  }
+  
+  table tr td {
+    padding: 10px;
+    margin: 0px;
+    border: 3px solid Crimson;
+    width: 100px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  
+  let style = fs.readFileSync('./style.css', 'UTF-8');
+  let output = fs.readFileSync('./output.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url);
+      switch(parts.pathname) {
+        case '/':
+          response_output(request, response);
+          break;
+        case '/style.css':
+          response_style(request, response);
+          break;
+        default:
+          response_output(request, response);
+          break;
+      }
+    }
+  );
+  
+  function response_style(request, response) {
+    response.writeHead(200, { 'Content-Type' : 'text/css' });
+    response.write(style);
+    response.end();
+  }
+  
+  function response_output(request, response) {
+    let DATA = {
+      '国語' : '55',
+      '数学' : '65',
+      '英語' : '75',
+      '理科' : '85',
+      '社会' : '95',
+    }
+    let content = ejs.render(output, {
+      title: '点数表示',
+      OBJ: DATA,
+      filename: 'items',
+    });
+    response.writeHead(200, { 'Content-Type' : 'text/html' });
+    response.write(content);
+    response.end();
+  }
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app09
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (各科目の点数の表示を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X10]
+  [Node] クッキー
+  
+[内容]
+  フォーム上からクッキーに保存したい内容を送信して、レスポンスにセットさせてクライアントのクッキーに保存させる
+  
+[確認]
+  $ cd $HOME/app10
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app10
+  $ npm install ejs url (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app10
+  $ vi index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="./style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+    <!-- COOKIE SHOW --->
+    <p>COOKIE : <%=cookie_data %></p>
+    
+    <!-- COOKIE SEND --->
+    <form method="post" action="/">
+      <label for="msg">MESSAGE</label><input type="text" id="msg" name="msg">
+      <input type="submit" value="Click">
+    </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app10
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  p {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+    font-size: 30px;
+  }
+  
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app10
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let http = require('http');
+  let fs = require('fs');
+  let ejs = require('ejs');
+  let url = require('url');
+  let qs = require('querystring');
+  
+  let style = fs.readFileSync('./style.css', 'UTF-8');
+  let index = fs.readFileSync('./index.ejs', 'UTF-8');
+  
+  let server = http.createServer(
+    (request, response) => {
+      let parts = url.parse(request.url);
+      switch(parts.pathname) {
+        case '/':
+          response_index(request, response);
+          break;
+        case '/style.css':
+          response_style(request, response);
+          break;
+        default:
+          response_index(request, response);
+          break;
+      }
+    }
+  );
+  
+  function response_style(request, response) {
+    response.writeHead(200, { 'Content-Type' : 'text/css' });
+    response.write(style);
+    response.end();
+  }
+  
+  function setCookie(key, val, response) {
+    let data = escape(val);
+    response.setHeader('Set-Cookie', [key + '=' + data]);
+  }
+  
+  function getCookie(key, request) {
+    let data = request.headers.cookie != undefined ? request.headers.cookie : '';
+    let arr = data.split(';');
+    for (let i in arr) {
+      if (arr[i].trim().startsWith(key + '=')) {
+        let result = arr[i].trim().substring(key.length + 1);
+        return escape(result);
+      }
+    }
+    return '';
+  }
+
+  function response_index(request, response) {
+    let body = '';
+    if (request.method === 'POST') {
+      request.on('data', data => {
+        body += data;
+      });
+      request.on('end', () => {
+        let qs_str = qs.parse(body);
+        setCookie('msg', qs_str.msg, response);
+        let content = ejs.render(index, {
+          title: 'COOKIE',
+          cookie_data: getCookie('msg', request),
+        });
+        response.writeHead(200, { 'Content-Type' : 'text/html' });
+        response.write(content);
+        response.end();
+      });
+    } else {
+      let content = ejs.render(index, {
+        title: 'COOKIE',
+        cookie_data: getCookie('msg', request),
+      });
+      response.writeHead(200, { 'Content-Type' : 'text/html' });
+      response.write(content);
+      response.end();
+    }
+  }
+  
+  server.listen(3000);
+  --------------------------------------------------
+  
+  $ cd $HOME/app10
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (COOKIE : 'DDD' MESSAGE : 'EEE') => Click => レスポンスヘッダーに「msg=EEE」が付与、クッキー保存
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X11]
+  [Express] 基本的なソースコード記述(1)
+  
+[内容]
+  ポート「3000」で待ち受けを行い、レスポンスに「Hello World」を返す
+
+[確認]
+  $ cd $HOME/app11
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app11
+  $ npm install express (ローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app11
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const express = require('express');
+  const app = express();
+  
+  app.get('/', (req, res) => {
+    res.end('Hello World');
+  });
+  
+  app.listen(3000, () => {
+    console.log('APP started on port 3000');
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/app11
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  APP started on port 3000
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X12]
+  [Express] 基本的なソースコード記述(2)
+  
+[内容]
+  上記「X11」をジェネレータ生成したコード上で記述する
+  
+  並行して実装
+    スタイルシート適用
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app12
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  p {
+    font-size: 20px;
+    color: Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      title: 'Hello World',
+      content: 'Hello World',
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app12
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X13]
+  [Express] ルーティング処理を追加
+  
+[内容]
+  ページを追加して対応するルーティング処理を追加する
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app13
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi views/other1.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi views/other2.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  p {
+    font-size: 20px;
+    color: Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      title: 'Index',
+      content: 'Index',
+    });
+  });
+  
+  router.get('/other1', function(req, res, next) {
+    res.render('other1', {
+      title: 'Other1',
+      content: 'Other1',
+    });
+  });
+  
+  router.get('/other2', function(req, res, next) {
+    res.render('other2', {
+      title: 'Other2',
+      content: 'Other2',
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app13
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  $ http://localhost:3000/other1
+  $ http://localhost:3000/other2
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X14]
+  [Express] ルーティング処理を別スクリプトに移動
+  
+[内容]
+  上記「X13」で追加したルーティング処理を別スクリプトに移動
+
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app14
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi views/other1.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi views/other2.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+  <p><%=content %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  p {
+    font-size: 20px;
+    color: Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      title: 'Index',
+      content: 'Index',
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi routes/other1.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var other1 = express.Router();
+  
+  other1.get('/other1', function(req, res, next) {
+    res.render('other1', {
+      title: 'Other1',
+      content: 'Other1',
+    });
+  });
+  
+  module.exports = other1;
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi routes/other2.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var other2 = express.Router();
+  
+  other2.get('/other2', function(req, res, next) {
+    res.render('other2', {
+      title: 'Other2',
+      content: 'Other2',
+    });
+  });
+  
+  module.exports = other2;
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var other1Router = require('./routes/other1');
+  var other2Router = require('./routes/other2');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use('/', indexRouter);
+  app.use('/', other1Router);
+  app.use('/', other2Router);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app14
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  $ http://localhost:3000/other1
+  $ http://localhost:3000/other2
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X15]
+  [Express] クエリーパラメータの使用
+  
+[内容]
+  引き渡されたクエリーパラメータを処理内で使用する
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app15
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <title><%=title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <p><%=name %></p>
+    <p><%=mail %></p>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  p {
+    font-size: 20px;
+    color: Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('index', {
+      title: 'Index',
+      name: req.query.name,
+      mail: req.query.mail,
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app15
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/?name=AAA&mail=BBB
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X16]
+  [Express] フォームからデータ送信
+  
+[内容]
+  上記「X07」と同様に、画面「input」のフォームからデータを送信後に別画面「output」に表示する
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app16
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/output">
+    <!-- 各科目の点数を入力 --->
+    <label for="score1"><%=subject1 %></label><input type="text" id="score1" name="score1">
+    <label for="score2"><%=subject2 %></label><input type="text" id="score2" name="score2">
+    <label for="score3"><%=subject3 %></label><input type="text" id="score3" name="score3">
+    <label for="score4"><%=subject4 %></label><input type="text" id="score4" name="score4">
+    <label for="score5"><%=subject5 %></label><input type="text" id="score5" name="score5">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi views/output.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <div id="result">
+    <!-- 各科目の点数を表示 --->
+    <p><%=subject1 %> : <%=score1 %></p>
+    <p><%=subject2 %> : <%=score2 %></p>
+    <p><%=subject3 %> : <%=score3 %></p>
+    <p><%=subject4 %> : <%=score4 %></p>
+    <p><%=subject5 %> : <%=score5 %></p>
+  </div>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  #result {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  #result p {
+    font-size: 20px;
+    color: Crimson;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', function(req, res, next) {
+    res.render('input', {
+      title: '点数入力',
+      subject1: '国語',
+      subject2: '数学',
+      subject3: '英語',
+      subject4: '理科',
+      subject5: '社会',
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  
+  input.get('/input', function(req, res, next) {
+    res.render('input', {
+      title: '点数入力',
+      subject1: '国語',
+      subject2: '数学',
+      subject3: '英語',
+      subject4: '理科',
+      subject5: '社会',
+    });
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi routes/output.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var output = express.Router();
+  
+  output.post('/output', function(req, res, next) {
+    res.render('output', {
+      title: '点数表示',
+      subject1: '国語',
+      subject2: '数学',
+      subject3: '英語',
+      subject4: '理科',
+      subject5: '社会',
+      score1: req.body['score1'],
+      score2: req.body['score2'],
+      score3: req.body['score3'],
+      score4: req.body['score4'],
+      score5: req.body['score5'],
+    });
+  });
+  
+  module.exports = output;
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var outputRouter = require('./routes/output');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  app.use('/', outputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app16
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (国語に 55 を入力) => 別画面「output」で同じ数値を確認
+  (数学に 65 を入力) => 別画面「output」で同じ数値を確認
+  (英語に 75 を入力) => 別画面「output」で同じ数値を確認
+  (理科に 85 を入力) => 別画面「output」で同じ数値を確認
+  (社会に 95 を入力) => 別画面「output」で同じ数値を確認
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X17]
+  [Express] セッション使用でクライアント毎の設定を保存
+  
+[内容]
+  パッケージ「express-session」からセッション使用でクライアント毎の設定を保存
+  
+  (記述例 app.js) => 記述する場所に注意
+    var session = require('express-session');
+    ...
+    var app = express();
+    ...
+    var session_option = {
+      secret: 'keyboard cat',    // セッションIDのハッシュ値計算時のキー
+      resave: false,             // セッションストアに値を強制的に保持しない
+      saveUninitialized: false,  // 初期化されていない値を強制的に保持しない
+      cookie: { maxAge: 10 * 60 * 1000 },  // クッキーの保管時間を10分に設定
+    };
+    ...
+    app.use(session(session_option));  // セッション機能をロードする
+    ...
+    app.use('/', indexRouter);
+  
+  (記述例 index.js)
+    router.get('/', (req, res, next) => {
+      if (req.session.user !== undefined) {  // セッション情報の存在確認
+        res.render('home', {
+          title: 'Home',
+          user: req.session.user,  // セッション情報「user」をテンプレートに渡す
+          mail: req.session.mail,  // セッション情報「mail」をテンプレートに渡す
+        });
+      } else {
+        res.render('input', {
+          title: 'Input',
+        })
+      }
+    });
+  
+  (記述例 input.js)
+    output.post('/post', (req, res, next) => {
+      req.session.user = req.body['user'];  // セッション情報「user」に書き込み
+      req.session.mail = req.body['mail'];  // セッション情報「mail」に書き込み
+      res.render('result', {
+        title: 'Result',
+        message: 'Input is completed.',
+      });
+    });
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app17
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ npm install express-session (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/post">
+    <label for="user">USER</label><input type="text" id="user" name="user">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi views/home.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <div id="home">
+    <p>USER : <%=user %></p>
+    <p>MAIL : <%=mail %></p>
+  </div>
+  <a href='http://localhost:3000/'>Return</a>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi views/result.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <div id="result">
+  <p><%=message %></p>
+  </div>
+  <a href='http://localhost:3000/'>Return</a>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  #result, #home {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  #result p, #home p {
+    font-size: 20px;
+    color: Crimson;
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+  }
+  
+  a {
+    display: block;
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+    background-color: Black;
+    color: White;
+    font-size: 20px;
+    text-align: center;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  
+  router.get('/', (req, res, next) => {
+    if (req.session.user !== undefined) {
+      res.render('home', {
+        title: 'Home',
+        user: req.session.user,
+        mail: req.session.mail,
+      });
+    } else {
+      res.render('input', {
+        title: 'Input',
+      });
+    }
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  
+  input.post('/post', (req, res, next) => {
+    req.session.user = req.body['user'];
+    req.session.mail = req.body['mail'];
+    res.render('result', {
+      title: 'Result',
+      message: 'Input is completed.',
+    });
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  var session_option = {
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 10 * 60 * 1000 },
+  };
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(session(session_option));
+  
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app17
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (セッション情報を登録後に10分経過した後でサイトアクセスした場合は再登録)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X18]
+  [Express] 外部サイトの「RSS」からデータ取得
+  
+[内容]
+  外部サイトの「RSS」からニュース一覧を取得する
+    =>「RSS」は「XML」データで送信されるのでモジュール「XML2JS」でJSオブジェクトに変換する必要がある
+  
+  (例) Google のニュースサイト
+    RSS  : news.google.com/rss?hl=ja&gl=JP&ceid=JP:ja
+    HOST : news.google.com
+    PORT : 443 => HTTPS
+    PATH : /rss?hl=ja&gl=JP&ceid=JP:ja
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app18
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ npm install xml2js (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <div id="main">
+    <% if (content !== null) { %>
+      <ol>
+        <% for (let i in content) { %>
+          <% let obj = content[i]; %>
+          <li><%=obj.title %></li>
+        <% } %>
+      </ol>
+    <% } %>
+  </div>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  #main {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  #main ol li {
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+    list-style-type: decimal-leading-zero;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var https = require('https');
+  var parseString = require('xml2js').parseString;
+
+  router.get('/', (req, res, next) => {
+    var option = {
+      host: 'news.google.com',
+      port: 443,
+      path: '/rss?hl=ja&gl=JP&ceid=JP:ja'
+    };
+    https.get(option, (res2) => {
+      var body = '';
+      res2.on('data', (data) => {
+        body += data;
+      });
+      res2.on('end', () => {
+        parseString(body.trim(), (error, result) => {  // XML テキストを XML オブジェクトに変換
+          console.log(result);
+          var data = {
+            title: 'News List',
+            content: result.rss.channel[0].item
+          };
+          res.render('index', data);
+        });
+      });
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app18
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ニュース一覧を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X19]
+  [Express] データベース「SQLite」からレコードをまとめて取得
+  
+[内容]
+  パッケージ「sqlite3」を導入してデータベース「SQLite」からレコードをまとめて取得
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app19
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ npm install sqlite3 --save (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (次のパッケージ更新のためにオプション「--save」を使用)
+
+  => 設定ファイル「package.json」にパッケージ「sqlite3」の情報が記録される
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ npm update (パッケージ更新)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンド「npm start」実行時の内部エラー回避策)
+  
+  => 必要ライブラリが古いバージョンまでしか存在していないことが内部エラーの原因、この処置は的外れ
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <% for (let i in content) { %>
+      <tr>
+        <td><%=content[i].name %></td>
+        <td><%=content[i].mail %></td>
+      </tr>
+    <% } %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      database.all('select * from Person', (err, row) => {  // レコード全てをまとめて取得
+        if (!err) {
+          var data = {
+            title: 'Select',
+            content: row,
+          };
+          res.render('index', data);
+        }
+      });
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app19
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Error: /lib64/libstdc++.so.6: version `CXXABI_1.3.8' not found ...
+  
+  => パッケージ「sqlite3」の要求ライブラリ「CXXABI_1.3.8」がシステムに存在しない
+  --------------------------------------------------
+    
+    $ cd $HOME
+    $ strings /lib64/libstdc++.so.6 | grep -E CXXABI
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    CXXABI_1.3
+    CXXABI_1.3.1
+    CXXABI_1.3.2
+    CXXABI_1.3.3
+    CXXABI_1.3.4
+    CXXABI_1.3.5
+    CXXABI_1.3.6
+    CXXABI_1.3.7 => エラーで言及の「CXXABI_1.3.8」が存在しないので、最新の「GCC」のビルドでライブラリを一新する
+    CXXABI_TM_1
+    --------------------------------------------------
+    
+    $ firefox
+    $ http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (最新バージョンを「gcc-12.1.0」と判断)
+    --------------------------------------------------
+    
+    $ cd $HOME
+    $ wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.1.0/gcc-12.1.0.tar.gz
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (本体をダウンロード)
+    --------------------------------------------------
+    
+    $ cd $HOME
+    $ wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-12.1.0/sha512.sum
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (チェックサムをダウンロード)
+    --------------------------------------------------
+    
+    $ cd $HOME
+    $ sha512sum --check sha512.sum (検証開始)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    gcc-12.1.0.tar.gz: 完了 => その他ファイルが見つからないメッセージが出力されるが問題なし
+    --------------------------------------------------
+    
+    $ cd $HOME
+    $ sudo tar -zxf gcc-12.1.0.tar.gz -C /usr/local/src (ファイルの解凍と展開)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (出力なし) => 5分程かかる
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0
+    $ ./contrib/download_prerequisites (スクリプト実行)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    All prerequisites downloaded successfully.
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0
+    $ mkdir build (ディレクトリ作成)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    All prerequisites downloaded successfully.
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0/build
+    $ ../configure --enable-languages=c,c++ --prefix=/usr/local --disable-bootstrap --disable-multilib (スクリプト実行)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    config.status: creating Makefile
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0/build
+    $ make (ビルド実行)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略) => 80分程かかる
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0/build
+    $ sudo make install (インストール)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略) => 5分程かかる
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0/build
+    $ gcc --version (バージョン確認)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    gcc (GCC) 12.1.0
+    --------------------------------------------------
+    
+    $ cd /usr/local/src/gcc-12.1.0/build
+    $ make clean (一時ファイル削除)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略)
+    --------------------------------------------------
+    
+    # cd /etc/ld.so.conf.d => この作業は「root」で行う
+    # echo /usr/local/lib64 >> usr_local_lib64.conf (設定ファイル追記)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略)
+    --------------------------------------------------
+    
+    # cd /usr/local/lib64 => この作業は「root」で行う
+    # mv libstdc++.so.6.0.30-gdb.py back_libstdc++.so.6.0.30-gdb.py (バックアップ)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略)
+    --------------------------------------------------
+    
+    # cd /usr/local/lib64 => この作業は「root」で行う
+    # ldconfig (ライブラリ参照の更新)
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (省略)
+    --------------------------------------------------
+    
+  $ cd $HOME/app19
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X20]
+  [Express] データベース「SQLite」からレコードを順番に取得
+  
+[内容]
+  パッケージ「sqlite3」を導入してデータベース「SQLite」からレコードを順番に取得
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app20
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ npm install sqlite3 (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <%-content %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      var body = '';
+      database.each('select * from Person',  // レコードを順番に取得
+        (err, row) => {
+          if (!err) {
+            body += '<tr><td>' + row.name + '</td><td>' + row.mail + '</td></tr>';
+          }
+        }, 
+        (err, cnt) => {  // 引数「cnt」には取得したレコード数が渡される
+          if (!err) {
+            var data = {
+              title: 'Select',
+              content: body,
+            };
+            res.render('index', data);
+          }
+        }
+      );
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app20
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X21]
+  [Express] データベース「SQLite」にレコードを新規作成
+  
+[内容]
+  上記「X20」のソースを基にデータベース「SQLite」にレコードを新規作成する処理を追加
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app21
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ npm install sqlite3 (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <%-content %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/input">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      var body = '';
+      database.each('select * from Person',  // レコードを順番に取得
+        (err, row) => {
+          if (!err) {
+            body += '<tr><td>' + row.name + '</td><td>' + row.mail + '</td></tr>';
+          }
+        }, 
+        (err, cnt) => {  // 引数「cnt」には取得したレコード数が渡される
+          if (!err) {
+            var data = {
+              title: 'Select',
+              content: body,
+            };
+            res.render('index', data);
+          }
+        }
+      );
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  input.get('/input', (req, res, next) => {
+    var data = {
+      title: 'Input',
+    };
+    res.render('input', data);
+  });
+  
+  input.post('/input', (req, res, next) => {
+    var name = req.body.name;
+    var mail = req.body.mail;
+    database.serialize(() => {
+      database.run('insert into Person values (?, ?)', name, mail);
+    });
+    res.redirect('/');
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app21
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (USER に「DDD」、MAILに「DDD@google.com」)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X22]
+  [Express] データベース「SQLite」から特定のレコードのみを取得
+  
+[内容]
+  データベース「SQLite」から特定のレコードのみを取得する
+
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app22
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ npm install sqlite3 (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <tr><td><%=content.name %></td><td><%=content.mail %></td></tr>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/input">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  input.get('/input', (req, res, next) => {
+    var data = {
+      title: 'Input',
+    };
+    res.render('input', data);
+  });
+  
+  input.post('/input', (req, res, next) => {
+    var name = req.body.name;
+    var mail = req.body.mail;
+    database.serialize(() => {
+      database.get('select * from Person where name = ? and mail = ?', [ name, mail ], (err, row) => {
+        if (!err) {
+          var data = {
+            title: 'Result',
+            content: row,
+          }
+          res.render('index', data);
+        }
+      });
+    });
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app22
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (USER に「AAA」、MAILに「AAA@google.com」)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」から該当データ取得)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X23]
+  [Express] データベース「SQLite」のレコードを更新
+  
+[内容]
+  上記「X20」のソースを基にデータベース「SQLite」のレコードを更新する処理を追加
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app23
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ npm install sqlite3 (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <%-content %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/input">
+    <label for="name">NAME</label><input type="text" id="name" name="name" value="<%=content.name %>" readonly>
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail" value="<%=content.mail %>">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      var body = '';
+      database.each('select * from Person',  // レコードを順番に取得
+        (err, row) => {
+          if (!err) {
+            body += '<tr><td>' + row.name + '</td><td>' + row.mail + '</td></tr>';
+          }
+        }, 
+        (err, cnt) => {  // 引数「cnt」には取得したレコード数が渡される
+          if (!err) {
+            var data = {
+              title: 'Select',
+              content: body,
+            };
+            res.render('index', data);
+          }
+        }
+      );
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  input.get('/input', (req, res, next) => {
+    var obj = {
+      name: req.query.name,
+      mail: req.query.mail,
+    }
+    var data = {
+      title: 'Input',
+      content: obj,
+    };
+    res.render('input', data);
+  });
+  
+  input.post('/input', (req, res, next) => {
+    var name = req.body.name;
+    var mail = req.body.mail;
+    database.serialize(() => {
+      database.run('update Person set mail = ? where name = ?', mail, name);
+    });
+    res.redirect('/');
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app23
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input/?name=AAA&mail=AAA@google.com
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (MAILを「AAA@yahoo.co.jp」に更新)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X24]
+  [Express] データベース「SQLite」のレコードを削除
+  
+[内容]
+  上記「X20」のソースを基にデータベース「SQLite」のレコードを削除する処理を追加
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app24
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ npm install sqlite3 (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <%-content %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <form method="post" action="/input">
+    <label for="name">NAME</label><input type="text" id="name" name="name" value="<%=content.name %>" readonly>
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail" value="<%=content.mail %>" readonly>
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      var body = '';
+      database.each('select * from Person',  // レコードを順番に取得
+        (err, row) => {
+          if (!err) {
+            body += '<tr><td>' + row.name + '</td><td>' + row.mail + '</td></tr>';
+          }
+        }, 
+        (err, cnt) => {  // 引数「cnt」には取得したレコード数が渡される
+          if (!err) {
+            var data = {
+              title: 'Select',
+              content: body,
+            };
+            res.render('index', data);
+          }
+        }
+      );
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  input.get('/input', (req, res, next) => {
+    var obj = {
+      name: req.query.name,
+      mail: req.query.mail,
+    }
+    var data = {
+      title: 'Input',
+      content: obj,
+    };
+    res.render('input', data);
+  });
+  
+  input.post('/input', (req, res, next) => {
+    var name = req.body.name;
+    var mail = req.body.mail;
+    database.serialize(() => {
+      database.run('delete from Person where name = ? and mail = ?', name, mail);
+    });
+    res.redirect('/');
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app24
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input/?name=AAA&mail=AAA@google.com
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ボタン押下でレコードを削除)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X25]
+  [Express] バリデーターで入力チェック
+  
+[内容]
+  上記「X21」のソースを基にパッケージ「express-validator」を導入して入力チェックを行う処理を追加
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app25
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ npm install sqlite3 express-validator (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ sqlite3 sample.sqlite3 (ローカルDB「sample」を作成ならびに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル作成
+  > create table Person (
+  >   name text,
+  >   mail text
+  > );
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('AAA', 'AAA@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('BBB', 'BBB@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード登録
+  > insert into Person values ('CCC', 'CCC@google.com');
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Person;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  AAA | AAA@google.com
+  BBB | BBB@google.com
+  CCC | CCC@google.com
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <%-content %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi views/input.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 入力チェックのエラー表示用 --->
+  <div><%-result %></div>
+  
+  <form method="post" action="/input">
+    <label for="name">NAME</label><input type="text" id="name" name="name" value="<%=content.name %>">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail" value="<%=content.mail %>">
+    <input type="submit" value="Click">
+  </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+
+  ul {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+    list-style-type: none;
+  }
+  
+  ul li {
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var sqlite3 = require('sqlite3');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  router.get('/', (req, res, next) => {
+    database.serialize(() => {
+      var body = '';
+      database.each('select * from Person',  // レコードを順番に取得
+        (err, row) => {
+          if (!err) {
+            body += '<tr><td>' + row.name + '</td><td>' + row.mail + '</td></tr>';
+          }
+        }, 
+        (err, cnt) => {  // 引数「cnt」には取得したレコード数が渡される
+          if (!err) {
+            var data = {
+              title: 'Select',
+              content: body,
+            };
+            res.render('index', data);
+          }
+        }
+      );
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi routes/input.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var input = express.Router();
+  var sqlite3 = require('sqlite3');
+  var { check, validationResult } = require('express-validator');
+  
+  var database = new sqlite3.Database('sample.sqlite3');
+  
+  input.get('/input', (req, res, next) => {
+    var data = {
+      title: 'Input',
+      result: '',
+      content: { name: '', mail: '' },
+    };
+    res.render('input', data);
+  });
+  
+  input.post('/input', [
+    check('name', 'NAME は入力必須').notEmpty(),
+    check('mail', 'MAIL は入力必須').notEmpty(),
+    check('mail', 'MAIL はメールアドレス入力').isEmail(),
+    // check('age', 'AGE は入力必須').notEmpty(),
+    // check('age', 'AGE は数値入力').isInt(),
+    // check('age', 'AGE の入力範囲').custom((val) => { return val >= 0 & val <= 120 }),
+  ], 
+  (req, res, next) => {
+    var error = validationResult(req);
+    if (!error.isEmpty()) {
+      var body = '<ul>';
+      var arr = error.array();
+      for (let i in arr) body += '<li>' + arr[i].msg + '</li>';
+      body += '</ul>';
+      var data = {
+        title: 'Input',
+        result: body,
+        content: { name: req.body.name, mail: req.body.mail },
+      };
+      res.render('input', data);
+    } else {
+      var name = req.body.name;
+      var mail = req.body.mail;
+      database.serialize(() => {
+        database.run('insert into Person values (?, ?)', name, mail);
+      });
+      res.redirect('/');
+    }
+  });
+  
+  module.exports = input;
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var inputRouter = require('./routes/input');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', inputRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app25
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベース「SQLite」からデータ取得)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/input
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (未入力でボタン押下時にエラーメッセージ出力)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X26]
+  [Express] パッケージ「sequelize」を導入して「ORM」を実現する
+  
+[内容]
+  パッケージ「sequelize」を導入して「ORM(オブジェクトとデータベースのマッピング)」を実現する
+    データベースは「SQLite」でテーブル名は従来の「Person」、項目も「user」と「mail」のみで作成する
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs app26
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm install sqlite3 sequelize sequelize-cli (追加インストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npx sequelize-cli init (初期化)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Created "config/config.json"
+  Successfully created models folder at "/home/makoto/app26/models".
+  Successfully created migrations folder at "/home/makoto/app26/migrations".
+  Successfully created seeders folder at "/home/makoto/app26/seeders".
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi config/config.json (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "development": {                // 開発環境(単体テスト環境)
+      "database": "db-dev",         // データベース名
+      "dialect": "sqlite",          // データベースの種類
+      "storage": "db-dev.sqlite3"   // ファイル名
+    },
+    "test": {                       // テスト環境(結合テスト環境)
+      "database": "db-test",        // データベース名
+      "dialect": "sqlite",          // データベースの種類
+      "storage": "db-test.sqlite3"  // ファイル名
+    },
+    "production": {                 // 本番環境(リリース環境)
+      "database": "db-live",        // データベース名
+      "dialect": "sqlite",          // データベースの種類
+      "storage": "db-live.sqlite3"  // ファイル名
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npx sequelize-cli model:generate --name Person --attributes name:string,mail:string (モデル作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  New model was created at /home/makoto/app26/models/person.js .
+  New migration was created at /home/makoto/app26/migrations/20220715043545-create-person.js .
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npx sequelize-cli db:migrate --env development (マイグレーション)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220715043545-create-person: migrating =======
+  == 20220715043545-create-person: migrated (0.239s)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ ls -l *.sqlite3 (データベースファイル確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 makoto makoto 20480  7月 15 13:36 db-dev.sqlite3
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ sqlite3 db-dev.sqlite3 (ローカルDB「db-dev」に接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  People
+  SequelizeMeta
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema People
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `People` ( // テーブル名が「Person」ではなく「People」なのは不具合？
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` VARCHAR(255),
+    `mail` VARCHAR(255),
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from People;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (レコード無し)
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npx sequelize-cli seed:generate --name create-person (シーディングのスクリプト作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  seeders folder at "/home/makoto/app26/seeders" already exists.
+  New seed was created at /home/makoto/app26/seeders/20220715044448-create-person.js .
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi seeders/20220715044448-create-person.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  
+  module.exports = {
+    async up (queryInterface, Sequelize) {
+      await queryInterface.bulkInsert('People', [  // テーブル名を「Person」ではなく「People」に合わせた
+        {
+          name: 'AAA',
+          mail: 'AAA@google.com',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          name: 'BBB',
+          mail: 'BBB@google.com',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          name: 'CCC',
+          mail: 'CCC@google.com',
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+      ], {});
+    },
+  
+    async down (queryInterface, Sequelize) {
+      // await queryInterface.bulkDelete('People', null, {});
+    }
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npx sequelize-cli db:seed:all (シーディング実行)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220715044448-create-person: migrating =======
+  == 20220715044448-create-person: migrated (0.434s)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ sqlite3 db-dev.sqlite3 (ローカルDB「db-dev」に接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  People
+  SequelizeMeta
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema People
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `People` ( // テーブル名が「Person」ではなく「People」なのは不具合？
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` VARCHAR(255),
+    `mail` VARCHAR(255),
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from People;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  1 | AAA | AAA@google.com | 2022-07-15 04:50:11.518 +00:00 | 2022-07-15 04:50:11.518 +00:00
+  2 | BBB | BBB@google.com | 2022-07-15 04:50:11.518 +00:00 | 2022-07-15 04:50:11.518 +00:00
+  3 | CCC | CCC@google.com | 2022-07-15 04:50:11.518 +00:00 | 2022-07-15 04:50:11.518 +00:00
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/index.ejs (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  <table>
+    <% for (let i in content) { %>
+      <tr><td><%=content[i].id %><td><%=content[i].name %></td><td><%=content[i].mail %></td></tr>
+    <% } %>
+  </table>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px 15px 15px 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 0px;
+    width: 50%;
+  }
+  
+  table tr {
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  table tr td {
+    padding: 5px;
+    text-align: center;
+    border: 2px solid Crimson;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/index.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/', (req, res, next) => {
+    database.Person.findAll().then((val) => {
+      var data = {
+        title: 'Select',
+        content: val,
+      }
+      res.render('index', data);
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  SELECT `id`, `name`, `mail`, `createdAt`, `updatedAt` FROM `People` AS `Person`;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/name.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 指定された「ID」のレコードのみ表示 --->
+  <form method="post" action="/name">
+    <label for="id">ID</label><input type="text" id="id" name="id">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/name.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var name = express.Router();
+  var database = require('../models/index');
+  
+  name.get('/name', (req, res, next) => {
+    var data = {
+      title: 'Name',
+    }
+    res.render('name', data);
+  });
+  
+  name.post('/name', (req, res, next) => {
+    database.Person.findAll({ where: { id: req.body.id } }).then((val) => {
+      var data = {
+        title: 'Select',
+        content: val,
+      }
+      res.render('index', data);
+    });
+  });
+  
+  module.exports = name;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var nameRouter = require('./routes/name');  // 追加
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', nameRouter);  // 追加
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/name => 画面上の「ID」に「1」と入力してボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  SELECT `id`, `name`, `mail`, `createdAt`, `updatedAt` FROM `People` AS `Person` WHERE `Person`.`id` = '1';
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/operator.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 指定された「ID」以下のレコードのみ表示 --->
+  <form method="post" action="/operator">
+    <label for="name">ID</label><input type="text" id="id" name="id">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/operator.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var operator = express.Router();
+  var database = require('../models/index');
+  var { Op } = require('sequelize');
+  
+  operator.get('/operator', (req, res, next) => {
+    var data = {
+      title: 'Operator',
+    }
+    res.render('operator', data);
+  });
+  
+  operator.post('/operator', (req, res, next) => {
+    database.Person.findAll({ where: { id: { [Op.lte]: req.body.id } } }).then((val) => {
+      var data = {
+        title: 'Select',
+        content: val,
+      }
+      res.render('index', data);
+    });
+  });
+  
+  module.exports = operator;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var nameRouter = require('./routes/name');
+  var operatorRouter = require('./routes/operator');  // 追加
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', nameRouter);
+  app.use('/', operatorRouter);  // 追加
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/operator => 画面上の「ID」に「2」と入力してボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  SELECT `id`, `name`, `mail`, `createdAt`, `updatedAt` FROM `People` AS `Person` WHERE `Person`.`id` <= '2';
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/like.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 指定された「NAME」を含むレコードのみ表示 --->
+  <form method="post" action="/like">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/like.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var like = express.Router();
+  var database = require('../models/index');
+  var { Op } = require('sequelize');
+  
+  like.get('/like', (req, res, next) => {
+    var data = {
+      title: 'Like',
+    }
+    res.render('like', data);
+  });
+  
+  like.post('/like', (req, res, next) => {
+    database.Person.findAll({ where: { name: { [Op.like]: '%' + req.body.name + '%' } } }).then((val) => {
+      var data = {
+        title: 'Select',
+        content: val,
+      }
+      res.render('index', data);
+    });
+  });
+  
+  module.exports = like;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var nameRouter = require('./routes/name');
+  var operatorRouter = require('./routes/operator');
+  var likeRouter = require('./routes/like');  // 追加
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', nameRouter);
+  app.use('/', operatorRouter);
+  app.use('/', likeRouter);  // 追加
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/like => 画面上の「NAME」に「A」と入力してボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  SELECT `id`, `name`, `mail`, `createdAt`, `updatedAt` FROM `People` AS `Person` WHERE `Person`.`name` LIKE '%A%';
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/cond.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 指定された「ID」と「NAME」が共に一致するレコードのみ表示 --->
+  <form method="post" action="/cond">
+    <label for="id">ID</label><input type="text" id="id" name="id">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/cond.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var cond = express.Router();
+  var database = require('../models/index');
+  var { Op } = require('sequelize');
+  
+  cond.get('/cond', (req, res, next) => {
+    var data = {
+      title: 'Cond',
+    }
+    res.render('cond', data);
+  });
+  
+  cond.post('/cond', (req, res, next) => {
+    database.Person.findAll({ where: {
+      [Op.and] : [
+        { id: { [Op.eq] : req.body.id } },
+        { name: { [Op.eq] : req.body.name } },
+      ]
+    } }).then((val) => {
+      var data = {
+        title: 'Select',
+        content: val,
+      }
+      res.render('index', data);
+    });
+  });
+  
+  module.exports = cond;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var nameRouter = require('./routes/name');
+  var operatorRouter = require('./routes/operator');
+  var likeRouter = require('./routes/like');
+  var condRouter = require('./routes/cond');  // 追加
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', nameRouter);
+  app.use('/', operatorRouter);
+  app.use('/', likeRouter);
+  app.use('/', condRouter);  // 追加
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/cond => 画面上の「ID」に「1」、「NAME」に「AAA」と入力してボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  SELECT `id`, `name`, `mail`, `createdAt`, `updatedAt` FROM `People` AS `Person`
+  WHERE (`Person`.`id` = '1' AND `Person`.`name` = 'AAA');
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi views/add.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 指定した「NAME」と「MAIL」のレコードを登録 --->
+  <form method="post" action="/add">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi routes/add.js (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var add = express.Router();
+  var database = require('../models/index');
+  
+  add.get('/add', (req, res, next) => {
+    var data = {
+      title: 'Add',
+    }
+    res.render('add', data);
+  });
+  
+  add.post('/add', (req, res, next) => {
+    database.sequelize.sync()
+      .then(() => {
+        database.Person.create({
+          name: req.body.name,
+          mail: req.body.mail,
+        });
+      })
+      .then(() => {
+        res.redirect('/');
+      });
+  });
+  
+  module.exports = add;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ vi app.js (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  
+  var indexRouter = require('./routes/index');
+  var nameRouter = require('./routes/name');
+  var operatorRouter = require('./routes/operator');
+  var likeRouter = require('./routes/like');
+  var condRouter = require('./routes/cond');
+  var addRouter = require('./routes/add');  // 追加
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  app.use('/', nameRouter);
+  app.use('/', operatorRouter);
+  app.use('/', likeRouter);
+  app.use('/', condRouter);
+  app.use('/', addRouter); // 追加
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app26
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/add => 画面上の「NAME」に「DDD」、「MAIL」に「DDD@google.com」と入力してボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Executing (default): 
+  INSERT INTO `People` (`id`,`name`,`mail`,`createdAt`,`updatedAt`) VALUES (NULL,$1,$2,$3,$4);
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[XXX]
+  [Node] //
+  
+[内容]
+  同上
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ node app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  APP started on port 3000
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Hello World を確認)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
 ================================================================================
 [001]
   Meet the Node console
@@ -218,7 +6277,7 @@
   <meta charset="utf-8">
   
   <!-- CSS --->
-  <link href='css/style.css' rel='stylesheet'>
+  <link rel='stylesheet' href='css/style.css'>
   
   <title>SAMPLE</title>
   </head>
@@ -358,15 +6417,7 @@
   
 [確認]
   $ cd $HOME/app01
-  $ vi .env
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  UPPER_STYLE=UPPER
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ npm install dotenv --save (パッケージのインストールと設定ファイルへ記録)
+  $ npm install dotenv --save (ローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -374,13 +6425,21 @@
   --------------------------------------------------
   
   $ cd $HOME/app01
-  $ npm list (カレントディレクトリにインストールされているパッケージ一覧)
+  $ npm list (パッケージ一覧)
   
   コマンドの実行結果
   --------------------------------------------------
   app01@1.0.1 /home/makoto/app01
-    dotenv@16.0.1  // 追加
+    dotenv@16.0.1
     express@4.18.1
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  UPPER_STYLE=UPPER
   --------------------------------------------------
   
   $ cd $HOME/app01
@@ -438,8 +6497,8 @@
   Implement a Root-Level Request Logger Middleware
   
 [内容]
-  ミドルウェア
-    下記のオブジェクトを持つ関数
+  ミドルウェア関数
+    下記の引数を持つ
       リクエスト(req)
       レスポンス(res)
       次アクセス(next)
@@ -455,26 +6514,31 @@
   
   const Func1 = (req, res, next) => {
     req.key1 = req.protocol;
+    console.log('Func1');
     next();
   }
   
   const Func2 = (req, res, next) => {
     req.key2 = req.method;
+    console.log('Func2');
     next();
   }
   
   const Func3 = (req, res, next) => {
     req.key3 = req.path;
+    console.log('Func3');
     next();
   }
   
   const Func4 = (req, res, next) => {
     req.key4 = req.hostname;
+    console.log('Func4');
     next();
   }
   
   const Func5 = (req, res, next) => {
     req.key5 = req.ip;
+    console.log('Func5');
     next();
   }
   
@@ -505,6 +6569,11 @@
   コマンドの実行結果
   --------------------------------------------------
   APP started on port 3000
+  Func1  // ミドルウェア関数が自動的に実行
+  Func2  // ミドルウェア関数が自動的に実行
+  Func3  // ミドルウェア関数が自動的に実行
+  Func4  // ミドルウェア関数が自動的に実行
+  Func5  // ミドルウェア関数が自動的に実行
   --------------------------------------------------
   
   $ cd $HOME/app01 <- 別の端末から実行
@@ -535,18 +6604,23 @@
   
   app.get('/', function(req, res, next) {
     req.key1 = req.protocol;
+    console.log('Func1');
     next();
   }, function(req, res, next) {
     req.key2 = req.method;
+    console.log('Func2');
     next();
   }, function(req, res, next) {
     req.key3 = req.path;
+    console.log('Func3');
     next();
   }, function(req, res, next) {
     req.key4 = req.hostname;
+    console.log('Func4');
     next();
   }, function(req, res, next) {
     req.key5 = req.ip;
+    console.log('Func5');
     next();
   }, function(req, res, next) {
     res.json({
@@ -569,6 +6643,11 @@
   コマンドの実行結果
   --------------------------------------------------
   APP started on port 3000
+  Func1  // ミドルウェア関数が自動的に実行
+  Func2  // ミドルウェア関数が自動的に実行
+  Func3  // ミドルウェア関数が自動的に実行
+  Func4  // ミドルウェア関数が自動的に実行
+  Func5  // ミドルウェア関数が自動的に実行
   --------------------------------------------------
   
   $ cd $HOME/app01 <= 別の端末から実行
@@ -694,7 +6773,7 @@
   
 [確認]
   $ cd $HOME/app01
-  $ npm install body-parser --save (パッケージのインストールと設定ファイルへ記録)
+  $ npm install body-parser --save (ローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -702,12 +6781,12 @@
   --------------------------------------------------
   
   $ cd $HOME/app01
-  $ npm list (カレントディレクトリにインストールされているパッケージ一覧)
+  $ npm list (パッケージ一覧)
   
   コマンドの実行結果
   --------------------------------------------------
   app01@1.0.1 /home/makoto/app01
-    body-parser@1.20.0  // 追加
+    body-parser@1.20.0
     dotenv@16.0.1
     express@4.18.1
   --------------------------------------------------
@@ -776,7 +6855,7 @@
   </head>
   <body>
 
-  <!-- 送信フォーム --->
+  <!-- FORM --->
   <form action='/' method='POST'>
     <input type='text' name='user'>
     <input type='text' name='pass'>
@@ -834,15 +6913,15 @@
   以下の記録に続く
   
 ================================================================================
-[X00]
+[Y01]
   [Express] ジェネレーターでアプリケーション生成
   
 [内容]
-  同上
+  同上 => これ以降はジェネレーターの生成コードを改造していく形で記述
   
 [確認]
   $ cd $HOME
-  $ sudo npm install express-generator -g --save (グローバルインストール)
+  $ sudo npm install express-generator --global --save (グローバルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -850,7 +6929,7 @@
   --------------------------------------------------
   
   $ cd $HOME
-  $ express --view=ejs app02 (ジェネレーターでアプリケーション生成) => テンプレートエンジン「EJS」を使用
+  $ express --view=ejs app02 (アプリケーション生成) => テンプレートエンジン「EJS」を使用
   
   コマンドの実行結果
   --------------------------------------------------
@@ -912,13 +6991,11 @@
   > node ./bin/www
   
   app02:server Listening on port 3000 +0ms
-  
-  GET / 200 47.397 ms - 207
-  GET /stylesheets/style.css 200 15.621 ms - 111
+  ...
   --------------------------------------------------
   
   $ firefox
-  $ http://localhost:3000/
+  $ http://localhost:3000/ (ブラウザから確認)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -928,7 +7005,7 @@
   以下の確認に続く
   
 ================================================================================
-[X01]
+[Y02]
   [Express] テンプレートエンジン「EJS」を使用
   
 [内容]
@@ -943,7 +7020,7 @@
   app02@0.0.0 /home/makoto/app02
     cookie-parser@1.4.6
     debug@2.6.9
-    ejs@2.6.2  // 該当するパッケージ
+    ejs@2.6.2
     express@4.16.4
     http-errors@1.6.3
     morgan@1.9.1
@@ -980,10 +7057,10 @@
   #!/usr/bin/env node
   
   var app = require('../app');
-  var debug = require('debug')('app02:server');
+  var debug = require('debug')('app02:server'); => デバッグ関連のコードがあるのはありがたい
   var http = require('http');
   
-  var port = normalizePort(process.env.PORT || '3000');
+  var port = normalizePort(process.env.PORT || '3000'); => パッケージ「dotenv」が無いので「3000」で固定
   app.set('port', port);
   var server = http.createServer(app);
   
@@ -1001,7 +7078,6 @@
   function onError(error) {
     if (error.syscall !== 'listen') throw error;
     var bind = typeof port === 'string' ? 'Pipe ' + port : 'Port ' + port;
-  
     switch (error.code) {
       case 'EACCES':
         console.error(bind + ' requires elevated privileges');
@@ -1019,7 +7095,7 @@
   function onListening() {
     var addr = server.address();
     var bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port;
-    debug('Listening on ' + bind);
+    debug('Listening on ' + bind); => 起動時の「app02:server Listening on port ...」のメッセージ
   }
   --------------------------------------------------
   
@@ -1087,6 +7163,7 @@
     });
   });
   
+  // module export
   module.exports = router;
   --------------------------------------------------
   
@@ -1133,9 +7210,7 @@
   > node ./bin/www
   
   app02:server Listening on port 3000 +0ms
-  
-  GET / 200 48.906 ms - 244
-  GET /stylesheets/style.css 200 17.400 ms - 43
+  ...
   --------------------------------------------------
   
   $ firefox
@@ -1149,120 +7224,11 @@
   以下の確認に続く
   
 ================================================================================
-[X02]
-  [Express] フォームからデータ送信
+[Y03]
+  [Express] 入力した「URL」を問合わせて「IPv4」を求める
   
 [内容]
   同上
-  
-[確認]
-  $ cd $HOME/app02
-  $ vi routes/index.js (ファイル確認または編集)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  var express = require('express');
-  var router = express.Router();
-  
-  router.get('/', function(req, res, next) {
-    res.render('index', {
-      content1: 'USER',
-      content2: 'PASS'
-    });
-  });
-  
-  router.post('/', function(req, res, next) {
-    console.log(`USER : ${req.body.user}`);
-    console.log(`PASS : ${req.body.pass}`);
-    res.redirect('/');
-  });
-  
-  module.exports = router;
-  --------------------------------------------------
-  
-  $ cd $HOME/app02
-  $ vi views/index.ejs (ファイル確認または編集)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html>
-  <head>
-  <meta charset="utf-8">
-  
-  <!-- CSS --->
-  <link rel='stylesheet' href='stylesheets/style.css'>
-  
-  <title>SAMPLE</title>
-  </head>
-  <body>
-  
-  <!-- FORM --->
-  <form action='/' method='POST'>
-    <label for='user'><%-content1 %></label><input type='text' id='user' name='user'>
-    <label for='pass'><%-content2 %></label><input type='text' id='pass' name='pass'>
-    <button type='submit'>Submit</button>
-  </form>
-  
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ cd $HOME/app02
-  $ vi stylesheets/style.css (ファイル確認または編集)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  label, input[type='text'] {
-    padding: 15px;
-    color: Crimson;
-    font-size: 20px;
-  }
-  
-  button {
-    padding: 20px;
-    margin-left: 15px;
-    font-size: 25px;
-  }
-  --------------------------------------------------
-  
-  $ cd $HOME/app02
-  $ DEBUG=app02:* npm start (アプリケーション実行)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  > app02@0.0.0 start
-  > node ./bin/www
-  
-  app02:server Listening on port 3000 +0ms
-  
-  GET / 200 54.721 ms - 420
-  GET /stylesheets/style.css 200 15.036 ms - 153
-
-  USER : AAA  // 画面上で「AAA」を入力
-  PASS : BBB  // 画面上で「BBB」を入力
-
-  POST / 302 64.051 ms - 46
-  GET / 200 5.383 ms - 420
-  GET /stylesheets/style.css 304 4.186 ms - -
-  --------------------------------------------------
-  
-  $ firefox
-  $ http://localhost:3000/ (ブラウザから確認)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (USER「AAA」, PASS「BBB」を入力)
-  --------------------------------------------------
-  
-  以下の確認に続く
-  
-================================================================================
-[X05]
-  [Express] URL => DNS => IP4
-  
-[内容]
-  入力した「URL」をサーバー「DNS」に問合わせて「IP4」を求める
   
 [確認]
   $ cd $HOME/app02
@@ -1284,27 +7250,54 @@
   var url = require('url');
   
   router.get('/', function(req, res, next) {
-    res.render('index', {
-      content1: 'URL'
-    });
+    res.sendFile('/home/makoto/app02/views/index.html'); => もっと良い方法は無いのか？
   });
   
   router.post('/', function(req, res, next) {
     let URL = url.parse(req.body.url);
     let OBJ = { family: 4 };
     
-    dns.lookup(URL.hostname, OBJ, (err, adr, family) => {
-      if (!err) {
-        console.log('IPv4 : ' + adr);
+    dns.lookup(URL.hostname, OBJ, (error, addr, family) => {
+      if (!error) {
+        res.render('index', {
+          content1: URL.hostname,
+          content2: addr
+        });
       } else {
-        console.log(err);
+        console.log(error);
       }
     });
-    
-    res.redirect('/');
   });
   
+  // module export
   module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi views/index.html (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
+  </head>
+  <body>
+  
+  <!-- FORM --->
+  <form action='/' method='POST'>
+    <label for='url'>URL</label><input type='text' id='url' name='url'>
+    <button type='submit'>Submit</button>
+  </form>
+  
+  </body>
+  </html>
   --------------------------------------------------
   
   $ cd $HOME/app02
@@ -1324,11 +7317,14 @@
   </head>
   <body>
   
-  <!-- FORM --->
-  <form action='/' method='POST'>
-    <label for='url'><%-content1 %></label><input type='text' id='url' name='url'>
-    <button type='submit'>Submit</button>
-  </form>
+  <!-- RESULT --->
+  <div id=result>
+    <p>ホスト名 : <%-content1 %></p>
+    <p>アドレス : <%-content2 %></p>
+  </div>
+
+  <!-- RETURN --->
+  <a id=return href='http://localhost:3000/'>戻る</a>
   
   </body>
   </html>
@@ -1339,6 +7335,13 @@
   
   コマンドの実行結果
   --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 50%;
+  }
+  
   label, input[type='text'] {
     padding: 15px;
     color: Crimson;
@@ -1349,6 +7352,24 @@
     padding: 20px;
     margin-left: 15px;
     font-size: 25px;
+  }
+  
+  #result {
+    border: 3px solid Crimson;
+    margin: 5% 25%;
+    padding: 15px;
+  }
+  
+  #result p {
+    font-size: 25px;
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  #return {
+    display: block;
+    margin: -4% 25%;
+    padding; 5px;
   }
   --------------------------------------------------
   
@@ -1361,15 +7382,7 @@
   > node ./bin/www
   
   app02:server Listening on port 3000 +0ms
-  
-  GET / 200 46.442 ms - 342
-  GET /stylesheets/style.css 200 9.733 ms - 153
-  GET /favicon.ico 404 8.209 ms - 883
-  POST / 302 62.842 ms - 46
-  GET / 200 7.826 ms - 342
-  IPv4 : 182.22.16.251  // http://www.yahoo.co.jp を入力時
-  GET /stylesheets/style.css 200 3.652 ms - 153
-  GET /favicon.ico 404 6.817 ms - 883
+  ...
   --------------------------------------------------
   
   $ firefox
@@ -1377,242 +7390,349 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (URL「http://www.yahoo.co.jp」を送信)
+  (URL「https://github.com」を送信)
   --------------------------------------------------
   
   以下の確認に続く
   
 ================================================================================
-[X06]
-  [Express] フォームの入力データをデータベース「MongoDB」に登録
+[Y04]
+  [Express] 入力データをローカルのデータベース「MongoDB」に登録
   
 [内容]
-  [Express] フォームの入力データをデータベース「MongoDB」に登録
-  
+  同上
+
 [確認]
-  $ cd $HOME
-  $ mkdir -p app18/views
+  $ cd $HOME/app02
+  $ sudo vi /etc/yum.repos.d/mongodb-org-4.0.repo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [mongodb-org-4.0]
+  name=MongoDB Repository
+  baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
+  gpgcheck=1
+  enabled=1
+  gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ sudo yum -y install mongodb-org
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ mkdir -p app18/public/css
+  $ cd $HOME/app02
+  $ sudo systemctl disable mongod
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Removed symlink /etc/systemd/system/multi-user.target.wants/mongod.service.
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ sudo systemctl start mongod
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ mkdir -p app18/database
+  $ cd $HOME/app02
+  $ mongo (ローカルDBに接続)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ npm install mongoose --save (ローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ mkdir -p app18/routes
+  $ cd $HOME/app02
+  $ vi database/model.js (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  const mongoose = require('mongoose');
+  
+  const userSchema = new mongoose.Schema({
+    name: { type: String },  // 氏名
+    addr: { type: String }   // 住所
+  });
+  
+  module.exports = mongoose.model('User', userSchema, 'User');
   --------------------------------------------------
   
-  $ cd $HOME/app18/views
-  $ vi index.ejs
+  $ cd $HOME/app02
+  $ vi routes/index.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var user = require('../database/model');
+  
+  function findData(OBJ) {
+    return new Promise((res, rej) => {
+      user
+      .find(OBJ, { _id: 0, __v: 0 })
+      .sort({ _id: 1 })
+      .exec( function(err, doc) {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    });
+  }
+  
+  function makeData(OBJ) {
+    return new Promise((res, rej) => {
+      let TMP = new user();
+      TMP.name = OBJ.name;
+      TMP.addr = OBJ.addr;
+      TMP.save( function(err, doc) {
+        if (!err) {
+          res(doc);  // 状態が「成功」になる => 引数「doc」はメソッド「then」の引数「doc」に渡される
+        } else {
+          rej(err);  // 状態が「失敗」になる => 引数「err」はメソッド「catch」の引数「err」に渡される
+        }
+      });
+    });
+  }
+  
+  async function dataMain(OBJ) {
+    try {
+      let TMP = await findData(OBJ);
+      if (TMP.length === 0) await makeData(OBJ);
+    }
+    catch (err) {
+      console.log(err);
+    }
+  }
+  
+  router.get('/', function(req, res, next) {
+    res.sendFile('/home/makoto/app02/views/index.html');
+  });
+  
+  router.post('/', function(req, res, next) {
+    dataMain({ name: req.body.name, addr: req.body.addr });
+    res.sendFile('/home/makoto/app02/views/result.html');
+  });
+  
+  // module export
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi app.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var mongoose = require('mongoose');
+  var indexRouter = require('./routes/index');
+  
+  // local database
+  var DB  = 'testdb';
+  var OP1 = 'retryWrites=true&w=majority';
+  var OP2 = { useNewUrlParser: true, useUnifiedTopology: true };
+  
+  // database connect
+  var URI = `mongodb://localhost/${DB}?${OP1}`;
+  mongoose.connect(URI, OP2);
+  
+  // get database connection
+  var conn = mongoose.connection;
+  conn.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  
+  // application instance
+  var app = express();
+  
+  // view engine
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  // handler
+  app.use('/', indexRouter);
+  
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  // error handler
+  app.use(function(err, req, res, next) {
+
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+
+  });
+  
+  // module export
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi views/index.html (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <link href='css/style.css' rel='stylesheet'>
-    <title>ユーザー登録</title>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
   </head>
   <body>
+  
+  <!-- FORM --->
   <form action='/' method='POST'>
-    <label for='user'><%-content1 %></label><input type='text' id='user' name='user'>
-    <label for='pass'><%-content2 %></label><input type='text' id='pass' name='pass'>
+    <label for='name'>名前</label><input type='text' id='name' name='name'>
+    <label for='addr'>住所</label><input type='text' id='addr' name='addr'>
     <button type='submit'>登録</button>
   </form>
-  <hr>
-  <ul>
-    <% for (var i = 0; i < data.length; i++) { %>
-    <li><%=data[i].user %></li>
-    <% } %>
-  </ul>
+  
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app18/public/css
-  $ vi style.css
+  $ cd $HOME/app02
+  $ vi views/result.html (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  form, ul {
-    text-align: center;
-    list-style-type: none;
+  <!doctype html>
+  <html>
+  <head>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
+  </head>
+  <body>
+  
+  <!-- RESULT --->
+  <div id=result>
+    <p>データ登録が完了しました</p>
+  </div>
+  
+  <!-- RETURN --->
+  <a id=return href='http://localhost:3000/'>戻る</a>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi public/stylesheets/style.css (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 80%;
   }
   
-  label {
-    color: crimson;
-    font-size: 15px;
+  label, input[type='text'] {
+    padding: 15px;
+    color: Crimson;
+    font-size: 20px;
+  }
+  
+  button {
+    padding: 20px;
+    margin-left: 15px;
+    font-size: 25px;
+  }
+  
+  #result {
+    border: 3px solid Crimson;
+    margin: 5% 25%;
+    padding: 15px;
+  }
+  
+  #result p {
+    font-size: 25px;
+    margin: 5px;
+    padding: 5px;
+  }
+  
+  #return {
+    display: block;
+    margin: -4% 25%;
+    padding; 5px;
   }
   --------------------------------------------------
   
-  $ cd $HOME/app18/database
-  $ vi model.js
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  const mongoose = require('mongoose');
+  > app02@0.0.0 start
+  > node ./bin/www
   
-  // スキーマ定義
-  const userSchema = new mongoose.Schema({
-    user: { type: String },
-    pass: { type: String }
-  });
-  
-  // モジュール化
-  module.exports = mongoose.model('User', userSchema, 'User');
-  --------------------------------------------------
-  
-  $ cd $HOME/app18/routes
-  $ vi router.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const express = require('express');
-  const parser = require('body-parser');
-  const user = require('../database/model');
-  
-  // インスタンス生成
-  const router = express.Router();
-  
-  // エンコード方式
-  router.use(parser.urlencoded({ extended: false }));
-  
-  // ユーザー検索の関数
-  const findData = () => {
-    return new Promise((res, rej) => {
-      user
-      .find({}, { _id: 0, __v: 0 })
-      .sort({ _id: 1 })
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // ユーザー登録の関数
-  const makeData = (OBJ) => {
-    return new Promise((res, rej) => {
-      let TMP = new user();
-      TMP.user = OBJ.user;
-      TMP.pass = OBJ.pass;
-      TMP.save((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // GET - /
-  router.get('/', function(req, res) {
-    
-    // ユーザー検索
-    findData()
-    .then(data => res.render('index', { content1: 'USER', content2: 'PASS', data: data }))
-    .catch(err => console.log(err));
-    
-  });
-  
-  // POST - /
-  router.post('/', (req, res) => {
-    
-    // ユーザー登録
-    makeData({ user: req.body.user, pass: req.body.pass })
-    .then(data => console.log(data))
-    .catch(err => console.log(err));
-    
-    // ユーザー登録後にリダイレクト
-    res.redirect('/');
-    
-  });
-  
-  // モジュール化
-  module.exports = router;
-  --------------------------------------------------
-  
-  $ cd $HOME/app18
-  $ vi main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const mongoose = require('mongoose');
-  const express = require('express');
-  const router = require('./routes/router');
-  const ejs = require('ejs');
-  
-  // 接続情報(testdb = DB名)
-  const database = 'testdb';
-  const option1 = 'retryWrites=true&w=majority';
-  const option2 = { useNewUrlParser: true, useUnifiedTopology: true };
-  const uri = `mongodb://localhost/${database}?${option1}`;
-  
-  // 接続開始
-  mongoose.connect(uri, option2);
-  
-  // 接続状態を取得
-  const conn = mongoose.connection;
-  
-  // 接続失敗の処理
-  conn.on('error', console.error.bind(console, 'MongoDB connection error:'));
-  
-  // インスタンス生成
-  const app = express();
-  
-  // テンプレートエンジン「EJS」を使用
-  app.set('view engine', 'ejs');
-  
-  // 静的ファイルを使用
-  app.use(express.static('public'));
-  
-  // リクエストハンドラ適用
-  app.use('/', router);
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/app18
-  $ node main.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  { _id: 610787b48756b36e677ad97b, user: 'AAAA', pass: 'BBBB', __v: 0 }
-  { _id: 610787bc8756b36e677ad97e, user: 'CCCC', pass: 'DDDD', __v: 0 }
-  { _id: 610787c18756b36e677ad981, user: 'EEEE', pass: 'FFFF', __v: 0 }
-  
-  ■ <- 完了後に「Ctrl + C」で停止
+  app02:server Listening on port 3000 +0ms
+  ...
   --------------------------------------------------
   
   $ firefox
@@ -1620,12 +7740,12 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (USER「AAAA」、PASS「BBBB」と入力して送信ボタン押下)
-  (USER「CCCC」、PASS「DDDD」と入力して送信ボタン押下)
-  (USER「EEEE」、PASS「FFFF」と入力して送信ボタン押下)
+  (名前「上杉」、住所「新潟県」と入力して送信ボタン押下)
+  (名前「武田」、住所「山梨県」と入力して送信ボタン押下)
+  (名前「毛利」、住所「広島県」と入力して送信ボタン押下)
   --------------------------------------------------
   
-  $ cd $HOME/app18
+  $ cd $HOME/app02
   $ mongo
   
   コマンドの実行結果
@@ -1668,9 +7788,9 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  { "_id" : ObjectId("610787b48756b36e677ad97b"), "user" : "AAAA", "pass" : "BBBB", "__v" : 0 }
-  { "_id" : ObjectId("610787bc8756b36e677ad97e"), "user" : "CCCC", "pass" : "DDDD", "__v" : 0 }
-  { "_id" : ObjectId("610787c18756b36e677ad981"), "user" : "EEEE", "pass" : "FFFF", "__v" : 0 }
+  { "_id" : ObjectId("62bbd6a95faca7563ac42bbc"), "name" : "上杉", "addr" : "新潟県", "__v" : 0 }
+  { "_id" : ObjectId("62bbd6dd5faca7563ac42bc1"), "name" : "武田", "addr" : "山梨県", "__v" : 0 }
+  { "_id" : ObjectId("62bbd6fd5faca7563ac42bc4"), "name" : "毛利", "addr" : "広島県", "__v" : 0 }
   --------------------------------------------------
   
   > シェルを抜ける
@@ -1684,109 +7804,186 @@
   以下の確認に続く
   
 ================================================================================
-[X07]
-  [Express] モジュール「multer」でファイルのアップロード機能を実装
+[Y05]
+  [Express] ファイルのアップロード機能を実装
   
 [内容]
-  [Express] モジュール「multer」でファイルのアップロード機能を実装
+  同上
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p app19
+  $ cd $HOME/app02
+  $ npm install multer path --save (ローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/app19
-  $ vi index.html
+  $ cd $HOME/app02
+  $ vi routes/index.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var multer = require('multer');
+  var path = require('path');
+  
+  // アップロード設定
+  var storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+      cb(null, 'public/uploads/');  // 保存先は「app02/public/uploads」直下
+    },
+    filename: function(req, file, cb) {
+      cb(null, file.originalname);  // 保存ファイル名は元のファイル名を使用
+    }
+  });
+  
+  // アップロード設定を詠み込む
+  var upload = multer({ storage: storage });
+  
+  router.get('/', function(req, res, next) {
+    res.sendFile('/home/makoto/app02/views/index.html');
+  });
+  
+  router.post('/', upload.single('AAA'), function(req, res) {
+    res.sendFile('/home/makoto/app02/views/index.html');
+  });
+  
+  // module export
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi app.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var indexRouter = require('./routes/index');
+
+  // application instance
+  var app = express();
+  
+  // view engine
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  // handler implements
+  app.use('/', indexRouter);
+  
+  // catch 404 and forward to error handler
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  // error handler
+  app.use(function(err, req, res, next) {
+
+    // set locals, only providing error in development
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    
+    // render the error page
+    res.status(err.status || 500);
+    res.render('error');
+  
+  });
+  
+  // module export
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/app02
+  $ vi views/index.html (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
   <html>
   <head>
-    <meta charset="utf-8">
-    <title>動作確認</title>
+  <meta charset="utf-8">
+  
+  <!-- CSS --->
+  <link rel='stylesheet' href='stylesheets/style.css'>
+  
+  <title>SAMPLE</title>
   </head>
   <body>
+  
+  <!-- FORM --->
   <form action='/' method='POST' enctype='multipart/form-data'>
-    <input type='file' name='file'>
-    <button type='submit'>送信</button>
+    <input type='file' name='AAA'>
+    <button type='submit'>UPLOAD</button>
   </form>
+  
   </body>
   </html>
   --------------------------------------------------
   
-  $ cd $HOME/app19
-  $ vi main.js
+  $ cd $HOME/app02
+  $ vi public/stylesheets/style.css (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュール「express」
-  const express = require('express');
+  form {
+    margin: 15px auto;
+    border: 2px solid Crimson;
+    padding: 15px;
+    width: 80%;
+  }
   
-  // モジュール「multer」
-  const multer = require('multer');
+  form input[type='file'] {
+    padding: 15px;
+    color: Crimson;
+    font-size: 30px;
+    width: 80%;
+    border: 2px solid Crimson;
+  }
   
-  // モジュール「path」
-  const path = require('path');
-  
-  // アップロード設定
-  const storage = multer.diskStorage({
-    // 保存先
-    destination: function(req, file, cb){
-      cb(null, path.join(__dirname, '/uploads'))
-    },
-    // 保存ファイル名
-    filename: function(req, file, cb){
-      cb(null, file.originalname)
-    }
-  });
-  
-  // アップロード設定を詠み込む
-  const upload = multer({ storage: storage });
-  
-  // インスタンス生成
-  const app = express();
-  
-  // GET - /
-  app.get('/', (req, res) => res.sendFile(__dirname + '/index.html'));
-  
-  // POST - /
-  app.post('/', upload.single('file'), (req, res) => res.send('Upload was completed'));
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+  form button {
+    padding: 20px;
+    margin-left: 15px;
+    font-size: 20px;
+  }
   --------------------------------------------------
   
-  $ cd $HOME/app19
-  $ mkdir uploads
+  $ cd $HOME/app02
+  $ mkdir -p public/uploads
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> ディレクトリが無いとアップロードするファイルが作成できずにエラー発生
+  (省略) => ディレクトリが無いとアップロードするファイルが作成できずにエラー発生
   --------------------------------------------------
   
-  $ cd $HOME/app19
-  $ node main.js
+  $ cd $HOME/app02
+  $ DEBUG=app02:* npm start (アプリケーション実行)
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
+  > app02@0.0.0 start
+  > node ./bin/www
   
-  ■ <- 確認後は「Ctrl + C」で停止
+  app02:server Listening on port 3000 +0ms
+  ...
   --------------------------------------------------
   
-  $ cd $HOME <- 別の端末から実行
-  $ vi test01.txt
+  $ cd $HOME/app02 <= 別の端末から実行
+  $ touch test.txt
   
   コマンドの実行結果
   --------------------------------------------------
-  08月09日 月曜日
-  08月10日 火曜日
-  08月11日 水曜日
+  (出力なし)
   --------------------------------------------------
   
   $ firefox
@@ -1794,359 +7991,18 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (ファイル「test01.txt」を選択して送信)
+  (ファイル「test.txt」を選択して送信)
   --------------------------------------------------
   
-  $ cd $HOME/app19/uploads
-  $ ls -lA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  -rw-rw-r--. 1 makoto makoto   63  8月  9 20:57 test01.txt
-  --------------------------------------------------
-  
-  $ cd $HOME/app19/uploads
-  $ cat test01.txt
+  $ cd $HOME/app02
+  $ find /home/makoto -name test.txt
   
   コマンドの実行結果
   --------------------------------------------------
-  08月09日 月曜日
-  08月10日 火曜日
-  08月11日 水曜日
+  /home/makoto/app02/public/uploads/test.txt
+  /home/makoto/app02/test.txt
   --------------------------------------------------
   
   以下の記録に続く
-  
-================================================================================
-[X08]
-  [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
-  
-[内容]
-  [Express] モジュール「mocha」とライブラリ「chai」でテスト自動化
-  
-  // テスト対象の関数1
-  const Func1 = (P1) => {
-    switch (P1) {
-      case '1': return 'A';
-      case '2': return 'B';
-      case '3': return 'C';
-      case '4': return 'D';
-      default: return 'E';
-    }
-  }
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p app20/app
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p app20/test
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ファイル「package.json」が作成される
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ npm install mocha chai request express --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ ls -lA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  drwxrwxr-x.   2 makoto makoto      6  8月 11 06:04 app
-  drwxrwxr-x. 175 makoto makoto   8192  8月 11 06:11 node_modules
-  -rw-rw-r--.   1 makoto makoto 129384  8月 11 06:11 package-lock.json
-  -rw-rw-r--.   1 makoto makoto    322  8月 11 06:11 package.json
-  drwxrwxr-x.   2 makoto makoto      6  8月 11 06:04 test
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ vi package.json
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  {
-    "name": "app20",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"  // 修正前
-      "test": "mocha --reporter spec"                        // 修正後
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-      "chai": "^4.3.4",      // 確認
-      "express": "^4.17.1",  // 確認
-      "mocha": "^9.0.3",     // 確認
-      "request": "^2.88.2"   // 確認
-    }
-  }
-  --------------------------------------------------
-  
-  $ cd $HOME/app20/app
-  $ vi func.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  exports.Func1 = function(P1) {
-    switch (P1) {
-      case '1': return 'A';
-      case '2': return 'B';
-      case '3': return 'C';
-      case '4': return 'D';
-      default: return 'E';
-    }
-  }
-  --------------------------------------------------
-  
-  $ cd $HOME/app20/test
-  $ vi func.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  const expect = require('chai').expect;
-  const func = require('../app/func');
-  
-  describe('Func1', function() {
-    // 基本パターン
-    describe('Basic', function() {
-      it('1', function() {
-        let RET = func.Func1('1');
-        expect(RET).to.equal('A');
-      });
-      it('2', function() {
-        let RET = func.Func1('2');
-        expect(RET).to.equal('B');
-      });
-      it('3', function() {
-        let RET = func.Func1('3');
-        expect(RET).to.equal('C');
-      });
-      it('4', function() {
-        let RET = func.Func1('4');
-        expect(RET).to.equal('D');
-      });
-    });
-    // その他
-    describe('Other', function() {
-      it('5', function() {
-        let RET = func.Func1('5');
-        expect(RET).to.equal('E');
-      });
-      it('%', function() {
-        let RET = func.Func1('%');
-        expect(RET).to.equal('E');
-      });
-      it('#', function() {
-        let RET = func.Func1('#');
-        expect(RET).to.equal('E');
-      });
-      it('$', function() {
-        let RET = func.Func1('$');
-        expect(RET).to.equal('E');
-      });
-    });
-  });
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ npm test
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  > app20@1.0.0 test
-  > mocha --reporter spec
-  
-  // 関数「Func1」の単体テスト結果
-  Func1
-    Basic
-    ✔ 1
-    ✔ 2
-    ✔ 3
-    ✔ 4
-    Other
-    ✔ 5
-    ✔ %
-    ✔ #
-    ✔ $
-  
-  8 passing (8ms)
-  --------------------------------------------------
-  
-  $ cd $HOME/app20/test
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  const request = require('request');
-  const expect = require('chai').expect;
-  
-  describe('API Test - Func1', function() {
-    
-    // 基本パターン1
-    describe('http://localhost:3000/P/1', function() {
-      let URL = 'http://localhost:3000/P/1';
-      it('return status 200', function(done) {
-        request(URL, function(err, res, body) {
-          expect(res.statusCode).to.equal(200);
-          done();
-        });
-      });
-      it('return values A', function(done) {
-        request(URL, function(err, res, body) {
-          expect(body).to.equal('A');
-          done();
-        });
-      });
-    });
-    
-    // 基本パターン2
-    describe('http://localhost:3000/P/2', function() {
-      let URL = 'http://localhost:3000/P/2';
-      it('return status 200', function(done) {
-        request(URL, function(err, res, body) {
-          expect(res.statusCode).to.equal(200);
-          done();
-        });
-      });
-      it('return values B', function(done) {
-        request(URL, function(err, res, body) {
-          expect(body).to.equal('B');
-          done();
-        });
-      });
-    });
-    
-    // その他1
-    describe('http://localhost:3000/P/5', function() {
-      let URL = 'http://localhost:3000/P/5';
-      it('return status 200', function(done) {
-        request(URL, function(err, res, body) {
-          expect(res.statusCode).to.equal(200);
-          done();
-        });
-      });
-      it('return values E', function(done) {
-        request(URL, function(err, res, body) {
-          expect(body).to.equal('E');
-          done();
-        });
-      });
-    });
-    
-    // その他2
-    describe('http://localhost:3000/P/6', function() {
-      let URL = 'http://localhost:3000/P/6';
-      it('return status 200', function(done) {
-        request(URL, function(err, res, body) {
-          expect(res.statusCode).to.equal(200);
-          done();
-        });
-      });
-      it('return values E', function(done) {
-        request(URL, function(err, res, body) {
-          expect(body).to.equal('E');
-          done();
-        });
-      });
-    });
-    
-  });
-  --------------------------------------------------
-  
-  $ cd $HOME/app20/app
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  const express = require('express');
-  const request = require('request');
-  const func = require('./func.js');
-  
-  // インスタンス生成
-  const app = express();
-  
-  // GET - /P/:P
-  app.get('/P/:P', (req, res) => {
-    let RET = func.Func1(req.params.P)
-    res.send(RET);
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ node app/server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 確認後は「Ctrl + C」で停止
-  --------------------------------------------------
-  
-  $ cd $HOME/app20
-  $ npm test
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  > app20@1.0.0 test
-  > mocha --reporter spec
-  
-  // 関数「Func1」の単体テスト結果
-  Func1
-    Basic
-    ✔ 1
-    ✔ 2
-    ✔ 3
-    ✔ 4
-    Other
-    ✔ 5
-    ✔ %
-    ✔ #
-    ✔ $
-  
-  // 関数「Func1」のAPIテスト結果
-  API Test - Func1
-    http://localhost:3000/P/1
-    ✔ return status 200
-    ✔ return values A
-    http://localhost:3000/P/2
-    ✔ return status 200
-    ✔ return values B
-    http://localhost:3000/P/5
-    ✔ return status 200
-    ✔ return values E
-    http://localhost:3000/P/6
-    ✔ return status 200
-    ✔ return values E
-  
-  16 passing (56ms)
-  --------------------------------------------------
-  
-  以下の確認に続く
   
 ================================================================================

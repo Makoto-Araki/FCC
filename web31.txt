@@ -1,6 +1,6 @@
 ================================================================================
 [X01] [SQLite] コマンドライン基本操作
-[000] [MongoDB] コマンドライン基本操作
+[X02] [MongoDB] コマンドライン基本操作
 [001] Install and Set Up Mongoose
 [002] Create a Model
 [003] Create and Save a Record of a Model
@@ -170,26 +170,13 @@
   以下の記録に続く
   
 ================================================================================
-[000]
+[X02]
   [MongoDB] コマンドライン基本操作
   
 [内容]
   [MongoDB] コマンドライン基本操作
   
 [確認]
-  $ cd $HOME
-  $ sudo vi /etc/yum.repos.d/mongodb-org-4.0.repo
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  [mongodb-org-4.0]
-  name=MongoDB Repository
-  baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
-  gpgcheck=1
-  enabled=1
-  gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
-  --------------------------------------------------
-  
   $ cd $HOME
   $ sudo yum -y install mongodb-org
   
@@ -206,8 +193,8 @@
   Removed symlink /etc/systemd/system/multi-user.target.wants/mongod.service.
   --------------------------------------------------
   
-  $ cd $HOME
-  $ sudo systemctl start mongod
+  $ cd $HOME/database => 専用ディレクトリ作成
+  $ mongod --nojournal --noprealloc --dbpath ./ (ローカルDB作成)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -216,7 +203,6 @@
   
   $ cd $HOME
   $ mongo (ローカルDBに接続)
-  $ mongo "mongodb+srv://cluster0.snt16.mongodb.net/testdb" --username Makoto --password 秘密 (リモートDBに接続)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -241,24 +227,24 @@
   switched to db testdb
   --------------------------------------------------
   
-  > コレクション作成(ドキュメント作成)
-  > db.testcoll.insert( { key1 : 'AAA', key2 : 10 } )
+  > ドキュメント作成
+  > db.Person.insert( { name : 'AAA', mail : 'AAA@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
   WriteResult({ "nInserted" : 1 })
   --------------------------------------------------
   
-  > コレクション作成(ドキュメント作成)
-  > db.testcoll.insert( { key1 : 'BBB', key2 : 20 } )
+  > ドキュメント作成
+  > db.Person.insert( { name : 'BBB', mail : 'BBB@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
   WriteResult({ "nInserted" : 1 })
   --------------------------------------------------
   
-  > コレクション作成(ドキュメント作成)
-  > db.testcoll.insert( { key1 : 'CCC', key2 : 30 } )
+  > ドキュメント作成
+  > db.Person.insert( { name : 'CCC', mail : 'CCC@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
@@ -281,29 +267,29 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  testcoll
+  Person
   --------------------------------------------------
   
   > ドキュメント一覧(検索条件を指定しない)
-  > db.testcoll.find()
+  > db.Person.find()
   
   コマンドの実行結果
   --------------------------------------------------
-  { "_id" : ObjectId("60f0e9eead495b27f2014989"), "key1" : "AAA", "key2" : 10 }
-  { "_id" : ObjectId("60f0ea0aad495b27f201498a"), "key1" : "BBB", "key2" : 20 }
-  { "_id" : ObjectId("60f0ea20ad495b27f201498b"), "key1" : "CCC", "key2" : 30 }
+  { "_id" : ObjectId("62dd170fe94cb049b119d89a"), "name" : "AAA", "mail" : "AAA@google.com" }
+  { "_id" : ObjectId("62dd1721e94cb049b119d89b"), "name" : "BBB", "mail" : "BBB@google.com" }
+  { "_id" : ObjectId("62dd1730e94cb049b119d89c"), "name" : "CCC", "mail" : "CCC@google.com" }
   --------------------------------------------------
   
   > ドキュメント一覧(検索条件を指定)
-  > db.testcoll.find( { key1: 'AAA' } )
+  > db.Person.find( { name: 'AAA' } )
   
   コマンドの実行結果
   --------------------------------------------------
-  { "_id" : ObjectId("60f0e9eead495b27f2014989"), "key1" : "AAA", "key2" : 10 }
+  { "_id" : ObjectId("62dd170fe94cb049b119d89a"), "name" : "AAA", "mail" : "AAA@google.com" }
   --------------------------------------------------
   
   > ドキュメント一覧(検索条件を比較演算子で指定)
-  > db.testcoll.find( { key1: { $eq: 'AAA' } } )
+  > db.Person.find( { name: { $eq: 'AAA' } } )
   
   コマンドの実行結果
   --------------------------------------------------
@@ -315,15 +301,15 @@
     5. <  : $lt
     6. <= : $lte
     
-  { "_id" : ObjectId("60f0e9eead495b27f2014989"), "key1" : "AAA", "key2" : 10 }
+  { "_id" : ObjectId("62dd170fe94cb049b119d89a"), "name" : "AAA", "mail" : "AAA@google.com" }
   --------------------------------------------------
   
   > ドキュメント一覧(複数の検索条件を論理演算子で指定)
-  > db.testcoll.find(
+  > db.Person.find(
   >   { 
   >     $or: [
-  >       { key1: 'AAA' },
-  >       { key1: 'BBB' }
+  >       { name: 'AAA' },
+  >       { name: 'BBB' }
   >     ]
   >   }
   > )
@@ -333,35 +319,35 @@
   論理演算子
     1. or  : $or
     2. and : $and
-    
-  { "_id" : ObjectId("60f0e9eead495b27f2014989"), "key1" : "AAA", "key2" : 10 }
-  { "_id" : ObjectId("60f0ea0aad495b27f201498a"), "key1" : "BBB", "key2" : 20 }
+  
+  { "_id" : ObjectId("62dd170fe94cb049b119d89a"), "name" : "AAA", "mail" : "AAA@google.com" }
+  { "_id" : ObjectId("62dd1721e94cb049b119d89b"), "name" : "BBB", "mail" : "BBB@google.com" }
   --------------------------------------------------
   
   > ドキュメント一覧(表示可否を指定)
-  > db.testcoll.find( {}, { _id: 0 } )
+  > db.Person.find( {}, { _id: 0 } )
   
   コマンドの実行結果
   --------------------------------------------------
-  { "key1" : "AAA", "key2" : 10 }
-  { "key1" : "BBB", "key2" : 20 }
-  { "key1" : "CCC", "key2" : 30 }
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
   --------------------------------------------------
   
   > ドキュメント一覧(表示件数を指定)
-  > db.testcoll.find( {}, { _id: 0 } ).limit(2)
+  > db.Person.find( {}, { _id: 0 } ).limit(2)
   
   コマンドの実行結果
   --------------------------------------------------
-  { "key1" : "AAA", "key2" : 10 }
-  { "key1" : "BBB", "key2" : 20 }
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
   --------------------------------------------------
   
   > ドキュメント更新(挿入)
-  > db.testcoll.update(
-  >   { key1: { $eq: 'DDD' } },  // 条件
-  >   { $set: { key2: 40 } },    // 更新内容
-  >   true                       // 更新または挿入(true), 更新のみ(false)
+  > db.Person.update(
+  >   { name: { $eq: 'DDD' } },              // 更新条件
+  >   { $set: { mail: 'DDD@google.com' } },  // 更新内容
+  >   true                                   // 更新または挿入(true), 更新のみ(false)
   > )
   
   コマンドの実行結果
@@ -378,46 +364,23 @@
     "nMatched" : 0,
     "nUpserted" : 1,
     "nModified" : 0,
-    "_id" : ObjectId("60f0effa77479615074a9f8a")
+    "_id" : ObjectId("62dd198497e88f9477ba2bb2")
   })
   --------------------------------------------------
   
   > ドキュメント一覧
-  > db.testcoll.find( {}, { _id: 0 } )
+  > db.Person.find( {}, { _id: 0 } )
   
   コマンドの実行結果
   --------------------------------------------------
-  { "key1" : "AAA", "key2" : 10 }
-  { "key1" : "BBB", "key2" : 20 }
-  { "key1" : "CCC", "key2" : 30 }
-  { "key1" : "DDD", "key2" : 40 }  // 追加
-  --------------------------------------------------
-  
-  > ドキュメント更新(更新)
-  > db.testcoll.update(
-  >   { key1: { $eq: 'DDD' } },  // 条件
-  >   { $set: { key2: 15 } },    // 更新内容
-  >   true                       // 更新または挿入(true), 更新のみ(false)
-  > )
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
-  --------------------------------------------------
-  
-  > ドキュメント一覧
-  > db.testcoll.find( {}, { _id: 0 } )
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { "key1" : "AAA", "key2" : 10 }
-  { "key1" : "BBB", "key2" : 20 }
-  { "key1" : "CCC", "key2" : 30 }
-  { "key1" : "DDD", "key2" : 15 }  // 更新
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
+  { "name" : "DDD", "mail" : "DDD@google.com" }  // 更新または挿入
   --------------------------------------------------
   
   > ドキュメント削除(1件のみ削除)
-  > db.testcoll.remove( { key1: 'AAA' } )
+  > db.Person.remove( { name: 'AAA' } )
   
   コマンドの実行結果
   --------------------------------------------------
@@ -425,22 +388,21 @@
   --------------------------------------------------
   
   > ドキュメント一覧
-  > db.testcoll.find( {}, { _id: 0 } )
+  > db.Person.find( {}, { _id: 0 } )
   
   コマンドの実行結果
   --------------------------------------------------
-  // 削除
-  { "key1" : "BBB", "key2" : 20 }
-  { "key1" : "CCC", "key2" : 30 }
-  { "key1" : "DDD", "key2" : 15 }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
+  { "name" : "DDD", "mail" : "DDD@google.com" }
   --------------------------------------------------
   
   > ドキュメント削除(複数レコード削除)
-  > db.testcoll.remove(
+  > db.Person.remove(
   >   {
   >     $or: [
-  >       { key1: 'BBB' },
-  >       { key1: 'CCC' }
+  >       { name: 'BBB' },
+  >       { name: 'CCC' }
   >     ]
   >   }
   > )
@@ -451,15 +413,15 @@
   --------------------------------------------------
   
   > ドキュメント一覧
-  > db.testcoll.find( {}, { _id: 0 } )
+  > db.Person.find( {}, { _id: 0 } )
   
   コマンドの実行結果
   --------------------------------------------------
-  { "key1" : "DDD", "key2" : 15 }
+  { "name" : "DDD", "mail" : "DDD@google.com" }
   --------------------------------------------------
   
   > コレクション削除
-  > db.testcoll.drop()
+  > db.Person.drop()
   
   コマンドの実行結果
   --------------------------------------------------
@@ -472,6 +434,24 @@
   コマンドの実行結果
   --------------------------------------------------
   (出力なし)
+  --------------------------------------------------
+  
+  > データベース削除
+  > db.dropDatabase()
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "dropped" : "testdb", "ok" : 1 }
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
   --------------------------------------------------
   
   > シェルを抜ける
@@ -489,19 +469,41 @@
   Install and Set Up Mongoose
   
 [内容]
-  モジュール「Mongoose」のインポート
+  モジュール「mongoose」のインポート
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    // モジュールのインポート
+    var mongoose = require('mongoose');
+
+    // スキーマ定義
+    var Schema = new mongoose.Schema({
+      name: { type: String },
+      mail: { type: String },
+    });
+    
+    // モデル作成
+    var Person = mongoose.model('Person', Schema, 'Person');
   
 [確認]
   $ cd $HOME
-  $ mkdir -p mon01
+  $ node --version
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし)
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs mon01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   $ cd $HOME/mon01
-  $ npm init
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
@@ -516,76 +518,353 @@
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/mon01
-  $ vi server.js
+  $ cd $HOME/database => 専用ディレクトリ作成
+  $ mongod --nojournal --noprealloc --dbpath ./ (ローカルDB作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
+  (Ctrl + C で停止)
+  --------------------------------------------------
   
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
+  $ cd $HOME/mon01
+  $ mongo (ローカルDBに接続)
   
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
   
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
+  > データベース一覧
+  > show dbs 
   
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  --------------------------------------------------
   
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
+  > データベース作成(または切換)
+  > use testdb
   
-  // 登録データ
-  const OBJ1 = { username: 'AAA', password: 'AAA', key1: '100', key2: '100' };
-  const OBJ2 = { username: 'BBB', password: 'BBB', key1: '200', key2: '200' };
-  const OBJ3 = { username: 'CCC', password: 'CCC', key1: '300', key2: '300' };
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
   
-  // ドキュメント登録用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      let TMP = new testcoll();
-      TMP.username = OBJ.username;
-      TMP.password = OBJ.password;
-      TMP.key1     = OBJ.key1;
-      TMP.key2     = OBJ.key2;
-      TMP.save((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
+  > ドキュメント作成
+  > db.Person.insert( { name : 'AAA', mail : 'AAA@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント作成
+  > db.Person.insert( { name : 'BBB', mail : 'BBB@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント作成
+  > db.Person.insert( { name : 'CCC', mail : 'CCC@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント一覧(表示可否を指定)
+  > db.Person.find( {}, { _id: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME/mon01
+  $ vi views/index.ejs (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
+  
+  <!-- 取得データをテーブル表示 --->
+  <table>
+    <tr>
+      <td>NAME</td>
+      <td>MAIL</td>
+    </tr>
+    <% for (let i in content) { %>
+    <tr>
+      <td><%=content[i].name %></td>
+      <td><%=content[i].mail %></td>
+    </tr>
+    <% } %>
+  </table>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/mon01
+  $ vi views/add.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
+  
+  <!-- 指定した「NAME」と「MAIL」のレコードを登録 --->
+  <form method="post" action="/add">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/mon01
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  div {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: Black;
+    width: 60%;
   }
   
-  // ドキュメント登録
-  Func(OBJ1)
-  .then(doc => { console.log(`${doc.username} was inserted`); return Func(OBJ2); })
-  .then(doc => { console.log(`${doc.username} was inserted`); return Func(OBJ3); })
-  .then(doc => { console.log(`${doc.username} was inserted`)})
-  .catch(err => { console.log(err); });
+  div p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    padding: 5px;
+    margin: 15px auto;
+    color: Crimson;
+    width: 60%;
+  }
+  
+  ul li {
+    padding: 0px 15px;
+    margin: 0px 10px;
+    font-size: 20px;
+    text-align: left;
+    list-style-type: none;
+  }
+  
+  form {
+    padding: 8px;
+    margin: 15px auto;
+    color: Black;
+    background-color: White;
+    border: 2px solid Black;
+    width: 60%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Black;
+    font-size: 25px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    padding: 0px;
+    margin: 15px auto;
+    width: 62%;
+  }
+  
+  table tr, th {
+    padding: 0px;
+    margin: 0px;
+    color: White;
+    background-color: Black;
+  }
+  
+  table td {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    font-size: 20px;
+  }
   --------------------------------------------------
   
   $ cd $HOME/mon01
-  $ node server.js
+  $ vi routes/index.js (ファイル確認または編集) => モデル関連を別ファイル構成にした時にうまく動かないので一緒にした
   
   コマンドの実行結果
   --------------------------------------------------
-  AAA was inserted
-  BBB was inserted
-  CCC was inserted
+  var express = require('express');
+  var router = express.Router();
+  var mongoose = require('mongoose');
   
-  ■ <- Ctrl + C で停止
+  var Schema = new mongoose.Schema({
+    name: { type: String },  // 氏名
+    mail: { type: String },  // メールアドレス
+  });
+  
+  var Person = mongoose.model('Person', Schema, 'Person');
+  
+  router.get('/', async function(req, res, next) {
+    try {
+      var data = {
+        title: 'データ一覧画面',
+        message: '全データを一覧表示しています',
+        content: await Person.find(),
+      }
+      res.render('index', data);
+    } catch {
+      res.status(404);
+      res.send({ error: "Person doesn't exist!" });
+    }
+  });
+  
+  router.get('/add', function(req, res, next) {
+    var data = {
+      title: '入力画面',
+      message: 'NAMEとMAILを入力してください',
+    }
+    res.render('add', data);
+  });
+  
+  router.post('/add', async function(req, res, next) {
+    try {
+      await Person.create({
+        name: req.body.name,
+        mail: req.body.mail,
+      });
+      res.redirect('/');
+    } catch {
+      res.status(404);
+      res.send({ error: "Insert failed!" });
+    }
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/mon01
+  $ vi app.js (ファイル確認または編集)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var mongoose = require('mongoose');
+  var indexRouter = require('./routes/index');
+  
+  var database = mongoose.connect("mongodb://localhost/testdb");
+  var connect = mongoose.connection;
+  connect.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  connect.once('open', () => console.log('MongoDB connection successful'))
+  
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/mon01
+  $ npm start (アプリケーション実行)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  MongoDB connection successful => Ctrl + C で停止
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データベースから取得データを表示)
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/add => 画面上の「NAME」に「DDD」、「MAIL」は「DDD@google.com」を入力でボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データ登録を確認)
   --------------------------------------------------
   
   $ cd $HOME/mon01
@@ -596,7 +875,18 @@
   (コマンドプロンプトが「>」に変更)
   --------------------------------------------------
   
-  > データベース切換
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 該当データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
   > use testdb
   
   コマンドの実行結果
@@ -604,14 +894,23 @@
   switched to db testdb
   --------------------------------------------------
   
-  > ドキュメント一覧
-  > db.testcoll.find({}, { __v: 0, _id: 0 }).sort({ _id: 1 })
+  > ドキュメント一覧(検索条件を指定しない)
+  > db.Person.find()
   
   コマンドの実行結果
   --------------------------------------------------
-  { "username" : "AAA", "password" : "AAA", "key1" : "100", "key2" : "100" }
-  { "username" : "BBB", "password" : "BBB", "key1" : "200", "key2" : "200" }
-  { "username" : "CCC", "password" : "CCC", "key1" : "300", "key2" : "300" }
+  { "_id" : ObjectId("62dd2a6c4e29b5b8b465de41"), "name" : "AAA", "mail" : "AAA@google.com" }
+  { "_id" : ObjectId("62dd2a7a4e29b5b8b465de42"), "name" : "BBB", "mail" : "BBB@google.com" }
+  { "_id" : ObjectId("62dd2a894e29b5b8b465de43"), "name" : "CCC", "mail" : "CCC@google.com" }
+  { "_id" : ObjectId("62dd2d00620660b2b38149ad"), "name" : "DDD", "mail" : "DDD@google.com", "__v" : 0 }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
   --------------------------------------------------
   
   以下の記録に続く
@@ -621,179 +920,212 @@
   Create a Model
   
 [内容]
-  スキーマ定義からのモデル作成 -> 上記「01」を「async/await」で書き直してみる
+  スキーマ定義からのモデル作成
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    // モジュールのインポート
+    var mongoose = require('mongoose');
+
+    // スキーマ定義
+    var Schema = new mongoose.Schema({
+      name: { type: String },
+      mail: { type: String },
+    });
+    
+    // モデル作成
+    var Person = mongoose.model('Person', Schema, 'Person');
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p mon02
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon02
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon02
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon02
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // 登録データ
-  const OBJ1 = { username: 'AAA', password: 'AAA', key1: '100', key2: '100' };
-  const OBJ2 = { username: 'BBB', password: 'BBB', key1: '200', key2: '200' };
-  const OBJ3 = { username: 'CCC', password: 'CCC', key1: '300', key2: '300' };
-  
-  // ドキュメント登録用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      let TMP = new testcoll();
-      TMP.username = OBJ.username;
-      TMP.password = OBJ.password;
-      TMP.key1     = OBJ.key1;
-      TMP.key2     = OBJ.key2;
-      TMP.save((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      const RET1 = await Func(OBJ1);
-      console.log(`${RET1.username} was inserted`);
-      const RET2 = await Func(OBJ2);
-      console.log(`${RET2.username} was inserted`);
-      const RET3 = await Func(OBJ3);
-      console.log(`${RET3.username} was inserted`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon02
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  AAA was inserted
-  BBB was inserted
-  CCC was inserted
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  $ cd $HOME/mon02
-  $ mongo
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (コマンドプロンプトが「>」に変更)
-  --------------------------------------------------
-  
-  > データベース切換
-  > use testdb
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  switched to db testdb
-  --------------------------------------------------
-  
-  > ドキュメント一覧
-  > db.testcoll.find({}, { __v: 0, _id: 0 }).sort({ _id: 1 })
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { "username" : "AAA", "password" : "AAA", "key1" : "100", "key2" : "100" }
-  { "username" : "BBB", "password" : "BBB", "key1" : "200", "key2" : "200" }
-  { "username" : "CCC", "password" : "CCC", "key1" : "300", "key2" : "300" }
-  --------------------------------------------------
-  
-  以下の記録に続く
+  // 上記「001」を参照
   
 ================================================================================
 [003]
   Create and Save a Record of a Model
   
 [内容]
-  モデルからドキュメント(レコード)作成
+  モデルからドキュメント作成
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    router.post('/add', async function(req, res, next) {
+      try {
+        await Person.create({  // モデルからドキュメント作成
+          name: req.body.name,
+          mail: req.body.mail,
+        });
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Insert failed!" });
+      }
+    });
   
 [確認]
-  // 上記「01」と「02」を参照
+  // 上記「001」を参照
   
 ================================================================================
 [004]
   Create Many Records with model.create()
   
 [内容]
-  モデルからドキュメント(レコード)を多数作成 -> メソッド「create」
+  モデルから複数ドキュメントを作成
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    const arr = [
+      { name: 'EEE', mail: 'EEE@google.com' },
+      { name: 'FFF', mail: 'FFF@google.com' },
+      { name: 'GGG', mail: 'GGG@google.com' },
+    ];
+
+    router.post('/add', async function(req, res, next) {
+      try {
+        await Person.create(arr);  // モデルから複数ドキュメントを作成
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Insert failed!" });
+      }
+    });
+  
+[確認]
+  // 上記「001」を参照
+  
+================================================================================
+[005]
+  Use model.find() to Search Your Database
+  
+[内容]
+  ドキュメントを取得
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    router.get('/', async function(req, res, next) {
+      try {
+        var data = {
+          title: 'データ一覧画面',
+          message: '全データを一覧表示しています',
+          content: await Person.find(),  // ドキュメントを取得
+        }
+        res.render('index', data);
+      } catch {
+        res.status(404);
+        res.send({ error: "Person doesn't exist!" });
+      }
+    });
+  
+[確認]
+  // 上記「001」を参照
+  
+================================================================================
+[006]
+  Use model.findOne() to Return a Single Matching Document from Your Database
+  
+[内容]
+  最初の該当ドキュメントのみ取得
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    router.get('/', async function(req, res, next) {
+      try {
+        var data = {
+          title: 'データ一覧画面',
+          message: '全データを一覧表示しています',
+          content: await Person.findOne(),  // 最初の該当ドキュメントのみ取得
+        }
+        res.render('index', data);
+      } catch {
+        res.status(404);
+        res.send({ error: "Person doesn't exist!" });
+      }
+    });
+  
+[確認]
+  // 上記「001」を参照
+  
+================================================================================
+[007]
+  Use model.findById() to Search Your Database By _id
+  
+[内容]
+  ドキュメントを識別子「_id」で検索
+    別ファイル「web30.txt」の「X28」のアレンジ
+  
+  (例)
+    router.get('/', async function(req, res, next) {
+      try {
+        var data = {
+          title: 'データ一覧画面',
+          message: '全データを一覧表示しています',
+          content: await Person.findById({ _id: '62dd2a6c4e29b5b8b465de41' }),  // ドキュメントを識別子「_id」で検索
+        }
+        res.render('index', data);
+      } catch {
+        res.status(404);
+        res.send({ error: "Person doesn't exist!" });
+      }
+    });
+  
+[確認]
+  // 上記「001」を参照
+  
+================================================================================
+[008]
+  Perform Classic Updates by Running Find, Edit, then Save
+  
+[内容]
+  ドキュメントの検索と更新(1)
+  
+  (例)
+    router.post('/', async function(req, res, next) {
+      var data = {
+        title: '編集画面',
+        message: 'レコードを編集してください',
+        content: await Person.findOne({ name: req.body.name }),  // ドキュメントの検索
+      }
+      res.render('update', data);
+    });
+    
+    router.post('/update', async function(req, res, next) {
+      try {
+        await Person.updateOne(
+          { name: { $eq: req.body.name } },  // ドキュメントの更新 : 更新条件
+          { $set: { mail: req.body.mail } }  // ドキュメントの更新 : 更新内容
+        );
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Update failed!" });
+      }
+    });
   
 [確認]
   $ cd $HOME
-  $ mkdir -p mon04
+  $ node --version
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし)
+  v16.15.00 => 問題なし
   --------------------------------------------------
   
-  $ cd $HOME/mon04
-  $ npm init
+  $ cd $HOME
+  $ express --view=ejs mon02
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/mon04
+  $ cd $HOME/mon02
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
   $ npm install mongoose --save
   
   コマンドの実行結果
@@ -801,110 +1133,33 @@
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/mon04
-  $ vi server.js
+  $ cd $HOME/database => 専用ディレクトリ作成
+  $ mongod --nojournal --noprealloc --dbpath ./ (ローカルDB作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // 登録データ
-  const ARR = [
-    { username: 'AAA', password: 'AAA', key1: '100', key2: '100' },
-    { username: 'BBB', password: 'BBB', key1: '200', key2: '200' },
-    { username: 'CCC', password: 'CCC', key1: '300', key2: '300' }
-  ];
-  
-  // ドキュメント登録用の関数
-  const Func = (ARR) => {
-    return new Promise((res, rej) => {
-      testcoll.create(ARR, (err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      let TMP = await Func(ARR);
-      console.log(`${TMP} was inserted`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
+  (Ctrl + C で停止)
   --------------------------------------------------
   
-  $ cd $HOME/mon04
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  {
-    username: 'AAA',
-    password: 'AAA',
-    key1: '100',
-    key2: '100',
-    _id: new ObjectId("612eda6c4969df71728e93e0"),
-    __v: 0
-  },{
-    username: 'BBB',
-    password: 'BBB',
-    key1: '200',
-    key2: '200',
-    _id: new ObjectId("612eda6c4969df71728e93e1"),
-    __v: 0
-  },{
-    username: 'CCC',
-    password: 'CCC',
-    key1: '300',
-    key2: '300',
-    _id: new ObjectId("612eda6c4969df71728e93e2"),
-    __v: 0
-  } was inserted
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  $ cd $HOME/mon04
-  $ mongo
+  $ cd $HOME/mon02
+  $ mongo (ローカルDBに接続)
   
   コマンドの実行結果
   --------------------------------------------------
   (コマンドプロンプトが「>」に変更)
   --------------------------------------------------
   
-  > データベース切換
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
   > use testdb
   
   コマンドの実行結果
@@ -912,451 +1167,348 @@
   switched to db testdb
   --------------------------------------------------
   
-  > ドキュメント一覧
-  > db.testcoll.find({}, { __v: 0, _id: 0 }).sort({ _id: 1 })
+  > ドキュメント作成
+  > db.Person.insert( { name : 'AAA', mail : 'AAA@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
-  { "username" : "AAA", "password" : "AAA", "key1" : "100", "key2" : "100" }
-  { "username" : "BBB", "password" : "BBB", "key1" : "200", "key2" : "200" }
-  { "username" : "CCC", "password" : "CCC", "key1" : "300", "key2" : "300" }
+  WriteResult({ "nInserted" : 1 })
   --------------------------------------------------
   
-  以下の記録に続く
-  
-================================================================================
-[005]
-  Use model.find() to Search Your Database
-  
-[内容]
-  ドキュメント(レコード)を検索 -> メソッド「find」
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p mon05
+  > ドキュメント作成
+  > db.Person.insert( { name : 'BBB', mail : 'BBB@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
-  (出力なし)
+  WriteResult({ "nInserted" : 1 })
   --------------------------------------------------
   
-  $ cd $HOME/mon05
-  $ npm init
+  > ドキュメント作成
+  > db.Person.insert( { name : 'CCC', mail : 'CCC@google.com' } )
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  WriteResult({ "nInserted" : 1 })
   --------------------------------------------------
   
-  $ cd $HOME/mon05
-  $ npm install mongoose --save
+  > ドキュメント一覧(表示可否を指定)
+  > db.Person.find( {}, { _id: 0 } )
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
   --------------------------------------------------
   
-  $ cd $HOME/mon05
-  $ vi server.js
+  > シェルを抜ける
+  > exit
   
   コマンドの実行結果
   --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
+  bye
+  --------------------------------------------------
   
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
+  $ cd $HOME/mon02
+  $ vi views/index.ejs (ファイル確認または編集)
   
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
   
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
   
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
+  <!-- 指定した「NAME」のレコードを登録 --->
+  <form method="post" action="/">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
+  $ vi views/update.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
+  
+  <!-- 指定した「NAME」のレコードの表示と更新 --->
+  <form method="post" action="/update">
+    <label for="name">NAME</label><input type="text" id="name" name="name" value="<%=content.name %>" readonly>
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail" value="<%=content.mail %>">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  div {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: Black;
+    width: 60%;
+  }
+  
+  div p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    padding: 5px;
+    margin: 15px auto;
+    color: Crimson;
+    width: 60%;
+  }
+  
+  ul li {
+    padding: 0px 15px;
+    margin: 0px 10px;
+    font-size: 20px;
+    text-align: left;
+    list-style-type: none;
+  }
+  
+  form {
+    padding: 8px;
+    margin: 15px auto;
+    color: Black;
+    background-color: White;
+    border: 2px solid Black;
+    width: 60%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Black;
+    font-size: 25px;
+  }
+  
+  input[type='text'] {
+    display: block;
+    padding: 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  input[type='submit'] {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  
+  table {
+    padding: 0px;
+    margin: 15px auto;
+    width: 62%;
+  }
+  
+  table tr, th {
+    padding: 0px;
+    margin: 0px;
+    color: White;
+    background-color: Black;
+  }
+  
+  table td {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    font-size: 20px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
+  $ vi routes/index.js (ファイル確認または編集) => モデル関連を別ファイル構成にした時にうまく動かないので一緒にした
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var mongoose = require('mongoose');
+  
+  var Schema = new mongoose.Schema({
+    name: { type: String },  // 氏名
+    mail: { type: String },  // メールアドレス
   });
   
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
+  var Person = mongoose.model('Person', Schema, 'Person');
   
-  // ドキュメント検索用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .find(OBJ, {_id: 0, __v: 0})
-      .sort({ _id: 1 })
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
+  router.get('/', function(req, res, next) {
     try {
-      const RET = await Func({ username: 'AAA' });
-      console.log(`${RET} was found`);
+      var data = {
+        title: '入力画面',
+        message: '更新対象のNAMEを入力してください',
+      }
+      res.render('index', data);
+    } catch {
+      res.status(404);
+      res.send({ error: "Person doesn't exist!" });
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon05
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' } was found
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
-  
-================================================================================
-[006]
-  Use model.findOne() to Return a Single Matching Document from Your Database
-  
-[内容]
-  ドキュメント(レコード)を最初の該当のみ検索 -> メソッド「findOne」
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p mon06
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon06
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon06
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon06
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
   });
   
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findOne(OBJ, {_id: 0, __v: 0})
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      const RET = await Func({});
-      console.log(`${RET} was found`);
+  router.post('/', async function(req, res, next) {
+    var data = {
+      title: '編集画面',
+      message: 'レコードを編集してください',
+      content: await Person.findOne({ name: req.body.name }),
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon06
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' } was found
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
-  
-================================================================================
-[007]
-  Use model.findById() to Search Your Database By _id
-  
-[内容]
-  ドキュメント(レコード)を識別子「_id」で検索 -> メソッド「findById」
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p mon07
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon07
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon07
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon07
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
+    res.render('update', data);
   });
   
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findById(OBJ, {_id: 0, __v: 0})
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
+  router.post('/update', async function(req, res, next) {
     try {
-      const RET = await Func({ _id: '612eda6c4969df71728e93e0' });
-      console.log(`${RET} was found`);
+      await Person.updateOne(
+        { name: { $eq: req.body.name } },  // 更新条件
+        { $set: { mail: req.body.mail } }  // 更新内容
+      );
+      res.redirect('/');
+    } catch {
+      res.status(404);
+      res.send({ error: "Update failed!" });
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon07
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' } was found
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
-  
-================================================================================
-[008]
-  Perform Classic Updates by Running Find, Edit, then Save
-  
-[内容]
-  ドキュメント(レコード)を検索・更新・保存(1) -> メソッド「findOne, updateOne」
-  
-[確認]
-  $ cd $HOME
-  $ mkdir -p mon08
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon08
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon08
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon08
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
   });
   
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func1 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findOne(OBJ, {_id: 0, __v: 0})
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // ドキュメント更新用の関数
-  const Func2 = (OBJ, VAL) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .updateOne(OBJ, VAL)
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      // 処理前
-      const TMP1 = await Func1({ username: 'AAA' });
-      console.log(`${TMP1} was found`);
-      
-      // 検索・更新・保存
-      await Func2({ username: 'AAA' }, { $set: { key1: '999' }});
-      
-      // 処理後
-      const TMP2 = await Func1({ username: 'AAA' });
-      console.log(`${TMP2} was found`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
+  module.exports = router;
   --------------------------------------------------
   
-  $ cd $HOME/mon08
-  $ node server.js
+  $ cd $HOME/mon02
+  $ vi app.js (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' } was found  // 処理前
-  { username: 'AAA', password: 'AAA', key1: '999', key2: '100' } was found  // 処理後
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var mongoose = require('mongoose');
+  var indexRouter = require('./routes/index');
   
-  ■ <- Ctrl + C で停止
+  var database = mongoose.connect("mongodb://localhost/testdb");
+  var connect = mongoose.connection;
+  connect.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  connect.once('open', () => console.log('MongoDB connection successful'))
+  
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
+  $ npm start (アプリケーション実行)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  MongoDB connection successful => Ctrl + C で停止
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (NAMEに「AAA」を入力後にボタン押下 => 編集画面上でMAILを「AAA@yahoo.co.jp」に変更後にボタン押下)
+  --------------------------------------------------
+  
+  $ cd $HOME/mon02
+  $ mongo
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コマンドプロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > データベース一覧
+  > show dbs 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  admin   0.000GB
+  config  0.000GB
+  local   0.000GB
+  testdb  0.000GB  // 該当データベース
+  --------------------------------------------------
+  
+  > データベース作成(または切換)
+  > use testdb
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  switched to db testdb
+  --------------------------------------------------
+  
+  > ドキュメント一覧(表示可否を指定)
+  > db.Person.find( {}, { _id: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "name" : "AAA", "mail" : "AAA@yahoo.co.jp" }  // 更新
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
   --------------------------------------------------
   
   以下の記録に続く
@@ -1366,403 +1518,67 @@
   Perform New Updates on a Document Using model.findOneAndUpdate()
   
 [内容]
-  ドキュメント(レコード)を検索・更新・保存(2) -> メソッド「findOneAndUpdate」
+  ドキュメントの検索と更新(2)
+  
+  (例)
+    router.post('/update', async function(req, res, next) {
+      try {
+        await Person.findOneAndUpdate(
+          { name: { $eq: req.body.name } },   // ドキュメントの検索 : 検索条件
+          { $set: { mail: req.body.mail } },  // ドキュメントの更新 : 更新内容
+          { new: false }                      // フラグ
+        );
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Update failed!" });
+      }
+    });
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p mon09
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon09
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon09
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon09
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func1 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findOne(OBJ)
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // ドキュメント検索・更新用の関数
-  const Func2 = (OBJ, VAL, FLG) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findOneAndUpdate(OBJ, VAL, FLG)
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      // 処理前
-      const TMP1 = await Func1({ username: 'AAA' });
-      console.log(`${TMP1} was found`);
-      
-      // 検索・更新・保存
-      await Func2({ username: 'AAA' }, { $set: { key1: '999' }}, { new: false });
-      
-      // 処理後
-      const TMP2 = await Func1({ username: 'AAA' });
-      console.log(`${TMP2} was found`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon09
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  {
-    _id: new ObjectId("612efe3872ef4f54c9966bc6"),
-    username: 'AAA',
-    password: 'AAA',
-    key1: '100',  // 更新前
-    key2: '100',
-    __v: 0
-  } was found
-  {
-    _id: new ObjectId("612efe3872ef4f54c9966bc6"),
-    username: 'AAA',
-    password: 'AAA',
-    key1: '999',  // 更新後
-    key2: '100',
-    __v: 0
-  } was found
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
+  // 上記「008」を参照
   
 ================================================================================
 [010]
   Delete One Document Using model.findByIdAndRemove
   
 [内容]
-  ドキュメント(レコード)を検索・削除・保存(1) -> メソッド「findByIdAndRemove」
+  ドキュメントの検索と削除(1)
+  
+  (例)
+    router.post('/update', async function(req, res, next) {
+      try {
+        await Person.findByIdAndRemove({ _id: '612f4a87413de3b285a7f060' });  // 実装時は前画面から「_id」の保持が必要
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Update failed!" });
+      }
+    });
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p mon10
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon10
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon10
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon10
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func1 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .find(OBJ, {_id: 0, __v: 0})
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // ドキュメント検索・更新用の関数
-  const Func2 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .findByIdAndRemove(OBJ)
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      // 処理前
-      const TMP1 = await Func1({});
-      console.log(`${TMP1} was found`);
-      
-      // 検索・更新・保存
-      await Func2({ _id: '612f4a87413de3b285a7f060' });
-      
-      // 処理後
-      const TMP2 = await Func1({});
-      console.log(`${TMP2} was found`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon10
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' },
-  { username: 'BBB', password: 'BBB', key1: '200', key2: '200' },
-  { username: 'CCC', password: 'CCC', key1: '300', key2: '300' } was found  // 処理前
-  
-  { username: 'BBB', password: 'BBB', key1: '200', key2: '200' },
-  { username: 'CCC', password: 'CCC', key1: '300', key2: '300' } was found  // 処理後
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
+  // 上記「008」を参照
   
 ================================================================================
 [011]
   Delete Many Documents with model.remove()
   
 [内容]
-  ドキュメント(レコード)を検索・削除・保存(2) -> メソッド「remove」
+  ドキュメントの検索と削除(2)
+  
+  (例)
+    router.post('/update', async function(req, res, next) {
+      try {
+        await Person.remove({ name: req.body.name });  // ドキュメントの削除
+        res.redirect('/');
+      } catch {
+        res.status(404);
+        res.send({ error: "Update failed!" });
+      }
+    });
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p mon11
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon11
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon11
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon11
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func1 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .find(OBJ, {_id: 0, __v: 0})
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // ドキュメント検索・更新用の関数
-  const Func2 = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .deleteOne(OBJ)
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
-        }
-      });
-    });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      // 処理前
-      const TMP1 = await Func1({});
-      console.log(`${TMP1} was found`);
-      
-      // 検索・更新・保存
-      await Func2({ username: 'AAA' });
-      
-      // 処理後
-      const TMP2 = await Func1({});
-      console.log(`${TMP2} was found`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon11
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'AAA', password: 'AAA', key1: '100', key2: '100' },
-  { username: 'BBB', password: 'BBB', key1: '200', key2: '200' },
-  { username: 'CCC', password: 'CCC', key1: '300', key2: '300' } was found  // 処理前
-  
-  { username: 'BBB', password: 'BBB', key1: '200', key2: '200' },
-  { username: 'CCC', password: 'CCC', key1: '300', key2: '300' } was found  // 処理後
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
+  // 上記「008」を参照
   
 ================================================================================
 [012]
@@ -1771,127 +1587,22 @@
 [内容]
   クエリーチェーン
   
-[確認]
-  $ cd $HOME
-  $ mkdir -p mon12
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (出力なし)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon12
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon12
-  $ npm install mongoose --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/mon12
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const MONG = require('mongoose');
-  
-  // 接続状態を取得
-  const CONN = MONG.connect('mongodb://localhost/testdb');  // データベース名「testdb」
-  const DB   = MONG.connection;
-  
-  // 接続エラー
-  DB.on('error', console.error.bind(console, 'connection error:'));
-  
-  // 接続成功
-  // DB.on('open', () => console.log("connect successfully"));
-  
-  // スキーマ定義
-  const testcollSchema = new MONG.Schema({
-    username: { type: String },
-    password: { type: String },
-    key1:     { type: String },
-    key2:     { type: String }
-  });
-  
-  // モデル作成 -> コレクション名「testcoll」
-  const testcoll = MONG.model('testcoll', testcollSchema, 'testcoll');
-  
-  // ドキュメント検索用の関数
-  const Func = (OBJ) => {
-    return new Promise((res, rej) => {
-      testcoll
-      .find(OBJ, {_id: 0, __v: 0})
-      .sort({_id: -1})        // クエリーチェーン -> 降順でソート
-      .limit(2)               // クエリーチェーン -> 表示件数
-      .select({password: 0})  // クエリーチェーン -> 表示切換
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 状態が「成功」になる -> 引数「doc」はメソッド「then」の引数「doc」に渡される
-        } else {
-          rej(err);  // 状態が「失敗」になる -> 引数「err」はメソッド「catch」の引数「err」に渡される
+  (例)
+    router.get('/', async function(req, res, next) {
+      try {
+        var data = {
+          title: 'データ一覧画面',
+          message: '全データを一覧表示しています',
+          content: await Person.find().sort({ name: -1 }).limit(2),  // NAMEを降順でソート、表示件数を二件のみ
         }
-      });
+        res.render('index', data);
+      } catch {
+        res.status(404);
+        res.send({ error: "Person doesn't exist!" });
+      }
     });
-  }
-  
-  // メイン関数
-  async function Main() {
-    try {
-      const TMP = await Func({});
-      console.log(`${TMP} was found`);
-    }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  // メイン関数実行
-  Main()
-  --------------------------------------------------
-  
-  $ cd $HOME/mon12
-  $ node server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  { username: 'CCC', key1: '300', key2: '300' },
-  { username: 'BBB', key1: '200', key2: '200' } was found
-  
-  ■ <- Ctrl + C で停止
-  --------------------------------------------------
-  
-  以下の記録に続く
-  
-================================================================================
-[XX]
-  接続文字列
-  
-[内容]
-  接続文字列
   
 [確認]
-  // 接続情報(ローカルDB)
-  let DATA = 'testdb';
-  let OPT1 = 'retryWrites=true&w=majority';
-  let OPT2 = { useNewUrlParser: true, useUnifiedTopology: true };
-  let URI  = `mongodb://localhost/${DATA}?${OPT1}`;
-  
-  // 接続情報(リモートDB)
-  let USER = 'Makoto';
-  let PASS = 'ma0122ma9310sa4221pd';
-  let CLST = 'cluster0.snt16.mongodb.net';
-  let DATA = 'testdb';
-  let OPT1 = 'retryWrites=true&w=majority';
-  let OPT2 = { useNewUrlParser: true, useUnifiedTopology: true };
-  let URI  = `mongodb+srv://${USER}:${PASS}@${CLST}/${DATA}?${OPT1}`;
+  // 上記「001」を参照
   
 ================================================================================

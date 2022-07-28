@@ -242,7 +242,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app04
-  $ npm install ejs (ローカルインストール)
+  $ npm install ejs
   
   コマンドの実行結果
   --------------------------------------------------
@@ -327,7 +327,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app05
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -462,7 +462,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app06
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -553,7 +553,7 @@
   [Node] フォームからデータ送信
   
 [内容]
-  画面「input」のフォームからデータを送信後に別画面「output」に表示する
+  画面「input」のフォームからデータ送信後に別画面「output」に表示する
   
   並行して実装
   ・ルーティング処理を別関数に移動
@@ -569,7 +569,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app07
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -617,11 +617,11 @@
   <body>
   <div id="result">
     <!-- 各科目の点数を表示 --->
-    <p><%=subject1 %> : <%=score1 %></p>
-    <p><%=subject2 %> : <%=score2 %></p>
-    <p><%=subject3 %> : <%=score3 %></p>
-    <p><%=subject4 %> : <%=score4 %></p>
-    <p><%=subject5 %> : <%=score5 %></p>
+    <p>国語 : <%=score1 %></p>
+    <p>数学 : <%=score2 %></p>
+    <p>英語 : <%=score3 %></p>
+    <p>理科 : <%=score4 %></p>
+    <p>社会 : <%=score5 %></p>
   </div>
   </body>
   </html>
@@ -743,11 +743,6 @@
         let qs_str = qs.parse(body);
         let content = ejs.render(output, {
           title: '点数表示',
-          subject1: '国語',
-          subject2: '数学',
-          subject3: '英語',
-          subject4: '理科',
-          subject5: '社会',
           score1: qs_str.score1,
           score2: qs_str.score2,
           score3: qs_str.score3,
@@ -804,7 +799,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app08
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -960,7 +955,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app09
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -1080,7 +1075,7 @@
     let content = ejs.render(output, {
       title: '点数表示',
       value: data,
-      filename: 'items',
+      filename: 'items',  // パーシャルのファイル名も指定
     });
     response.writeHead(200, { 'Content-Type' : 'text/html' });
     response.write(content);
@@ -1125,7 +1120,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app10
-  $ npm install ejs url (ローカルインストール)
+  $ npm install ejs url
   
   コマンドの実行結果
   --------------------------------------------------
@@ -1322,7 +1317,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app11
-  $ npm install express (ローカルインストール)
+  $ npm install express
   
   コマンドの実行結果
   --------------------------------------------------
@@ -1446,7 +1441,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app12
-  $ vi app.js (既存ファイルを以下のように書換)
+  $ vi app.js (既存ファイルを以下のように書換) => 内容的には変更なし、インデント等の調整のみ
   
   コマンドの実行結果
   --------------------------------------------------
@@ -2130,11 +2125,11 @@
   <body>
   <div id="result">
     <!-- 各科目の点数を表示 --->
-    <p><%=subject1 %> : <%=score1 %></p>
-    <p><%=subject2 %> : <%=score2 %></p>
-    <p><%=subject3 %> : <%=score3 %></p>
-    <p><%=subject4 %> : <%=score4 %></p>
-    <p><%=subject5 %> : <%=score5 %></p>
+    <p>国語 : <%=score1 %></p>
+    <p>数学 : <%=score2 %></p>
+    <p>英語 : <%=score3 %></p>
+    <p>理科 : <%=score4 %></p>
+    <p>社会 : <%=score5 %></p>
   </div>
   </body>
   </html>
@@ -2246,11 +2241,6 @@
   output.post('/output', function(req, res, next) {
     res.render('output', {
       title: '点数表示',
-      subject1: '国語',
-      subject2: '数学',
-      subject3: '英語',
-      subject4: '理科',
-      subject5: '社会',
       score1: req.body['score1'],  // req.body.score1 でも可
       score2: req.body['score2'],  // req.body.score2 でも可
       score3: req.body['score3'],  // req.body.score3 でも可
@@ -2400,7 +2390,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app17
-  $ npm install express-session (追加インストール)
+  $ npm install express-session --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -2684,7 +2674,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app18
-  $ npm install xml2js (追加インストール)
+  $ npm install xml2js --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -2748,7 +2738,7 @@
   var router = express.Router();
   var https = require('https');
   var parseString = require('xml2js').parseString;
-
+  
   router.get('/', (req, res, next) => {
     var option = {
       host: 'news.google.com',
@@ -2864,7 +2854,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app19
-  $ npm install sqlite3 --save (追加インストール)
+  $ npm install sqlite3 --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -3255,7 +3245,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app20
-  $ npm install sqlite3 (追加インストール)
+  $ npm install sqlite3
   
   コマンドの実行結果
   --------------------------------------------------
@@ -3491,7 +3481,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app21
-  $ npm install sqlite3 (追加インストール)
+  $ npm install sqlite3
   
   コマンドの実行結果
   --------------------------------------------------
@@ -3820,7 +3810,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app22
-  $ npm install sqlite3 (追加インストール)
+  $ npm install sqlite3
   
   コマンドの実行結果
   --------------------------------------------------
@@ -4110,7 +4100,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app23
-  $ npm install sqlite3 (追加インストール)
+  $ npm install sqlite3 --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -4444,7 +4434,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app24
-  $ npm install sqlite3 (追加インストール)
+  $ npm install sqlite3 --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -4778,7 +4768,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app25
-  $ npm install sqlite3 express-validator (追加インストール)
+  $ npm install sqlite3 express-validator --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -5155,7 +5145,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app26
-  $ npm install sqlite3 sequelize sequelize-cli (追加インストール)
+  $ npm install sqlite3 sequelize sequelize-cli --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -6535,7 +6525,7 @@
     .then((val) => {
       val.name = req.body.name;
       val.mail = req.body.mail;
-      val.save().then(() => {
+      val.save().then(() => {  // find の処理中に save で更新できるので便利
         res.redirect('/');
       });
     });
@@ -6770,7 +6760,7 @@
   ・ログイン管理にテーブル「User」を使用
   ・テスト結果はテーブル「Score」を使用 => アプリはユーザーがログイン後に本人のテスト結果のみ表示
   
-  CREATE TABLE `Users` (
+  CREATE TABLE `Users` (                     // テーブル名が複数形に変換されるのは仕様？
     `id` INTEGER PRIMARY KEY AUTOINCREMENT,  // 自動付与される
     `name` VARCHAR(255),                     // ユーザー名
     `pass` VARCHAR(255),                     // パスワード
@@ -6780,11 +6770,11 @@
   
   CREATE TABLE `Scores` (
     `id` INTEGER PRIMARY KEY AUTOINCREMENT,
-    `subject1` INTEGER,  // 科目1「国語」
-    `subject2` INTEGER,  // 科目2「数学」
-    `subject3` INTEGER,  // 科目3「英語」
-    `subject4` INTEGER,  // 科目4「理科」
-    `subject5` INTEGER,  // 科目5「社会」
+    `subject1` INTEGER,                                   // 科目1「国語」
+    `subject2` INTEGER,                                   // 科目2「数学」
+    `subject3` INTEGER,                                   // 科目3「英語」
+    `subject4` INTEGER,                                   // 科目4「理科」
+    `subject5` INTEGER,                                   // 科目5「社会」
     `userId` INTEGER NOT NULL REFERENCES `Users` (`id`),  // テーブル「User」の主キー「id」への外部キー
     `createdAt` DATETIME NOT NULL,
     `updatedAt` DATETIME NOT NULL
@@ -6816,7 +6806,7 @@
   --------------------------------------------------
   
   $ cd $HOME/app27
-  $ npm install express-session sqlite3 sequelize sequelize-cli (追加インストール)
+  $ npm install express-session sqlite3 sequelize sequelize-cli --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -7537,7 +7527,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (セッション情報がタイムアウトで削除) => http://localhost:3000/login に遷移
+  (クッキーに保存されたセッション情報がタイムアウトで削除) => http://localhost:3000/login に遷移
   --------------------------------------------------
   
   以下の記録に続く
@@ -7551,43 +7541,46 @@
 
 [確認]
   $ cd $HOME
-  $ sudo vi /etc/yum.repos.d/mongodb-org-4.0.repo
+  $ node --version
   
   コマンドの実行結果
   --------------------------------------------------
-  [mongodb-org-4.0]
-  name=MongoDB Repository
-  baseurl=https://repo.mongodb.org/yum/redhat/$releasever/mongodb-org/4.0/x86_64/
-  gpgcheck=1
-  enabled=1
-  gpgkey=https://www.mongodb.org/static/pgp/server-4.0.asc
+  v16.15.00 => 問題なし
   --------------------------------------------------
   
   $ cd $HOME
-  $ sudo yum -y install mongodb-org
+  $ express --view=ejs app28
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ sudo systemctl disable mongod
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Removed symlink /etc/systemd/system/multi-user.target.wants/mongod.service.
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ sudo systemctl start mongod
+  $ cd $HOME/app28
+  $ npm install (設定ファイル「package.json」に従いローカルインストール)
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME
+  $ cd $HOME/app28
+  $ npm install mongoose --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/database => 専用ディレクトリ作成
+  $ mongod --nojournal --noprealloc --dbpath ./ (ローカルDB作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Ctrl + C で停止)
+  --------------------------------------------------
+  
+  $ cd $HOME/app28
   $ mongo (ローカルDBに接続)
   
   コマンドの実行結果
@@ -7613,6 +7606,40 @@
   switched to db testdb
   --------------------------------------------------
   
+  > ドキュメント作成
+  > db.Person.insert( { name : 'AAA', mail : 'AAA@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント作成
+  > db.Person.insert( { name : 'BBB', mail : 'BBB@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント作成
+  > db.Person.insert( { name : 'CCC', mail : 'CCC@google.com' } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  WriteResult({ "nInserted" : 1 })
+  --------------------------------------------------
+  
+  > ドキュメント一覧(表示可否を指定)
+  > db.Person.find( {}, { _id: 0 } )
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  { "name" : "AAA", "mail" : "AAA@google.com" }
+  { "name" : "BBB", "mail" : "BBB@google.com" }
+  { "name" : "CCC", "mail" : "CCC@google.com" }
+  --------------------------------------------------
+  
   > シェルを抜ける
   > exit
   
@@ -7622,176 +7649,159 @@
   --------------------------------------------------
   
   $ cd $HOME/app28
-  $ npm install mongoose --save (ローカルインストール)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/app28
-  $ vi views/index.html (ファイル確認または編集)
+  $ vi views/index.ejs (ファイル確認または編集)
   
   コマンドの実行結果
   --------------------------------------------------
   <!doctype html>
-  <html>
+  <html lang="ja">
   <head>
   <meta charset="utf-8">
-  <link rel='stylesheet' href='stylesheets/style.css'>
-  <title>SAMPLE</title>
-  </head>
-  <body>
-  <form action='/' method='POST'>
-    <label for='name'>名前</label><input type='text' id='name' name='name'>
-    <label for='addr'>住所</label><input type='text' id='addr' name='addr'>
-    <button type='submit'>登録</button>
-  </form>
-  </body>
-  </html>
-  --------------------------------------------------
-  
-  $ cd $HOME/app28
-  $ vi views/result.html (ファイル確認または編集)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  <!doctype html>
-  <html>
-  <head>
-  <meta charset="utf-8">
-  <link rel='stylesheet' href='stylesheets/style.css'>
-  <title>SAMPLE</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
   </head>
   <body>
   
-  <!-- RESULT --->
-  <div id=result><p>データ登録が完了しました</p></div>
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
   
-  <!-- RETURN --->
-  <a id=return href='http://localhost:3000/'>戻る</a>
+  <!-- 取得データをテーブル表示 --->
+  <table>
+    <tr>
+      <td>NAME</td>
+      <td>MAIL</td>
+    </tr>
+    <% for (let i in content) { %>
+    <tr>
+      <td><%=content[i].name %></td>
+      <td><%=content[i].mail %></td>
+    </tr>
+    <% } %>
+  </table>
   
   </body>
   </html>
   --------------------------------------------------
   
   $ cd $HOME/app28
-  $ vi public/stylesheets/style.css (ファイル確認または編集)
+  $ vi public/stylesheets/style.css (既存ファイルを以下のように書換)
   
   コマンドの実行結果
   --------------------------------------------------
-  form {
+  div {
+    padding: 10px;
     margin: 15px auto;
-    border: 2px solid Crimson;
-    padding: 15px;
-    width: 80%;
+    color: White;
+    background-color: Black;
+    width: 60%;
   }
   
-  label, input[type='text'] {
+  div p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+  
+  ul {
+    padding: 5px;
+    margin: 15px auto;
+    color: Crimson;
+    width: 60%;
+  }
+  
+  ul li {
+    padding: 0px 15px;
+    margin: 0px 10px;
+    font-size: 20px;
+    text-align: left;
+    list-style-type: none;
+  }
+  
+  form {
+    padding: 8px;
+    margin: 15px auto;
+    color: Black;
+    background-color: White;
+    border: 2px solid Black;
+    width: 60%;
+  }
+  
+  label {
+    display: block;
+    padding: 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Black;
+    font-size: 25px;
+  }
+  
+  input[type='text'] {
+    display: block;
     padding: 15px;
+    margin: -10px 10px 10px 10px;
     color: Crimson;
     font-size: 20px;
+    width: 90%;
   }
   
-  button {
-    padding: 20px;
-    margin-left: 15px;
+  input[type='submit'] {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid Black;
     font-size: 25px;
   }
   
-  #result {
-    border: 3px solid Crimson;
-    margin: 5% 25%;
-    padding: 15px;
+  table {
+    padding: 0px;
+    margin: 15px auto;
+    width: 62%;
   }
   
-  #result p {
-    font-size: 25px;
-    margin: 5px;
-    padding: 5px;
+  table tr, th {
+    padding: 0px;
+    margin: 0px;
+    color: White;
+    background-color: Black;
   }
   
-  #return {
-    display: block;
-    margin: -4% 25%;
-    padding; 5px;
+  table td {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    font-size: 20px;
   }
   --------------------------------------------------
   
   $ cd $HOME/app28
-  $ vi database/model.js (ファイル確認または編集)
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  const mongoose = require('mongoose');
-  
-  const userSchema = new mongoose.Schema({
-    name: { type: String },  // 氏名
-    addr: { type: String }   // 住所
-  });
-  
-  module.exports = mongoose.model('User', userSchema, 'User');
-  --------------------------------------------------
-  
-  $ cd $HOME/app28
-  $ vi routes/index.js (ファイル確認または編集)
+  $ vi routes/index.js (ファイル確認または編集) => モデル関連を別ファイル構成にした時にうまく動かないので一緒にした
   
   コマンドの実行結果
   --------------------------------------------------
   var express = require('express');
   var router = express.Router();
-  var user = require('../database/model');
+  var mongoose = require('mongoose');
   
-  function findData(OBJ) {
-    return new Promise((res, rej) => {
-      user
-      .find(OBJ, { _id: 0, __v: 0 })
-      .sort({ _id: 1 })
-      .exec((err, doc) => {
-        if (!err) {
-          res(doc);  // 成功
-        } else {
-          rej(err);  // 失敗
-        }
-      });
-    });
-  }
+  var Schema = new mongoose.Schema({
+    name: { type: String },  // 氏名
+    mail: { type: String },  // メールアドレス
+  });
   
-  function makeData(OBJ) {
-    return new Promise((res, rej) => {
-      let TMP = new user();
-      TMP.name = OBJ.name;
-      TMP.addr = OBJ.addr;
-      TMP.save((err, doc) => {
-        if (!err) {
-          res(doc);  // 成功
-        } else {
-          rej(err);  // 失敗
-        }
-      });
-    });
-  }
+  var Person = mongoose.model('Person', Schema, 'Person');
   
-  async function dataMain(OBJ) {
+  router.get('/', async function(req, res, next) {
     try {
-      let TMP = await findData(OBJ);
-      if (TMP.length === 0) await makeData(OBJ);
+      var data = {
+        title: 'データ一覧画面',
+        message: '全データを一覧表示しています',
+        content: await Person.find(),
+      }
+      res.render('index', data);
+    } catch {
+      res.status(404);
+      res.send({ error: "Person doesn't exist!" });
     }
-    catch (err) {
-      console.log(err);
-    }
-  }
-  
-  router.get('/', function(req, res, next) {
-    res.sendFile('/home/makoto/app02/views/index.html');
   });
   
-  router.post('/', function(req, res, next) {
-    dataMain({ name: req.body.name, addr: req.body.addr });
-    res.sendFile('/home/makoto/app02/views/result.html');
-  });
-  
-  // module export
   module.exports = router;
   --------------------------------------------------
   
@@ -7808,23 +7818,13 @@
   var mongoose = require('mongoose');
   var indexRouter = require('./routes/index');
   
-  // local database
-  var DB  = 'testdb';
-  var OP1 = 'retryWrites=true&w=majority';
-  var OP2 = { useNewUrlParser: true, useUnifiedTopology: true };
+  var database = mongoose.connect("mongodb://localhost/testdb");
+  var connect = mongoose.connection;
   
-  // database connect
-  var URI = `mongodb://localhost/${DB}?${OP1}`;
-  mongoose.connect(URI, OP2);
+  connect.on('error', console.error.bind(console, 'MongoDB connection error:'));
+  connect.once('open', () => console.log('MongoDB connection successful'))
   
-  // get database connection
-  var conn = mongoose.connection;
-  conn.on('error', console.error.bind(console, 'MongoDB connection error:'));
-  
-  // application instance
   var app = express();
-  
-  // view engine
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
   
@@ -7833,16 +7833,12 @@
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
-  
-  // handler
   app.use('/', indexRouter);
   
-  // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     next(createError(404));
   });
   
-  // error handler
   app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
@@ -7858,7 +7854,7 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略)
+  MongoDB connection successful => Ctrl + C で停止
   --------------------------------------------------
   
   $ firefox
@@ -7866,9 +7862,120 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  (名前「上杉」、住所「新潟県」と入力して送信ボタン押下)
-  (名前「武田」、住所「山梨県」と入力して送信ボタン押下)
-  (名前「毛利」、住所「広島県」と入力して送信ボタン押下)
+  (データベースから取得データを表示)
+  --------------------------------------------------
+  
+  $ cd $HOME/app28
+  $ vi views/add.ejs (新規作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- 画面上部にメッセージ表示 --->
+  <div><p><%=message %></p></div>
+  
+  <!-- 指定した「NAME」と「MAIL」のレコードを登録 --->
+  <form method="post" action="/add">
+    <label for="name">NAME</label><input type="text" id="name" name="name">
+    <label for="mail">MAIL</label><input type="text" id="mail" name="mail">
+    <input type="submit" value="Click">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/app28
+  $ vi routes/index.js (ファイル確認または編集) => モデル関連を別ファイル構成にした時にうまく動かないので一緒にした
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var mongoose = require('mongoose');
+  
+  var Schema = new mongoose.Schema({
+    name: { type: String },  // 氏名
+    mail: { type: String },  // メールアドレス
+  });
+  
+  var Person = mongoose.model('Person', Schema, 'Person');
+  
+  const Func = (OBJ) => {
+    return new Promise((res, rej) => {
+      var TMP = new Person();
+      TMP.name = OBJ.name;
+      TMP.mail = OBJ.mail;
+      TMP.save((err, doc) => {
+        if (!err) {
+          res(doc);  // 成功
+        } else {
+          rej(err);  // 失敗
+        }
+      });
+    });
+  }
+  
+  router.get('/', async function(req, res, next) {
+    try {
+      var data = {
+        title: 'データ一覧画面',
+        message: '全データを一覧表示しています',
+        content: await Person.find(),
+      }
+      res.render('index', data);
+    } catch {
+      res.status(404);
+      res.send({ error: "Person doesn't exist!" });
+    }
+  });
+  
+  router.get('/add', function(req, res, next) {
+    var data = {
+      title: '入力画面',
+      message: 'NAMEとMAILを入力してください',
+    }
+    res.render('add', data);
+  });
+  
+  router.post('/add', async function(req, res, next) {
+    try {
+      await Func({
+        name: req.body.name,
+        mail: req.body.mail,
+      });
+      res.redirect('/');
+    } catch {
+      res.status(404);
+      res.send({ error: "Insert failed!" });
+    }
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/app28
+  $ npm start (アプリケーション実行)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  MongoDB connection successful => Ctrl + C で停止
+  --------------------------------------------------
+  
+  $ firefox
+  $ http://localhost:3000/add => 画面上の「NAME」に「DDD」、「MAIL」は「DDD@google.com」を入力でボタン押下
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (データ登録を確認)
   --------------------------------------------------
   
   $ cd $HOME/app28
@@ -7898,25 +8005,15 @@
   switched to db testdb
   --------------------------------------------------
   
-  > コレクション一覧
-  > show collections
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Locate
-  Person
-  Todo
-  User  // 該当コレクション
-  --------------------------------------------------
-  
   > ドキュメント一覧(検索条件を指定しない)
-  > db.User.find()
+  > db.Person.find()
   
   コマンドの実行結果
   --------------------------------------------------
-  { "_id" : ObjectId("62bbd6a95faca7563ac42bbc"), "name" : "上杉", "addr" : "新潟県", "__v" : 0 }
-  { "_id" : ObjectId("62bbd6dd5faca7563ac42bc1"), "name" : "武田", "addr" : "山梨県", "__v" : 0 }
-  { "_id" : ObjectId("62bbd6fd5faca7563ac42bc4"), "name" : "毛利", "addr" : "広島県", "__v" : 0 }
+  { "_id" : ObjectId("62dbb9532640251214e7a3ba"), "name" : "AAA", "mail" : "AAA@google.com" }
+  { "_id" : ObjectId("62dbb9662640251214e7a3bb"), "name" : "BBB", "mail" : "BBB@google.com" }
+  { "_id" : ObjectId("62dbb9742640251214e7a3bc"), "name" : "CCC", "mail" : "CCC@google.com" }
+  { "_id" : ObjectId("62dbd289e45f5dfca8f80462"), "name" : "DDD", "mail" : "DDD@google.com", "__v" : 0 }
   --------------------------------------------------
   
   > シェルを抜ける
@@ -7938,7 +8035,7 @@
   
 [確認]
   $ cd $HOME/app29
-  $ npm install multer path --save (ローカルインストール)
+  $ npm install multer path --save
   
   コマンドの実行結果
   --------------------------------------------------
@@ -8006,7 +8103,7 @@
   // アップロード設定
   var storage = multer.diskStorage({
     destination: function(req, file, cb) {
-      cb(null, 'public/uploads/');  // 保存先は「app02/public/uploads」直下
+      cb(null, 'public/uploads/');  // 保存先は「app29/public/uploads」直下
     },
     filename: function(req, file, cb) {
       cb(null, file.originalname);  // 保存ファイル名は元のファイル名を使用
@@ -8038,11 +8135,8 @@
   var cookieParser = require('cookie-parser');
   var logger = require('morgan');
   var indexRouter = require('./routes/index');
-
-  // application instance
-  var app = express();
   
-  // view engine
+  var app = express();
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
   
@@ -8051,16 +8145,12 @@
   app.use(express.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'public')));
-  
-  // handler implements
   app.use('/', indexRouter);
   
-  // catch 404 and forward to error handler
   app.use(function(req, res, next) {
     next(createError(404));
   });
   
-  // error handler
   app.use(function(err, req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

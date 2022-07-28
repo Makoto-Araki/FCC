@@ -2773,10 +2773,7 @@
   Implementation of Social Authentication
   
 [内容]
-  SNS認証
-    SNSアカウント(GitHub)でログイン
-  
-  ## 該当コード ##
+  SNSアカウント(GitHub)でログイン
   
 [確認]
   //

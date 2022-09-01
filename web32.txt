@@ -1,11 +1,25 @@
 ================================================================================
-[01] Timestamp Microservice
-[02] Request Header Parser Microservice
-[03] URL Shortener Microservice
-[04] Exercise Tracker
-[05] File Metadata Microservice
+[001] Timestamp Microservice
+[002] Request Header Parser Microservice
+[003] URL Shortener Microservice
+[004] Exercise Tracker
+[005] File Metadata Microservice
+[X01] [Github] 従業員の「BMI」の閲覧アプリ(01)
+[X02] [Github] 従業員の「BMI」の閲覧アプリ(02)
+[X03] [Github] 従業員の「BMI」の閲覧アプリ(03)
+[X04] [Github] 従業員の「BMI」の閲覧アプリ(04)
+[X05] [Github] 従業員の「BMI」の閲覧アプリ(05)
+[X06] [Github] 従業員の「BMI」の閲覧アプリ(06)
+[X07] [Github] 従業員の「BMI」の閲覧アプリ(07)
+[X08] [Github] 従業員の「BMI」の閲覧アプリ(08)
+[X09] [Github] 従業員の「BMI」の閲覧アプリ(09)
+[X10] [Github] 従業員の「BMI」の閲覧アプリ(10)
+[X11] [Github] 従業員の「BMI」の閲覧アプリ(11)
+[X12] [Github] 従業員の「BMI」の閲覧アプリ(12)
+[X13] [Github] 従業員の「BMI」の閲覧アプリ(13)
+[X14] [Github] 従業員の「BMI」の閲覧アプリ(14)
 ================================================================================
-[01]
+[001]
   Timestamp Microservice
   
 [内容]
@@ -29,7 +43,7 @@
   以下の記録に続く
   
 ================================================================================
-[02]
+[002]
   Request Header Parser Microservice
   
 [内容]
@@ -53,7 +67,7 @@
   以下の記録に続く
   
 ================================================================================
-[03]
+[003]
   URL Shortener Microservice
   
 [内容]
@@ -77,7 +91,7 @@
   以下の記録に続く
   
 ================================================================================
-[04]
+[004]
   Exercise Tracker
   
 [内容]
@@ -106,7 +120,7 @@
   以下の記録に続く
   
 ================================================================================
-[05]
+[005]
   File Metadata Microservice
   
 [内容]
@@ -125,6 +139,2543 @@
   コマンドの実行結果
   --------------------------------------------------
   (省略) -> //
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X01]
+  [Github] 従業員の「BMI」の閲覧アプリ(01)
+  
+[内容]
+  初期インストールと「Github」関連の設定
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sqlite3 --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  3.7.17 2013-05-20 00:56:22 118a3b35693b134d56ebd780123b7fd6f1497668
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=ejs employee-bmi-browsing
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Initialized empty Git repository in /home/makoto/employee-bmi-browsing/.git/
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git remote add BMI https://github.com/Makoto-Araki/employee-bmi-browsing.git
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "employee-bmi-browsing",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Employee BMI Management, made by express and sqlite.",  // 追加
+    "keyword": ["express", "sqlite", "sequelize"],  // 追加
+    "author": {
+      "name": "Makoto-Araki",            // 追加
+      "email": "mj-araki@ivy.ocn.ne.jp"  // 追加
+    },
+    "repository": {
+      "type": "git",  // 追加
+      "url": "https://github.com/Makoto-Araki/employee-bmi-browsing.git"  // 追加
+    },
+    "scripts": {
+      "start": "node ./bin/www"
+    },
+    "dependencies": {
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "http-errors": "~1.6.3",
+      "morgan": "~1.9.1"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ vi .gitignore
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  node_modules
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ npm install express-session sqlite3 sequelize sequelize-cli --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Initial Install'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+
+================================================================================
+[X02]
+  [Github] 従業員の「BMI」の閲覧アプリ(02)
+  
+[内容]
+  モデル作成とマイグレーション実行
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (初期化)
+  $ npx sequelize-cli init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Created "config/config.json"
+  Successfully created models folder at "/home/makoto/employee-bmi-browsing/models".
+  Successfully created migrations folder at "/home/makoto/employee-bmi-browsing/migrations".
+  Successfully created seeders folder at "/home/makoto/employee-bmi-browsing/seeders".
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (各環境の再定義)
+  $ vi config/config.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "development": {
+      "database": "db-dev",
+      "dialect": "sqlite",
+      "storage": "db-dev.sqlite3"
+    },
+    "test": {
+      "database": "db-test",
+      "dialect": "sqlite",
+      "storage": "db-test.sqlite3"
+    },
+    "production": {
+      "database": "db-live",
+      "dialect": "sqlite",
+      "storage": "db-live.sqlite3"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (モデル作成)
+  $ npx sequelize-cli model:generate --name Employee --attributes name:string,pass:string
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  New model was created at /home/makoto/employee-bmi-browsing/models/employee.js .
+  New migration was created at /home/makoto/employee-bmi-browsing/migrations/20220812094359-create-employee.js .
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーション実行)
+  $ npx sequelize-cli db:migrate --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812094359-create-employee: migrating =======
+  == 20220812094359-create-employee: migrated (0.262s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベースファイル確認)
+  $ ls -l *.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 makoto makoto 20480  8月 12 18:44 db-dev.sqlite3
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 内部設定
+  Employees      // 新規作成
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema Employees
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `Employees` (                 // テーブル名はモデル名に対して複数形の「s」が付与される模様
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` VARCHAR(255),
+    `pass` VARCHAR(255),
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Database Config(1)'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X03]
+  [Github] 従業員の「BMI」の閲覧アプリ(03)
+  
+[内容]
+  モデル修正とマイグレーション反映
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (モデル修正) => 見やすさのため改行等をしている
+  $ vi models/employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  const { Model } = require('sequelize');
+  
+  module.exports = (sequelize, DataTypes) => {
+    class Employee extends Model {
+      static associate(models) {
+        define association here
+      }
+    }
+    Employee.init({
+      id: {                      // 追加
+        allowNull: false,        // 追加 => Not Null
+        autoIncrement: false,    // 追加
+        primaryKey: true,        // 追加 => Primary Key
+        type: DataTypes.STRING   // 追加
+      },
+      name: {                    // 修正
+        allowNull: false,        // 修正 => Not Null
+        type: DataTypes.STRING   // 修正
+      },
+      pass: {                    // 修正
+        allowNull: false,        // 修正 => Not Null
+        type: DataTypes.STRING   // 修正
+      },
+      height: {                  // 追加
+        allowNull: false,        // 追加 => Not Null
+        type: DataTypes.INTEGER  // 追加
+      },
+      weight: {                  // 追加
+        allowNull: false,        // 追加 => Not Null
+        type: DataTypes.INTEGER  // 追加
+      }
+    }, {
+      sequelize,
+      modelName: 'Employee',
+    });
+    return Employee;
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーション用ファイル修正) => 見やすさのため改行等をしている
+  $ vi migrations/20220812094359-create-employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  
+  module.exports = {
+    async up(queryInterface, Sequelize) {
+      await queryInterface.createTable('Employees', {
+        id: {
+          allowNull: false,        // 修正
+          primaryKey: true,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        name: {                    // 修正
+          allowNull: false,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        pass: {                    // 修正
+          allowNull: false,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        height: {                  // 追加
+          allowNull: false,        // 追加
+          type: Sequelize.INTEGER  // 追加
+        },
+        weight: {                  // 追加
+          allowNull: false,        // 追加
+          type: Sequelize.INTEGER  // 追加
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        }
+      });
+    },
+    async down(queryInterface, Sequelize) {
+      await queryInterface.dropTable('Employees');
+    }
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーションのロールバック)
+  $ npx sequelize-cli db:migrate:undo --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812094359-create-employee: reverting =======
+  == 20220812094359-create-employee: reverted (0.270s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 作成した「Employees」テーブルが無くなっている
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーションの再実行)
+  $ npx sequelize-cli db:migrate --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812094359-create-employee: migrating =======
+  == 20220812094359-create-employee: migrated (0.272s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 内部設定
+  Employees      // 再作成されている
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema Employees
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `Employees` (
+    `id` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `pass` VARCHAR(255) NOT NULL,
+    `height` INTEGER NOT NULL,
+    `weight` INTEGER NOT NULL,
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Database Config(2)'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X04]
+  [Github] 従業員の「BMI」の閲覧アプリ(04)
+  
+[内容]
+  シーディングで初期データ作成
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (スクリプト作成)
+  $ npx sequelize-cli seed:generate --name create-employee
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  seeders folder at "/home/makoto/employee-bmi-browsing/seeders" already exists.
+  New seed was created at /home/makoto/employee-bmi-browsing/seeders/20220812095221-create-employee.js .
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (スクリプト修正)
+  $ vi seeders/20220812095221-create-employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  
+  module.exports = {
+    async up (queryInterface, Sequelize) {
+      await queryInterface.bulkInsert('Employees', [
+        {
+          id: 'ID8001',
+          name: 'Dallas',  // 映画「エイリアン」から拝借
+          pass: 'PW3198',  // サンプルのため単純化
+          height: 175,     // 数値は適当
+          weight: 65,      // 数値は適当
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8002',
+          name: 'Kane',
+          pass: 'PW3199',
+          height: 170,
+          weight: 60,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8003',
+          name: 'Ripley',
+          pass: 'PW3200',
+          height: 165,
+          weight: 45,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8004',
+          name: 'Lambert',
+          pass: 'PW3201',
+          height: 160,
+          weight: 47,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8005',
+          name: 'Parker',
+          pass: 'PW3202',
+          height: 180,
+          weight: 78,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8006',
+          name: 'Brett',
+          pass: 'PW3203',
+          height: 175,
+          weight: 62,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+      ], {});
+    },
+    async down (queryInterface, Sequelize) {
+      await queryInterface.bulkDelete('Employees', null, {});
+    }
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (シーディング実行)
+  $ npx sequelize-cli db:seed:all
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812095221-create-employee: migrating =======
+  == 20220812095221-create-employee: migrated (0.459s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Employees;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ID8001 | Dallas  | PW3198 | 175 | 65 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8002 | Kane    | PW3199 | 170 | 60 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8003 | Ripley  | PW3200 | 165 | 45 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8004 | Lambert | PW3201 | 160 | 47 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8005 | Parker  | PW3202 | 180 | 78 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8006 | Brett   | PW3203 | 175 | 62 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Database Seeding'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X05]
+  [Github] 従業員の「BMI」の閲覧アプリ(05)
+  
+[内容]
+  WEB-API実装(1)
+    今回は「全件取得」を作成する
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (WEB-API実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl http://localhost:3000/bmi
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": [
+      {
+        "id":"ID8001",
+        "name":"Dallas",
+        "pass":"PW3198",
+        "height":175,
+        "weight":65,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      },
+      {
+        "id":"ID8002",
+        "name":"Kane",
+        "pass":"PW3199",
+        "height":170,
+        "weight":60,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      },
+      {
+        "id":"ID8003",
+        "name":"Ripley",
+        "pass":"PW3200",
+        "height":165,
+        "weight":45,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      },
+      {
+        "id":"ID8004",
+        "name":"Lambert",
+        "pass":"PW3201",
+        "height":160,
+        "weight":47,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      },
+      {
+        "id":"ID8005",
+        "name":"Parker",
+        "pass":"PW3202",
+        "height":180,
+        "weight":78,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      },
+      {
+        "id":"ID8006",
+        "name":"Brett",
+        "pass":"PW3203",
+        "height":175,
+        "weight":62,
+        "createdAt":"2022-08-12T09:53:53.197Z",
+        "updatedAt":"2022-08-12T09:53:53.197Z"
+      }
+    ]
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API /bmi GET is implemented'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X06]
+  [Github] 従業員の「BMI」の閲覧アプリ(06)
+  
+[内容]
+  WEB-API実装(2)
+    今回は「一件取得」を作成する
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (WEB-API実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {  // 追加
+    database.Employee.findOne({                 // 追加
+      where: {                                  // 追加
+        id: req.params.ID                       // 追加
+      }                                         // 追加
+    })                                          // 追加
+    .then((val) => {                            // 追加
+      res.status(200).json({                    // 追加
+        data: val                               // 追加
+      });                                       // 追加
+    })                                          // 追加
+    .catch((err) => {                           // 追加
+      res.status(500).json({                    // 追加
+        error: err                              // 追加
+      });                                       // 追加
+    });                                         // 追加
+  });                                           // 追加
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl http://localhost:3000/bmi/ID8001
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": {
+      "id":"ID8001",
+      "name":"Dallas",
+      "pass":"PW3198",
+      "height":175,
+      "weight":65,
+      "createdAt":"2022-08-12T09:53:53.197Z",
+      "updatedAt":"2022-08-12T09:53:53.197Z"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl http://localhost:3000/bmi/ID8009
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": null
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API /bmi/[ID] GET is implemented'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X07]
+  [Github] 従業員の「BMI」の閲覧アプリ(07)
+  
+[内容]
+  WEB-API実装(3)
+    今回は「新規登録」を作成する
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (WEB-API実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.post('/bmi', (req, res, next) => {  // 追加
+    database.Employee.create({               // 追加
+      id: req.body.id,                       // 追加
+      name: req.body.name,                   // 追加
+      pass: req.body.pass,                   // 追加
+      height: req.body.height,               // 追加
+      weight: req.body.weight                // 追加
+    })                                       // 追加
+    .then((val) => {                         // 追加
+      res.status(200).json({                 // 追加
+        data: val                            // 追加
+      });                                    // 追加
+    })                                       // 追加
+    .catch((err) => {                        // 追加
+      res.status(500).json({                 // 追加
+        error: err                           // 追加
+      });                                    // 追加
+    });                                      // 追加
+  });                                        // 追加
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl
+  > -X POST
+  > -H "Content-Type: application/json"
+  > -d '{ "id" : "ID8007" , "name" : "Ash" , "pass" : "PW3204" , "height" : 180 , "weight" : 80 }'
+  > localhost:3000/bmi
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": {
+      "id":"ID8007",
+      "name":"Ash",
+      "pass":"PW3204",
+      "height":180,
+      "weight":80,
+      "updatedAt":"2022-08-13T03:10:47.159Z",
+      "createdAt":"2022-08-13T03:10:47.159Z"  
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API /bmi POST is implemented'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X08]
+  [Github] 従業員の「BMI」の閲覧アプリ(08)
+  
+[内容]
+  WEB-API実装(4)
+    今回は「削除」を作成する
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (WEB-API実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.post('/bmi', (req, res, next) => {
+    database.Employee.create({
+      id: req.body.id,
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.delete('/bmi/:ID', (req, res, next) => {  // 追加
+    database.Employee.destroy({                    // 追加
+      where: {                                     // 追加
+        id: req.params.ID                          // 追加
+      }                                            // 追加
+    })                                             // 追加
+    .then((val) => {                               // 追加
+      res.status(200).json({                       // 追加
+        data: val                                  // 追加
+      });                                          // 追加
+    })                                             // 追加
+    .catch((err) => {                              // 追加
+      res.status(500).json({                       // 追加
+        error: err                                 // 追加
+      });                                          // 追加
+    });                                            // 追加
+  });                                              // 追加
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl -X DELETE localhost:3000/bmi/ID8007
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": 1 => 削除件数が返される模様
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl localhost:3000/bmi/ID8007
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": null
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API /bmi/[ID] DELETE is implemented'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X09]
+  [Github] 従業員の「BMI」の閲覧アプリ(09)
+  
+[内容]
+  WEB-API実装(5)
+    今回は「更新」を作成する
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (WEB-API実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.post('/bmi', (req, res, next) => {
+    database.Employee.create({
+      id: req.body.id,
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.delete('/bmi/:ID', (req, res, next) => {
+    database.Employee.destroy({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.put('/bmi/:ID', (req, res, next) => {  // 追加
+    database.Employee.update({                  // 追加
+      name: req.body.name,                      // 追加
+      pass: req.body.pass,                      // 追加
+      height: req.body.height,                  // 追加
+      weight: req.body.weight                   // 追加
+    },{                                         // 追加
+      where: { id: req.params.ID }              // 追加
+    })                                          // 追加
+    .then((val) => {                            // 追加
+      res.status(200).json({                    // 追加
+        data: val                               // 追加
+      });                                       // 追加
+    })                                          // 追加
+    .catch((err) => {                           // 追加
+      res.status(500).json({                    // 追加
+        error: err                              // 追加
+      });                                       // 追加
+    });                                         // 追加
+  });                                           // 追加
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl localhost:3000/bmi/ID8001
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": {
+      "id":"ID8001",
+      "name":"Dallas",
+      "pass":"PW3198",
+      "height":175,
+      "weight":65,
+      "createdAt":"2022-08-12T09:53:53.197Z",
+      "updatedAt":"2022-08-12T09:53:53.197Z"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl
+  > -X PUT
+  > -H "Content-Type: application/json"
+  > -d '{ "name" : "Dallas" , "pass" : "PW4976" , "height" : 175 , "weight" : 65 }' => pass のみ更新
+  > localhost:3000/bmi/ID8001
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": [1] => 更新件数が返される模様
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でWEB-API呼出)
+  $ curl localhost:3000/bmi/ID8001
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "data": {
+      "id":"ID8001",
+      "name":"Dallas",
+      "pass":"PW4976", => PASS の更新確認
+      "height":175,
+      "weight":65,
+      "createdAt":"2022-08-12T09:53:53.197Z",
+      "updatedAt":"2022-08-13T08:43:15.703Z" => 更新日時も更新
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API /bmi/[ID] PUT is implemented'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X10]
+  [Github] 従業員の「BMI」の閲覧アプリ(10)
+  
+[内容]
+  WEB-APIテスト自動化
+    今回は「一件取得」のテストの自動化を行う
+  
+  WEB-API一覧
+    /bmi       GET     =>  全件取得
+    /bmi/[ID]  GET     =>  一件取得
+    /bmi       POST    =>  新規登録
+    /bmi/[ID]  DELETE  =>  削除
+    /bmi/[ID]  PUT     =>  更新
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing
+  $ npm install mocha chai request --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (テスト用スクリプト)
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const request = require('request');
+  
+  const OBJ = {
+    "data": {
+      "id":"ID8001",
+      "name":"Dallas",
+      "pass":"PW4976",
+      "height":175,
+      "weight":65,
+      "createdAt":"2022-08-12T09:53:53.197Z",  // この属性はテスト自動化を考えると不要
+      "updatedAt":"2022-08-13T08:43:15.703Z"   // この属性はテスト自動化を考えると不要
+    }
+  }
+  
+  describe('Web-API test /bmi/ID8001 GET', () => {
+    it('status : 200', (done) => {
+      request('http://localhost:3000/bmi/ID8001', (err, res, body) => {
+        assert.equal(res.statusCode, 200);
+        done();
+      });
+    });
+    it('Web-API which returns JSON object equals OBJ', (done) => {
+      request('http://localhost:3000/bmi/ID8001', (err, res, body) => {
+        let RES = JSON.parse(res.body);  // JSON文字列をJSオブジェクトに変換
+        assert.deepEqual(RES, OBJ);
+        done();
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "employee-bmi-browsing",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Employee BMI Management, made by express and sqlite.",
+    "keyword": [
+      "express",
+      "sqlite",
+      "sequelize",
+      "mocha",  // 追加
+      "chai"    // 追加
+    ],
+    "author": {
+      "name": "Makoto-Araki",
+      "email": "mj-araki@ivy.ocn.ne.jp"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Makoto-Araki/employee-bmi-browsing.git"
+    },
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "request": "^2.88.2",
+      "sequelize": "^6.21.3",
+      "sequelize-cli": "^6.4.1",
+      "sqlite3": "^5.0.11"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > employee-bmi-browsing@0.0.0 test01
+  > ./node_modules/.bin/mocha test/test01.js --reporter spec
+  
+  Web-API test /bmi/ID8001 GET
+    ✔ status : 200 (129ms)
+    ✔ Web-API which returns JSON object equals OBJ
+  
+  2 passing (163ms)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Web-API test /bmi/[ID] GET is automated'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X11]
+  [Github] 従業員の「BMI」の閲覧アプリ(11)
+  
+[内容]
+  ログイン画面からプロフィール画面へ遷移
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (テンプレート)
+  $ vi views/login.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/login.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- メッセージ --->
+  <div class='msg'><p><%=message %></p></div>
+  
+  <!-- ログイン --->
+  <form class='login' method="post" action="/login">
+    <label for="id">ID</label><input type="text" id="id" name="id">
+    <label for="pass">PASS</label><input type="text" id="pass" name="pass">
+    <input type="submit" value="Login">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (デザイン設定)
+  $ vi public/stylesheets/login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  .msg {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 60%;
+  }
+  
+  .msg p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .login {
+    padding: 8px;
+    margin: 15px auto;
+    color: Black;
+    background-color: White;
+    border: 2px solid Black;
+    width: 60%;
+  }
+  
+  .login label {
+    display: block;
+    padding: 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Black;
+    font-size: 25px;
+  }
+  
+  .login input[type='text'] {
+    display: block;
+    padding: 15px;
+    margin: -10px 10px 10px 10px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  .login input[type='submit'] {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (テンプレート)
+  $ vi views/index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- メッセージ --->
+  <div class='msg'><p><%=message %></p></div>
+  
+  <!-- データ表示 --->
+  <table>
+    <tr>
+      <th>ID</th>
+      <td><%=content.id %></td>
+    </tr>
+    <tr>
+      <th>NAME</th>
+      <td><%=content.name %></td>
+    </tr>
+    <tr>
+      <th>HEIGHT(cm)</th>
+      <td><%=content.height %></td>
+    </tr>
+    <tr>
+      <th>WEIGHT(kg)</th>
+      <td><%=content.weight %></td>
+    </tr>
+  </table>
+  
+  <!-- ログアウト --->
+  <form class='logout' method="post" action="/logout">
+    <input type="submit" value="Logout">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (デザイン設定)
+  $ vi public/stylesheets/index.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  .msg {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 60%;
+  }
+  
+  .msg p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  table {
+    padding: 0px;
+    margin: 15px auto;
+    width: 62%;
+  }
+  
+  table th, td {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    font-size: 25px;
+    border: 1px solid Black;
+  }
+  
+  table th {
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 50%;
+  }
+  
+  table td {
+    color: Black;
+    background-color: White;
+    width: 50%;
+  }
+  
+  .logout {
+    padding: 1px;
+    margin: 1px auto;
+    width: 62%;
+  }
+  
+  .logout input[type='submit'] {
+    padding: 10px;
+    margin: 1px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (ルーティング処理実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  var { Op } = require('sequelize');  // 追加
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.post('/bmi', (req, res, next) => {
+    database.Employee.create({
+      id: req.body.id,
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.delete('/bmi/:ID', (req, res, next) => {
+    database.Employee.destroy({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.put('/bmi/:ID', (req, res, next) => {
+    database.Employee.update({
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    },{
+      where: { id: req.params.ID }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  function logined(req, res) {                      // 追加
+    if (req.session.login !== undefined) {          // 追加
+      return true;                                  // 追加
+    } else {                                        // 追加
+      return false;                                 // 追加
+    }                                               // 追加
+  }                                                 // 追加
+  
+  router.get('/login', (req, res, next) => {        // 追加
+    var data = {                                    // 追加
+      title: 'Login',                               // 追加
+      message: 'Input your id and pass',            // 追加
+    };                                              // 追加
+    res.render('login', data);                      // 追加
+  });                                               // 追加
+  
+  router.get('/', (req, res, next) => {             // 追加
+    if (logined(req, res) === false) {              // 追加
+      var data = {                                  // 追加
+        title: 'Login',                             // 追加
+        message: 'Input your id and pass',          // 追加
+      };                                            // 追加
+      res.render('login', data);                    // 追加
+    } else {                                        // 追加
+      database.Employee.findOne({                   // 追加
+        where: {                                    // 追加
+          id: req.session.login.id                  // 追加
+        }                                           // 追加
+      })                                            // 追加
+      .then((val) => {                              // 追加
+        var data = {                                // 追加
+          title: 'Profile',                         // 追加
+          message: 'Welcome to your profile',       // 追加
+          content: val                              // 追加
+        }                                           // 追加
+        res.render('index', data);                  // 追加
+      });                                           // 追加
+    }                                               // 追加
+  });                                               // 追加
+  
+  router.post('/login', (req, res, next) => {       // 追加
+    database.Employee.findOne({                     // 追加
+      where: {                                      // 追加
+        [Op.and] : [                                // 追加
+          { id: { [Op.eq] : req.body.id } },        // 追加
+          { pass: { [Op.eq] : req.body.pass } },    // 追加
+        ]                                           // 追加
+      }                                             // 追加
+    })                                              // 追加
+    .then((val) => {                                // 追加
+      if (val === null) {                           // 追加
+        var data = {                                // 追加
+          title: 'Login',                           // 追加
+          message: 'Your id and pass was invalid',  // 追加
+        };                                          // 追加
+        res.render('login', data);                  // 追加
+      } else {                                      // 追加
+        req.session.login = val;                    // 追加 => セッション情報に保存
+        res.redirect('/');                          // 追加
+      }                                             // 追加
+    });                                             // 追加
+  });                                               // 追加
+  
+  router.post('/logout', (req, res, next) => {      // 追加
+    req.session.login = undefined;                  // 追加 => セッション情報をクリア
+    res.redirect('/');                              // 追加
+  });                                               // 追加
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');  // 追加
+  
+  var indexRouter = require('./routes/index');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'ejs');
+  
+  var session_option = {                // 追加
+    secret: 'keyboard cat',             // 追加
+    resave: false,                      // 追加
+    saveUninitialized: false,           // 追加
+    cookie: { maxAge: 5 * 60 * 1000 },  // 追加 => セッション情報のクッキー保存時間を5分に設定
+  };                                    // 追加
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(session(session_option));
+  app.use('/', indexRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox (ブラウザからアクセス)
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ログイン画面からプロフィール画面に遷移)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Employee can login and logout'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X12]
+  [Github] 従業員の「BMI」の閲覧アプリ(12)
+  
+[内容]
+  プロフィール画面に「BMI」関連の項目追加
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing (テンプレート)
+  $ vi views/index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- メッセージ --->
+  <div class='msg'><p><%=message %></p></div>
+  
+  <!-- データ表示 --->
+  <table>
+    <tr>
+      <th>ID</th>
+      <td><%=content.id %></td>
+    </tr>
+    <tr>
+      <th>NAME</th>
+      <td><%=content.name %></td>
+    </tr>
+    <tr>
+      <th>HEIGHT(cm)</th>
+      <td><%=content.height %></td>
+    </tr>
+    <tr>
+      <th>WEIGHT(kg)</th>
+      <td><%=content.weight %></td>
+    </tr>
+    <tr>                     // 追加
+      <th>BMI</th>           // 追加
+      <td><%=bmi %></td>     // 追加 => 算出した「BMI」の値を表示
+    </tr>                    // 追加
+    <tr>                     // 追加
+      <th>STATUS</th>        // 追加
+      <td><%=status %></td>  // 追加 => 算出した「BMI」の値から判定を表示
+    </tr>                    // 追加
+  </table>
+  
+  <!-- ログアウト --->
+  <form class='logout' method="post" action="/logout">
+    <input type="submit" value="Logout">
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (ルーティング処理実装)
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../models/index');
+  var { Op } = require('sequelize');
+  
+  router.get('/bmi', (req, res, next) => {
+    database.Employee.findAll({})
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.get('/bmi/:ID', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.post('/bmi', (req, res, next) => {
+    database.Employee.create({
+      id: req.body.id,
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.delete('/bmi/:ID', (req, res, next) => {
+    database.Employee.destroy({
+      where: {
+        id: req.params.ID
+      }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  router.put('/bmi/:ID', (req, res, next) => {
+    database.Employee.update({
+      name: req.body.name,
+      pass: req.body.pass,
+      height: req.body.height,
+      weight: req.body.weight
+    },{
+      where: { id: req.params.ID }
+    })
+    .then((val) => {
+      res.status(200).json({
+        data: val
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err
+      });
+    });
+  });
+  
+  function logined(req, res) {
+    if (req.session.login !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input your id and pass',
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/', (req, res, next) => {
+    if (logined(req, res) === false) {
+      var data = {
+        title: 'Login',
+        message: 'Input your id and pass',
+      };
+      res.render('login', data);
+    } else {
+      database.Employee.findOne({
+        where: {
+          id: req.session.login.id
+        }
+      })
+      .then((val) => {
+        var data = {
+          title: 'Profile',
+          message: 'Welcome to your profile',
+          content: val,
+          bmi: bmi_calc(val.height, val.weight),  // 追加
+          status: bmi_check(bmi_calc(val.height, val.weight))  // 追加
+        }
+        res.render('index', data);
+      });
+    }
+  });
+  
+  router.post('/login', (req, res, next) => {
+    database.Employee.findOne({
+      where: {
+        [Op.and] : [
+          { id: { [Op.eq] : req.body.id } },
+          { pass: { [Op.eq] : req.body.pass } },
+        ]
+      }
+    })
+    .then((val) => {
+      if (val === null) {
+        var data = {
+          title: 'Login',
+          message: 'Your id and pass was invalid',
+        };
+        res.render('login', data);
+      } else {
+        req.session.login = val;
+        res.redirect('/');
+      }
+    });
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.session.login = undefined;
+    res.redirect('/');
+  });
+  
+  function bmi_calc(height, weight) {  // 追加
+    var ht = height / 100;             // 追加
+    var wt = weight;                   // 追加
+    var result = wt / (ht * ht);       // 追加
+    return Math.round(result);         // 追加 => 結果(少数)を四捨五入後に整数値を返す
+  }
+  
+  function bmi_check(val) {                // 追加
+    if (val < 18.5) {                      // 追加
+      return "Underweight";                // 追加
+    } else if (val >= 18.5 && val < 25) {  // 追加
+      return "Normal range";               // 追加
+    } else {                               // 追加
+      return "Overweight";                 // 追加
+    }                                      // 追加
+  }
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ firefox (ブラウザからアクセス)
+  $ http://localhost:3000/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロフィール画面に「BMI」関連の項目確認)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Employee can browse their BMI and health status'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X13]
+  [Github] 従業員の「BMI」の閲覧アプリ(13)
+  
+[内容]
+  ヘッドレスブラウザを使用してアプリ動作確認
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing
+  $ npm install zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (テンプレート修正)
+  $ vi views/login.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/login.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- メッセージ --->
+  <div class='msg'><p><%=message %></p></div>
+  
+  <!-- ログイン --->
+  <form class='login' method="post" action="/login">
+    <label for="id">ID</label><input type="text" id="id" name="id">
+    <label for="pass">PASS</label><input type="text" id="pass" name="pass">
+    <input type="submit" value="Login" id="login">  // ヘッドレステストに「id」属性を付与
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (テンプレート修正)
+  $ vi views/index.ejs
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!doctype html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="/stylesheets/index.css">
+  <title><%=title %></title>
+  </head>
+  <body>
+  
+  <!-- メッセージ --->
+  <div class='msg'><p><%=message %></p></div>
+  
+  <!-- データ表示 --->
+  <table>
+    <tr>
+      <th>ID</th>
+      <td id="id"><%=content.id %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+    <tr>
+      <th>NAME</th>
+      <td id="name"><%=content.name %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+    <tr>
+      <th>HEIGHT(cm)</th>
+      <td id="height"><%=content.height %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+    <tr>
+      <th>WEIGHT(kg)</th>
+      <td id="weight"><%=content.weight %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+    <tr>
+      <th>BMI</th>
+      <td id="bmi"><%=bmi %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+    <tr>
+      <th>STATUS</th>
+      <td id="status"><%=status %></td>  // ヘッドレステストに「id」属性を付与
+    </tr>
+  </table>
+  
+  <!-- ログアウト --->
+  <form class='logout' method="post" action="/logout">
+    <input type="submit" value="Logout" id="logout">  // ヘッドレステストに「id」属性を付与
+  </form>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (テスト用スクリプト)
+  $ vi test/test02.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Employee BMI Browsing headless test', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/', done));
+    
+    describe('Login ID8001', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8001');
+        browser.fill('#pass', 'PW4976');
+        browser.pressButton('#login', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('ID is ID8001', () => {
+        assert.equal(browser.text('#id'), 'ID8001');
+      });
+      it('NAME is Dallas', () => {
+        assert.equal(browser.text('#name'), 'Dallas');
+      });
+      it('HEIGHT is 175', () => {
+        assert.equal(browser.text('#height'), '175');
+      });
+      it('WEIGHT is 65', () => {
+        assert.equal(browser.text('#weight'), '65');
+      });
+      it('BMI is 21', () => {
+        assert.equal(browser.text('#bmi'), '21');
+      });
+      it('STATUS is Normal range', () => {
+        assert.equal(browser.text('#status'), 'Normal range');
+      });
+      after((done) => {
+        browser.pressButton('#logout', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "employee-bmi-browsing",
+    "version": "0.0.0",
+    "private": true,
+    "description": "Employee BMI Management, made by express and sqlite.",
+    "keyword": [
+      "express",
+      "sqlite",
+      "sequelize",
+      "mocha",
+      "chai",
+      "zombie"  // 追加
+    ],
+    "author": {
+      "name": "Makoto-Araki",
+      "email": "mj-araki@ivy.ocn.ne.jp"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/Makoto-Araki/employee-bmi-browsing.git"
+    },
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec",
+      "test02": "./node_modules/.bin/mocha test/test02.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "ejs": "~2.6.1",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "request": "^2.88.2",
+      "sequelize": "^6.21.3",
+      "sequelize-cli": "^6.4.1",
+      "sqlite3": "^5.0.11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (アプリ実行)
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (別端末でテスト実行)
+  $ npm run test02
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > employee-bmi-browsing@0.0.0 test02
+  > ./node_modules/.bin/mocha test/test02.js --reporter spec
+  
+  Employee BMI Browsing headless test
+    Login ID8001
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ ID is ID8001
+      ✔ NAME is Dallas
+      ✔ HEIGHT is 175
+      ✔ WEIGHT is 65
+      ✔ BMI is 21
+      ✔ STATUS is Normal range
+  
+  8 passing (450ms)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'Headless Testing'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X14]
+  [Github] 従業員の「BMI」の閲覧アプリ(14)
+  
+[内容]
+  資料として「readme.md」を作成
+  
+[確認]
+  $ cd $HOME/employee-bmi-browsing
+  $ vi README.md
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (使用した画像)
+  https://user-images.githubusercontent.com/85997616/184756496-63b88c06-25c3-4bd9-9ec9-d32839241161.png
+  https://user-images.githubusercontent.com/85997616/184756504-43efe6ec-1224-4af0-9939-09b0552301be.png
+  https://user-images.githubusercontent.com/85997616/184756510-306b5d92-68df-430b-915b-5ef48fa23ea4.png
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git add .
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git commit -m 'README is uploaded'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing
+  $ git push BMI master
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略) => アクセストークンが必要
   --------------------------------------------------
   
   以下の記録に続く

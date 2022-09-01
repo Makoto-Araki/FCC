@@ -1,89 +1,2228 @@
 ================================================================================
-[01] Set up a Template Engine
-[02] Use a Template Engine's Powers
-[03] Set up Passport
-[04] Serialization of a User Object
-[05] Implement the Serialization of a Passport User
-[06] Authentication Strategies
-[07] How to Use Passport Strategies
-[08] Create New Middleware
-[09] How to Put a Profile Together
-[10] Logging a User Out
-[11] Registration of New Users
-[12] Hashing Your Passwords
-[13] Clean Up Your Project with Modules
-[14] Implementation of Social Authentication
-[15] Implementation of Social Authentication II
-[16] Implementation of Social Authentication III
-[17] Set up the Environment
-[18] Communicate by Emitting
-[19] Handle a Disconnect
-[20] Authentication with Socket.IO
-[21] Announce New Users
-[22] Send and Display Chat Messages
+[X01] [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(01)
+[X02] [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(02)
+[X03] [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(03)
+//
+[001] Set up a Template Engine
+[002] Use a Template Engine's Powers
+[003] Set up Passport
+[004] Serialization of a User Object
+[005] Implement the Serialization of a Passport User
+[006] Authentication Strategies
+[007] How to Use Passport Strategies
+[008] Create New Middleware
+[009] How to Put a Profile Together
+[010] Logging a User Out
+[011] Registration of New Users
+[012] Hashing Your Passwords
+[013] Clean Up Your Project with Modules
+[014] Implementation of Social Authentication
+[015] Implementation of Social Authentication II
+[016] Implementation of Social Authentication III
+[017] Set up the Environment
+[018] Communicate by Emitting
+[019] Handle a Disconnect
+[020] Authentication with Socket.IO
+[021] Announce New Users
+[022] Send and Display Chat Messages
 ================================================================================
-[01]
+[X01]
+  [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(01)
+  
+[内容]
+  パスワード認証(01)
+    ログイン時に「TEST/TEST」でログイン可能、それ以外はログイン不可
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=pug pas01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ npm install express-session passport passport-local mocha chai zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi views/login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title #{P01}
+    body
+      form(action='/login' method='POST')
+        p #{P02}
+        input(type='text' id='user' name='username' placeholder='USER')  // デフォルトで「name=username」のデータ参照
+        input(type='text' id='pass' name='password' placeholder='PASS')  // デフォルトで「name=password」のデータ参照
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi public/stylesheets/login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi views/failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title #{P01}
+    body
+      form(action='/login' method='GET')
+        p #{P02}
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi public/stylesheets/failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi views/profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = username;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title #{P01}
+    body
+      form(action='/logout' method='POST')
+        p Welcome #{P02}
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi public/stylesheets/profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi app.js (見やすさ重視から不要なコメント削除・改行挿入も行った上で追加・修正を施している)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');           // 追加
+  var passport = require('passport');                 // 追加
+  var strategy = require('passport-local').Strategy;  // 追加
+  
+  var indexRouter = require('./routes/index');
+  var usersRouter = require('./routes/users');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use(session({                 // 追加 => セッション管理オプション
+    secret: 'keyboard cat',         // 追加 => 暗号キー
+    resave: false,                  // 追加 => ユーザー情報をクライアントのクッキーに保存
+    saveUninitialized: false,       // 追加 => 未初期化のユーザー情報をクライアントのクッキーに保存
+    cookie: { secure: false },      // 追加
+  }));                              // 追加
+  
+  passport.use(new strategy(        // 追加
+    (user, pass, done) => {         // 追加
+      if (user !== 'TEST') {        // 追加 => 画面(login.pug)上の要素(name = username)の値が「user」にセット
+        return done(null, false);   // 追加 => 認証失敗を「Passport」に通知
+      }                             // 追加
+      if (pass !== 'TEST') {        // 追加 => 画面(login.pug)上の要素(name = password)の値が「pass」にセット
+        return done(null, false);   // 追加 => 認証失敗を「Passport」に通知
+      }                             // 追加
+      return done(null, {           // 追加 => 認証成功を「Passport」に通知
+        username: user,             // 追加 => 次処理に渡すオブジェクト内に「user」の値をセット
+        password: pass              // 追加 => 次処理に渡すオブジェクト内に「pass」の値をセット
+      });                           // 追加
+    }                               // 追加
+  ));                               // 追加
+  
+  passport.serializeUser(           // 追加
+    (user, done) => {               // 追加
+      return done(null, user);      // 追加
+    }                               // 追加
+  );                                // 追加
+  
+  passport.deserializeUser(         // 追加
+    (user, done) => {               // 追加
+      return done(null, user);      // 追加
+    }                               // 追加
+  );                                // 追加
+  
+  app.use(passport.initialize());   // 追加
+  app.use(passport.session());      // 追加
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var passport = require('passport');
+  
+  const logined = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input username and password'
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/failure', (req, res, next) => {
+    var data = {
+      title: 'Failure',
+      message: 'Invalid username and password'
+    };
+    res.render('failure', data);
+  });
+  
+  router.post('/login',
+    passport.authenticate('local', {
+      failureRedirect: '/failure',  // 認証失敗 => リダイレクト「/failure」
+      successRedirect: '/profile'   // 認証成功 => リダイレクト「/profile」
+    })
+  );
+  
+  router.get('/profile', logined, (req, res, next) => {
+    var data = {
+      title: 'Profile',
+      username: 'TEST'
+    };
+    res.render('profile', data);
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.redirect('/login');
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Headless test starts', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/login', done));
+    
+    describe('Login TEST/TEST', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('Welcome TEST', () => {
+        assert.equal(browser.text('p'), 'Welcome TEST');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login ..../TEST', () => {
+      before((done) => {
+        browser.fill('#user', '');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login XXXX/TEST (user is invalid)', () => {
+      before((done) => {
+        browser.fill('#user', 'XXXX');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login TEST/....', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', '');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login TEST/1111', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', '1111');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pas01",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "passport": "^0.6.0",
+      "passport-local": "^1.0.0",
+      "pug": "2.0.0-beta11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas01 (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Headless test starts
+    Login TEST/TEST
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ Welcome TEST
+    Login ..../TEST
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login XXXX/TEST (user is invalid)
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login TEST/....
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login TEST/1111
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+  
+  11 passing (2s)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[X02]
+  [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(02)
+  
+[内容]
+  パスワード認証(02)
+    テンプレートの「name=username」を「name=name」に変更
+    テンプレートの「name=password」を「name=pass」に変更
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=pug pas02
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ npm install express-session passport passport-local mocha chai zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi views/login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title #{P01}
+    body
+      form(action='/login' method='POST')
+        p #{P02}
+        input(type='text' id='user' name='user' placeholder='USER')  //「name=user」に変更
+        input(type='text' id='pass' name='pass' placeholder='PASS')  //「name=pass」に変更
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi public/stylesheets/login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi views/failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title #{P01}
+    body
+      form(action='/login' method='GET')
+        p #{P02}
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi public/stylesheets/failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi views/profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = username;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title #{P01}
+    body
+      form(action='/logout' method='POST')
+        p Welcome #{P02}
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi public/stylesheets/profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');
+  var passport = require('passport');
+  var strategy = require('passport-local').Strategy;
+  
+  var indexRouter = require('./routes/index');
+  var usersRouter = require('./routes/users');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  }));
+  
+  passport.use(new strategy(
+    {                         // 追加
+      usernameField: 'user',  // 追加 => ここで「username」から「user」に変更を明示する
+      passwordField: 'pass'   // 追加 => ここで「password」から「pass」に変更を明示する
+    },                        // 追加
+    (user, pass, done) => {
+      if (user !== 'TEST') {
+        return done(null, false);
+      }
+      if (pass !== 'TEST') {
+        return done(null, false);
+      }
+      return done(null, {
+        username: user,
+        password: pass
+      });
+    }
+  ));
+  
+  passport.serializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  passport.deserializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var passport = require('passport');
+  
+  const logined = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input username and password'
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/failure', (req, res, next) => {
+    var data = {
+      title: 'Failure',
+      message: 'Invalid username and password'
+    };
+    res.render('failure', data);
+  });
+  
+  router.post('/login',
+    passport.authenticate('local', {
+      failureRedirect: '/failure',  // 認証失敗 => リダイレクト「/failure」
+      successRedirect: '/profile'   // 認証成功 => リダイレクト「/profile」
+    })
+  );
+  
+  router.get('/profile', logined, (req, res, next) => {
+    var data = {
+      title: 'Profile',
+      username: 'TEST'
+    };
+    res.render('profile', data);
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.redirect('/login');
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Headless test starts', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/login', done));
+    
+    describe('Login TEST/TEST', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('Welcome TEST', () => {
+        assert.equal(browser.text('p'), 'Welcome TEST');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login ..../TEST', () => {
+      before((done) => {
+        browser.fill('#user', '');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login XXXX/TEST (user is invalid)', () => {
+      before((done) => {
+        browser.fill('#user', 'XXXX');
+        browser.fill('#pass', 'TEST');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login TEST/....', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', '');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login TEST/1111', () => {
+      before((done) => {
+        browser.fill('#user', 'TEST');
+        browser.fill('#pass', '1111');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is failed, then title is Failure', () => {
+        assert.equal(browser.text('title'), 'Failure');
+      });
+      it('Invalid username and password', () => {
+        assert.equal(browser.text('p'), 'Invalid username and password');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pas02",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "passport": "^0.6.0",
+      "passport-local": "^1.0.0",
+      "pug": "2.0.0-beta11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02 (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Headless test starts
+    Login TEST/TEST
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ Welcome TEST
+    Login ..../TEST
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login XXXX/TEST (user is invalid)
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login TEST/....
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+    Login TEST/1111
+      ✔ Login is failed, then title is Failure
+      ✔ Invalid username and password
+  
+  11 passing (2s)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[X03]
+  [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(03)
+  
+[内容]
+  パスワード認証(03)
+    オブジェクト配列をデータベースとしてログイン機能を実装
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=pug pas03
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ npm install express-session passport passport-local mocha chai zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi views/login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title #{P01}
+    body
+      form(action='/login' method='POST')
+        p #{P02}
+        input(type='text' id='user' name='user' placeholder='USER')
+        input(type='text' id='pass' name='pass' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi views/failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title #{P01}
+    body
+      form(action='/login' method='GET')
+        p #{P02}
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi views/profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = username;
+  - const P03 = gender;    // 追加
+  - const P04 = height;    // 追加
+  - const P05 = weight;    // 追加
+  - const P06 = age;       // 追加
+  - const P07 = language;  // 追加
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title #{P01}
+    body
+      form(action='/logout' method='POST')
+        p Welcome #{P02}
+        p gender : #{P03}    // 追加
+        p height : #{P04}    // 追加
+        p weight : #{P05}    // 追加
+        p age : #{P06}       // 追加
+        p language : #{P07}  // 追加
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi database/database.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const DATABASE = [
+    {
+      name : 'Dallas',
+      pass : 'PW3198',
+      gender : 'male',
+      height : 175,
+      weight : 65,
+      age : 41,
+      language : 'English'
+    },
+    {
+      name : 'Kane',
+      pass : 'PW3199',
+      gender : 'male',
+      height : 170,
+      weight : 60,
+      age : 32,
+      language : 'English'
+    },
+  ];
+  
+  exports.DATABASE = DATABASE;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');
+  var passport = require('passport');
+  var strategy = require('passport-local').Strategy;
+  var database = require('./database/database').DATABASE;  // 追加
+  
+  var indexRouter = require('./routes/index');
+  var usersRouter = require('./routes/users');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  }));
+  
+  passport.use(new strategy(
+    {
+      usernameField: 'user',  // ここで「username」から「user」に変更を明示する
+      passwordField: 'pass'   // ここで「password」から「pass」に変更を明示する
+    },
+    (user, pass, done) => {
+      var OBJ = undefined;                                             // 修正
+      for (let i = 0; i < database.length; i++) {                      // 修正
+        if (database[i].name === user && database[i].pass === pass) {  // 修正
+          OBJ = database[i];                                           // 修正
+        }                                                              // 修正
+      }                                                                // 修正
+      if (OBJ === undefined) {                                         // 修正
+        return done(null, false);                                      // 修正
+      } else {                                                         // 修正
+        return done(null, OBJ);                                        // 修正
+      }                                                                // 修正
+    }
+  ));
+  
+  passport.serializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  passport.deserializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var passport = require('passport');
+  
+  const logined = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input username and password'
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/failure', (req, res, next) => {
+    var data = {
+      title: 'Failure',
+      message: 'Invalid username and password'
+    };
+    res.render('failure', data);
+  });
+  
+  router.post('/login',
+    passport.authenticate('local',
+    { failureRedirect: '/failure' }),
+    (req, res) => {                                   // 修正
+      res.render('profile', {                         // 修正
+        title: 'Profile',                             // 修正
+        username: req.session.passport.user.name,     // 修正
+        gender: req.session.passport.user.gender,     // 修正
+        height: req.session.passport.user.height,     // 修正
+        weight: req.session.passport.user.weight,     // 修正
+        age: req.session.passport.user.age,           // 修正
+        language: req.session.passport.user.language  // 修正
+      });                                             // 修正
+    }                                                 // 修正
+  );
+  
+  router.get('/profile', logined, (req, res, next) => {
+    var data = {
+      title: 'Profile',                             // 修正
+      username: req.session.passport.user.name,     // 修正
+      gender: req.session.passport.user.gender,     // 修正
+      height: req.session.passport.user.height,     // 修正
+      weight: req.session.passport.user.weight,     // 修正
+      age: req.session.passport.user.age,           // 修正
+      language: req.session.passport.user.language  // 修正
+    };
+    res.render('profile', data);
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.redirect('/login');
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Headless test starts', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/login', done));
+    
+    describe('Login Dallas', () => {
+      before((done) => {
+        browser.fill('#user', 'Dallas');
+        browser.fill('#pass', 'PW3198');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login Kane', () => {
+      before((done) => {
+        browser.fill('#user', 'Kane');
+        browser.fill('#pass', 'PW3199');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pas03",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "passport": "^0.6.0",
+      "passport-local": "^1.0.0",
+      "pug": "2.0.0-beta11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02 (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Headless test starts
+    Login Dallas
+      ✔ Login is successful
+      ✔ Title is Profile
+    Login Kane
+      ✔ Login is successful
+      ✔ Title is Profile
+  
+  4 passing (2s)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[X04]
+  [PUG + Passport] ミドルウェア「Passport」で認証ロジックを実装(04)
+  
+[内容]
+  パスワード認証(04)
+    データベースに「Sqlite」を使用してログイン機能を実装
+  
+[確認]
+  $ cd $HOME
+  $ node --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  v16.15.00 => 問題なし
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ sqlite3 --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  3.7.17 2013-05-20 00:56:22 118a3b35693b134d56ebd780123b7fd6f1497668
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ express --view=pug pas04
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04
+  $ npm install express-session passport passport-local sqlite3 sequelize sequelize-cli mocha chai zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (初期化)
+  $ npx sequelize-cli init
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (各環境の再定義)
+  $ vi config/config.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "development": {
+      "database": "db-dev",
+      "dialect": "sqlite",
+      "storage": "db-dev.sqlite3"
+    },
+    "test": {
+      "database": "db-test",
+      "dialect": "sqlite",
+      "storage": "db-test.sqlite3"
+    },
+    "production": {
+      "database": "db-live",
+      "dialect": "sqlite",
+      "storage": "db-live.sqlite3"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (モデル作成) => 見やすさのため改行等をしている
+  $ npx sequelize-cli model:generate --name User --attributes
+  >   name:string,
+  >   pass:string,
+  >   gender:string,
+  >   height:integer,
+  >   weight:integer,
+  >   age:integer,
+  >   language:string
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (マイグレーション実行)
+  $ npx sequelize-cli db:migrate --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (データベースファイル確認)
+  $ ls -l *.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  -rw-r--r--. 1 makoto makoto 20480  8月 12 18:44 db-dev.sqlite3
+  --------------------------------------------------
+  
+  $ cd $HOME/pas04 (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 内部設定
+  Users          // 新規作成
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema Users
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `Employees` (                 // テーブル名はモデル名に対して複数形の「s」が付与される模様
+    `id` INTEGER PRIMARY KEY AUTOINCREMENT,
+    `name` VARCHAR(255),
+    `pass` VARCHAR(255),
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (モデル修正) => 見やすさのため改行等をしている
+  $ vi models/employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  const { Model } = require('sequelize');
+  
+  module.exports = (sequelize, DataTypes) => {
+    class Employee extends Model {
+      static associate(models) {
+        define association here
+      }
+    }
+    Employee.init({
+      id: {                      // 追加
+        allowNull: false,        // 追加 => Not Null
+        autoIncrement: false,    // 追加
+        primaryKey: true,        // 追加 => Primary Key
+        type: DataTypes.STRING   // 追加
+      },
+      name: {                    // 修正
+        allowNull: false,        // 修正 => Not Null
+        type: DataTypes.STRING   // 修正
+      },
+      pass: {                    // 修正
+        allowNull: false,        // 修正 => Not Null
+        type: DataTypes.STRING   // 修正
+      },
+      height: {                  // 追加
+        allowNull: false,        // 追加 => Not Null
+        type: DataTypes.INTEGER  // 追加
+      },
+      weight: {                  // 追加
+        allowNull: false,        // 追加 => Not Null
+        type: DataTypes.INTEGER  // 追加
+      }
+    }, {
+      sequelize,
+      modelName: 'Employee',
+    });
+    return Employee;
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーション用ファイル修正) => 見やすさのため改行等をしている
+  $ vi migrations/20220812094359-create-employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  
+  module.exports = {
+    async up(queryInterface, Sequelize) {
+      await queryInterface.createTable('Employees', {
+        id: {
+          allowNull: false,        // 修正
+          primaryKey: true,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        name: {                    // 修正
+          allowNull: false,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        pass: {                    // 修正
+          allowNull: false,        // 修正
+          type: Sequelize.STRING   // 修正
+        },
+        height: {                  // 追加
+          allowNull: false,        // 追加
+          type: Sequelize.INTEGER  // 追加
+        },
+        weight: {                  // 追加
+          allowNull: false,        // 追加
+          type: Sequelize.INTEGER  // 追加
+        },
+        createdAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        },
+        updatedAt: {
+          allowNull: false,
+          type: Sequelize.DATE
+        }
+      });
+    },
+    async down(queryInterface, Sequelize) {
+      await queryInterface.dropTable('Employees');
+    }
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーションのロールバック)
+  $ npx sequelize-cli db:migrate:undo --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812094359-create-employee: reverting =======
+  == 20220812094359-create-employee: reverted (0.270s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 作成した「Employees」テーブルが無くなっている
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (マイグレーションの再実行)
+  $ npx sequelize-cli db:migrate --env development
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812094359-create-employee: migrating =======
+  == 20220812094359-create-employee: migrated (0.272s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > テーブル一覧
+  > .tables
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  SequelizeMeta  // 内部設定
+  Employees      // 再作成されている
+  --------------------------------------------------
+  
+  > テーブル確認
+  > .schema Employees
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CREATE TABLE `Employees` (
+    `id` VARCHAR(255) NOT NULL PRIMARY KEY,
+    `name` VARCHAR(255) NOT NULL,
+    `pass` VARCHAR(255) NOT NULL,
+    `height` INTEGER NOT NULL,
+    `weight` INTEGER NOT NULL,
+    `createdAt` DATETIME NOT NULL,
+    `updatedAt` DATETIME NOT NULL
+  );
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (スクリプト作成)
+  $ npx sequelize-cli seed:generate --name create-employee
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  seeders folder at "/home/makoto/employee-bmi-browsing/seeders" already exists.
+  New seed was created at /home/makoto/employee-bmi-browsing/seeders/20220812095221-create-employee.js .
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (スクリプト修正)
+  $ vi seeders/20220812095221-create-employee.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  'use strict';
+  
+  module.exports = {
+    async up (queryInterface, Sequelize) {
+      await queryInterface.bulkInsert('Employees', [
+        {
+          id: 'ID8001',
+          name: 'Dallas',  // 映画「エイリアン」から拝借
+          pass: 'PW3198',  // サンプルのため単純化
+          height: 175,     // 数値は適当
+          weight: 65,      // 数値は適当
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8002',
+          name: 'Kane',
+          pass: 'PW3199',
+          height: 170,
+          weight: 60,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8003',
+          name: 'Ripley',
+          pass: 'PW3200',
+          height: 165,
+          weight: 45,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8004',
+          name: 'Lambert',
+          pass: 'PW3201',
+          height: 160,
+          weight: 47,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8005',
+          name: 'Parker',
+          pass: 'PW3202',
+          height: 180,
+          weight: 78,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        },
+        {
+          id: 'ID8006',
+          name: 'Brett',
+          pass: 'PW3203',
+          height: 175,
+          weight: 62,
+          createdAt: new Date(),
+          updatedAt: new Date()
+        }
+      ], {});
+    },
+    async down (queryInterface, Sequelize) {
+      await queryInterface.bulkDelete('Employees', null, {});
+    }
+  };
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (シーディング実行)
+  $ npx sequelize-cli db:seed:all
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Loaded configuration file "config/config.json".
+  Using environment "development".
+  == 20220812095221-create-employee: migrating =======
+  == 20220812095221-create-employee: migrated (0.459s)
+  --------------------------------------------------
+  
+  $ cd $HOME/employee-bmi-browsing (データベース接続)
+  $ sqlite3 db-dev.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「>」に変更)
+  --------------------------------------------------
+  
+  > レコード一覧
+  > select * from Employees;
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ID8001 | Dallas  | PW3198 | 175 | 65 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8002 | Kane    | PW3199 | 170 | 60 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8003 | Ripley  | PW3200 | 165 | 45 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8004 | Lambert | PW3201 | 160 | 47 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8005 | Parker  | PW3202 | 180 | 78 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  ID8006 | Brett   | PW3203 | 175 | 62 | 2022-08-12 09:53:53.197 +00:00 | 2022-08-12 09:53:53.197 +00:00
+  --------------------------------------------------
+  
+  > シェルを抜ける
+  > .exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  //
+
+  $ cd $HOME/pas03
+  $ vi views/login.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='login.css')
+      title #{P01}
+    body
+      form(action='/login' method='POST')
+        p #{P02}
+        input(type='text' id='user' name='user' placeholder='USER')
+        input(type='text' id='pass' name='pass' placeholder='PASS')
+        input(type='submit' id='submit' value='Login')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/login.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi views/failure.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='failure.css')
+      title #{P01}
+    body
+      form(action='/login' method='GET')
+        p #{P02}
+        input(type='submit' id='submit' value='Return')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/failure.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi views/profile.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = username;
+  - const P03 = gender;    // 追加
+  - const P04 = height;    // 追加
+  - const P05 = weight;    // 追加
+  - const P06 = age;       // 追加
+  - const P07 = language;  // 追加
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='profile.css')
+      title #{P01}
+    body
+      form(action='/logout' method='POST')
+        p Welcome #{P02}
+        p gender : #{P03}    // 追加
+        p height : #{P04}    // 追加
+        p weight : #{P05}    // 追加
+        p age : #{P06}       // 追加
+        p language : #{P07}  // 追加
+        input(type='submit' id='submit' value='Logout')
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi public/stylesheets/profile.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (今回はCSSを使用しない)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi database/database.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const DATABASE = [
+    {
+      name : 'Dallas',
+      pass : 'PW3198',
+      gender : 'male',
+      height : 175,
+      weight : 65,
+      age : 41,
+      language : 'English'
+    },
+    {
+      name : 'Kane',
+      pass : 'PW3199',
+      gender : 'male',
+      height : 170,
+      weight : 60,
+      age : 32,
+      language : 'English'
+    },
+  ];
+  
+  exports.DATABASE = DATABASE;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');
+  var passport = require('passport');
+  var strategy = require('passport-local').Strategy;
+  var database = require('./database/database').DATABASE;  // 追加
+  
+  var indexRouter = require('./routes/index');
+  var usersRouter = require('./routes/users');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  
+  app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false },
+  }));
+  
+  passport.use(new strategy(
+    {
+      usernameField: 'user',  // ここで「username」から「user」に変更を明示する
+      passwordField: 'pass'   // ここで「password」から「pass」に変更を明示する
+    },
+    (user, pass, done) => {
+      var OBJ = undefined;                                             // 修正
+      for (let i = 0; i < database.length; i++) {                      // 修正
+        if (database[i].name === user && database[i].pass === pass) {  // 修正
+          OBJ = database[i];                                           // 修正
+        }                                                              // 修正
+      }                                                                // 修正
+      if (OBJ === undefined) {                                         // 修正
+        return done(null, false);                                      // 修正
+      } else {                                                         // 修正
+        return done(null, OBJ);                                        // 修正
+      }                                                                // 修正
+    }
+  ));
+  
+  passport.serializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  passport.deserializeUser(
+    (user, done) => {
+      return done(null, user);
+    }
+  );
+  
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var passport = require('passport');
+  
+  const logined = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      return next();
+    } else {
+      res.redirect('/login');
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input username and password'
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/failure', (req, res, next) => {
+    var data = {
+      title: 'Failure',
+      message: 'Invalid username and password'
+    };
+    res.render('failure', data);
+  });
+  
+  router.post('/login',
+    passport.authenticate('local',
+    { failureRedirect: '/failure' }),
+    (req, res) => {                                   // 修正
+      res.render('profile', {                         // 修正
+        title: 'Profile',                             // 修正
+        username: req.session.passport.user.name,     // 修正
+        gender: req.session.passport.user.gender,     // 修正
+        height: req.session.passport.user.height,     // 修正
+        weight: req.session.passport.user.weight,     // 修正
+        age: req.session.passport.user.age,           // 修正
+        language: req.session.passport.user.language  // 修正
+      });                                             // 修正
+    }                                                 // 修正
+  );
+  
+  router.get('/profile', logined, (req, res, next) => {
+    var data = {
+      title: 'Profile',                             // 修正
+      username: req.session.passport.user.name,     // 修正
+      gender: req.session.passport.user.gender,     // 修正
+      height: req.session.passport.user.height,     // 修正
+      weight: req.session.passport.user.weight,     // 修正
+      age: req.session.passport.user.age,           // 修正
+      language: req.session.passport.user.language  // 修正
+    };
+    res.render('profile', data);
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.logout((err) => {
+      if (err) return next(err);
+      res.redirect('/login');
+    });
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Headless test starts', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/login', done));
+    
+    describe('Login Dallas', () => {
+      before((done) => {
+        browser.fill('#user', 'Dallas');
+        browser.fill('#pass', 'PW3198');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+    
+    describe('Login Kane', () => {
+      before((done) => {
+        browser.fill('#user', 'Kane');
+        browser.fill('#pass', 'PW3199');
+        browser.pressButton('#submit', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      after((done) => {
+        browser.pressButton('#submit', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pas03",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "passport": "^0.6.0",
+      "passport-local": "^1.0.0",
+      "pug": "2.0.0-beta11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pas03
+  $ npm start
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pas02 (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Headless test starts
+    Login Dallas
+      ✔ Login is successful
+      ✔ Title is Profile
+    Login Kane
+      ✔ Login is successful
+      ✔ Title is Profile
+  
+  4 passing (2s)
+  --------------------------------------------------
+  
+  以下の確認に続く
+  
+================================================================================
+[001]
   Set up a Template Engine
   
 [内容]
   テンプレートエンジン「PUG」の使用
+    別ファイル「web32.txt」の「X11」を「PUG」テンプレートで書き直す
   
-  ## 該当コード ##
-  
-  // テンプレートエンジン「PUG」の使用
-  app.set('view engine', 'pug');
+  注意事項
+  ・データベースをオブジェクト配列で代用
+  ・計算結果(BMI)や判定結果(status)の通知は行わない
   
 [確認]
   $ cd $HOME
-  $ mkdir -p pug01/views/pug
+  $ node --version
   
   コマンドの実行結果
   --------------------------------------------------
-  (省略) -> テンプレートファイルのデフォルト位置
+  v16.15.00 => 問題なし
   --------------------------------------------------
   
   $ cd $HOME
-  $ mkdir -p pug01/public
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> スタイルシート(CSS)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p pug01/app
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> スクリプト(JavaScript)
-  --------------------------------------------------
-  
-  $ cd $HOME/pug01
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ファイル「package.json」が作成される
-  --------------------------------------------------
-  
-  $ cd $HOME/pug01
-  $ npm install express pug --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
-  --------------------------------------------------
-  
-  $ cd $HOME/pug01
-  $ vi package.json
+  $ express --view=pug pug01
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
-  $ cd $HOME/pug01/views/pug
-  $ vi index.pug
+  $ cd $HOME/pug01
+  $ npm install
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ npm install express-session mocha chai zombie --save
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi views/login.pug
   
   コマンドの実行結果
   --------------------------------------------------
@@ -91,297 +2230,631 @@
     head
       meta(charset='utf-8')
       meta(name='viewport', content='width=device-width, initial-scale=1')
-      link(rel='stylesheet', href='style.css')  // スタイルシート適用
-      title PUG01                               // タイトルも変数指定可能
+      link(rel='stylesheet', href='stylesheets/login.css')
+      title #{title}
     body
-      p #{P01}      // 要素 #{パラメータ名}
-      p #{P02}      // 要素 #{パラメータ名}
-      p#id1 #{P03}  // 要素(ID) #{パラメータ名}
-      p#id2 #{P04}  // 要素(ID) #{パラメータ名}
-      p.cl1 #{P05}  // 要素(クラス) #{パラメータ名}
-      p.cl1 #{P06}  // 要素(クラス) #{パラメータ名}
-      hr
-      p=P07         // 要素=パラメータ名
-      p=P08         // 要素=パラメータ名
-      p#id3=P09     // 要素(ID)=パラメータ名
-      p#id4=P10     // 要素(ID)=パラメータ名
-      p.cl1=P11     // 要素(クラス)=パラメータ名
-      p.cl1=P12     // 要素(クラス)=パラメータ名
-  --------------------------------------------------
-  
-  $ cd $HOME/pug01/public
-  $ vi style.css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 今回はCSSを使用しない
-  --------------------------------------------------
-  
-  $ cd $HOME/pug01/app
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  const express = require('express');
-  
-  // インスタンス生成
-  const app = express();
-  
-  // ディレクトリ「public」配下の静的ファイル使用
-  app.use(express.static('public'));
-  
-  // テンプレートエンジン「PUG」の使用
-  app.set('view engine', 'pug');
-  
-  // リクエストハンドラ
-  app.get('/', (req, res) => {
-    res.render('../views/pug/index', {
-      P01: 'A-01',
-      P02: 'A-02',
-      P03: 'A-03',
-      P04: 'A-04',
-      P05: 'A-05',
-      P06: 'A-06',
-      P07: 'A-07',
-      P08: 'A-08',
-      P09: 'A-09',
-      P10: 'A-10',
-      P11: 'A-11',
-      P12: 'A-12'
-    });
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
+      //- System Message
+      div.msg
+        p #{message}
+      
+      //- Input Form
+      form.login(method="post", action="/login")
+        label(for="id") ID
+          input(type="text", id="id", name="id")
+        label(for="pass") PASS
+          input(type="text", id="pass", name="pass")
+        input#login(type="submit", value="Login")
   --------------------------------------------------
   
   $ cd $HOME/pug01
-  $ node app/server.js
+  $ vi public/stylesheets/login.css
   
   コマンドの実行結果
   --------------------------------------------------
-  Listening on port 3000
+  .msg {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 60%;
+  }
   
-  ■ <- 完了後に「Ctrl + C」で停止
+  .msg p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  .login {
+    padding: 8px;
+    margin: 15px auto;
+    color: Black;
+    background-color: White;
+    border: 2px solid Black;
+    width: 60%;
+  }
+  
+  .login label {
+    display: block;
+    padding: 15px 15px;
+    margin: 10px 10px -5px -5px;
+    color: Black;
+    font-size: 25px;
+  }
+  
+  .login input[type='text'] {
+    display: block;
+    padding: 15px;
+    margin: 5px 10px 10px 5px;
+    color: Crimson;
+    font-size: 20px;
+    width: 90%;
+  }
+  
+  .login input[type='submit'] {
+    padding: 10px;
+    margin: 10px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
   --------------------------------------------------
   
-  $ cd $HOME/pug01 <- 別の端末から実行
-  $ curl http://localhost:3000/
+  $ cd $HOME/pug01
+  $ vi views/index.pug
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  - const P01 = title;
+  - const P02 = message;
+  - const P03 = content;
+  
+  html
+    head
+      meta(charset='utf-8')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      link(rel='stylesheet', href='stylesheets/index.css')
+      title #{P01}
+    body
+      //- System Message
+      div.msg
+        p #{P02}
+      
+      //- Table shows Employee Data
+      table
+        tr
+          th ID
+          td#id #{P03.id}
+        tr
+          th NAME
+          td#name #{P03.name}
+        tr
+          th HEIGHT(cm)
+          td#height #{P03.height}
+        tr
+          th WEIGHT(kg)
+          td#weight #{P03.weight}
+      
+      //- Logout Button
+      form.logout(method="post", action="/logout")
+        input#logout(type="submit", value="Logout")
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi public/stylesheets/index.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  .msg {
+    padding: 10px;
+    margin: 15px auto;
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 60%;
+  }
+  
+  .msg p {
+    padding: 10px 15px;
+    margin: 10px 10px;
+    font-size: 30px;
+    text-align: center;
+  }
+  
+  table {
+    padding: 0px;
+    margin: 15px auto;
+    width: 62%;
+  }
+  
+  table th, td {
+    padding: 10px;
+    margin: 0px;
+    text-align: center;
+    font-size: 25px;
+    border: 1px solid Black;
+  }
+  
+  table th {
+    color: White;
+    background-color: CornFlowerBlue;
+    width: 50%;
+  }
+  
+  table td {
+    color: Black;
+    background-color: White;
+    width: 50%;
+  }
+  
+  .logout {
+    padding: 1px;
+    margin: 1px auto;
+    width: 62%;
+  }
+  
+  .logout input[type='submit'] {
+    padding: 10px;
+    margin: 1px;
+    border: 3px solid Black;
+    font-size: 25px;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi database/database.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const DATABASE = [
+    {
+      id : 'ID8001',
+      name : 'Dallas',
+      pass : 'PW3198',
+      height : 175,
+      weight : 65
+    },
+    {
+      id : 'ID8002',
+      name : 'Kane',
+      pass : 'PW3199',
+      height : 170,
+      weight : 60
+    },
+    {
+      id : 'ID8003',
+      name : 'Ripley',
+      pass : 'PW3200',
+      height : 165,
+      weight : 45,
+    },
+    {
+      id : 'ID8004',
+      name : 'Lambert',
+      pass : 'PW3201',
+      height : 160,
+      weight : 47,
+    },
+    {
+      id : 'ID8005',
+      name : 'Parker',
+      pass : 'PW3202',
+      height : 180,
+      weight : 78,
+    },
+    {
+      id : 'ID8006',
+      name : 'Brett',
+      pass : 'PW3203',
+      height : 175,
+      weight : 62,
+    }
+  ];
+  
+  exports.DATABASE = DATABASE;  // 定数「DATABASE」を外部に「DATABASE」という名前でエクスポート
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi routes/index.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var express = require('express');
+  var router = express.Router();
+  var database = require('../database/database').DATABASE;
+  
+  function select(ID, PASS) {
+    for (let i = 0; i < database.length; i++) {
+      if (database[i].id === ID && database[i].pass === PASS) {
+        return database[i];
+      }
+    }
+    return null;
+  }
+  
+  function logined(req, res) {
+    if (req.session.login !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+  
+  router.get('/login', (req, res, next) => {
+    var data = {
+      title: 'Login',
+      message: 'Input your id and pass',
+    };
+    res.render('login', data);
+  });
+  
+  router.get('/', (req, res, next) => {
+    if (logined(req, res) === false) {
+      var data = {
+        title: 'Login',
+        message: 'Input your id and pass',
+      };
+      res.render('login', data);
+    } else {
+      var data = {
+        title: 'Profile',
+        message: 'Welcome to your profile',
+        content: req.session.login
+      };
+      res.render('index', data);
+    }
+  });
+  
+  router.post('/login', (req, res, next) => {
+    var OBJ = select(req.body.id, req.body.pass);
+    if (OBJ === null) {
+      var data = {
+        title: 'Login',
+        message: 'Your id and pass was invalid',
+      };
+      res.render('login', data);
+    } else {
+      req.session.login = OBJ;
+      res.redirect('/');
+    }
+  });
+  
+  router.post('/logout', (req, res, next) => {
+    req.session.login = undefined;
+    res.redirect('/');
+  });
+  
+  module.exports = router;
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi app.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  var createError = require('http-errors');
+  var express = require('express');
+  var path = require('path');
+  var cookieParser = require('cookie-parser');
+  var logger = require('morgan');
+  var session = require('express-session');
+  
+  var indexRouter = require('./routes/index');
+  var usersRouter = require('./routes/users');
+  var app = express();
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'pug');
+  
+  var session_option = {
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 5 * 60 * 1000 },
+  };
+  
+  app.use(logger('dev'));
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+  app.use(cookieParser());
+  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(session(session_option));
+  app.use('/', indexRouter);
+  app.use('/users', usersRouter);
+  
+  app.use(function(req, res, next) {
+    next(createError(404));
+  });
+  
+  app.use(function(err, req, res, next) {
+    res.locals.message = err.message;
+    res.locals.error = req.app.get('env') === 'development' ? err : {};
+    res.status(err.status || 500);
+    res.render('error');
+  });
+  
+  module.exports = app;
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi test/test01.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  const chai = require('chai');
+  const expect = chai.expect;
+  const assert = chai.assert;
+  const Browser = require('zombie');
+  
+  Browser.localhost('localhost', 3000);
+  
+  describe('Employee BMI Browsing headless test', () => {
+    const browser = new Browser();
+    before((done) => browser.visit('/', done));
+    
+    describe('Login ID8001', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8001');
+        browser.fill('#pass', 'PW3198');
+        browser.pressButton('#login', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('ID is ID8001', () => {
+        assert.equal(browser.text('#id'), 'ID8001');
+      });
+      it('NAME is Dallas', () => {
+        assert.equal(browser.text('#name'), 'Dallas');
+      });
+      it('HEIGHT is 175', () => {
+        assert.equal(browser.text('#height'), '175');
+      });
+      it('WEIGHT is 65', () => {
+        assert.equal(browser.text('#weight'), '65');
+      });
+      after((done) => {
+        browser.pressButton('#logout', done);
+      });
+    });
+    
+    describe('Login ID8002', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8002');
+        browser.fill('#pass', 'PW3199');
+        browser.pressButton('#login', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('ID is ID8002', () => {
+        assert.equal(browser.text('#id'), 'ID8002');
+      });
+      it('NAME is Dallas', () => {
+        assert.equal(browser.text('#name'), 'Kane');
+      });
+      it('HEIGHT is 175', () => {
+        assert.equal(browser.text('#height'), '170');
+      });
+      it('WEIGHT is 65', () => {
+        assert.equal(browser.text('#weight'), '60');
+      });
+      after((done) => {
+        browser.pressButton('#logout', done);
+      });
+    });
+    
+    describe('Login ...... (id is blank)', () => {
+      before((done) => {
+        browser.fill('#id', '');
+        browser.fill('#pass', 'PW3199');
+        browser.pressButton('#login', done);
+      });
+      it('Login is failed, then title is still Login', () => {
+        assert.equal(browser.text('title'), 'Login');
+      });
+    });
+    
+    describe('Login XXXXXX (id is invalid)', () => {
+      before((done) => {
+        browser.fill('#id', 'XXXXXX');
+        browser.fill('#pass', 'PW3199');
+        browser.pressButton('#login', done);
+      });
+      it('Login is failed, then title is still Login', () => {
+        assert.equal(browser.text('title'), 'Login');
+      });
+    });
+    
+    describe('Login ID8003 (pass is invalid)', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8003');
+        browser.fill('#pass', 'PW3999');
+        browser.pressButton('#login', done);
+      });
+      it('Login is failed, then title is still Login', () => {
+        assert.equal(browser.text('title'), 'Login');
+      });
+    });
+    
+    describe('Login ID8003 (pass is blank)', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8003');
+        browser.fill('#pass', '');
+        browser.pressButton('#login', done);
+      });
+      it('Login is failed, then title is still Login', () => {
+        assert.equal(browser.text('title'), 'Login');
+      });
+    });
+    
+    describe('Login ID8003', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8003');
+        browser.fill('#pass', 'PW3200');
+        browser.pressButton('#login', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('ID is ID8003', () => {
+        assert.equal(browser.text('#id'), 'ID8003');
+      });
+      it('NAME is Ripley', () => {
+        assert.equal(browser.text('#name'), 'Ripley');
+      });
+      it('HEIGHT is 165', () => {
+        assert.equal(browser.text('#height'), '165');
+      });
+      it('WEIGHT is 45', () => {
+        assert.equal(browser.text('#weight'), '45');
+      });
+      after((done) => {
+        browser.pressButton('#logout', done);
+      });
+    });
+    
+    describe('Login ID8004', () => {
+      before((done) => {
+        browser.fill('#id', 'ID8004');
+        browser.fill('#pass', 'PW3201');
+        browser.pressButton('#login', done);
+      });
+      it('Login is successful', () => {
+        browser.assert.success();
+      });
+      it('Title is Profile', () => {
+        assert.equal(browser.text('title'), 'Profile');
+      });
+      it('ID is ID8004', () => {
+        assert.equal(browser.text('#id'), 'ID8004');
+      });
+      it('NAME is Lambert', () => {
+        assert.equal(browser.text('#name'), 'Lambert');
+      });
+      it('HEIGHT is 160', () => {
+        assert.equal(browser.text('#height'), '160');
+      });
+      it('WEIGHT is 47', () => {
+        assert.equal(browser.text('#weight'), '47');
+      });
+      after((done) => {
+        browser.pressButton('#logout', done);
+      });
+    });
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ vi package.json
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  {
+    "name": "pug01",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+      "start": "node ./bin/www",
+      "test01": "./node_modules/.bin/mocha test/test01.js --reporter spec"  // 追加
+    },
+    "dependencies": {
+      "chai": "^4.3.6",
+      "cookie-parser": "~1.4.4",
+      "debug": "~2.6.9",
+      "express": "~4.16.1",
+      "express-session": "^1.17.3",
+      "http-errors": "~1.6.3",
+      "mocha": "^10.0.0",
+      "morgan": "~1.9.1",
+      "pug": "2.0.0-beta11",
+      "zombie": "^6.1.4"
+    }
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/pug01
+  $ npm start
   
   コマンドの実行結果
   --------------------------------------------------
   (省略)
   --------------------------------------------------
   
+  $ cd $HOME/pug01 (別端末でテスト実行)
+  $ npm run test01
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  > pug01@0.0.0 test01
+  > ./node_modules/.bin/mocha test/test01.js --reporter spec
+  
+  Employee BMI Browsing headless test
+    Login ID8001
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ ID is ID8001
+      ✔ NAME is Dallas
+      ✔ HEIGHT is 175
+      ✔ WEIGHT is 65
+    Login ID8002
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ ID is ID8002
+      ✔ NAME is Dallas
+      ✔ HEIGHT is 175
+      ✔ WEIGHT is 65
+    Login ...... (id is blank)
+      ✔ Login is failed, then title is still Login
+    Login XXXXXX (id is invalid)
+      ✔ Login is failed, then title is still Login
+    Login ID8003 (pass is invalid)
+      ✔ Login is failed, then title is still Login
+    Login ID8003 (pass is blank)
+      ✔ Login is failed, then title is still Login
+    Login ID8003
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ ID is ID8003
+      ✔ NAME is Ripley
+      ✔ HEIGHT is 165
+      ✔ WEIGHT is 45
+    Login ID8004
+      ✔ Login is successful
+      ✔ Title is Profile
+      ✔ ID is ID8004
+      ✔ NAME is Lambert
+      ✔ HEIGHT is 160
+      ✔ WEIGHT is 47
+  
+  28 passing (2s)
+  --------------------------------------------------
+  
   以下の確認に続く
   
 ================================================================================
-[02]
+[002]
   Use a Template Engine's Powers
   
 [内容]
-  テンプレートにパラメータ付与
-  
-  ## 該当コード ##
-  
-  // オブジェクト定義
-  const OBJ1 = { arr: ['00', '01', '02'] };
-  const OBJ2 = { arr: ['03', '04', '05'] };
-  const OBJ3 = { arr: ['06', '07', '08'] };
-  
-  // テンプレートにパラメータ付与
-  res.render('../views/pug/index', {
-    P01: OBJ1,
-    P02: OBJ2,
-    P03: OBJ3
-  });
+  テンプレート「PUG」にパラメータ付与
   
 [確認]
-  $ cd $HOME
-  $ mkdir -p pug02/views/pug
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> テンプレートファイルのデフォルト位置
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p pug02/public
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> スタイルシート(CSS)
-  --------------------------------------------------
-  
-  $ cd $HOME
-  $ mkdir -p pug02/app
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> スクリプト(JavaScript)
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02
-  $ npm init
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ファイル「package.json」が作成される
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02
-  $ npm install express pug --save
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> ディレクトリ「node_modules」内にインストール、ファイル「package.json」に依存関係が記述される
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02
-  $ vi package.json
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02/views/pug
-  $ vi index.pug
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  - const CNT1 = parseInt(P01.arr.length);
-  - const CNT2 = parseInt(P02.arr.length);
-  - const CNT3 = parseInt(P03.arr.length);
-  - let m = 0;
-  
-  html
-    head
-      meta(charset='utf-8')
-      meta(name='viewport', content='width=device-width, initial-scale=1')
-      link(rel='stylesheet', href='style.css')
-      title PUG02
-    body
-      - for (let i = 0; i < CNT1; i++)
-        p #{P01.arr[i]}
-      hr
-      each val, idx in P02.arr
-        p #{val}
-      hr
-      while (m < CNT3)
-        p #{P03.arr[m++]}
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02/public
-  $ vi style.css
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略) -> 今回はCSSを使用しない
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02/app
-  $ vi server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  // モジュールのインポート
-  let express = require('express');
-  
-  // インスタンス生成
-  let app = express();
-  
-  // ディレクトリ「public」配下の静的ファイル使用
-  app.use(express.static('public'));
-  
-  // テンプレートエンジン「PUG」の使用
-  app.set('view engine', 'pug');
-  
-  // GET - /
-  app.get('/', (req, res) => {
-    
-    // オブジェクト定義
-    const OBJ1 = { arr: ['00', '01', '02'] };
-    const OBJ2 = { arr: ['03', '04', '05'] };
-    const OBJ3 = { arr: ['06', '07', '08'] };
-    
-    // テンプレートにパラメータ付与
-    res.render('../views/pug/index', {
-      P01: OBJ1,
-      P02: OBJ2,
-      P03: OBJ3
-    });
-    
-  });
-  
-  // アプリケーション起動
-  app.listen(3000, () => console.log('Listening on port 3000'));
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02
-  $ node app/server.js
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Listening on port 3000
-  
-  ■ <- 完了後に「Ctrl + C」で停止
-  --------------------------------------------------
-  
-  $ cd $HOME/pug02 <- 別の端末から実行
-  $ curl http://localhost:3000/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (省略)
-  --------------------------------------------------
-  
-  以下の確認に続く
+  上記「01」を参照
   
 ================================================================================
-[03]
+[003]
   Set up Passport
   
 [内容]
-  パスワード認証
-    クライアント上で「cookie」として管理されているセッション情報をサーバー上にも保存・使用する
-  
-  ## 該当コード(03) ##
-  
-  // インスタンス生成
-  const passport = require('passport');
-  const session = require('express-session');
-  
-  // セッション管理(基本設定)
-  app.use(session({
-    secret: process.env.SESSION_SECRET,
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false }
-  }));
-  
-  // セッション管理の開始
-  app.use(passport.initialize());
-  app.use(passport.session());
-  
-  ## 該当コード(04) ##
-  
-  // インスタンス生成
-  const passport = require('passport');
-  const session = require('express-session');
-  
-  // セッション管理(基本設定)
-  app.use(session({
-    secret: 'AAABBBCCC',
-    resave: true,
-    saveUninitialized: true,
-    cookie: { secure: false }
-  }));
-  
-  // セッション管理の開始
-  app.use(passport.initialize());
-  app.use(passport.session());
+  ログイン機能を認証ミドルウェア「Passport」で実装する
   
 [確認]
   $ cd $HOME
@@ -662,7 +3135,7 @@
   以下の確認に続く
   
 ================================================================================
-[04]
+[004]
   Serialization of a User Object
   
 [内容]

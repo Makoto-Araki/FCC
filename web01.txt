@@ -1,34 +1,272 @@
 ================================================================================
-[01] Say Hello to HTML Elements
-[02] Headline with the h2 Element
-[03] Inform with the Paragraph Element
-[04] Fill in the Blank with Placeholder Text
-[05] Uncomment HTML
-[06] Comment out HTML
-[07] Delete HTML Elements
-[08] Introduction to HTML5 Elements
-[09] Add Images to Your Website
-[10] Link to External Pages with Anchor Elements
-[11] Link to Internal Sections of a Page with Anchor Elements
-[12] Nest an Anchor Element within a Paragraph
-[13] Make Dead Links Using the Hash Symbol
-[14] Turn an Image into a Link
-[15] Create a Bulleted Unordered List
-[16] Create an Ordered List
-[17] Create a Text Field
-[18] Add Placeholder Text to a Text Field
-[19] Create a Form Element
-[20] Add a Submit Button to a Form
-[21] Use HTML5 to Require a Field
-[22] Create a Set of Radio Buttons
-[23] Create a Set of Checkboxes
-[24] Use the value attribute with Radio Buttons Checkboxes
-[25] Check Radio Buttons and Checkboxes by Default
-[26] Nest Many Elements within a Single div Element
-[27] Declare the Doctype of an HTML Document
-[28] Define the Head and Body of an HTML Document
+[X01] [Podman] コンテナで開発(1)
+[X02] [Podman] コンテナで開発(2)
+[X03] [Podman] コンテナで開発(3)
+[001] Say Hello to HTML Elements
+[002] Headline with the h2 Element
+[003] Inform with the Paragraph Element
+[004] Fill in the Blank with Placeholder Text
+[005] Uncomment HTML
+[006] Comment out HTML
+[007] Delete HTML Elements
+[008] Introduction to HTML5 Elements
+[009] Add Images to Your Website
+[010] Link to External Pages with Anchor Elements
+[011] Link to Internal Sections of a Page with Anchor Elements
+[012] Nest an Anchor Element within a Paragraph
+[013] Make Dead Links Using the Hash Symbol
+[014] Turn an Image into a Link
+[015] Create a Bulleted Unordered List
+[016] Create an Ordered List
+[017] Create a Text Field
+[018] Add Placeholder Text to a Text Field
+[019] Create a Form Element
+[020] Add a Submit Button to a Form
+[021] Use HTML5 to Require a Field
+[022] Create a Set of Radio Buttons
+[023] Create a Set of Checkboxes
+[024] Use the value attribute with Radio Buttons Checkboxes
+[025] Check Radio Buttons and Checkboxes by Default
+[026] Nest Many Elements within a Single div Element
+[027] Declare the Doctype of an HTML Document
+[028] Define the Head and Body of an HTML Document
 ================================================================================
-[01]
+[X01]
+  [Podman] コンテナで開発(1)
+  
+[内容]
+  コンテナエンジン「Podman」を動作確認
+  
+[確認]
+  $ cd $HOME
+  $ podman --version
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  podman version 4.2.0
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ podman run hello-world
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME
+  $ podman ps -a
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                        COMMAND               CREATED        STATUS                   ...
+  be40dda70d6a  quay.io/podman/hello:latest  /usr/local/bin/po...  2 minutes ago  Exited (0) 2 minutes ago ...
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X02]
+  [Podman] コンテナで開発(2)
+  
+[内容]
+  以下の手順で確認を行う
+    コンテナイメージの検索
+    コンテナイメージの取得
+    コンテナの起動
+    コンテンツ確認
+    コンテナのログ確認
+    コンテナの停止
+  
+[確認]
+  $ cd $HOME
+  $ podman search nginx --lmit 1 (各レジストリからの検索結果を1件に制限)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  NAME                                       DESCRIPTION
+  registry.access.redhat.com/ubi8/nginx-120  Platform for running nginx 1.20 or building...
+  registry.redhat.io/rhel8/nginx-114         Nginx is a web server and a reverse proxy se...
+  docker.io/library/nginx                    Official build of Nginx.
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナイメージの検索)
+  $ podman pull nginx:alpine 
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (docker.io/library/nginx:alpineを選択)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナイメージの確認)
+  $ podman images
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  REPOSITORY               TAG         IMAGE ID      CREATED       SIZE
+  quay.io/podman/hello     latest      e29559e375de  15 hours ago  82.3 kB
+  docker.io/library/nginx  alpine      8e75cbc5b25c  35 hours ago  42.8 MB
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの起動)
+  $ podman run -it --rm -d -p 8080:80 --name web nginx:alpine
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  77144dc1f80ea3573e85fef15c2286704c78dd6d13714742163c9f7fd3aae2e9
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの確認)
+  $ podman ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                          ... CREATED         STATUS             PORTS                 NAMES
+  77144dc1f80e  docker.io/library/nginx:alpine ... 35 seconds ago  Up 35 seconds ago  0.0.0.0:8080->80/tcp  web
+  --------------------------------------------------
+  
+  $ firefox (コンテンツの確認)
+  $ http://localhost:8080
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ウェルカムページ表示)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナのログ)
+  $ podman logs --tail 10 web
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  2023/03/31 09:43:18 [notice] 1#1: OS: Linux 4.18.0-425.13.1.el8_7.x86_64
+  2023/03/31 09:43:18 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 262144:262144
+  2023/03/31 09:43:18 [notice] 1#1: start worker processes
+  2023/03/31 09:43:18 [notice] 1#1: start worker process 31
+  2023/03/31 09:43:18 [notice] 1#1: start worker process 32
+  2023/03/31 09:43:18 [notice] 1#1: start worker process 33
+  
+  10.0.2.100 - - [31/Mar/2023:09:47:53 +0000] "GET / HTTP/1.1" 200 615 "-" ...
+  2023/03/31 09:47:53 [error] 30#30: *1 open() "/usr/share/nginx/html/favicon.ico" failed ...
+  10.0.2.100 - - [31/Mar/2023:09:47:53 +0000] "GET /favicon.ico HTTP/1.1" 404 153 ...
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの停止)
+  $ podman stop web
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  web
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの確認)
+  $ podman ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X03]
+  [Podman] コンテナで開発(3)
+  
+[内容]
+  以下の手順で確認を行う
+    コンテンツ作成
+    コンテナの起動
+    コンテンツ確認
+    コンテナの停止
+  
+[確認]
+  $ cd $HOME
+  $ mkdir data
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテンツ作成)
+  $ vi index.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title>Sample</title>
+  </head>
+  <body>
+  
+  <!-- HTML --->
+  <h1>Hello World</h1>
+  
+  <!-- CSS --->
+  <style></style>
+  
+  <!-- JS --->
+  <script></script>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの起動)
+  $ podman run -it --rm -d -p 8080:80 --name web -v ~/data:/usr/share/nginx/html nginx:alpine
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  19c54ac6addd33d7219c15c00605263af43a087d68335da43b2a3708d237c82f
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの確認)
+  $ podman ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                          ... CREATED         STATUS             PORTS                 NAMES
+  19c54ac6addd  docker.io/library/nginx:alpine ... 35 seconds ago  Up 35 seconds ago  0.0.0.0:8080->80/tcp  web
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux無効化)
+  $ sudo setenforce 0
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ firefox (コンテンツの確認)
+  $ http://localhost:8080
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コンテンツ表示)
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux有効化)
+  $ sudo setenforce 1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの停止)
+  $ podman stop web
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  web
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[001]
   Say Hello to HTML Elements
   
 [内容]
@@ -73,7 +311,7 @@
   確認完了!
   
 ================================================================================
-[02]
+[002]
   Headline with the h2 Element
   
 [内容]
@@ -121,7 +359,7 @@
   確認完了!
   
 ================================================================================
-[03]
+[003]
   Inform with the Paragraph Element
   
 [内容]
@@ -166,7 +404,7 @@
   確認完了!
   
 ================================================================================
-[04]
+[004]
   Fill in the Blank with Placeholder Text
   
 [内容]
@@ -176,7 +414,7 @@
   // 省略
   
 ================================================================================
-[05]
+[005]
   Uncomment HTML
   
 [内容]
@@ -223,7 +461,7 @@
   確認完了!
   
 ================================================================================
-[06]
+[006]
   Comment out HTML
   
 [内容]
@@ -270,7 +508,7 @@
   確認完了!
   
 ================================================================================
-[07]
+[007]
   Delete HTML Elements
   
 [内容]
@@ -317,7 +555,7 @@
   確認完了!
   
 ================================================================================
-[08]
+[008]
   Introduction to HTML5 Elements
   
 [内容]
@@ -327,7 +565,7 @@
   // 省略
   
 ================================================================================
-[09]
+[009]
   Add Images to Your Website
   
 [内容]
@@ -372,7 +610,7 @@
   確認完了!
   
 ================================================================================
-[10]
+[010]
   Link to External Pages with Anchor Elements
   
 [内容]
@@ -417,7 +655,7 @@
   確認完了!
   
 ================================================================================
-[11]
+[011]
   Link to Internal Sections of a Page with Anchor Elements
   
 [内容]
@@ -465,7 +703,7 @@
   確認完了!
   
 ================================================================================
-[12]
+[012]
   Nest an Anchor Element within a Paragraph
   
 [内容]
@@ -510,7 +748,7 @@
   確認完了!
   
 ================================================================================
-[13]
+[013]
   Make Dead Links Using the Hash Symbol
   
 [内容]
@@ -555,7 +793,7 @@
   確認完了!
   
 ================================================================================
-[14]
+[014]
   Turn an Image into a Link
 
 [内容]
@@ -600,7 +838,7 @@
   確認完了!
   
 ================================================================================
-[15]
+[015]
   Create a Bulleted Unordered List
 
 [内容]
@@ -652,7 +890,7 @@
   確認完了!
   
 ================================================================================
-[16]
+[016]
   Create an Ordered List
   
 [内容]
@@ -704,7 +942,7 @@
   確認完了!
   
 ================================================================================
-[17]
+[017]
   Create a Text Field
   
 [内容]
@@ -750,7 +988,7 @@
   確認完了!
   
 ================================================================================
-[18]
+[018]
   Add Placeholder Text to a Text Field
   
 [内容]
@@ -796,7 +1034,7 @@
   確認完了!
   
 ================================================================================
-[19]
+[019]
   Create a Form Element
 
 [内容]
@@ -841,7 +1079,7 @@
   確認完了!
   
 ================================================================================
-[20]
+[020]
   Add a Submit Button to a Form
   
 [内容]
@@ -890,7 +1128,7 @@
   確認完了!
   
 ================================================================================
-[21]
+[021]
   Use HTML5 to Require a Field
   
 [内容]
@@ -939,7 +1177,7 @@
   確認完了!
   
 ================================================================================
-[22]
+[022]
   Create a Set of Radio Buttons
   
 [内容]
@@ -987,7 +1225,7 @@
   確認完了!
   
 ================================================================================
-[23]
+[023]
   Create a Set of Checkboxes
   
 [内容]
@@ -1035,7 +1273,7 @@
   確認完了!
   
 ================================================================================
-[24]
+[024]
   Use the value attribute with Radio Buttons Checkboxes
   
 [内容]
@@ -1083,7 +1321,7 @@
   確認完了!
   
 ================================================================================
-[25]
+[025]
   Check Radio Buttons and Checkboxes by Default
   
 [内容]
@@ -1131,7 +1369,7 @@
   確認完了!
   
 ================================================================================
-[26]
+[026]
   Nest Many Elements within a Single div Element
 
 [内容]
@@ -1181,7 +1419,7 @@
   確認完了!
   
 ================================================================================
-[27]
+[027]
   Declare the Doctype of an HTML Document
   
 [内容]
@@ -1191,7 +1429,7 @@
   // 省略
   
 ================================================================================
-[28]
+[028]
   Define the Head and Body of an HTML Document
   
 [内容]

@@ -2,6 +2,8 @@
 [X01] [Podman] コンテナで開発(1)
 [X02] [Podman] コンテナで開発(2)
 [X03] [Podman] コンテナで開発(3)
+[X04] [Podman] コンテナで開発(4)
+[X05] [Podman] コンテナで開発(5)
 [001] Say Hello to HTML Elements
 [002] Headline with the h2 Element
 [003] Inform with the Paragraph Element
@@ -70,13 +72,7 @@
   [Podman] コンテナで開発(2)
   
 [内容]
-  以下の手順で確認を行う
-    コンテナイメージの検索
-    コンテナイメージの取得
-    コンテナの起動
-    コンテンツ確認
-    コンテナのログ確認
-    コンテナの停止
+  コンテナの起動
   
 [確認]
   $ cd $HOME
@@ -173,11 +169,7 @@
   [Podman] コンテナで開発(3)
   
 [内容]
-  以下の手順で確認を行う
-    コンテンツ作成
-    コンテナの起動
-    コンテンツ確認
-    コンテナの停止
+  コンテンツ作成
   
 [確認]
   $ cd $HOME
@@ -201,14 +193,8 @@
   </head>
   <body>
   
-  <!-- HTML --->
-  <h1>Hello World</h1>
-  
-  <!-- CSS --->
-  <style></style>
-  
-  <!-- JS --->
-  <script></script>
+  <!-- Contents --->
+  <h1 id="msg">Hello World</h1>
   
   </body>
   </html>
@@ -229,6 +215,202 @@
   --------------------------------------------------
   CONTAINER ID  IMAGE                          ... CREATED         STATUS             PORTS                 NAMES
   19c54ac6addd  docker.io/library/nginx:alpine ... 35 seconds ago  Up 35 seconds ago  0.0.0.0:8080->80/tcp  web
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux無効化)
+  $ sudo setenforce 0
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ firefox (コンテンツの確認)
+  $ http://localhost:8080
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コンテンツ表示)
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux有効化)
+  $ sudo setenforce 1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの停止)
+  $ podman stop web
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  web
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X04]
+  [Podman] コンテナで開発(4)
+  
+[内容]
+  スタイルシート適用
+  
+[確認]
+  $ cd $HOME/data (スタイルシート作成)
+  $ vi style.css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  #msg {
+    font-size: 30px;
+    text-align: center;
+    margin: 20px auto;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/data (スタイルシート適用)
+  $ vi index.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title>Sample</title>
+  <link href="style.css" rel="stylesheet">  // Add
+  </head>
+  <body>
+  
+  <!-- Contents --->
+  <h1 id="msg">Hello World</h1>
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの起動)
+  $ podman run -it --rm -d -p 8080:80 --name web -v ~/data:/usr/share/nginx/html nginx:alpine
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  677103399f8eff4844116a7c3a812c36996140dd46f353b0de2bd2ef9670dbe1
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの確認)
+  $ podman ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                          ... CREATED         STATUS             PORTS                 NAMES
+  677103399f8e  docker.io/library/nginx:alpine ... 23 seconds ago  Up 22 seconds ago  0.0.0.0:8080->80/tcp  web
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux無効化)
+  $ sudo setenforce 0
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ firefox (コンテンツの確認)
+  $ http://localhost:8080
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (コンテンツ表示)
+  --------------------------------------------------
+  
+  $ cd $HOME/data (SELinux有効化)
+  $ sudo setenforce 1
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナの停止)
+  $ podman stop web
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  web
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X05]
+  [Podman] コンテナで開発(5)
+  
+[内容]
+  スクリプト適用
+  
+[確認]
+  $ cd $HOME/data (スクリプト作成)
+  $ vi script.js
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  let msg = document.getElementById('msg');
+  let btn1 = document.getElementById('btn1');
+  let btn2 = document.getElementById('btn2');
+  
+  btn1.addEventListener('click', function() {
+    msg.innerText = 'Hell Work';
+  });
+  
+  btn2.addEventListener('click', function() {
+    msg.innerText = 'Hello World';
+  });
+  --------------------------------------------------
+  
+  $ cd $HOME/data (スクリプト適用)
+  $ vi index.html
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html lang="ja">
+  <head>
+  <meta charset="utf-8">
+  <title>Sample</title>
+  <link href="style.css" rel="stylesheet">
+  </head>
+  <body>
+  
+  <!-- Contents --->
+  <h1 id="msg">Hello World</h1>
+  <hr>                             // Add
+  <button id="btn1">Msg1</button>  // Add
+  <button id="btn2">Msg2</button>  // Add
+  
+  <!-- Script --->
+  <script src="script.js"></script>  // Add
+  
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの起動)
+  $ podman run -it --rm -d -p 8080:80 --name web -v ~/data:/usr/share/nginx/html nginx:alpine
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  df62e1d79106b5e9e5eade3593bdb82b0a8e132df624e600412cda04d00d8571
+  --------------------------------------------------
+  
+  $ cd $HOME/data (コンテナの確認)
+  $ podman ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                          ... CREATED         STATUS             PORTS                 NAMES
+  df62e1d79106  docker.io/library/nginx:alpine ... 19 seconds ago  Up 19 seconds ago  0.0.0.0:8080->80/tcp  web
   --------------------------------------------------
   
   $ cd $HOME/data (SELinux無効化)

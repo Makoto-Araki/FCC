@@ -4,6 +4,7 @@
 [X03] [Podman] コンテナで開発(3)
 [X04] [Podman] コンテナで開発(4)
 [X05] [Podman] コンテナで開発(5)
+[X06] [Podman] コンテナでデータベース(1)
 [001] Say Hello to HTML Elements
 [002] Headline with the h2 Element
 [003] Inform with the Paragraph Element
@@ -356,16 +357,15 @@
   
   コマンドの実行結果
   --------------------------------------------------
-  let msg = document.getElementById('msg');
   let btn1 = document.getElementById('btn1');
   let btn2 = document.getElementById('btn2');
   
   btn1.addEventListener('click', function() {
-    msg.innerText = 'Hell Work';
+    document.getElementById('msg').innerText = 'Message1';
   });
   
   btn2.addEventListener('click', function() {
-    msg.innerText = 'Hello World';
+    document.getElementById('msg').innerText = 'Message2';
   });
   --------------------------------------------------
   
@@ -443,6 +443,187 @@
   コマンドの実行結果
   --------------------------------------------------
   web
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[X06]
+  [Podman] コンテナでデータベース(1)
+  
+[内容]
+  コンテナでデータベース「MySQL」の動作確認
+  
+[確認]
+  $ cd $HOME
+  $ podman search mysql --lmit 1 (各レジストリからの検索結果を1件に制限)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  NAME                                                  DESCRIPTION
+  registry.access.redhat.com/openshift3/mysql-55-rhel7  MySQL 5.5 SQL database server
+  registry.redhat.io/openshift3/mysql-55-rhel7          MySQL 5.5 SQL database server
+  docker.io/library/mysql                               MySQL is a widely used, open-source relation...
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナイメージの検索)
+  $ podman pull mysql
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (docker.io/library/mysql:latestを選択)
+  --------------------------------------------------
+  
+  $ cd $HOME (コンテナイメージの確認)
+  $ podman images
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  REPOSITORY               TAG         IMAGE ID      CREATED     SIZE
+  docker.io/library/mysql  latest      1fecb86b5237  3 days ago  545 MB
+  quay.io/podman/hello     latest      e29559e375de  4 days ago  82.3 kB
+  docker.io/library/nginx  alpine      8e75cbc5b25c  5 days ago  42.8 MB
+  --------------------------------------------------
+  
+  $ cd $HOME (ディレクトリ作成)
+  $ mkdir mysql
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (ディレクトリ作成)
+  $ mkdir conf
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (設定ファイル作成)
+  $ vi .env
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ROOT_PASS=root
+  DB_NAME=sample-db
+  DB_USER=makoto
+  DB_PASS=ma0122ma
+  DB_PORT=3306
+  TZ=Asia/Tokyo
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (設定ファイル作成)
+  $ vi conf/my.cnf
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  [mysqld]
+  character-set-server=utf8mb4
+  collation-server=utf8mb4_bin
+  
+  [client]
+  default-character-set=utf8mb4
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (設定ファイル作成)
+  $ vi docker-compose.yml
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  version: '3'
+  
+  services:
+    db:
+      image: mysql:8
+      container_name: mysql
+      restart: always
+      environment:
+        MYSQL_ROOT_PASSWORD: ${ROOT_PASS}
+        MYSQL_DATABASE: ${DB_NAME}
+        MYSQL_USER: ${DB_USER}
+        MYSQL_PASSWORD: ${DB_PASS}
+        TZ: ${TZ}
+      ports:
+        - ${DB_PORT}:3306
+      volumes:
+        - db-store:/var/lib/mysql
+        - ./conf/my.cnf:/etc/mysql/conf.d/my.cnf
+  volumes:
+    db-store:
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (コマンドのインストール)
+  $ sudo dnf -y install podman-compose
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (コンテナの起動)
+  $ podman-compose up -d
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (コンテナの確認)
+  $ podman-compose ps
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  CONTAINER ID  IMAGE                      ... CREATED         STATUS             PORTS                   NAMES
+  25dd81c3c128  docker.io/library/mysql:8  ... 14 minutes ago  Up 14 minutes ago  0.0.0.0:3306->3306/tcp  mysql
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (ソフトウェアのバージョンを確認)
+  $ podman-compose exec db mysql -V
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  mysql  Ver 8.0.32 for Linux on x86_64 (MySQL Community Server - GPL)
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (コンテナのデータベース接続)
+  $ podman-compose exec db bash -c 'mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD} ${MYSQL_DATABASE}'
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプトが「mysql>」に変化)
+  --------------------------------------------------
+  
+  mysql> (文字コード設定の確認)
+  mysql> show variables like '%char%';
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  character_set_client       latin1
+  character_set_connection   latin1
+  character_set_database     utf8mb4
+  character_set_filesystem   binary
+  character_set_results      latin1
+  character_set_server       utf8mb4
+  character_set_system       utf8mb3
+  character_sets_dir         /usr/share/mysql-8.0/charsets/
+  --------------------------------------------------
+  
+  mysql> (データベースから離脱)
+  mysql> exit
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  bye
+  --------------------------------------------------
+  
+  $ cd $HOME/mysql (コンテナの停止)
+  $ podman-compose down
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (省略)
   --------------------------------------------------
   
   以下の記録に続く

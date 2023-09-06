@@ -2,6 +2,7 @@
 [001] インストール
 [002] プロジェクト作成
 [003] アプリ追加
+[004] データベース設定
 ================================================================================
 [001]
   インストール
@@ -153,7 +154,7 @@
     |---- app01
             |---- __init__.py
             |---- settings.py
-            |---- urls.py              // 修正
+            |---- urls.py              // この後で修正
             |---- wsgi.py
     |---- db.sqlite3                   // 追加
     |---- polls                        // 追加
@@ -165,6 +166,7 @@
             |---- models.py            // 追加
             |---- tests.py             // 追加
             |---- views.py             // 追加 => この後で修正
+            |---- urls.py              // 追加 => この後で追加
   --------------------------------------------------
   
   $ cd $HOME/app01
@@ -225,7 +227,7 @@
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000 => 404 エラー
+  $ http://127.0.0.1:8000 => エラー
   
   コマンドの実行結果
   --------------------------------------------------
@@ -244,6 +246,168 @@
   --------------------------------------------------
   Hello, world. You're at the polls index.
   --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[004]
+  データベース設定
+  
+[内容]
+  データベース「SQLite」の設定
+  
+[確認]
+  $ cd $HOME/app01
+  $ cat app01/settings.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ... (該当個所のみ記述)
+
+  DATABASES = {
+    'default': {
+      'ENGINE': 'django.db.backends.sqlite3',        // デフォルトは「sqlite3」を使用
+      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  // データベースファイルは「./db.sqlite3」
+    }
+  }
+
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ python3 manage.py migrate
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Operations to perform:
+    Apply all migrations: admin, auth, contenttypes, sessions
+  Running migrations:
+    Applying contenttypes.0001_initial... OK
+    Applying auth.0001_initial... OK
+    Applying admin.0001_initial... OK
+    Applying admin.0002_logentry_remove_auto_add... OK
+    Applying admin.0003_logentry_add_action_flag_choices... OK
+    Applying contenttypes.0002_remove_content_type_name... OK
+    Applying auth.0002_alter_permission_name_max_length... OK
+    Applying auth.0003_alter_user_email_max_length... OK
+    Applying auth.0004_alter_user_username_opts... OK
+    Applying auth.0005_alter_user_last_login_null... OK
+    Applying auth.0006_require_contenttypes_0002... OK
+    Applying auth.0007_alter_validators_add_error_messages... OK
+    Applying auth.0008_alter_user_username_max_length... OK
+    Applying auth.0009_alter_user_last_name_max_length... OK
+    Applying auth.0010_alter_group_name_max_length... OK
+    Applying auth.0011_update_proxy_permissions... OK
+    Applying sessions.0001_initial... OK
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi polls/models.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.db import models
+  
+  class Question(models.Model):
+    question_text = models.CharField(max_length=200)
+    pub_date = models.DateTimeField("date published")
+  
+  class Choice(models.Model):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi app01/settings.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ... (該当個所のみ記述)
+
+  INSTALLED_APPS = [
+    "polls.apps.PollsConfig",  // 追加
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+  ]
+
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ python3 manage.py makemigrations polls
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Migrations for 'polls':
+    polls/migrations/0001_initial.py
+      - Create model Question
+      - Create model Choice
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ python3 manage.py sqlmigrate polls 0001
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  BEGIN;
+  --
+  -- Create model Question
+  --
+  CREATE TABLE "polls_question" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "question_text" varchar(200) NOT NULL, "pub_date" datetime NOT NULL);
+  --
+  -- Create model Choice
+  --
+  CREATE TABLE "polls_choice" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "choice_text" varchar(200) NOT NULL, "votes" integer NOT NULL, "question_id" integer NOT NULL REFERENCES "polls_question" ("id") DEFERRABLE INITIALLY DEFERRED);
+  CREATE INDEX "polls_choice_question_id_c5b4b260" ON "polls_choice" ("question_id");
+  COMMIT;
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ python3 manage.py migrate
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Operations to perform:
+    Apply all migrations: admin, auth, contenttypes, polls, sessions
+  Running migrations:
+    Applying polls.0001_initial... OK
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ sqlite3 db.sqlite3
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (プロンプト変化)
+  --------------------------------------------------
+    
+    sqlite> (テーブル一覧)
+    sqlite> .tables
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    auth_group                  django_admin_log
+    auth_group_permissions      django_content_type
+    auth_permission             django_migrations
+    auth_user                   django_session
+    auth_user_groups            polls_choice    // モデルからテーブル追加
+    auth_user_user_permissions  polls_question  // モデルからテーブル追加
+    --------------------------------------------------
+    
+    sqlite> (シェルを抜ける)
+    sqlite> .exit
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (OSプロンプトに戻る)
+    --------------------------------------------------
+    
+  //
   
   以下の記録に続く
   

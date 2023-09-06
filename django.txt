@@ -1,9 +1,11 @@
 ================================================================================
 [001] インストール
 [002] プロジェクト作成
-[003] アプリ追加
+[003] アプリ追加(1)
+[004] アプリ追加(2)
 [004] データベース設定
 [005] 管理サイト
+[006] ビュー追加
 ================================================================================
 [001]
   インストール
@@ -75,32 +77,18 @@
   プロジェクト作成
   
 [内容]
-  プロジェクト「app01」を作成
+  プロジェクト「myproj」を作成
   
 [確認]
   $ cd $HOME
-  $ django-admin startproject app01
+  $ django-admin startproject myproj
   
   コマンドの実行結果
   --------------------------------------------------
   (出力なし)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ tree app01
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  app01
-    |---- manage.py            // プロジェクトに対する様々な操作を行うためのコマンドラインユーティリティ
-    |---- app01                // アプリ
-            |---- __init__.py  // ディレクトリが Python パッケージであることを Python に知らせるための空のファイル
-            |---- settings.py  // プロジェクトの設定ファイル
-            |---- urls.py      // プロジェクトの URL 宣言、いうなれば Django サイトにおける「目次」に相当
-            |---- wsgi.py      // プロジェクトをサーブするためのWSGI互換Webサーバーとのエントリーポイント => プロジェクト公開？
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
+  $ cd $HOME/myproj
   $ python3 manage.py runserver
   
   コマンドの実行結果
@@ -113,14 +101,14 @@
   You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
   Run 'python manage.py migrate' to apply them.
   
-  September 05, 2023 - 12:17:32
-  Django version 2.2.24, using settings 'app01.settings'
-  Starting development server at http://127.0.0.1:8000/  // 別ポート起動は python3 manage.py runserver 8080 等と実行
-  Quit the server with CONTROL-C.                        // 確認完了後は Ctrl + C で終了しておく
+  September 06, 2023 - 09:26:27
+  Django version 2.2.24, using settings 'myproj.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000
+  $ http://127.0.0.1:8000/
   
   コマンドの実行結果
   --------------------------------------------------
@@ -131,84 +119,119 @@
   
 ================================================================================
 [003]
-  アプリ追加
+  アプリ追加(1)
   
 [内容]
-  アプリ「polls」を追加
+  アプリ「app01」を追加
   
 [確認]
-  $ cd $HOME/app01
-  $ python3 manage.py startapp polls
+  $ cd $HOME/myproj
+  $ python3 manage.py startapp app01
   
   コマンドの実行結果
   --------------------------------------------------
   (出力なし)
   --------------------------------------------------
   
-  $ cd $HOME
-  $ tree app01
+  $ cd $HOME/myproj
+  $ tree .(カレントディレクトリ)
   
   コマンドの実行結果
   --------------------------------------------------
-  app01
-    |---- manage.py
-    |---- app01
-            |---- __init__.py
-            |---- settings.py
-            |---- urls.py              // この後で修正
-            |---- wsgi.py
-    |---- db.sqlite3                   // 追加
-    |---- polls                        // 追加
-            |---- __init__.py          // 追加
-            |---- admin.py             // 追加
-            |---- apps.py              // 追加
-            |---- migrations           // 追加
-                    |---- __init__.py  // 追加
-            |---- models.py            // 追加
-            |---- tests.py             // 追加
-            |---- views.py             // 追加 => この後で修正
-            |---- urls.py              // 追加 => この後で追加
+  .(カレントディレクトリ)
+  |---- manage.py
+  |---- db.sqlite3
+  |---- myproj
+          |---- __init__.py
+          |---- __pycache__
+                  |---- __init__.cpython-36.pyc
+                  |---- settings.cpython-36.pyc
+                  |---- urls.cpython-36.pyc
+                  |---- wsgi.cpython-36.pyc
+          |---- settings.py
+          |---- urls.py
+          |---- wsgi.py
+  |---- app01
+          |---- __init__.py
+          |---- admin.py
+          |---- apps.py
+          |---- migrations
+                  |---- __init__.py
+          |---- models.py
+          |---- tests.py
+          |---- views.py
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ vi polls/views.py
+  $ cd $HOME/myproj
+  $ cat app01/apps.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.apps import AppConfig
+  
+  class App01Config(AppConfig):
+      name = 'app01'
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/settings.py (プロジェクトの設定ファイルを修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'app01.apps.App01Config',  // 追加したアプリのクラスをプロジェクトに通知
+  ]
+  
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/urls.py (プロジェクトにルーティング処理を追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from django.urls import path, include  // 修正 include を追加
+  
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('app01/', include('app01.urls')),  // 追加 アプリ用のルーティング処理ファイルを呼び出す
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app01/urls.py (アプリ用のルーティング処理を作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.conf.urls import url
+  from . import views
+  
+  urlpatterns = [
+      url('^$', views.index, name='index'),  // ビューファイルから関数「index」を呼出
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app01/views.py (ビューファイル修正)
   
   コマンドの実行結果
   --------------------------------------------------
   from django.http import HttpResponse
   
   def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+      return HttpResponse('<h1>Hello app01</h1>')
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ vi polls/urls.py
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  from django.urls import path
-  from . import views
-  
-  urlpatterns = [
-    path("", views.index, name="index"),
-  ]
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ vi app01/urls.py
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  from django.contrib import admin
-  from django.urls import include, path  // 修正
-  
-  urlpatterns = [
-    path("polls/", include("polls.urls")),  // 追加
-    path('admin/', admin.site.urls),
-  ]
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
+  $ cd $HOME/myproj
   $ python3 manage.py runserver
   
   コマンドの実行結果
@@ -221,31 +244,26 @@
   You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
   Run 'python manage.py migrate' to apply them.
   
-  September 05, 2023 - 13:06:18
-  Django version 2.2.24, using settings 'app01.settings'
+  September 06, 2023 - 10:43:25
+  Django version 2.2.24, using settings 'myproj.settings'
   Starting development server at http://127.0.0.1:8000/
   Quit the server with CONTROL-C.
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000 => エラー
+  $ http://127.0.0.1:8000/app01/AAAA
   
   コマンドの実行結果
   --------------------------------------------------
-  Using the URLconf defined in app01.urls, Django tried these URL patterns, in this order:
-  
-  polls/
-  admin/
-  
-  The empty path didn't match any of these.
+  404 Error
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/polls
+  $ http://127.0.0.1:8000/app01/
   
   コマンドの実行結果
   --------------------------------------------------
-  Hello, world. You're at the polls index.
+  Hello app01
   --------------------------------------------------
   
   以下の記録に続く
@@ -454,6 +472,72 @@
   from .models import Question  // 追加
   
   admin.site.register(Question)  // 追加
+  --------------------------------------------------
+  
+  $ (ブラウザから管理サイトにログイン)
+  $ http://127.0.0.1:8000/admin/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Username=admin,Password=admin0122ma) => Polls.Question を確認、Question を追加してみる
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[006]
+  ビュー追加
+  
+[内容]
+  ビュー追加
+  
+[確認]
+  $ cd $HOME/app01
+  $ vi polls/views.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.http import HttpResponse
+  
+  def index(request):
+    return HttpResponse("Hello, world. You're at the polls index.")
+  
+  // 追加
+  def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+  
+  // 追加
+  def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+  
+  // 追加
+  def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi polls/urls.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.urls import path
+  from . import views
+  
+  urlpatterns = [
+    path("", views.index, name="index"),
+    path("<int:question_id>/", views.detail, name="detail"),           // 追加
+    path("<int:question_id>/results/", views.result, name="results"),  // 追加
+    path("<int:question_id>/vote/", views.vote, name="vote"),          // 追加
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ //
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  //
   --------------------------------------------------
   
   $ (ブラウザから管理サイトにログイン)

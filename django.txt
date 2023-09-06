@@ -3,6 +3,7 @@
 [002] プロジェクト作成
 [003] アプリ追加
 [004] データベース設定
+[005] 管理サイト
 ================================================================================
 [001]
   インストール
@@ -407,7 +408,61 @@
     (OSプロンプトに戻る)
     --------------------------------------------------
     
-  //
+  以下の記録に続く
+  
+================================================================================
+[005]
+  管理サイト
+  
+[内容]
+  管理サイトの設定
+  
+[確認]
+  $ cd $HOME/app01
+  $ python3 manage.py createsuperuser
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Username (leave blank to use 'makoto'): admin
+  Email address: admin@example.com
+  Password: (admin0122ma)
+  Password (again): (admin0122ma)
+  Superuser created successfully.
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ python3 manage.py runserver
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Watching for file changes with StatReloader
+  Performing system checks...
+  
+  System check identified no issues (0 silenced).
+  September 06, 2023 - 02:02:41
+  Django version 2.2.24, using settings 'app01.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  --------------------------------------------------
+  
+  $ cd $HOME/app01
+  $ vi polls/admin.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from .models import Question  // 追加
+  
+  admin.site.register(Question)  // 追加
+  --------------------------------------------------
+  
+  $ (ブラウザから管理サイトにログイン)
+  $ http://127.0.0.1:8000/admin/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (Username=admin,Password=admin0122ma) => Polls.Question を確認、Question を追加してみる
+  --------------------------------------------------
   
   以下の記録に続く
   

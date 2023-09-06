@@ -170,7 +170,7 @@
   from django.apps import AppConfig
   
   class App01Config(AppConfig):
-      name = 'app01'
+      name = 'app01'  // 別名として使用可
   --------------------------------------------------
   
   $ cd $HOME/myproj
@@ -187,7 +187,7 @@
       'django.contrib.sessions',
       'django.contrib.messages',
       'django.contrib.staticfiles',
-      'app01.apps.App01Config',  // 追加したアプリのクラスをプロジェクトに通知
+      'app01.apps.App01Config',  // 追加したアプリのクラスをプロジェクトに通知、単に 'app01' でも可
   ]
   
   ...
@@ -264,6 +264,176 @@
   コマンドの実行結果
   --------------------------------------------------
   Hello app01
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[004]
+  アプリ追加(2)
+  
+[内容]
+  アプリ「app02」をテンプレートを使用して追加
+  
+[確認]
+  $ cd $HOME/myproj
+  $ python3 manage.py startapp app02
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ cat app02/apps.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.apps import AppConfig
+  
+  class App02Config(AppConfig):
+      name = 'app02'  // 別名として使用可
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/settings.py (プロジェクトの設定ファイルを修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'app01.apps.App01Config',
+      'app02.apps.App02Config',  // 追加
+  ]
+  
+  ...
+  
+  TEMPLATES = [
+      {
+          'BACKEND': 'django.template.backends.django.DjangoTemplates',
+          'DIRS': [],
+          'APP_DIRS': True,  // テンプレートファイルを探しに app02/templates を探索する
+          'OPTIONS': {
+              'context_processors': [
+                  'django.template.context_processors.debug',
+                  'django.template.context_processors.request',
+                  'django.contrib.auth.context_processors.auth',
+                  'django.contrib.messages.context_processors.messages',
+              ],
+          },
+      },
+  ]
+  
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/urls.py (プロジェクトにルーティング処理を追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from django.urls import path, include
+  
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('app01/', include('app01.urls')),
+      path('app02/', include('app02.urls')),  // 追加
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app02/urls.py (アプリ用のルーティング処理を作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.conf.urls import url
+  from . import views
+  
+  urlpatterns = [
+      url('^$', views.index, name='index'),  // ビューファイルから関数「index」を呼出
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app02/views.py (ビューファイル修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.http import HttpResponse
+  from django.template import loader
+  
+  def index(request):
+      template = loader.get_template('app02/index.html')
+      return HttpResponse(template.render( None, request))
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ mkdir -p app02/templates/app02
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app02/templates/app02/index.html (テンプレート作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>index.html</title>
+  </head>
+  <body>
+  <h1>Hello app02</h1>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py runserver
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Watching for file changes with StatReloader
+  Performing system checks...
+  
+  System check identified no issues (0 silenced).
+  
+  You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+  Run 'python manage.py migrate' to apply them.
+  
+  September 06, 2023 - 11:29:19
+  Django version 2.2.24, using settings 'myproj.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app01/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app01
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app02/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app02
   --------------------------------------------------
   
   以下の記録に続く

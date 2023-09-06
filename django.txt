@@ -4,6 +4,7 @@
 [003] アプリ追加(1)
 [004] アプリ追加(2)
 [005] アプリ追加(3)
+[006] スタイルシート適用
 [004] データベース設定
 [005] 管理サイト
 [006] ビュー追加
@@ -598,6 +599,202 @@
   コマンドの実行結果
   --------------------------------------------------
   Hello app03
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[006]
+  スタイルシート適用
+  
+[内容]
+  アプリ「app04」にスタイルシートを適用する
+  
+[確認]
+  $ cd $HOME/myproj
+  $ python3 manage.py startapp app04
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ cat app04/apps.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.apps import AppConfig
+  
+  class App04Config(AppConfig):
+      name = 'app04'  // 別名として使用可
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/settings.py (プロジェクトの設定ファイルを修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'app01.apps.App01Config',
+      'app02.apps.App02Config',
+      'app03.apps.App03Config',
+      'app04.apps.App04Config',  // 追加
+  ]
+  
+  ...
+
+  STATIC_URL = '/static/'  // スタティックファイルを探しに app04/static を探索する
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/urls.py (プロジェクトにルーティング処理を追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from django.urls import path, include
+  
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('app01/', include('app01.urls')),
+      path('app02/', include('app02.urls')),
+      path('app03/', include('app03.urls')),
+      path('app04/', include('app04.urls')),  // 追加
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app04/urls.py (アプリ用のルーティング処理を作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.conf.urls import url
+  from . import views
+  
+  urlpatterns = [
+      url('^$', views.index, name='index'),  // ビューファイルから関数「index」を呼出
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app04/views.py (ビューファイル修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.http import HttpResponse
+  from django.template import loader
+  
+  def index(request):
+      template = loader.get_template('app04/index.html')
+      context = {'fname':'app04'}
+      return HttpResponse(template.render( context, request ))  // オブジェクトの形式でパラメータを渡す
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ mkdir -p app04/templates/app04
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app04/templates/app04/index.html (テンプレート作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>index.html</title>
+  {% load static %}  // 追加
+  <link rel="stylesheet" href="{% static "css/style.css" %}">  // 追加
+  </head>
+  <body>
+  <h1>Hello {{ fname }}</h1>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ mkdir -p app04/static/css
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app04/static/css/style.css (スタイルシート作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  * {
+    background-color: black;
+    color: white;
+  }
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py runserver
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Watching for file changes with StatReloader
+  Performing system checks...
+  
+  System check identified no issues (0 silenced).
+  
+  You have 17 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
+  Run 'python manage.py migrate' to apply them.
+  
+  September 06, 2023 - 13:21:41
+  Django version 2.2.24, using settings 'myproj.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app01/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app01
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app02/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app02
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app03/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app03
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app04/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Hello app04  // スタイル適用を確認
   --------------------------------------------------
   
   以下の記録に続く

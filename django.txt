@@ -6,6 +6,7 @@
 [005] テンプレート(2)
 [006] スタイルシート適用
 [007] データ取得
+[008] データ登録
 ================================================================================
 [001]
   インストール
@@ -1109,6 +1110,192 @@
   AAAA  1000
   BBBB  2000
   CCCC  3000
+  --------------------------------------------------
+  
+  以下の記録に続く
+  
+================================================================================
+[008]
+  データ登録
+  
+[内容]
+  アプリ「app06」ではデータベース「SQLite」にフォームからのデータ登録の処理実装
+  
+  商品 | 単価
+  ---- | ----
+  DDDD | 4000
+  EEEE | 5000
+  FFFF | 6000
+  
+[確認]
+  $ cd $HOME/myproj
+  $ python3 manage.py startapp app06
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/settings.py (プロジェクトの設定ファイルを修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'app01.apps.App01Config',
+      'app02.apps.App02Config',
+      'app03.apps.App03Config',
+      'app04.apps.App04Config',
+      'app05.apps.App05Config',
+      'app06.apps.App06Config',  // 追加
+  ]
+  
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ cat app06/apps.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.apps import AppConfig
+  
+  class App05Config(AppConfig):
+      name = 'app06'  // 別名として使用可
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/urls.py (プロジェクトにルーティング処理を追加)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from django.urls import path, include
+  
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('app01/', include('app01.urls')),
+      path('app02/', include('app02.urls')),
+      path('app03/', include('app03.urls')),
+      path('app04/', include('app04.urls')),
+      path('app05/', include('app05.urls')),
+      path('app06/', include('app06.urls')),  // 追加
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app06/forms.py (アプリ用のフォーム定義を作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django import forms
+  from app05.models import App05Model
+  
+  class App06Form(forms.ModelForm):
+      class Meta:
+          model = App05Model
+          fields = ('itemname', 'itemvalue')
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app06/urls.py (アプリ用のルーティング処理を作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.conf.urls import url
+  from . import views
+  
+  urlpatterns = [
+      url('^$', views.index, name='index'),  // ビューファイルから関数「index」を呼出
+  ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app06/views.py (ビューファイル修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.http import HttpResponse
+  from django.template import loader
+  from .forms import App06Form
+  from django.shortcuts import redirect
+  
+  def index(request):
+      if request.method == 'POST':
+          form = App06Form(request.POST)
+          if form.is_valid():
+              form.save()
+              return redirect('http://localhost:8000/app06/')
+      else:
+          form = App06Form()
+          template = loader.get_template('app06/index.html')
+          context = {'form': form }
+          return HttpResponse(template.render( context, request ))
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ mkdir -p app06/templates/app06
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app06/templates/app06/index.html (テンプレート作成)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>index.html</title>
+  </head>
+  <body>
+    <form class="" action="" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" name="submit">登録</button>
+    </form>
+  </body>
+  </html>
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py runserver
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Watching for file changes with StatReloader
+  Performing system checks...
+  
+  System check identified no issues (0 silenced).
+  September 07, 2023 - 13:01:02
+  Django version 2.2.24, using settings 'myproj.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app06/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  商品  単価
+  ----  ----
+  DDDD  4000  // 登録
+  EEEE  5000  // 登録
+  FFFF  6000  // 登録
   --------------------------------------------------
   
   以下の記録に続く

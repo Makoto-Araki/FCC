@@ -1,13 +1,11 @@
 ================================================================================
 [001] インストール
 [002] プロジェクト作成
-[003] アプリ追加(1)
-[004] アプリ追加(2)
-[005] アプリ追加(3)
+[003] アプリ追加
+[004] テンプレート(1)
+[005] テンプレート(2)
 [006] スタイルシート適用
-[004] データベース設定
-[005] 管理サイト
-[006] ビュー追加
+[007] データ取得
 ================================================================================
 [001]
   インストール
@@ -121,7 +119,7 @@
   
 ================================================================================
 [003]
-  アプリ追加(1)
+  アプリ追加
   
 [内容]
   アプリ「app01」を追加
@@ -253,14 +251,6 @@
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app01/AAAA
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  404 Error
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
   $ http://127.0.0.1:8000/app01/
   
   コマンドの実行結果
@@ -272,7 +262,7 @@
   
 ================================================================================
 [004]
-  アプリ追加(2)
+  テンプレート(1)
   
 [内容]
   アプリ「app02」をテンプレートを使用して追加
@@ -423,14 +413,6 @@
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app01/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app01
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
   $ http://127.0.0.1:8000/app02/
   
   コマンドの実行結果
@@ -442,7 +424,7 @@
   
 ================================================================================
 [005]
-  アプリ追加(3)
+  テンプレート(2)
   
 [内容]
   アプリ「app03」をテンプレートにパラメータを渡す形で追加
@@ -575,22 +557,6 @@
   Django version 2.2.24, using settings 'myproj.settings'
   Starting development server at http://127.0.0.1:8000/
   Quit the server with CONTROL-C.
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app01/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app01
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app02/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app02
   --------------------------------------------------
   
   $ (ブラウザから実行)
@@ -766,30 +732,6 @@
   --------------------------------------------------
   
   $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app01/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app01
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app02/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app02
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
-  $ http://127.0.0.1:8000/app03/
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Hello app03
-  --------------------------------------------------
-  
-  $ (ブラウザから実行)
   $ http://127.0.0.1:8000/app04/
   
   コマンドの実行結果
@@ -800,43 +742,138 @@
   以下の記録に続く
   
 ================================================================================
-[004]
-  データベース設定
+[007]
+  データ取得
   
 [内容]
-  データベース「SQLite」の設定
+  アプリ「app05」ではデータベース「SQLite」からのデータを表示
+  
+  商品 | 単価
+  ---- | ----
+  AAAA | 1000
+  BBBB | 2000
+  CCCC | 3000
   
 [確認]
-  $ cd $HOME/app01
-  $ cat app01/settings.py
+  $ cd $HOME/myproj
+  $ python3 manage.py startapp app05
   
   コマンドの実行結果
   --------------------------------------------------
-  ... (該当個所のみ記述)
-
-  DATABASES = {
-    'default': {
-      'ENGINE': 'django.db.backends.sqlite3',        // デフォルトは「sqlite3」を使用
-      'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  // データベースファイルは「./db.sqlite3」
-    }
-  }
-
+  (出力なし)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/settings.py (プロジェクトの設定ファイルを修正)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  INSTALLED_APPS = [
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.messages',
+      'django.contrib.staticfiles',
+      'app01.apps.App01Config',
+      'app02.apps.App02Config',
+      'app03.apps.App03Config',
+      'app04.apps.App04Config',
+      'app05.apps.App05Config',  // 追加 => これを忘れると「python3 manage.py makemigrations」でエラー
+  ]
+  
   ...
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ python3 manage.py migrate
+  $ cd $HOME/myproj
+  $ cat myproj/settings.py (プロジェクトのデータベース設定を確認)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
+  
+  DATABASES = {
+      'default': {
+          'ENGINE': 'django.db.backends.sqlite3',
+          'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),  // 現在位置を起点に「./db.sqlite3」を意味する
+      }
+  }
+  
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app05/models.py (アプリで使用するモデル定義)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.db import models
+  
+  class App05Model(models.Model):
+      itemname = models.CharField(max_length=20)  // 商品
+      itemvalue = models.IntegerField()           // 単価
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi app05/admin.py (後述の管理画面でデータ編集可能にする)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.contrib import admin
+  from .models import App05Model
+  
+  admin.site.register(App05Model)
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py makemigrations app05 (モデルからデータベースに反映させる為のスクリプト出力)
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  Migrations for 'app05':
+    app05/migrations/0001_initial.py  // 出力先
+      - Create model App05Model
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ cat app05/migrations/0001_initial.py (スクリプト確認) => 実行結果ではコメント削除、インデント幅を修正
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.db import migrations, models
+  
+  class Migration(migrations.Migration):
+      initial = True
+      dependencies = []
+      
+      operations = [
+          migrations.CreateModel(
+              name='App05Model',
+              fields=[
+                  ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                  ('itemname', models.CharField(max_length=20)),
+                  ('itemvalue', models.IntegerField()),
+              ],
+          ),
+      ]
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py migrate (データベースにモデル定義通りのテーブル作成)
   
   コマンドの実行結果
   --------------------------------------------------
   Operations to perform:
-    Apply all migrations: admin, auth, contenttypes, sessions
+    Apply all migrations: admin, app05, auth, contenttypes, sessions
   Running migrations:
     Applying contenttypes.0001_initial... OK
     Applying auth.0001_initial... OK
     Applying admin.0001_initial... OK
     Applying admin.0002_logentry_remove_auto_add... OK
     Applying admin.0003_logentry_add_action_flag_choices... OK
+    Applying app05.0001_initial... OK  // 自分のアプリのモデル定義が反映された
     Applying contenttypes.0002_remove_content_type_name... OK
     Applying auth.0002_alter_permission_name_max_length... OK
     Applying auth.0003_alter_user_email_max_length... OK
@@ -851,89 +888,12 @@
     Applying sessions.0001_initial... OK
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ vi polls/models.py
+  $ cd $HOME/myproj
+  $ sqlite3 db.sqlite3 (データベース接続)
   
   コマンドの実行結果
   --------------------------------------------------
-  from django.db import models
-  
-  class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField("date published")
-  
-  class Choice(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    choice_text = models.CharField(max_length=200)
-    votes = models.IntegerField(default=0)
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ vi app01/settings.py
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  ... (該当個所のみ記述)
-
-  INSTALLED_APPS = [
-    "polls.apps.PollsConfig",  // 追加
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-  ]
-
-  ...
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ python3 manage.py makemigrations polls
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Migrations for 'polls':
-    polls/migrations/0001_initial.py
-      - Create model Question
-      - Create model Choice
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ python3 manage.py sqlmigrate polls 0001
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  BEGIN;
-  --
-  -- Create model Question
-  --
-  CREATE TABLE "polls_question" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "question_text" varchar(200) NOT NULL, "pub_date" datetime NOT NULL);
-  --
-  -- Create model Choice
-  --
-  CREATE TABLE "polls_choice" ("id" integer NOT NULL PRIMARY KEY AUTOINCREMENT, "choice_text" varchar(200) NOT NULL, "votes" integer NOT NULL, "question_id" integer NOT NULL REFERENCES "polls_question" ("id") DEFERRABLE INITIALLY DEFERRED);
-  CREATE INDEX "polls_choice_question_id_c5b4b260" ON "polls_choice" ("question_id");
-  COMMIT;
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ python3 manage.py migrate
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  Operations to perform:
-    Apply all migrations: admin, auth, contenttypes, polls, sessions
-  Running migrations:
-    Applying polls.0001_initial... OK
-  --------------------------------------------------
-  
-  $ cd $HOME/app01
-  $ sqlite3 db.sqlite3
-  
-  コマンドの実行結果
-  --------------------------------------------------
-  (プロンプト変化)
+  (プロンプトが変化)
   --------------------------------------------------
     
     sqlite> (テーブル一覧)
@@ -941,15 +901,35 @@
     
     コマンドの実行結果
     --------------------------------------------------
-    auth_group                  django_admin_log
-    auth_group_permissions      django_content_type
-    auth_permission             django_migrations
-    auth_user                   django_session
-    auth_user_groups            polls_choice    // モデルからテーブル追加
-    auth_user_user_permissions  polls_question  // モデルからテーブル追加
+    app05_app05model            auth_user_user_permissions
+    auth_group                  django_admin_log          
+    auth_group_permissions      django_content_type       
+    auth_permission             django_migrations         
+    auth_user                   django_session            
+    auth_user_groups          
     --------------------------------------------------
     
-    sqlite> (シェルを抜ける)
+    sqlite> (テーブル定義)
+    sqlite> .schema app05_app05model
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    CREATE TABLE IF NOT EXISTS "app05_app05model" (
+      "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+      "itemname" varchar(20) NOT NULL,
+      "itemvalue" integer NOT NULL
+    );
+    --------------------------------------------------
+    
+    sqlite> (データ確認)
+    sqlite> select * from app05_app05model;
+    
+    コマンドの実行結果
+    --------------------------------------------------
+    (出力なし)
+    --------------------------------------------------
+    
+    sqlite> (コネクション切断)
     sqlite> .exit
     
     コマンドの実行結果
@@ -957,29 +937,37 @@
     (OSプロンプトに戻る)
     --------------------------------------------------
     
-  以下の記録に続く
+  $ cd $HOME/myproj
+  $ cat myproj/urls.py (プロジェクトの管理画面のURL確認)
   
-================================================================================
-[005]
-  管理サイト
+  コマンドの実行結果
+  --------------------------------------------------
+  ...
   
-[内容]
-  管理サイトの設定
+  urlpatterns = [
+      path('admin/', admin.site.urls),  // 管理画面アクセス時は「http://localhost:8000/admin/」をブラウザ実行
+      path('app01/', include('app01.urls')),
+      path('app02/', include('app02.urls')),
+      path('app03/', include('app03.urls')),
+      path('app04/', include('app04.urls')),
+  ]
   
-[確認]
-  $ cd $HOME/app01
-  $ python3 manage.py createsuperuser
+  ...
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ python3 manage.py createsuperuser (管理画面のログインユーザー作成)
   
   コマンドの実行結果
   --------------------------------------------------
   Username (leave blank to use 'makoto'): admin
-  Email address: admin@example.com
-  Password: (admin0122ma)
-  Password (again): (admin0122ma)
+  Email address: Enterキー
+  Password: admin0122ma
+  Password (again): admin0122ma
   Superuser created successfully.
   --------------------------------------------------
   
-  $ cd $HOME/app01
+  $ cd $HOME/myproj
   $ python3 manage.py runserver
   
   コマンドの実行結果
@@ -988,95 +976,139 @@
   Performing system checks...
   
   System check identified no issues (0 silenced).
-  September 06, 2023 - 02:02:41
-  Django version 2.2.24, using settings 'app01.settings'
+  September 07, 2023 - 01:44:57
+  Django version 2.2.24, using settings 'myproj.settings'
   Starting development server at http://127.0.0.1:8000/
   Quit the server with CONTROL-C.
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ vi polls/admin.py
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/admin/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  (ログイン画面表示) -> テストデータ作成 -> ログアウト
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ cat app05/apps.py
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  from django.apps import AppConfig
+  
+  class App05Config(AppConfig):
+      name = 'app05'  // 別名として使用可
+  --------------------------------------------------
+  
+  $ cd $HOME/myproj
+  $ vi myproj/urls.py (プロジェクトにルーティング処理を追加)
   
   コマンドの実行結果
   --------------------------------------------------
   from django.contrib import admin
-  from .models import Question  // 追加
+  from django.urls import path, include
   
-  admin.site.register(Question)  // 追加
+  urlpatterns = [
+      path('admin/', admin.site.urls),
+      path('app01/', include('app01.urls')),
+      path('app02/', include('app02.urls')),
+      path('app03/', include('app03.urls')),
+      path('app04/', include('app04.urls')),
+      path('app05/', include('app05.urls')),  // 追加
+  ]
   --------------------------------------------------
   
-  $ (ブラウザから管理サイトにログイン)
-  $ http://127.0.0.1:8000/admin/
+  $ cd $HOME/myproj
+  $ vi app05/urls.py (アプリ用のルーティング処理を作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  (Username=admin,Password=admin0122ma) => Polls.Question を確認、Question を追加してみる
+  from django.conf.urls import url
+  from . import views
+  
+  urlpatterns = [
+      url('^$', views.index, name='index'),  // ビューファイルから関数「index」を呼出
+  ]
   --------------------------------------------------
   
-  以下の記録に続く
-  
-================================================================================
-[006]
-  ビュー追加
-  
-[内容]
-  ビュー追加
-  
-[確認]
-  $ cd $HOME/app01
-  $ vi polls/views.py
+  $ cd $HOME/myproj
+  $ vi app05/views.py (ビューファイル修正)
   
   コマンドの実行結果
   --------------------------------------------------
   from django.http import HttpResponse
+  from django.template import loader
+  from .models import App05Model  // from app05.models import App05Model と記述してもOK
   
   def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
-  
-  // 追加
-  def detail(request, question_id):
-    return HttpResponse("You're looking at question %s." % question_id)
-  
-  // 追加
-  def results(request, question_id):
-    response = "You're looking at the results of question %s."
-    return HttpResponse(response % question_id)
-  
-  // 追加
-  def vote(request, question_id):
-    return HttpResponse("You're voting on question %s." % question_id)
+      template = loader.get_template('app05/index.html')
+      alldata = App05Model.objects.all()  // 全データをモデル経由で取得
+      context = {'data': alldata }
+      return HttpResponse(template.render( context, request ))  // オブジェクトの形式でパラメータを渡す
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ vi polls/urls.py
+  $ cd $HOME/myproj
+  $ mkdir -p app05/templates/app05
   
   コマンドの実行結果
   --------------------------------------------------
-  from django.urls import path
-  from . import views
-  
-  urlpatterns = [
-    path("", views.index, name="index"),
-    path("<int:question_id>/", views.detail, name="detail"),           // 追加
-    path("<int:question_id>/results/", views.result, name="results"),  // 追加
-    path("<int:question_id>/vote/", views.vote, name="vote"),          // 追加
-  ]
+  (出力なし)
   --------------------------------------------------
   
-  $ cd $HOME/app01
-  $ //
+  $ cd $HOME/myproj
+  $ vi app05/templates/app05/index.html (テンプレート作成)
   
   コマンドの実行結果
   --------------------------------------------------
-  //
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>index.html</title>
+  </head>
+  <body>
+    <table>
+      <tr>
+        <th>商品</th>
+        <th>単価</th>
+      </tr>
+      {% for rec in data %}
+      <tr>
+        <td>{{ rec.itemname }}</td>
+        <td>{{ rec.itemvalue }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+  </html>
   --------------------------------------------------
   
-  $ (ブラウザから管理サイトにログイン)
-  $ http://127.0.0.1:8000/admin/
+  $ cd $HOME/myproj
+  $ python3 manage.py runserver
   
   コマンドの実行結果
   --------------------------------------------------
-  (Username=admin,Password=admin0122ma) => Polls.Question を確認、Question を追加してみる
+  Watching for file changes with StatReloader
+  Performing system checks...
+  
+  System check identified no issues (0 silenced).
+  September 07, 2023 - 04:31:55
+  Django version 2.2.24, using settings 'myproj.settings'
+  Starting development server at http://127.0.0.1:8000/
+  Quit the server with CONTROL-C.
+  --------------------------------------------------
+  
+  $ (ブラウザから実行)
+  $ http://127.0.0.1:8000/app05/
+  
+  コマンドの実行結果
+  --------------------------------------------------
+  商品  単価
+  AAAA  1000
+  BBBB  2000
+  CCCC  3000
   --------------------------------------------------
   
   以下の記録に続く
